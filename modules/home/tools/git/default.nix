@@ -23,10 +23,10 @@ in
       enable = true;
       inherit (cfg) userName userEmail;
       lfs = enabled;
-      signing = {
-        key = cfg.signingKey;
-        inherit (cfg) signByDefault;
-      };
+      # signing = {
+      #   key = cfg.signingKey;
+      #   inherit (cfg) signByDefault;
+      # };
       extraConfig = {
         init = { defaultBranch = "main"; };
         pull = { rebase = true; };

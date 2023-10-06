@@ -25,10 +25,10 @@ in
         enable = true;
         inherit (cfg) userName userEmail;
         lfs = enabled;
-        signing = {
-          key = cfg.signingKey;
-          signByDefault = mkIf gpg.enable true;
-        };
+        # signing = {
+        #   key = cfg.signingKey;
+        #   signByDefault = mkIf gpg.enable true;
+        # };
         extraConfig = {
           init = { defaultBranch = "main"; };
           pull = { rebase = true; };

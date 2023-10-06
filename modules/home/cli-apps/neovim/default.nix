@@ -14,7 +14,7 @@ in
     home = {
       packages = with pkgs; [
         less
-        dafos.neovim
+        # dafos.neovim
       ];
 
       sessionVariables = {

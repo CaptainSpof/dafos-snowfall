@@ -14,6 +14,10 @@ with lib.dafos;
       workstation = enabled;
     };
 
+    security = {
+      gpg = mkForce disabled;
+    };
+
     suites = {
       desktop = enabled;
       office = enabled;
