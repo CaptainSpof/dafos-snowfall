@@ -1,0 +1,95 @@
+{ pkgs, lib, inputs, ... }:
+
+with lib;
+with lib.dafos;
+let
+  gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
+
+  gpgAgentConf = ''
+    pinentry-program /run/current-system/sw/bin/pinentry-curses
+  '';
+
+  theme = pkgs.fetchFromGitHub {
+    owner = "jez";
+    repo = "pandoc-markdown-css-theme";
+    rev = "019a4829242937761949274916022e9861ed0627";
+    sha256 = "1h48yqffpaz437f3c9hfryf23r95rr319lrb3y79kxpxbc9hihxb";
+  };
+in
+{
+  services.pcscd.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    cryptsetup
+    gnupg
+    pinentry-curses
+    pinentry-qt
+    paperkey
+    wget
+    firefox
+  ];
+
+  programs = {
+    ssh.startAgent = false;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
+
+  dafos = {
+    nix = enabled;
+
+    desktop = {
+      gnome = {
+        enable = true;
+      };
+    };
+
+    apps = {
+      vscode = enabled;
+      firefox = enabled;
+    };
+
+    cli-apps = {
+      neovim = enabled;
+    };
+
+    tools = {
+      misc = enabled;
+      git = enabled;
+    };
+
+    home.file."guide.md".source = guide;
+    home.file."guide.html".source = guideHTML;
+    home.file."gpg.conf".source = gpgConf;
+    home.file."gpg-agent.conf".text = gpgAgentConf;
+
+    home.file.".gnupg/gpg.conf".source = gpgConf;
+    home.file.".gnupg/gpg-agent.conf".text = gpgAgentConf;
+
+    hardware = {
+      networking = {
+        # Networking is explicitly disabled in this environment.
+        enable = mkForce false;
+      };
+    };
+
+    security = { doas = enabled; };
+
+    system = {
+      fonts = enabled;
+      locale = enabled;
+      time = enabled;
+      xkb = enabled;
+    };
+  };
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "21.11"; # Did you read the comment?
+}

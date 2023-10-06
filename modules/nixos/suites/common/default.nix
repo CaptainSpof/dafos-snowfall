@@ -1,0 +1,63 @@
+{ config, lib, pkgs, ... }:
+
+with lib;
+with lib.dafos;
+let
+  cfg = config.dafos.suites.common;
+in
+{
+  options.dafos.suites.common = with types; {
+    enable = mkBoolOpt false "Whether or not to enable common configuration.";
+  };
+
+  config = mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.dafos.list-iommu
+    ];
+
+    dafos = {
+      nix = enabled;
+
+      cli-apps = {
+        flake = enabled;
+      };
+
+      hardware = {
+        audio = enabled;
+        storage = enabled;
+        networking = enabled;
+      };
+
+      security = {
+        gpg = enabled;
+        doas = enabled;
+        keyring = enabled;
+      };
+
+      services = {
+        printing = enabled;
+        openssh = enabled;
+        tailscale = enabled;
+      };
+
+      system = {
+        boot = enabled;
+        fonts = enabled;
+        locale = enabled;
+        time = enabled;
+        xkb = enabled;
+      };
+
+      tools = {
+        bat = enabled;
+        bottom = enabled;
+        comma = enabled;
+        fup-repl = enabled;
+        git = enabled;
+        http = enabled;
+        misc = enabled;
+        nix-ld = enabled;
+      };
+    };
+  };
+}
