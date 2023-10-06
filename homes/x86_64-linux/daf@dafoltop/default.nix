@@ -1,4 +1,4 @@
-{ lib, pkgs, config, osConfig ? { }, format ? "unknown", ... }:
+{ lib, config, ... }:
 
 with lib.dafos;
 {
