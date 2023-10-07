@@ -1,8 +1,6 @@
 { lib, config, ... }:
 
-let
-  inherit (lib.dafos) enabled;
-in
+with lib.dafos;
 {
   dafos = {
     user = {
@@ -10,22 +8,11 @@ in
       name = config.snowfallorg.user.name;
     };
 
-    apps = {
-      alacritty = enabled;
-      emacs = enabled;
-    };
-
     cli-apps = {
-      fish = enabled;
+      zsh = enabled;
+      neovim = enabled;
       helix = enabled;
       home-manager = enabled;
-      lazygit = enabled;
-      neovim = enabled;
-      nushell = enabled;
-      starship = enabled;
-      zellij = enabled;
-      zoxide = enabled;
-      zsh = enabled;
     };
 
     tools = {
