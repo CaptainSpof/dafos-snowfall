@@ -6,12 +6,15 @@ let
 
   cfg = config.dafos.tools.git;
   user = config.dafos.user;
+  vars = config.dafos.vars;
 in
 {
+  imports = [ ../../../vars.nix ];
+
   options.dafos.tools.git = {
     enable = mkEnableOption "Git";
-    userName = mkOpt types.str user.fullName "The name to configure git with.";
-    userEmail = mkOpt types.str user.email "The email to configure git with.";
+    userName = mkOpt types.str vars.git.username "The name to configure git with.";
+    userEmail = mkOpt types.str vars.git.email "The email to configure git with.";
     # FIXME: setup ssh keys
     signingKey =
       mkOpt types.str "" "The key ID to sign commits with.";

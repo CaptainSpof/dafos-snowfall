@@ -1,4 +1,4 @@
-{ lib, config, pkgs, host ? null, format ? "unknown", ... }:
+{ lib, host ? null, format ? "unknown", ... }:
 
 let
   inherit (lib) types;

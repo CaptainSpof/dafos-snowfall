@@ -1,6 +1,8 @@
 { lib, config, ... }:
 
-with lib.dafos;
+let
+  inherit (lib.dafos) enabled;
+in
 {
   dafos = {
     user = {

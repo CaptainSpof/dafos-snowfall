@@ -2,16 +2,21 @@
 
 with lib;
 with lib.dafos;
-let cfg = config.dafos.system.locale;
+let
+  cfg = config.dafos.system.locale;
+  vars = config.dafos.vars;
 in
 {
+  imports = [ ../../../vars.nix ];
+
   options.dafos.system.locale = with types; {
     enable = mkBoolOpt false "Whether or not to manage locale settings.";
   };
 
   config = mkIf cfg.enable {
-    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.defaultLocale = vars.locale;
 
-    console = { keyMap = mkForce "us"; };
+    # REVIEW
+    # console = { keyMap = mkForce "us"; };
   };
 }
