@@ -83,6 +83,7 @@ in
         };
 
         keys.normal.space = {
+          space = "file_picker_in_current_directory";
           q = "wclose";
           Q = ":quit-all!";
           R = "no_op";
@@ -109,8 +110,10 @@ in
         # files
         keys.normal.space.f = {
           "." = "file_picker_in_current_directory";
+          f = "file_picker_in_current_directory";
           ":" = "file_picker";
           c = ":config-open";
+          s = ":write";
         };
 
         keys.select = {
