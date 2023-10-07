@@ -57,12 +57,6 @@ in
       propagatedIcon
     ];
 
-    programs.zsh = {
-      enable = true;
-      autosuggestions.enable = true;
-      histFile = "$XDG_CACHE_HOME/zsh.history";
-    };
-
     dafos.home = {
       file = {
         "Desktop/.keep".text = "";
@@ -79,62 +73,6 @@ in
       };
 
       extraOptions = {
-        home.shellAliases = {
-          lc = "${pkgs.colorls}/bin/colorls --sd";
-          lcg = "lc --gs";
-          lcl = "lc -1";
-          lclg = "lc -1 --gs";
-          lcu = "${pkgs.colorls}/bin/colorls -U";
-          lclu = "${pkgs.colorls}/bin/colorls -U -1";
-        };
-
-        programs = {
-          starship = {
-            enable = true;
-            settings = {
-              character = {
-                success_symbol = "[➜](bold green)";
-                error_symbol = "[✗](bold red) ";
-                vicmd_symbol = "[](bold blue) ";
-              };
-            };
-          };
-
-          zsh = {
-            enable = true;
-            enableCompletion = true;
-            enableAutosuggestions = true;
-            syntaxHighlighting.enable = true;
-
-            initExtra = ''
-              # Fix an issue with tmux.
-              export KEYTIMEOUT=1
-
-              # Use vim bindings.
-              set -o vi
-
-              # Improved vim bindings.
-              source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-            '' + optionalString cfg.prompt-init ''
-              ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
-            '';
-
-            shellAliases = {
-              say = "${pkgs.toilet}/bin/toilet -f pagga";
-            };
-
-            plugins = [{
-              name = "zsh-nix-shell";
-              file = "nix-shell.plugin.zsh";
-              src = pkgs.fetchFromGitHub {
-                owner = "chisui";
-                repo = "zsh-nix-shell";
-                rev = "v0.4.0";
-                sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-              };
-            }];
-          };
-        };
       };
     };
 
@@ -146,7 +84,7 @@ in
       home = "/home/${cfg.name}";
       group = "users";
 
-      shell = pkgs.zsh;
+      shell = vars.shell;
 
       # Arbitrary user ID to use for the user. Since I only
       # have a single user on my machines this won't ever collide.

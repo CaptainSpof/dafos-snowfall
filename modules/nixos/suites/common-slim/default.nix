@@ -20,6 +20,7 @@ in
 
       cli-apps = {
         flake = enabled;
+        fish = enabled;
       };
 
       hardware = {

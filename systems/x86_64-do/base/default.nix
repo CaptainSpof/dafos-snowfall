@@ -20,7 +20,7 @@ with lib.dafos;
     nix = enabled;
 
     cli-apps = {
-      tmux = enabled;
+      zellij = enabled;
     };
 
     tools = {

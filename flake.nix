@@ -47,13 +47,6 @@
     neovim.url = "github:jakehamilton/neovim";
     neovim.inputs.nixpkgs.follows = "unstable";
 
-    # Tmux
-    tmux.url = "github:jakehamilton/tmux";
-    tmux.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      unstable.follows = "unstable";
-    };
-
     # Vault Integration
     vault-service = {
       url = "github:DeterminateSystems/nixos-vault-service";
@@ -121,7 +114,6 @@
 
       overlays = with inputs; [
         neovim.overlays.default
-        tmux.overlay
         flake.overlays.default
       ];
 

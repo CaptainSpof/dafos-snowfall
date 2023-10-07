@@ -19,7 +19,7 @@ with lib.dafos;
 
     cli-apps = {
       neovim = enabled;
-      tmux = enabled;
+      zellij = enabled;
     };
 
     desktop = {

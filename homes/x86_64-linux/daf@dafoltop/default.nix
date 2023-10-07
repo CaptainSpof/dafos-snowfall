@@ -11,10 +11,13 @@ in
     };
 
     cli-apps = {
-      zsh = enabled;
-      neovim = enabled;
+      fish = enabled;
+      starship = enabled;
       helix = enabled;
       home-manager = enabled;
+      neovim = enabled;
+      zellij = enabled;
+      zsh = enabled;
     };
 
     tools = {
