@@ -20,13 +20,10 @@ in
       };
 
       apps = {
-        _1password = enabled;
         firefox = enabled;
         vlc = enabled;
-        logseq = enabled;
         pocketcasts = enabled;
         yt-music = enabled;
-        ardour = enabled;
         gparted = enabled;
       };
     };
