@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.dafos;
@@ -19,7 +19,6 @@ in
 
       cli-apps = {
         neovim = enabled;
-        tmux = enabled;
       };
     };
   };

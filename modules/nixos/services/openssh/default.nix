@@ -82,15 +82,5 @@ in
 
     dafos.user.extraOptions.openssh.authorizedKeys.keys =
       cfg.authorizedKeys;
-
-    dafos.home.extraOptions = {
-      programs.zsh.shellAliases = foldl
-        (aliases: system:
-          aliases // {
-            "ssh-${system}" = "ssh ${system} -t tmux a";
-          })
-        { }
-        (builtins.attrNames other-hosts);
-    };
   };
 }

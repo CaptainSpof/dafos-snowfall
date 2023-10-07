@@ -1,5 +1,7 @@
 { lib, config, pkgs, ... }:
 
+with lib;
+with lib.dafos;
 let
   inherit (lib) mkEnableOption mkIf;
 
@@ -8,6 +10,8 @@ in
 {
   options.dafos.cli-apps.zsh = {
     enable = mkEnableOption "ZSH";
+
+    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
   };
 
   config = mkIf cfg.enable {
@@ -27,7 +31,9 @@ in
 
           # Improved vim bindings.
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        '';
+        ''+ optionalString cfg.prompt-init ''
+              ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
+            '';
 
         shellAliases = {
           say = "${pkgs.toilet}/bin/toilet -f pagga";
@@ -43,17 +49,6 @@ in
             sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
           };
         }];
-      };
-
-      starship = {
-        enable = true;
-        settings = {
-          character = {
-            success_symbol = "[➜](bold green)";
-            error_symbol = "[✗](bold red) ";
-            vicmd_symbol = "[](bold blue) ";
-          };
-        };
       };
     };
   };

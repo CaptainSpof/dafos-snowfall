@@ -8,8 +8,6 @@ let
     vscode = enabled;
   };
   cli-apps = {
-    # TODO: add zellij
-    tmux = enabled;
     # TODO: add emacs
     neovim = enabled;
     prisma = enabled;
