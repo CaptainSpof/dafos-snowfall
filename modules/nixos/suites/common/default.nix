@@ -26,6 +26,7 @@ in
         flake = enabled;
         fish = enabled;
         zsh = enabled;
+        eza = enabled;
       };
 
       hardware = {

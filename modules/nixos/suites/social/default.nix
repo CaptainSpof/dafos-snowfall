@@ -14,10 +14,10 @@ in
     dafos = {
       apps = {
         discord = {
-          enable = true;
-          chromium = enabled;
+          enable = false;
+          chromium = disabled;
         };
-        element = enabled;
+        element = disabled;
         telegram = enabled;
       };
     };

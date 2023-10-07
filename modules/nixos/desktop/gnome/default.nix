@@ -147,7 +147,7 @@ in
               [ "org.gnome.Nautilus.desktop" ]
               ++ optional config.dafos.apps.firefox.enable "firefox.desktop"
               ++ optional config.dafos.apps.vscode.enable "code.desktop"
-              ++ optional config.dafos.desktop.addons.foot.enable "foot.desktop"
+              ++ optional config.dafos.desktop.addons.foot.enable "org.codeberg.dnkl.foot.desktop"
               ++ optional config.dafos.apps.alacritty.enable "alacritty.desktop"
               ++ optional config.dafos.apps.discord.enable "discord.desktop"
               ++ optional config.dafos.apps.element.enable "element-desktop.desktop"
