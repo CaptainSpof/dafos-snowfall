@@ -5,7 +5,6 @@ with lib.dafos;
 {
   imports = [
     ./hardware.nix
-    ./kanata.nix
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -22,6 +21,10 @@ with lib.dafos;
     suites = {
       desktop = enabled;
       office = enabled;
+    };
+
+    system = {
+      kanata = enabled;
     };
   };
 
