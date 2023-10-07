@@ -24,7 +24,7 @@ in
           fish_greeting = ''
             ${pkgs.toilet}/bin/toilet -f future --gay "Dafos"
           '';
-          rm = "trash $argv";
+          rm = "${pkgs.trash-cli}/bin/trash $argv";
           fwifi = {
             body = "nmcli -t -f SSID device wifi list | grep . | sk | xargs -o -I_ nmcli --ask dev wifi connect '_'";
             description = "Fuzzy connect to a wifi";

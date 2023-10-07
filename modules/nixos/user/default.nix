@@ -50,7 +50,6 @@ in
 
   config = {
     environment.systemPackages = with pkgs; [
-      eza
       fd
       fortune
       lolcat
