@@ -6,6 +6,8 @@ let
 
   cfg = config.dafos.user;
 
+  vars = config.dafos.vars;
+
   home-directory =
     if cfg.name == null then
       null
@@ -13,12 +15,14 @@ let
       "/home/${cfg.name}";
 in
 {
+  imports = [ ../../vars.nix ];
+
   options.dafos.user = {
     enable = mkOpt types.bool false "Whether to configure the user account.";
-    name = mkOpt (types.nullOr types.str) config.snowfallorg.user.name "The user account.";
+    name = mkOpt (types.nullOr types.str) vars.username "The user account.";
 
-    fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";
-    email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user.";
+    fullName = mkOpt types.str vars.fullname "The full name of the user.";
+    email = mkOpt types.str vars.email "The email of the user.";
 
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
   };

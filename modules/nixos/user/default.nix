@@ -16,6 +16,7 @@ let
     '';
 
     passthru = { fileName = defaultIconFileName; };
+
   };
   propagatedIcon = pkgs.runCommandNoCC "propagated-icon"
     { passthru = { fileName = cfg.icon.fileName; }; }
@@ -25,19 +26,25 @@ let
 
       cp ${cfg.icon} "$target/${cfg.icon.fileName}"
     '';
+  vars = config.dafos.vars;
 in
 {
-  options.dafos.user = with types; {
-    name = mkOpt str "daf" "The name to use for the user account.";
-    fullName = mkOpt str "Cédric Da Fonseca" "The full name of the user.";
-    email = mkOpt str "dafonseca.cedric@gmail.com" "The email of the user.";
-    initialPassword = mkOpt str "password"
+  imports = [ ../../vars.nix];
+
+  options.dafos.user = {
+    name = mkOpt types.str vars.username "The name to use for the user account.";
+
+    fullName = mkOpt types.str vars.fullname "The full name of the user.";
+    email = mkOpt types.str vars.email "The email of the user.";
+
+    initialPassword = mkOpt types.str "omgchangeme"
       "The initial password to use when the user is first created.";
-    icon = mkOpt (nullOr package) defaultIcon
+    icon = mkOpt (types.nullOr types.package) defaultIcon
       "The profile picture to use for the user.";
     prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-    extraGroups = mkOpt (listOf str) [ ] "Groups for the user to be assigned.";
-    extraOptions = mkOpt attrs { }
+
+    extraGroups = mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";
+    extraOptions = mkOpt types.attrs { }
       (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
