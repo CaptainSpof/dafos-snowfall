@@ -89,15 +89,15 @@ $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
           git_status = {
             style = "#2d2f40";
             conflicted = "[ ](bold fg:88 bg:#2d2f40)[  $count ](fg:#999cb2 bg:#2d2f40)";
-            staged = "[+ $count ](fg:#999cb2 bg:#2d2f40)";
-            modified = "[ $count ](fg:#999cb2 bg:#2d2f40)";
+            staged = "[ $count ](fg:#999cb2 bg:#2d2f40)";
+            modified = "[ $count ](fg:#999cb2 bg:#2d2f40)";
             renamed = "[ $count ](fg:#999cb2 bg:#2d2f40)";
-            deleted = "[ $count ](fg:#999cb2 bg:#2d2f40)";
-            untracked = "[?$count ](fg:#999cb2 bg:#2d2f40)";
-            stashed = "[ $count ](fg:#999cb2 bg:#2d2f40)";
-            ahead = "[ $count ](fg:#523333 bg:#2d2f40)";
-            behind = "[ $count ](fg:#999cb2 bg:#2d2f40)";
-            diverged = "[ ](fg:88 bg:#2d2f40)[ נּ ](fg:#999cb2 bg:#2d2f40)[ $ahead_count ](fg:#999cb2 bg:#2d2f40)[ $behind_count ](fg:#999cb2 bg:#2d2f40)";
+            deleted = "[󰗨 $count ](fg:#999cb2 bg:#2d2f40)";
+            untracked = "[ $count ](fg:#999cb2 bg:#2d2f40)";
+            stashed = "[ $count ](fg:#999cb2 bg:#2d2f40)";
+            ahead = "[󰳡 $count ](fg:#523333 bg:#2d2f40)";
+            behind = "[󰳛 $count ](fg:#999cb2 bg:#2d2f40)";
+            diverged = "[󱓌 ](fg:88 bg:#2d2f40)[ נּ ](fg:#999cb2 bg:#2d2f40)[ $ahead_count ](fg:#999cb2 bg:#2d2f40)[ $behind_count ](fg:#999cb2 bg:#2d2f40)";
             format = "((bg:$style fg:#999cb2)$conflicted$staged$modified$renamed$deleted$untracked$stashed$ahead_behind(fg:$style))";
           };
 
