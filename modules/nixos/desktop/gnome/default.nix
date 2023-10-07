@@ -199,7 +199,6 @@ in
             switch-to-workspace-9 = [ "<Super>9" ];
             switch-to-workspace-10 = [ "<Super>0" ];
 
-
             move-to-workspace-left  = [ "<Shift><Super>g" ];
             move-to-workspace-right = [ "<Shift><Super>h" ];
             move-to-workspace-1 = [ "<Shift><Super>1" ];
@@ -235,7 +234,7 @@ in
             autohide = true;
             dock-fixed = false;
             dock-position = "BOTTOM";
-            pressure-threshold = 200.0;
+            pressure-threshold = 150.0;
             require-pressure-to-show = true;
             show-favorites = true;
             hot-keys = false;
@@ -293,12 +292,17 @@ in
             con-stacked-layout-toggle = ["<Alt><Super>s"];
             con-tabbed-layout-toggle = ["<Alt><Super>t"];
             con-tabbed-showtab-decoration-toggle = ["<Control><Alt>y"];
-            focus-border-toggle = ["<Super>x"];
+            focus-border-toggle = [ ];
             prefs-tiling-toggle = ["<Super>w"];
             window-focus-down = ["<Super>t"];
             window-focus-left = ["<Super>c"];
             window-focus-right = ["<Super>r"];
             window-focus-up = ["<Super>s"];
+            window-swap-down = ["<Shift><Super>t"];
+            window-swap-left = ["<Shift><Super>c"];
+            window-swap-right = ["<Shift><Super>r"];
+            window-swap-up = ["<Shift><Super>s"];
+            window-toggle-float = ["<Super>f"];
           };
           "org/gnome/shell/extensions/top-bar-organizer" = {
             left-box-order = [

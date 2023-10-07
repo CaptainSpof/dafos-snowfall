@@ -20,6 +20,7 @@ in
       programs.kitty = {
         enable = true;
         font.name = vars.font.term;
+        font.size = 12;
         theme = vars.theme.dark;
         shellIntegration.enableFishIntegration = true;
         settings = {
