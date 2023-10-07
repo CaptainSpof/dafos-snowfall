@@ -14,7 +14,7 @@ in
     home = {
       packages = with pkgs; [
         less
-        # dafos.neovim
+        neovim
       ];
 
       sessionVariables = {
@@ -26,6 +26,7 @@ in
 
       shellAliases = {
         vimdiff = "nvim -d";
+        vim = "nvim";
       };
     };
 
