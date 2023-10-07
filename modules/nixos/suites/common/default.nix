@@ -20,6 +20,7 @@ in
 
       apps = {
         alacritty = enabled;
+        kitty = enabled;
       };
 
       cli-apps = {
