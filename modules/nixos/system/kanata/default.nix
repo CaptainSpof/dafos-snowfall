@@ -1,14 +1,22 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+with lib;
+with lib.dafos;
+let cfg = config.dafos.system.kanata;
+in
 {
+  options.dafos.system.kanata = with types; {
+    enable = mkBoolOpt false "Whether or not to configure kanata.";
+  };
 
-  environment.systemPackages = with pkgs; [
-    kanata
-  ];
+  config = mkIf cfg.enable {
+    services.kanata.enable = true;
 
-  services.kanata.enable = true;
+    environment.systemPackages = with pkgs; [
+      kanata
+    ];
 
-  services.kanata.keyboards."bepo".config = ''
+    services.kanata.keyboards."bepo".config = ''
     (defvar
       tap-timeout   100
       hold-timeout  250
@@ -64,4 +72,6 @@
     )
 
   '';
+
+  };
 }
