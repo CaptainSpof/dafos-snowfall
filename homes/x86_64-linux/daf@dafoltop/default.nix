@@ -17,6 +17,7 @@ in
 
     cli-apps = {
       fish = enabled;
+      neovim = enabled;
       helix = enabled;
       home-manager = enabled;
       neovim = enabled;
