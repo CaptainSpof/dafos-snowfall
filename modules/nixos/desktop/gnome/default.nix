@@ -17,6 +17,7 @@ let
     just-perfection
     logo-menu
     no-overview
+    middle-click-to-close-in-overview
     remove-app-menu
     space-bar
     top-bar-organizer
