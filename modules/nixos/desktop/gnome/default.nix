@@ -179,7 +179,12 @@ in
             resize-with-right-button = true;
           };
           "org/gnome/desktop/wm/keybindings" = {
-            switch-to-workspace-1 = [ "<Super>1" ];
+            close    = [ "<Alt>F4" "<Super>q" ];
+            minimize = [ "<Ctrl><Super>h" ];
+          
+            switch-to-workspace-left  = [ "<Super>g" ]; 
+            switch-to-workspace-right = [ "<Super>h" ]; 
+            switch-to-workspace-1 = [ "<Super>1" ]; 
             switch-to-workspace-2 = [ "<Super>2" ];
             switch-to-workspace-3 = [ "<Super>3" ];
             switch-to-workspace-4 = [ "<Super>4" ];
@@ -190,6 +195,9 @@ in
             switch-to-workspace-9 = [ "<Super>9" ];
             switch-to-workspace-10 = [ "<Super>0" ];
 
+
+            move-to-workspace-left  = [ "<Shift><Super>g" ];
+            move-to-workspace-right = [ "<Shift><Super>h" ];
             move-to-workspace-1 = [ "<Shift><Super>1" ];
             move-to-workspace-2 = [ "<Shift><Super>2" ];
             move-to-workspace-3 = [ "<Shift><Super>3" ];
