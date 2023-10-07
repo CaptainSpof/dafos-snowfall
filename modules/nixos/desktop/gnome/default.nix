@@ -11,6 +11,7 @@ let
     aylurs-widgets
     dash-to-dock
     emoji-selector
+    forge
     gsconnect
     gtile
     just-perfection
@@ -280,6 +281,24 @@ in
             workspace-indicator = false;
           };
 
+          "org/gnome/shell/extensions/forge" = {
+            window-gap-hidden-on-single = true;
+          };
+
+          "org/gnome/shell/extensions/forge/keybindings" = {
+            con-split-horizontal = [ ];
+            con-split-layout-toggle = [ ];
+            con-split-vertical = [ ];
+            con-stacked-layout-toggle = ["<Alt><Super>s"];
+            con-tabbed-layout-toggle = ["<Alt><Super>t"];
+            con-tabbed-showtab-decoration-toggle = ["<Control><Alt>y"];
+            focus-border-toggle = ["<Super>x"];
+            prefs-tiling-toggle = ["<Super>w"];
+            window-focus-down = ["<Super>t"];
+            window-focus-left = ["<Super>c"];
+            window-focus-right = ["<Super>r"];
+            window-focus-up = ["<Super>s"];
+          };
           "org/gnome/shell/extensions/top-bar-organizer" = {
             left-box-order = [
               "menuButton"

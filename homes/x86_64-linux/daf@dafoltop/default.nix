@@ -23,6 +23,7 @@ in
       zellij = enabled;
       zoxide = enabled;
       zsh = enabled;
+      lazygit = enabled;
     };
 
     tools = {
