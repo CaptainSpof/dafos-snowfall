@@ -216,8 +216,8 @@ in
             switch-to-application-10 = [ ];
           };
           "org/gnome/mutter" = {
-            edge-tiling = false;
-            dynamic-workspaces = false;
+            edge-tiling = true;
+            dynamic-workspaces = true;
           };
 
           "org/gnome/shell/extensions/dash-to-dock" = {
