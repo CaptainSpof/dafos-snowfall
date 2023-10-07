@@ -10,13 +10,18 @@ in
       name = config.snowfallorg.user.name;
     };
 
+    apps = {
+      alacritty = enabled;
+    };
+
     cli-apps = {
       fish = enabled;
-      starship = enabled;
       helix = enabled;
       home-manager = enabled;
       neovim = enabled;
+      starship = enabled;
       zellij = enabled;
+      zoxide = enabled;
       zsh = enabled;
     };
 

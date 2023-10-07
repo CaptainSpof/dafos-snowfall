@@ -128,7 +128,6 @@ in
     dafos.home.extraOptions = {
       dconf.settings =
         let
-          user = config.users.users.${config.dafos.user.name};
           get-wallpaper = wallpaper:
             if lib.isDerivation wallpaper then
               builtins.toString wallpaper
@@ -149,7 +148,7 @@ in
               ++ optional config.dafos.apps.firefox.enable "firefox.desktop"
               ++ optional config.dafos.apps.vscode.enable "code.desktop"
               ++ optional config.dafos.desktop.addons.foot.enable "foot.desktop"
-              ++ optional config.dafos.apps.logseq.enable "logseq.desktop"
+              ++ optional config.dafos.apps.alacritty.enable "alacritty.desktop"
               ++ optional config.dafos.apps.discord.enable "discord.desktop"
               ++ optional config.dafos.apps.element.enable "element-desktop.desktop"
               ++ optional config.dafos.apps.steam.enable "steam.desktop";

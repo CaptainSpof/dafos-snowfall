@@ -18,6 +18,10 @@ in
     dafos = {
       nix = enabled;
 
+      apps = {
+        alacritty = enabled;
+      };
+
       cli-apps = {
         flake = enabled;
         fish = enabled;
