@@ -14,10 +14,12 @@ in
 
     environment.systemPackages = with pkgs; [
       duf
+      fd
       file
       fzf
       jq
       killall
+      ripgrep
       unzip
       wget
     ];
