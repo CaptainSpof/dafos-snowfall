@@ -1,10 +1,9 @@
-{ options, config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.dafos;
 let
   cfg = config.dafos.desktop.addons.firefox-nordic-theme;
-  profileDir = ".mozilla/firefox/${config.dafos.user.name}";
 in
 {
   options.dafos.desktop.addons.firefox-nordic-theme = with types; {

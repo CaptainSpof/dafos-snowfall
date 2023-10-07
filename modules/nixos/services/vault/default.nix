@@ -132,7 +132,7 @@ in
             policies;
           write-policies = concatStringsSep "\n" write-policies-commands;
 
-          known-policies = mapAttrsToList (name: value: name) policies;
+          known-policies = mapAttrsToList (name: _value: name) policies;
 
           remove-unknown-policies = ''
             current_policies=$(vault policy list -format=json | jq -r '.[]')

@@ -3,7 +3,6 @@
 , writeShellApplication
 , substituteAll
 , gum
-, inputs
 , hosts ? { }
 , ...
 }:

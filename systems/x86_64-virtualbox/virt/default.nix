@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 with lib;
 with lib.dafos;
@@ -15,7 +15,6 @@ with lib.dafos;
     nix = enabled;
 
     apps = {
-      _1password = enabled;
       firefox = enabled;
       logseq = enabled;
       vscode = enabled;

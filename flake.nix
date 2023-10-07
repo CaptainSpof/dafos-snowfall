@@ -5,6 +5,7 @@
     # NixPkgs (nixos-unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # FIXME: point unstable to master, or get rid of it.
     # NixPkgs Unstable (nixos-unstable)
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -59,20 +60,6 @@
       inputs.nixpkgs.follows = "unstable";
     };
 
-    # Discord Replugged
-    replugged.url = "github:LunNova/replugged-nix-flake";
-    replugged.inputs.nixpkgs.follows = "unstable";
-
-    # Discord Replugged plugins / themes
-    discord-tweaks = {
-      url = "github:NurMarvin/discord-tweaks";
-      flake = false;
-    };
-    discord-nord-theme = {
-      url = "github:DapperCore/NordCord";
-      flake = false;
-    };
-
     # GPG default configuration
     gpg-base-conf = {
       url = "github:drduh/config";
@@ -103,13 +90,6 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [
-          # @FIXME(jakehamilton): This is a workaround for 22.11 and can
-          # be removed once NixPkgs is upgraded to 23.05.
-          "electron-20.3.11"
-          "nodejs-16.20.0"
-          "python-2.7.18.6"
-        ];
       };
 
       overlays = with inputs; [
@@ -132,7 +112,7 @@
 
       checks =
         builtins.mapAttrs
-        (system: deploy-lib:
+        (_system: deploy-lib:
           deploy-lib.deployChecks inputs.self.deploy)
         inputs.deploy-rs.lib;
     };

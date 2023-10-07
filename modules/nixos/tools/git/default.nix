@@ -4,7 +4,6 @@ with lib;
 with lib.dafos;
 let
   cfg = config.dafos.tools.git;
-  gpg = config.dafos.security.gpg;
   user = config.dafos.user;
   vars = config.dafos.vars;
 in

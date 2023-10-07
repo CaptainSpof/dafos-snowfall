@@ -1,9 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 with lib;
 with lib.dafos;
 let
-  cfg = config.dafos.desktop.addons.wallpapers;
   inherit (pkgs.dafos) wallpapers;
 in
 {
