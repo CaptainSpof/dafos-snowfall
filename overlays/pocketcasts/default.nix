@@ -1,4 +1,4 @@
-{ channels, ... }:
+{ ... }:
 
 final: prev: {
   dafos = (prev.dafos or { }) // {

@@ -33,7 +33,7 @@ let
     images;
   installTarget = "$out/share/wallpapers";
   installWallpapers = builtins.mapAttrs
-    (name: wallpaper: ''
+    (_name: wallpaper: ''
       cp ${wallpaper} ${installTarget}/${wallpaper.fileName}
     '')
     wallpapers;

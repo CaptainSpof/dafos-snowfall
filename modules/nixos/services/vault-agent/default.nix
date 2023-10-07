@@ -62,7 +62,7 @@ let
                   else
                     (
                       mapAttrsToList
-                        (template-name: value: value.path)
+                        (_template-name: value: value.path)
                         config.secrets.environment.templates
                     );
               };
@@ -121,7 +121,7 @@ in
       cfg.services);
 
     systemd.services = mapAttrs
-      (service-name: value: mkIf value.secrets.environment.force {
+      (_service-name: value: mkIf value.secrets.environment.force {
         serviceConfig.EnvironmentFile = mkForce value.secrets.environment.paths;
       })
       cfg.services;
@@ -159,7 +159,7 @@ in
             defaultChangeAction = value.secrets.file.change-action;
 
             files = mapAttrs
-              (file-name: value: {
+              (_file-name: value: {
                 changeAction = value.change-action;
                 template = value.text;
                 templateFile = value.source;

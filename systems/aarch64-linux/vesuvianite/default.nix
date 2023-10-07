@@ -1,4 +1,4 @@
-{ pkgs, config, lib, modulesPath, inputs, ... }:
+{ lib, modulesPath, inputs, ... }:
 
 with lib;
 with lib.dafos;

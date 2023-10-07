@@ -24,8 +24,8 @@ let
     wireless-hid
   ];
 
-  default-attrs = mapAttrs (key: mkDefault);
-  nested-default-attrs = mapAttrs (key: default-attrs);
+  default-attrs = mapAttrs (_key: mkDefault);
+  nested-default-attrs = mapAttrs (_key: default-attrs);
   mkTuple = lib.home-manager.hm.gvariant.mkTuple;
 in
 {

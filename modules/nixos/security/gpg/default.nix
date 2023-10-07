@@ -13,13 +13,6 @@ let
     max-cache-ttl 120
     pinentry-program ${pkgs.pinentry-gnome}/bin/pinentry-gnome
   '';
-
-  theme = pkgs.fetchFromGitHub {
-    owner = "jez";
-    repo = "pandoc-markdown-css-theme";
-    rev = "019a4829242937761949274916022e9861ed0627";
-    sha256 = "1h48yqffpaz437f3c9hfryf23r95rr319lrb3y79kxpxbc9hihxb";
-  };
 in
 {
   options.dafos.security.gpg = with types; {

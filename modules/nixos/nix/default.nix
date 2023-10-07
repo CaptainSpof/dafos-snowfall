@@ -5,7 +5,7 @@ with lib.dafos;
 let
   cfg = config.dafos.nix;
 
-  substituters-submodule = types.submodule ({ name, ... }: {
+  substituters-submodule = types.submodule ({ ... }: {
     options = with types; {
       key = mkOpt (nullOr str) null "The trusted public key for this substituter.";
     };
@@ -65,11 +65,11 @@ in
           substituters =
             [ cfg.default-substituter.url ]
               ++
-              (mapAttrsToList (name: value: name) cfg.extra-substituters);
+              (mapAttrsToList (name: _value: name) cfg.extra-substituters);
           trusted-public-keys =
             [ cfg.default-substituter.key ]
               ++
-              (mapAttrsToList (name: value: value.key) cfg.extra-substituters);
+              (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
 
         } // (lib.optionalAttrs config.dafos.tools.direnv.enable {
           keep-outputs = true;

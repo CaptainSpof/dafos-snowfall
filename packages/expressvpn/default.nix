@@ -1,6 +1,5 @@
 { autoPatchelfHook
 , buildFHSEnv
-, buildFHSEnvChroot
 , dpkg
 , fetchurl
 , inotify-tools

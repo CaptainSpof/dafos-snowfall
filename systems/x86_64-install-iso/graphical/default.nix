@@ -11,7 +11,6 @@ with lib.dafos;
     nix = enabled;
 
     apps = {
-      _1password = enabled;
       firefox = enabled;
       vscode = enabled;
       gparted = enabled;

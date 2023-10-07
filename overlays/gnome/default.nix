@@ -1,6 +1,6 @@
 { channels, ... }:
 
-final: prev:
+_final: prev:
 
 let extensions = channels.unstable.gnomeExtensions;
 in

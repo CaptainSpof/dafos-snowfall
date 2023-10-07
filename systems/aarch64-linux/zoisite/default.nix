@@ -1,9 +1,9 @@
-{ pkgs, config, lib, modulesPath, inputs, ... }:
+{ pkgs, lib, modulesPath, ... }:
 
 with lib;
 with lib.dafos;
 {
-  imports = with inputs.nixos-hardware.nixosModules; [
+  imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/installer/sd-card/sd-image-aarch64.nix")
   ];

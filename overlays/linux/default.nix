@@ -1,6 +1,6 @@
-{ channels, ... }:
+{ ... }:
 
-final: prev:
+_final: prev:
 
 {
   # inherit (channels.unstable) linuxPackages_latest;

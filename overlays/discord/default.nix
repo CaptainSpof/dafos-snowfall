@@ -1,6 +1,6 @@
 { channels, ... }:
 
-final: prev: {
+_final: prev: {
   dafos = (prev.dafos or { }) // {
     discord-chromium = with prev;
       makeDesktopItem {
