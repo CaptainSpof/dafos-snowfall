@@ -11,6 +11,7 @@ with lib.dafos;
     cli-apps = {
       zsh = enabled;
       neovim = enabled;
+      helix = enabled;
       home-manager = enabled;
     };
 
