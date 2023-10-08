@@ -2,7 +2,7 @@
 
 _final: prev:
 
-let extensions = channels.unstable.gnomeExtensions;
+let extensions = channels.nixpkgs-master.gnomeExtensions;
 in
 {
   gnomeExtensions = prev.gnomeExtensions // {

@@ -31,5 +31,5 @@ _final: prev: {
       };
   };
 
-  inherit (channels.unstable) discord;
+  inherit (channels.nixpkgs-master) discord;
 }
