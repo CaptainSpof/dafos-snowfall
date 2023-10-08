@@ -7,6 +7,7 @@ let
   cfg = config.dafos.tools.git;
   user = config.dafos.user;
   vars = config.dafos.vars;
+  fish = config.dafos.cli-apps.fish;
 in
 {
   imports = [ ../../../vars.nix ];
@@ -36,10 +37,39 @@ in
         push = { autoSetupRemote = true; };
         core = { whitespace = "trailing-space,space-before-tab"; };
         safe = {
-          directory = "${user.home}/work/config";
+          directory = "${user.home}/.config/dafos";
         };
       };
     };
     programs.gh.enable = true;
+    programs.fish = mkIf fish.enable {
+      shellAbbrs = {
+        g = "git";
+        ga = "git add";
+        "ga." = "git add .";
+        gamend = "git commit --amend --no-edit";
+        gb = "git branch";
+        gc = "git commit";
+        gcl = "git clone";
+        gl = ''git log --graph --pretty="format:%C(yellow)%h%Creset %C(red)%G?%Creset%C(green)%d%Creset %s %Cblue(%cr) %C(bold blue)<%aN>%Creset"'';
+        gco = "git checkout";
+        gd = "git diff";
+        gdt = "git difftool";
+        gds = "git diff --staged";
+        gp = "git push";
+        gpf = "git push --force-with-lease";
+        gf = "git fetch";
+        gF = "git pull";
+        grc = "git rebase --continue";
+        gri = "git rebase --interactive";
+        gra = "git rebase --abort";
+        grs = "git rebase --skip";
+        gs = "git status --short";
+        gS = "git status";
+        gst = "git stash";
+        gstl = "git stash list";
+        gstp = "git stash pop";
+      };
+    };
   };
 }

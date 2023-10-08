@@ -3,10 +3,10 @@
 with lib;
 with lib.dafos;
 let
-  cfg = config.dafos.tools.go;
+  cfg = config.dafos.tools.lang.go;
 in
 {
-  options.dafos.tools.go = with types; {
+  options.dafos.tools.lang.go = with types; {
     enable = mkBoolOpt false "Whether or not to enable Go support.";
   };
 

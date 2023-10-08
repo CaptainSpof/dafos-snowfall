@@ -21,6 +21,7 @@ with lib.dafos;
     suites = {
       desktop = enabled;
       office = enabled;
+      development = enabled;
     };
 
     system = {

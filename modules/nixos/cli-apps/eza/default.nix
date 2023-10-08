@@ -25,6 +25,10 @@ in
         lt = "${eza} --tree";
         tree = "${eza} --tree";
       };
+
+      home.sessionVariables = {
+        EZA_ICON_SPACING = "2";
+      };
     };
   };
 }

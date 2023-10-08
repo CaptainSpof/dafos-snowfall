@@ -17,9 +17,12 @@ with lib.dafos;
 
     tools = {
       git = enabled;
-      node = enabled;
       misc = enabled;
       http = enabled;
+      lang = {
+        node = enabled;
+        nix = enabled;
+      };
     };
 
     hardware = {

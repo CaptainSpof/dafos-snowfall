@@ -37,9 +37,12 @@ with lib.dafos;
     tools = {
       k8s = enabled;
       git = enabled;
-      node = enabled;
       http = enabled;
       misc = enabled;
+      lang = {
+        nix = enabled;
+        node = enabled;
+      };
     };
 
     hardware = {

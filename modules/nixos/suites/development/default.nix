@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.dafos;
@@ -17,6 +17,24 @@ in
   options.dafos.suites.development = with types; {
     enable = mkBoolOpt false
       "Whether or not to enable common development configuration.";
+    dockerEnable =
+      mkBoolOpt false
+        "Whether or not to enable docker development configuration.";
+    goEnable =
+      mkBoolOpt false
+        "Whether or not to enable go development configuration.";
+    keyboardEnable =
+      mkBoolOpt false
+        "Whether or not to enable keyboard development configuration.";
+    kubernetesEnable =
+      mkBoolOpt false
+        "Whether or not to enable kubernetes development configuration.";
+    nixEnable =
+      mkBoolOpt true
+        "Whether or not to enable nix development configuration.";
+    nodeEnable =
+      mkBoolOpt false
+        "Whether or not to enable nodejs development configuration.";
   };
 
   config = mkIf cfg.enable {
@@ -28,19 +46,29 @@ in
       8081
     ];
 
+    environment.systemPackages = with pkgs; [
+      tokei # need to know how many lines of poorly written code you typed ? 🦀
+    ] ++ lib.optionals cfg.nixEnable [
+    ];
+
+
     dafos = {
-      inherit apps cli-apps;
 
       tools = {
         direnv = enabled;
-        go = enabled;
         http = enabled;
-        k8s = enabled;
-        node = enabled;
-        qmk = enabled;
+        k8s.enable = cfg.kubernetesEnable;
+        qmk.enable = cfg.keyboardEnable;
+        lang = {
+          go.enable = cfg.goEnable;
+          nix.enable = cfg.nixEnable;
+          node.enable = cfg.nodeEnable;
+        };
       };
 
-      virtualisation = { podman = enabled; };
+      virtualisation = {
+        podman.enable = cfg.dockerEnable;
+      };
     };
   };
 }
