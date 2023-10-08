@@ -13,6 +13,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Nix User Repository (master)
+    nur.url = "github:nix-community/NUR";
+
     # Hardware Configuration
     nixos-hardware.url = "github:nixos/nixos-hardware";
 
@@ -82,6 +85,7 @@
 
       overlays = with inputs; [
         neovim.overlays.default
+        nur.overlay
         flake.overlays.default
       ];
 
