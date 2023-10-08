@@ -17,7 +17,7 @@ in
         enable = true;
 
         config = {
-          theme = "gruvbox";
+          theme = "gruvbox-dark";
           style = "auto,header-filesize";
         };
 
