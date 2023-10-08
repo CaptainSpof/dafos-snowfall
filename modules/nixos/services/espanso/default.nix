@@ -12,15 +12,33 @@ in
 
   config = mkIf cfg.enable {
 
-    dafos.home = {
-      # configFile = {
-      #   "wgetrc".text = "";
-      # };
+    dafos.user.extraGroups = [ "input" ];
 
+    dafos.home = {
       extraOptions = {
         services.espanso = {
           enable = true;
           package = pkgs.espanso-wayland;
+
+          configs = {
+            default = {
+              keyboard_layout = {
+                layout = "fr";
+                variant = "bepo";
+              };
+            };
+          };
+
+          matches = {
+            base = {
+              matches = [
+                {
+                  trigger = ":now";
+                  replace = "It's {{currentdate}} {{currenttime}}";
+                }
+              ];
+            };
+          };
         };
       };
     };
