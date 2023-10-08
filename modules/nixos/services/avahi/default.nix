@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   cfg = config.dafos.services.avahi;
@@ -11,6 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [ pkgs.nssmdns ];
     services.avahi = {
       enable = true;
       nssmdns = true;

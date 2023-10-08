@@ -37,6 +37,7 @@ in
       };
 
       services = {
+        avahi = enabled;
         openssh = enabled;
         tailscale = enabled;
       };
