@@ -42,7 +42,8 @@ in
       nix-index
       nix-prefetch-git
       nix-output-monitor
-      flake-checker
+      # TODO: revive flake-checker
+      # flake-checker
     ];
 
     nix =
