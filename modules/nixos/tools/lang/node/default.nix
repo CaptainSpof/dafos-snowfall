@@ -2,10 +2,10 @@
 
 with lib;
 with lib.dafos;
-let cfg = config.dafos.tools.node;
+let cfg = config.dafos.tools.lang.node;
 in
 {
-  options.dafos.tools.node = with types; {
+  options.dafos.tools.lang.node = with types; {
     enable = mkBoolOpt false "Whether or not to install and configure git";
     pkg = mkOpt package pkgs.nodejs-18_x "The NodeJS package to use";
     prettier = {
