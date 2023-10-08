@@ -2,12 +2,14 @@
   description = "Here lies my shipwrecks. I mean fleet of hosts.";
 
   inputs = {
+    # NixPkgs (nixos-23.05)
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+
     # NixPkgs (nixos-unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # FIXME: point unstable to master, or get rid of it.
     # NixPkgs Unstable (nixos-unstable)
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # Home Manager
     home-manager.url = "github:nix-community/home-manager";
@@ -29,15 +31,15 @@
 
     # Snowfall Flake
     flake.url = "github:snowfallorg/flake";
-    flake.inputs.nixpkgs.follows = "unstable";
+    flake.inputs.nixpkgs.follows = "nixpkgs";
 
     # Comma
     comma.url = "github:nix-community/comma";
-    comma.inputs.nixpkgs.follows = "unstable";
+    comma.inputs.nixpkgs.follows = "nixpkgs";
 
     # System Deployment
     deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs.nixpkgs.follows = "unstable";
+    deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
 
     # Disko
     disko.url = "github:nix-community/disko";
@@ -45,11 +47,11 @@
 
     # Run unpatched dynamically compiled binaries
     nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "unstable";
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     # Neovim
     neovim.url = "github:jakehamilton/neovim";
-    neovim.inputs.nixpkgs.follows = "unstable";
+    neovim.inputs.nixpkgs.follows = "nixpkgs";
 
     # Vault Integration
     vault-service.url = "github:DeterminateSystems/nixos-vault-service";
