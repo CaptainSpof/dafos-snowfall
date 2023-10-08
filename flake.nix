@@ -37,6 +37,9 @@
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
 
+    nh.url = "github:viperML/nh";
+    nh.inputs.nixpkgs.follows = "nixpkgs";
+
     # System Deployment
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +99,7 @@
         nix-ld.nixosModules.nix-ld
         vault-service.nixosModules.nixos-vault-service
         disko.nixosModules.disko
+        nh.nixosModules.default
       ];
 
       systems.hosts.dafoltop.modules = with inputs; [
