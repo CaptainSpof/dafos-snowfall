@@ -14,6 +14,7 @@ in
 
       services = {
         logiops = enabled;
+        espanso = enabled;
       };
 
       suites = {
