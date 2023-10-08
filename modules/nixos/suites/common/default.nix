@@ -43,6 +43,7 @@ in
       };
 
       services = {
+        avahi = enabled;
         printing = enabled;
         openssh = enabled;
         tailscale = enabled;
