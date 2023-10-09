@@ -37,6 +37,10 @@
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Nuenv
+    nuenv.url = "github:DeterminateSystems/nuenv";
+
+    # nh
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -89,17 +93,18 @@
       };
 
       overlays = with inputs; [
-        neovim.overlays.default
-        nur.overlay
         flake.overlays.default
+        neovim.overlays.default
+        nuenv.overlays.default
+        nur.overlay
       ];
 
       systems.modules.nixos = with inputs; [
+        disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+        nh.nixosModules.default
         nix-ld.nixosModules.nix-ld
         vault-service.nixosModules.nixos-vault-service
-        disko.nixosModules.disko
-        nh.nixosModules.default
       ];
 
       systems.hosts.dafoltop.modules = with inputs; [
