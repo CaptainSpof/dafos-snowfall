@@ -13,6 +13,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [
       pkgs.dafos.list-iommu
+      pkgs.dafos.run-me
     ];
 
     dafos = {
