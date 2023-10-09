@@ -23,13 +23,14 @@ in
       };
 
       cli-apps = {
-        flake = enabled;
         fish = enabled;
+        flake = enabled;
+        nushell = enabled;
       };
 
       hardware = {
-        storage = enabled;
         networking = enabled;
+        storage = enabled;
       };
 
       security = {
