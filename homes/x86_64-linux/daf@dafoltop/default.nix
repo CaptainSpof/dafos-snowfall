@@ -12,6 +12,7 @@ in
 
     apps = {
       alacritty = enabled;
+      emacs = enabled;
     };
 
     cli-apps = {
