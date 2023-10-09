@@ -10,5 +10,8 @@ in
   };
 
   config =
-    mkIf cfg.enable { environment.systemPackages = with pkgs; [ emacs ]; };
+    mkIf cfg.enable {
+      environment.sessionVariables.PATH = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+      environment.systemPackages = with pkgs; [ emacs ]; 
+    };
 }
