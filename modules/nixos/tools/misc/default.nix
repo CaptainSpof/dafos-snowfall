@@ -28,6 +28,7 @@ in
         enable = true;
         arguments = ["--smart-case"];
       };
+      programs.tealdeer.enable = true;
     };
   };
 }
