@@ -9,6 +9,7 @@ let
   defaultExtensions = with pkgs.gnomeExtensions; [
     appindicator
     aylurs-widgets
+    clipboard-indicator-2
     dash-to-dock
     emoji-selector
     forge
@@ -16,8 +17,8 @@ let
     gtile
     just-perfection
     logo-menu
-    no-overview
     middle-click-to-close-in-overview
+    no-overview
     remove-app-menu
     space-bar
     top-bar-organizer
@@ -149,6 +150,7 @@ in
               [ "org.gnome.Nautilus.desktop" ]
               ++ optional config.dafos.apps.firefox.enable "firefox.desktop"
               ++ optional config.dafos.apps.vscode.enable "code.desktop"
+              ++ optional config.dafos.apps.emacs.enable "emacs.desktop"
               # TODO: enable based on default terminal emulator
               # ++ optional config.dafos.desktop.addons.foot.enable "org.codeberg.dnkl.foot.desktop"
               # ++ optional config.dafos.apps.alacritty.enable "alacritty.desktop"
