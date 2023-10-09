@@ -175,7 +175,7 @@ in
             sources = [ (mkTuple [ "xkb" "fr+bepo" ]) (mkTuple [ "xkb" "us+altgr-intl" ]) ];
           };
           "org/gnome/desktop/peripherals/touchpad" = {
-            disable-while-typing = true;
+            disable-while-typing = false;
             tap-to-click = true;
           };
           "org/gnome/desktop/wm/preferences" = {
