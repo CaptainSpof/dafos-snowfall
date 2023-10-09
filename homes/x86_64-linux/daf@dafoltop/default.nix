@@ -19,6 +19,7 @@ in
       helix = enabled;
       home-manager = enabled;
       neovim = enabled;
+      nushell = enabled;
       starship = enabled;
       zellij = enabled;
       zoxide = enabled;

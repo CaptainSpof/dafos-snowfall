@@ -5,6 +5,7 @@ let
 
   cfg = config.dafos.cli-apps.starship;
   fish = config.dafos.cli-apps.fish;
+  nushell = config.dafos.cli-apps.nushell;
   zsh = config.dafos.cli-apps.zsh;
 in
 {
@@ -17,6 +18,7 @@ in
       starship = {
         enable = true;
         enableFishIntegration = fish.enable;
+        enableNushellIntegration = nushell.enable;
         enableZshIntegration = zsh.enable;
         settings = {
           format = ''$nix_shell$directory$aws$all$package$fill$vcsh$git_commit$git_state$git_metrics$git_branch$git_status
