@@ -5,8 +5,7 @@ let
 
   cfg = config.dafos.cli-apps.starship;
   fish = config.dafos.cli-apps.fish;
-  # FIXME: nushell doesn't exist in home modules
-  nushell.enable = true;
+  nushell = config.dafos.cli-apps.nushell;
   zsh = config.dafos.cli-apps.zsh;
 in
 {

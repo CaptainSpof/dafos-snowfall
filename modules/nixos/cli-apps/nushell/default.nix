@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.dafos;
@@ -11,11 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    dafos.home.extraOptions = {
-      programs.nushell = {
-        enable = true;
-        configFile.source = ./config.nu;
-      };
-    };
+    environment.systemPackages = [ pkgs.nushell ];
   };
 }
