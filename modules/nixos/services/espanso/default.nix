@@ -32,6 +32,7 @@ in
                 layout = "fr";
                 variant = "bepo";
               };
+              backend = "Inject";
             };
           };
 
