@@ -12,7 +12,10 @@ in
 
   config = mkIf cfg.enable {
     dafos.home.extraOptions = {
-      programs.nushell.enable = true;
+      programs.nushell = {
+        enable = true;
+        configFile.source = ./config.nu;
+      };
     };
   };
 }
