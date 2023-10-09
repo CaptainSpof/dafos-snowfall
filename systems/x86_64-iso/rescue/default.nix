@@ -16,7 +16,7 @@ with lib.dafos;
 
     hardware = { networking = enabled; };
 
-    security = { doas = enabled; };
+    security = { doas = disabled; };
 
     system = {
       fonts = enabled;

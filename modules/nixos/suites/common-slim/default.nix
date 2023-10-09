@@ -33,7 +33,7 @@ in
       };
 
       security = {
-        doas = enabled;
+        doas = disabled;
       };
 
       services = {
