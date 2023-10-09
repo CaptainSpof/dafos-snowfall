@@ -11,6 +11,11 @@ in
 
   config = mkIf cfg.enable {
     dafos = {
+
+      services = {
+        logiops = enabled;
+      };
+
       suites = {
         common = enabled;
         desktop = enabled;
