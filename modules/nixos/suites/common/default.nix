@@ -24,28 +24,29 @@ in
       };
 
       cli-apps = {
-        flake = enabled;
-        fish = enabled;
-        zsh = enabled;
         eza = enabled;
+        fish = enabled;
+        flake = enabled;
+        nushell = enabled;
+        zsh = enabled;
       };
 
       hardware = {
         audio = enabled;
-        storage = enabled;
         networking = enabled;
+        storage = enabled;
       };
 
       security = {
-        gpg = enabled;
         doas = disabled;
+        gpg = enabled;
         keyring = enabled;
       };
 
       services = {
         avahi = enabled;
-        printing = enabled;
         openssh = enabled;
+        printing = enabled;
         tailscale = enabled;
       };
 
