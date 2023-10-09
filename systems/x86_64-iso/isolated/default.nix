@@ -68,7 +68,7 @@ in
       };
     };
 
-    security = { doas = enabled; };
+    security = { doas = disabled; };
 
     system = {
       fonts = enabled;

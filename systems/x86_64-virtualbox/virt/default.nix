@@ -53,7 +53,7 @@ with lib.dafos;
     services = { printing = enabled; };
 
     security = {
-      doas = enabled;
+      doas = disabled;
       keyring = enabled;
     };
 

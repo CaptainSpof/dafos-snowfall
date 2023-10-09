@@ -28,7 +28,7 @@ with lib.dafos;
     };
 
     security = {
-      doas = enabled;
+      doas = disabled;
     };
 
     services = {
