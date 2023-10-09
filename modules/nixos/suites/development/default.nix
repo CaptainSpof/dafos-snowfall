@@ -4,14 +4,6 @@ with lib;
 with lib.dafos;
 let
   cfg = config.dafos.suites.development;
-  apps = {
-    vscode = enabled;
-  };
-  cli-apps = {
-    # TODO: add emacs
-    neovim = enabled;
-    prisma = enabled;
-  };
 in
 {
   options.dafos.suites.development = with types; {
@@ -48,11 +40,18 @@ in
 
     environment.systemPackages = with pkgs; [
       tokei # need to know how many lines of poorly written code you typed ? 🦀
-    ] ++ lib.optionals cfg.nixEnable [
     ];
 
 
     dafos = {
+      apps = {
+        emacs = enabled;
+        vscode = enabled;
+      };
+
+      cli-apps = {
+        neovim = enabled;
+      };
 
       tools = {
         direnv = enabled;
