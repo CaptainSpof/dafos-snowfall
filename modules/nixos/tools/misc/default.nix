@@ -19,9 +19,15 @@ in
       fzf
       jq
       killall
-      ripgrep
       unzip
       wget
     ];
+
+    dafos.home.extraOptions = {
+      programs.ripgrep = {
+        enable = true;
+        arguments = ["--smart-case"];
+      };
+    };
   };
 }
