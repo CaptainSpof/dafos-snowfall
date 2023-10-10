@@ -43,6 +43,7 @@ in
       wl-clipboard
 
       # Themes
+      dafos.kde-warm-eyes
       gruvbox-gtk-theme
       kde-gruvbox
       lightly-boehs
