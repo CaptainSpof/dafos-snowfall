@@ -1,4 +1,4 @@
-{inputs, ... }:
+{inputs, pkgs, ... }:
 
 let
   inherit (inputs) plasma-manager;
@@ -18,9 +18,9 @@ in
       # Some mid-level settings:
       shortcuts = {
         "Alacritty.desktop"."New" = "Meta+Return";
-        "alacrittydropdown.sh.desktop"."_launch" = "Meta+D";
 
-        ksmserver."Lock Session" = [ "Screensaver" "Meta+Ctrl+Alt+L" ];
+        "ksmserver"."Lock Session" = ["Meta+Monitor Brightness Up" "Meta+Monitor Brightness Down" "Screensaver"];
+        "kaccess"."Toggle Screen Reader On and Off" = [ ];
 
         kwin = {
           "Switch Window Down" = "Meta+T";
@@ -38,6 +38,7 @@ in
           "Window Fullscreen" = [ "Meta+Ctrl+F" "Meta+Shift+F" ];
           "Edit Tiles" = "Meta+Alt+Space";
 
+          # TODO: add option
           "PoloniumCycleLayouts" = "Meta+/";
           "PoloniumFocusAbove" = "Meta+S";
           "PoloniumFocusBelow" = "Meta+T";
@@ -57,7 +58,6 @@ in
           "PoloniumSwapBelow" = "Meta+Shift+T";
           "PoloniumSwapLeft" = "Meta+Shift+C";
           "PoloniumSwapRight" = "Meta+Shift+R";
-
         };
 
         "org.kde.krunner.desktop"."_launch" = ["Meta+Space" "Alt+F2" "Search"];
@@ -65,18 +65,21 @@ in
 
       # A low-level setting:
       configFile = {
+        # Baloo
         "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
 
+        # Dolphin
         "dolphinrc"."General"."ShowSpaceInfo" = false; # bottom right disk space indicator looks weird
 
+        # KDE Globals
         "kdeglobals"."KDE"."widgetStyle" = "Lightly";
         "kdeglobals"."KDE"."SingleClick" = true;
 
         "kded5rc"."Module-bluedevil"."autoload" = true;
 
+        # Kwin
         "kwinrc"."Desktops"."Number" = 4;
         "kwinrc"."Desktops"."Rows" = 1;
-
         "kwinrc"."Effect-overview"."BorderActivate" = 7;
         "kwinrc"."Effect-windowview"."BorderActivateAll" = 9;
         "kwinrc"."TabBox"."TouchBorderActivate" = 6;
@@ -100,11 +103,13 @@ in
         "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
         "kwinrc"."Windows"."NextFocusPrefersMouse" = true;
 
-        "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "NHIAX";
-        # TODO: use ${pkgs.maliit}
-        "kwinrc"."Wayland"."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+        "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "XAI";
+        "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "HSM";
+        "kwinrc"."Wayland"."InputMethod[$e]" = "${pkgs.maliit-keyboard}/bin/maliit-keyboard";
         "kwinrc"."Wayland"."VirtualKeyboardEnabled" = true;
 
+        # KCM input
+        # FIXME: system specific
         "kcminputrc"."Libinput.1386.914.Wacom Intuos Pro S Finger"."NaturalScroll" = true;
         "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."ClickMethod" = 2;
         "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."NaturalScroll" = true;
@@ -113,6 +118,7 @@ in
         "ksmserverrc"."General"."loginMode" = "emptySession";
         "ksmserverrc"."General"."shutdownType" = 2; # Preselect "Shutdown"
 
+        # Krunner
         "krunnerrc"."General"."FreeFloating" = true;
         "krunnerrc"."Plugins"."appstreamEnabled" = false;
         "krunnerrc"."Runners.Dictionary"."triggerWord" = "=";
@@ -129,15 +135,16 @@ in
 
         # Locale
         # REVIEW: maybe setting it up through nix options is sufficient
-        "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
-        "plasma-localerc"."Formats"."LC_ADDRESS" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_MEASUREMENT" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_MONETARY" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_NAME" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_PAGE" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_TELEPHONE" = "fr_FR.UTF-8";
-        "plasma-localerc"."Formats"."LC_TIME" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LANG" = "en_US.UTF-8";
+        # "plasma-localerc"."Formats"."LC_ADDRESS" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_MEASUREMENT" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_MONETARY" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_NAME" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_PAGE" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_TELEPHONE" = "fr_FR.UTF-8";
+        # "plasma-localerc"."Formats"."LC_TIME" = "fr_FR.UTF-8";
 
+        # Plasma
         "plasmarc"."Theme"."name" = "gruvbox";
       };
     };

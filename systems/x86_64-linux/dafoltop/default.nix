@@ -1,7 +1,10 @@
-{ lib, ... }:
+{ inputs, lib, ... }:
 
 with lib;
 with lib.dafos;
+let
+  inherit (inputs) plasma-manager;
+in
 {
   imports = [
     ./hardware.nix
@@ -34,6 +37,18 @@ with lib.dafos;
 
     system = {
       kanata = enabled;
+    };
+
+    home.extraOptions = {
+      imports = [ plasma-manager.homeManagerModules.plasma-manager ];
+
+      programs.plasma = {
+        configFile = {
+          "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."NaturalScroll" = true;
+          "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."PointerAccelerationProfile" = 1;
+          "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."TapToClick" = true;
+        };
+      };
     };
   };
 

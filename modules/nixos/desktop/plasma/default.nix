@@ -25,7 +25,6 @@ in
   config = mkIf cfg.enable {
     dafos.system.xkb.enable = true;
     dafos.desktop.addons = {
-      gtk = enabled;
       wallpapers = enabled;
       electron-support = enabled;
       foot = enabled;
@@ -35,7 +34,12 @@ in
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
 
-      # virtual keyboard
+      # Themes
+      kde-gruvbox
+      lightly-boehs
+      papirus-nord
+
+      # Virtual keyboard
       maliit-framework
       maliit-keyboard
     ] ++ defaultExtensions ++ cfg.extensions;
@@ -55,10 +59,6 @@ in
       desktopManager.plasma5.useQtScaling = true;
       desktopManager.plasma5.runUsingSystemd = true;
     };
-
-    # dafos.home.extraOptions = {
-
-    # };
 
     programs.kdeconnect = {
       enable = true;
