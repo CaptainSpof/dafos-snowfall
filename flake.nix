@@ -40,6 +40,11 @@
     # Nuenv
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    # Plasma-Manager
+    plasma-manager.url = "github:mcdonc/plasma-manager/enable-look-and-feel-settings";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
+
     # nh
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
@@ -100,6 +105,10 @@
         nh.nixosModules.default
         nix-ld.nixosModules.nix-ld
         vault-service.nixosModules.nixos-vault-service
+      ];
+
+      systems.modules.home = with inputs; [
+        plasma-manager.homeManagerModules.plasma-manager
       ];
 
       systems.hosts.dafoltop.modules = with inputs; [

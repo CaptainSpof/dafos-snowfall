@@ -14,7 +14,8 @@ in
   config = mkIf cfg.enable {
     dafos = {
       desktop = {
-        gnome = enabled;
+        gnome = disabled;
+        plasma = enabled;
         addons = { wallpapers = enabled; };
       };
 
