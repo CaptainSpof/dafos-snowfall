@@ -5,7 +5,13 @@ with lib.dafos;
 let
   cfg = config.dafos.desktop.plasma;
 
-  defaultExtensions = [ ];
+  defaultExtensions = with pkgs.libsForQt5; [
+    # Scripts
+    kwin-dynamic-workspaces
+    kzones
+    # Widgets
+    applet-window-buttons
+  ];
 in
 {
   imports = [ ./plasma-conf.nix ];
@@ -25,16 +31,19 @@ in
   config = mkIf cfg.enable {
     dafos.system.xkb.enable = true;
     dafos.desktop.addons = {
-      wallpapers = enabled;
+      wallpapers = disabled;
       electron-support = enabled;
       foot = enabled;
     };
+
+    programs.dconf.enable = true;
 
     environment.systemPackages = with pkgs; [
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
 
       # Themes
+      gruvbox-gtk-theme
       kde-gruvbox
       lightly-boehs
       papirus-nord
