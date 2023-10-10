@@ -8,6 +8,8 @@ let
   defaultExtensions = [ ];
 in
 {
+  imports = [ ./plasma-conf.nix ];
+
   options.dafos.desktop.plasma = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
