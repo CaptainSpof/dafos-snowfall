@@ -24,6 +24,18 @@ libsForQt5.mkDerivation rec {
     plasma-framework
   ];
 
+  dontBuild = true;
+
+  # 1. --global still installs to $HOME/.local/share so we use --packageroot
+  # 2. plasmapkg2 doesn't copy metadata.desktop into place, so we do that manually
+  installPhase = ''
+    runHook preInstall
+
+    plasmapkg2 --type plasmoid --install ${src}/package --packageroot $out/share/plasma/plasmoids
+
+    runHook postInstall
+  '';
+
   meta = with lib; {
     description = "A beautiful control centre widget for KDE Plasma directly inspired by the MacOS control centre.";
     homepage = "https://github.com/Prayag2/kde_controlcentre";
