@@ -13,6 +13,7 @@ let
     applet-window-buttons
     pkgs.dafos.kde-controlcentre
     pkgs.dafos.simple-overview-pager
+    pkgs.dafos.plasma-applet-net-bandwidth-monitor
   ];
 in
 {
