@@ -9,8 +9,9 @@ let
     # Scripts
     kwin-dynamic-workspaces
     kzones
-    # Widgets
+    # Widgets & Plasmoids
     applet-window-buttons
+    pkgs.dafos.kde-controlcentre
   ];
 in
 {
