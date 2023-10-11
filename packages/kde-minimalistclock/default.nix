@@ -1,19 +1,14 @@
-{ libsForQt5, lib, fetchFromGitHub, extra-cmake-modules, cmake }:
+{ libsForQt5, lib, fetchFromGitHub }:
 
 libsForQt5.mkDerivation rec {
-  name = "kde-controlcentre";
+  name = "kde-minimalistclock";
 
   src = fetchFromGitHub {
     owner = "Prayag2";
-    repo = "kde_controlcentre";
-    rev = "cbf5ea1aa7238f950a5e213caafcdf9cc64c720e";
-    sha256 = "sha256-3go8Blnm6F5CN2KuxkPupHdquqWtBVp09XYTfcopk3k=";
+    repo = "kde_minimalistclock";
+    rev = "9b0d8bbd2ae2380f69339edd6fc2beec957bd5f8";
+    sha256 = "sha256-rnO9Pf7J8eESeN/DDpfCElUIfPVYzD1BHV3sXfj+o0M=";
   };
-
-  nativeBuildInputs = [
-    cmake
-    extra-cmake-modules
-  ];
 
   buildInputs = with libsForQt5; [
     kcoreaddons
@@ -35,8 +30,8 @@ libsForQt5.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "A beautiful control centre widget for KDE Plasma directly inspired by the MacOS control centre.";
-    homepage = "https://github.com/Prayag2/kde_controlcentre";
+    description = "A minimalist looking clock for KDE!";
+    homepage = "https://github.com/Prayag2/kde_minimalistclock";
     license = licenses.gpl3;
     platforms = platforms.linux;
   };
