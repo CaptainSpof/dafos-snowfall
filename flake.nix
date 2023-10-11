@@ -56,10 +56,6 @@
     nix-ld.url = "github:Mic92/nix-ld";
     nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Neovim
-    neovim.url = "github:jakehamilton/neovim";
-    neovim.inputs.nixpkgs.follows = "nixpkgs";
-
     # Vault Integration
     vault-service.url = "github:DeterminateSystems/nixos-vault-service";
     vault-service.inputs.nixpkgs.follows = "nixpkgs";
@@ -94,7 +90,6 @@
 
       overlays = with inputs; [
         flake.overlays.default
-        neovim.overlays.default
         nuenv.overlays.default
         nur.overlay
       ];
