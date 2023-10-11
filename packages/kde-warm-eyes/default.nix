@@ -1,6 +1,6 @@
-{ stdenv, lib, fetchurl }:
+{ lib, stdenvNoCC }:
 
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   name = "kde-warm-eyes";
   src = ./WarmEyes.colors;
 

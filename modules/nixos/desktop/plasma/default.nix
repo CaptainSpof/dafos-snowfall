@@ -12,6 +12,7 @@ let
     # Widgets & Plasmoids
     applet-window-buttons
     pkgs.dafos.kde-controlcentre
+    pkgs.dafos.simple-overview-pager
   ];
 in
 {
