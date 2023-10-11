@@ -17,7 +17,7 @@ let
   ];
 in
 {
-  imports = [ ./plasma-conf.nix ];
+  imports = [ ./config/plasma-config.nix ];
 
   options.dafos.desktop.plasma = with types; {
     enable =
@@ -28,6 +28,7 @@ in
     };
     color-scheme = mkOpt (enum [ "light" "dark" ]) "dark" "The color scheme to use.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
+    touchScreen = mkBoolOpt false "Whether or not to use Wayland.";
     extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
   };
 
@@ -51,7 +52,7 @@ in
       kde-gruvbox
       lightly-boehs
       papirus-nord
-
+    ] ++ lib.optional (cfg.touchScreen) [
       # Virtual keyboard
       maliit-framework
       maliit-keyboard
