@@ -35,13 +35,3 @@
 I decided to go with an "imperative" style configuration for Doom Emacs. Instead of using something like [[https://github.com/nix-community/nix-doom-emacs][nix-doom-emacs]].
 
 The reasoning is that I can't be bothered to wait for a system rebuild to reload my configuration (I might be misunderstanding how nix-doom-emacs works).
-
-** ~/Sync/Org doesn't exist
-
-Until I decide if I port my ~syncthing~ configuration, we have to create the directory ourselves:
-
-#+begin_src bash
-mkdir -pv ~/Sync/Org
-#+end_src
-
-This might be better handled in ~doom-conf~ too.
