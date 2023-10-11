@@ -3,7 +3,7 @@
 , makeWrapper
 , fetchFromGitHub
 , runCommandNoCC
-, flakeSource ? "/home/daf/work/config"
+, flakeSource ? "/home/daf/.config/dafos"
 , ...
 }:
 
