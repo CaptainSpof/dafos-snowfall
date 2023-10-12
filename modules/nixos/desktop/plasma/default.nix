@@ -13,8 +13,9 @@ let
     applet-window-buttons
     pkgs.dafos.kde-controlcentre
     pkgs.dafos.kde-minimalistclock
-    pkgs.dafos.simple-overview-pager
+    # pkgs.dafos.neve4plasma
     pkgs.dafos.plasma-applet-net-bandwidth-monitor
+    pkgs.dafos.simple-overview-pager
   ];
 in
 {

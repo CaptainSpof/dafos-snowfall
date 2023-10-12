@@ -6,7 +6,7 @@ in
 {
   programs.plasma = {
     shortcuts = {
-      "Alacritty.desktop"."New" = "Meta+Return";
+      "Alacritty.desktop"."New" = "Meta+Alt+Return";
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
 
@@ -34,6 +34,7 @@ in
       "kwin"."Expose" = "Meta+,";
       "kwin"."ExposeAll" = ["Ctrl+F10" "Launch (C)"];
       "kwin"."ExposeClass" = "Ctrl+F7";
+      # KZones
       "kwin"."KZones: Cycle layouts" = "Ctrl+Alt+D";
       "kwin"."KZones: Move active window to next zone" = "Ctrl+Alt+Right";
       "kwin"."KZones: Move active window to previous zone" = "Ctrl+Alt+Left";
@@ -49,47 +50,43 @@ in
       "kwin"."KZones: Switch to next window in current zone" = "Ctrl+Alt+Up";
       "kwin"."KZones: Switch to previous window in current zone" = "Ctrl+Alt+Down";
       "kwin"."KZones: Toggle OSD" = "Ctrl+Alt+C";
+
       "kwin"."Kill Window" = "Meta+Ctrl+Esc";
       "kwin"."MoveMouseToCenter" = "Meta+F6";
       "kwin"."MoveMouseToFocus" = "Meta+F5";
       "kwin"."Overview" = "Meta+W";
-      "kwin"."PoloniumCycleLayouts" = "Meta+/";
-      "kwin"."PoloniumFocusAbove" = "Meta+S";
-      "kwin"."PoloniumFocusBelow" = "Meta+T";
-      "kwin"."PoloniumFocusLeft" = "Meta+C";
-      "kwin"."PoloniumFocusRight" = "Meta+R";
-      "kwin"."PoloniumRebuildLayout" = "Meta+Ctrl+Space";
-      "kwin"."PoloniumResizeTileDown" = "Meta+Ctrl+T";
-      "kwin"."PoloniumResizeTileLeft" = "Meta+Ctrl+C";
-      "kwin"."PoloniumResizeTileRight" = "Meta+Ctrl+R";
-      "kwin"."PoloniumResizeTileUp" = "Meta+Ctrl+S";
-      "kwin"."PoloniumRetileWindow" = "Meta+F";
-      "kwin"."PoloniumShowSettings" = "Meta+|";
-      "kwin"."PoloniumSwapAbove" = "Meta+Shift+S";
-      "kwin"."PoloniumSwapBelow" = "Meta+Shift+T";
-      "kwin"."PoloniumSwapLeft" = "Meta+Shift+C";
-      "kwin"."PoloniumSwapRight" = "Meta+Shift+R";
-      "kwin"."Show Desktop" = "Meta+D";
+      # Polonium
+      # "kwin"."PoloniumCycleLayouts" = "Meta+/";
+      # "kwin"."PoloniumFocusAbove" = "Meta+S";
+      # "kwin"."PoloniumFocusBelow" = "Meta+T";
+      # "kwin"."PoloniumFocusLeft" = "Meta+C";
+      # "kwin"."PoloniumFocusRight" = "Meta+R";
+      # "kwin"."PoloniumRebuildLayout" = "Meta+Ctrl+Space";
+      # "kwin"."PoloniumResizeTileDown" = "Meta+Ctrl+T";
+      # "kwin"."PoloniumResizeTileLeft" = "Meta+Ctrl+C";
+      # "kwin"."PoloniumResizeTileRight" = "Meta+Ctrl+R";
+      # "kwin"."PoloniumResizeTileUp" = "Meta+Ctrl+S";
+      # "kwin"."PoloniumRetileWindow" = "Meta+F";
+      # "kwin"."PoloniumShowSettings" = "Meta+|";
+      # "kwin"."PoloniumSwapAbove" = "Meta+Shift+S";
+      # "kwin"."PoloniumSwapBelow" = "Meta+Shift+T";
+      # "kwin"."PoloniumSwapLeft" = "Meta+Shift+C";
+      # "kwin"."PoloniumSwapRight" = "Meta+Shift+R";
+
       "kwin"."ShowDesktopGrid" = "Meta+F8";
       "kwin"."Suspend Compositing" = "Alt+Shift+F12";
       "kwin"."Switch Window Down" = "Meta+T";
       "kwin"."Switch Window Left" = "Meta+C";
       "kwin"."Switch Window Right" = "Meta+R";
       "kwin"."Switch Window Up" = "Meta+S";
-      "kwin"."Switch to Desktop 1" = "Ctrl+F1";
-      "kwin"."Switch to Desktop 2" = "Ctrl+F2";
-      "kwin"."Switch to Desktop 3" = "Ctrl+F3";
-      "kwin"."Switch to Desktop 4" = "Ctrl+F4";
       "kwin"."Switch to Next Desktop" = "Meta+H";
       "kwin"."Switch to Previous Desktop" = "Meta+G";
       "kwin"."ToggleMouseClick" = "Meta+*";
       "kwin"."Window Close" = ["Alt+F4" "Meta+Q"];
       "kwin"."Window Fullscreen" = ["Meta+Ctrl+F" "Meta+Shift+F"];
-      "kwin"."Window Maximize" = "Meta+PgUp";
+      "kwin"."Window Maximize" = ["Meta+PgUp" "Meta+Return"];
       "kwin"."Window Minimize" = "Meta+PgDown";
       "kwin"."Window On All Desktops" = "Meta+Alt+A";
-      "kwin"."Window One Desktop Down" = "Meta+Ctrl+Shift+Down";
-      "kwin"."Window One Desktop Up" = "Meta+Ctrl+Shift+Up";
       "kwin"."Window One Desktop to the Left" = "Meta+Shift+G";
       "kwin"."Window One Desktop to the Right" = "Meta+Shift+H";
       "kwin"."Window Operations Menu" = "Alt+F3";
@@ -123,7 +120,7 @@ in
       "plasmashell"."cycle-panels" = "Meta+Alt+P";
       "plasmashell"."next activity" = "Meta+Tab";
       "plasmashell"."previous activity" = "Meta+Shift+Tab";
-      "plasmashell"."show dashboard" = "Ctrl+F12";
+      "plasmashell"."show dashboard" = [ "Ctrl+F12" "Meta+D" ];
       "plasmashell"."show-on-mouse-pos" = "Meta+V";
 
       # Disabled/Unmapped Shortcuts
@@ -191,6 +188,13 @@ in
       "kwin"."PoloniumInsertLeft" = [ ];
       "kwin"."PoloniumInsertRight" = [ ];
       "kwin"."Setup Window Shortcut" = [ ];
+      "kwin"."Window One Desktop Down" = [ ];
+      "kwin"."Window One Desktop Up" = [ ];
+      "kwin"."Switch to Desktop 1" = [ ];
+      "kwin"."Switch to Desktop 2" = [ ];
+      "kwin"."Switch to Desktop 3" = [ ];
+      "kwin"."Switch to Desktop 4" = [ ];
+      "kwin"."Show Desktop" = [ ];
     };
   };
 }
