@@ -7,7 +7,7 @@ let
 in
 {
   options.dafos.apps.expressvpn = {
-    enable = mkEnableOption "Express VPN";
+    enable = mkBoolOpt false "Whether or not to enable ExpressVPN.";
   };
 
   config = mkIf cfg.enable {

@@ -14,6 +14,10 @@ with lib.dafos;
       workstation = enabled;
     };
 
+    apps = {
+      qbittorrent = enabled;
+    };
+
     security = {
       gpg = mkForce disabled;
     };
