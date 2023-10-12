@@ -13,6 +13,7 @@ in
     dafos.home.configFile."wgetrc".text = "";
 
     environment.systemPackages = with pkgs; [
+      dafos.dafos-cli
       duf
       fd
       file
