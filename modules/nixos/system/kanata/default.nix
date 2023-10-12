@@ -53,12 +53,13 @@ in
       <ar      (tap-hold-release $tt $ht RA-à @arr)
       raltbspc (tap-hold-release $tt $ht bspc ralt)
       rctrlret (tap-hold-release $tt $ht ret @arr)
+      raar     (tap-hold-release $tt $ht a @arr)
     )
 
     (deflayer bepow
       _     _    _    _        _      _    _    _    _    _    _    _    _    _
       _     _    _    _        _     'w    _    _    _    _    _    à    è
-      @cap  _    _    @lctrld  @lmetf _    _    _    _    _    _    _    _
+      @cap  @raar     _    @lctrld  @lmetf _    _    _    _    _    _    _    _
       _     @<ar 'z   _        _      _    _    _    _    _    _    _    @rsft
       _     _    _              @rsspc          @raltbspc  _
     )
