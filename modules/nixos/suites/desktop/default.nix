@@ -15,15 +15,11 @@ in
     dafos = {
       desktop = {
         gnome = enabled;
-
         addons = { wallpapers = enabled; };
       };
 
       apps = {
         firefox = enabled;
-        vlc = enabled;
-        pocketcasts = enabled;
-        yt-music = enabled;
         gparted = enabled;
       };
     };
