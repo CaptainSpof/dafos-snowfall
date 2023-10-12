@@ -11,7 +11,7 @@ let
         dontUnpack = true;
 
         installPhase = ''
-          cp $src $out
+          cp -r $src $out
         '';
 
         passthru = { inherit fileName; };
@@ -34,7 +34,7 @@ let
   installTarget = "$out/share/wallpapers";
   installWallpapers = builtins.mapAttrs
     (_name: wallpaper: ''
-      cp ${wallpaper} ${installTarget}/${wallpaper.fileName}
+      cp -r ${wallpaper} ${installTarget}/${wallpaper.fileName}
     '')
     wallpapers;
 in
@@ -45,7 +45,7 @@ pkgs.stdenvNoCC.mkDerivation {
   installPhase = ''
     mkdir -p ${installTarget}
 
-    find * -type f -mindepth 0 -maxdepth 0 -exec cp ./{} ${installTarget}/{} ';'
+    find * -type f -mindepth 0 -maxdepth 0 -exec cp -r ./{} ${installTarget}/{} ';'
   '';
 
   passthru = { inherit names; } // wallpapers;
