@@ -4,7 +4,7 @@ with lib;
 with lib.dafos;
 {
   imports = [
-    # ./hardware.nix
+    ./hardware.nix
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

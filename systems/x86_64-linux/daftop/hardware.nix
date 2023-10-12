@@ -1,5 +1,8 @@
-{ config, lib, modulesPath, nixos-hardware, ... }:
+{ config, lib, modulesPath, inputs, pkgs, ... }:
 
+let
+  inherit (inputs) nixos-hardware;
+in
 {
   imports = with nixos-hardware.nixosModules; [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -12,37 +15,42 @@
     common-pc-ssd
   ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a86c4c28-3573-4c12-ab45-ec3c61b41fd6";
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    initrd = {
+      availableKernelModules =
+        [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
+      kernelModules = [ "amdgpu" ];
+      luks.devices."crypted".device =
+        "/dev/disk/by-uuid/2740b97b-a34c-43d5-9a5b-bb86521690ca";
+    };
+    kernelModules = [ "tcp_bbr" "kvm-amd" "uhid" ];
+  };
+
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
       fsType = "ext4";
     };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/49cfef2e-1953-4a6f-8756-8b04354d1860";
+    "/home" = {
+      device = "/dev/disk/by-label/home";
       fsType = "ext4";
     };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/853B-767B";
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/8d462279-34ba-4de0-8996-3b1bf39066f0"; }
-    ];
+  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
