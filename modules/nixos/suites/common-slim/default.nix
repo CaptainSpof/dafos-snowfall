@@ -26,6 +26,7 @@ in
         fish = enabled;
         flake = enabled;
         nushell = enabled;
+        tealdeer = enabled;
       };
 
       hardware = {

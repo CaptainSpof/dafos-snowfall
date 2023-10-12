@@ -60,12 +60,12 @@ in
       _     _    _    _        _     'w    _    _    _    _    _    à    è
       @cap  _    _    @lctrld  @lmetf _    _    _    _    _    _    _    _
       _     @<ar 'z   _        _      _    _    _    _    _    _    _    @rsft
-      _     _    _              @rsspc          @raltbspc   @rctrlret
+      _     _    _              @rsspc          @raltbspc  _
     )
 
     (deflayer arrows
       _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
-      _    _      _    _   _    _    _    _    pgup pgdn _    _    _
+      _    _      _    _   _    _    _    pgdn pgup _    _    _    _
       _    home   _    _   end  _    left down up   rght _    _    _
       _    _      _    _   _    _    _    _    _    home end  _
       _    _    _              _              _    _    _
