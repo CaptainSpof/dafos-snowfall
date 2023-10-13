@@ -25,7 +25,7 @@ in
     )
 
     (deflocalkeys-linux
-      <    86
+      '<   86
       'w   27
       'z   26
       à    44
@@ -36,32 +36,54 @@ in
       grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
       tab  q    w    e    r    t    y    u    i    o    p    [    ]
       caps a    s    d    f    g    h    j    k    l    ;    '    ret
-      lsft <    z    x    c    v    b    n    m    ,    .    /    rsft
+      lsft '<   z    x    c    v    b    n    m    ,    .    /    rsft
       lctl lmet lalt           spc            ralt rctl
     )
 
     (defalias
       ;; toggle layer aliases
       arr (layer-toggle arrows)
+      sym (layer-toggle symbols)
 
       ;; tap within $tt for esc, hold more than $ht for lctl
       cap      (tap-hold $tt $ht esc lctl)
-      rsft     (tap-hold-release $tt $ht up rsft)
-      lmetf    (tap-hold-release $tt $ht f lmet)
-      lctrld   (tap-hold-release $tt $ht d lctrl)
-      rsspc    (tap-hold-release $tt $ht spc rsft)
+      rS       (tap-hold-release $tt $ht up rsft)
+      lMf      (tap-hold-release $tt $ht f lmet)
+      lCd      (tap-hold-release $tt $ht d lctrl)
+      rSspc    (tap-hold-release $tt $ht spc rsft)
       <ar      (tap-hold-release $tt $ht RA-à @arr)
-      raltbspc (tap-hold-release $tt $ht bspc ralt)
-      rctrlret (tap-hold-release $tt $ht ret @arr)
-      raar     (tap-hold-release $tt $ht a @arr)
+      rAbspc   (tap-hold-release $tt $ht bspc ralt)
+      aarr     (tap-hold-release $tt $ht a @arr)
+      ;sym     (tap-hold-release $tt $ht ; @sym)
+
+      [     AG-4
+      ]     AG-5
+      {     AG-x
+      }     AG-c
+      'lp   4
+      'rp   5
+      <     AG-2
+      >     AG-3
+      at    6
+      |     AG-q
+      /     9
+      \     AG-à
     )
 
     (deflayer bepow
-      _     _    _    _        _      _    _    _    _    _    _    _    _    _
-      _     _    _    _        _     'w    _    _    _    _    _    à    è
-      @cap  @raar     _    @lctrld  @lmetf _    _    _    _    _    _    _    _
-      _     @<ar 'z   _        _      _    _    _    _    _    _    _    @rsft
-      _     _    _              @rsspc          @raltbspc  _
+      _     _     _    _      _      _    _    _    _    _    _    _    _    _
+      _     _     _    _      _     'w    _    _    _    _    _    à    è
+      @cap  @aarr _    @lCd   @lMf   _    _    _    _    _    @;sym _    _
+      _     @<ar 'z    _      _      _    _    _    _    _    _     _    @rS
+      _     _    _            @rSspc          @rAbspc  _
+    )
+
+    (deflayer symbols
+      _     _    _    _    _    _     _    _    _    _    _    _    _    _
+      _     @|   @/   @'lp @'rp _     _    _    _    _    _    _    _
+      _     @at  @<   @[   @]   @>    _    _    _    _    _    _    _
+      _     _    @\   _    @{   @}   _     _    _    _    _    _    _
+      _     _    _          _               _    _
     )
 
     (deflayer arrows
@@ -71,7 +93,6 @@ in
       _    _      _    _   _    _    _    _    _    home end  _
       _    _    _              _              _    _    _
     )
-
   '';
 
   };
