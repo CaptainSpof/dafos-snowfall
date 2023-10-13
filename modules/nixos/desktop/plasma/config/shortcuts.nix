@@ -6,7 +6,7 @@ in
 {
   programs.plasma = {
     shortcuts = {
-      "Alacritty.desktop"."New" = "Meta+Alt+Return";
+      "Alacritty.desktop"."New" = "Meta+Alt+T";
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
 
@@ -55,23 +55,6 @@ in
       "kwin"."MoveMouseToCenter" = "Meta+F6";
       "kwin"."MoveMouseToFocus" = "Meta+F5";
       "kwin"."Overview" = "Meta+W";
-      # Polonium
-      # "kwin"."PoloniumCycleLayouts" = "Meta+/";
-      # "kwin"."PoloniumFocusAbove" = "Meta+S";
-      # "kwin"."PoloniumFocusBelow" = "Meta+T";
-      # "kwin"."PoloniumFocusLeft" = "Meta+C";
-      # "kwin"."PoloniumFocusRight" = "Meta+R";
-      # "kwin"."PoloniumRebuildLayout" = "Meta+Ctrl+Space";
-      # "kwin"."PoloniumResizeTileDown" = "Meta+Ctrl+T";
-      # "kwin"."PoloniumResizeTileLeft" = "Meta+Ctrl+C";
-      # "kwin"."PoloniumResizeTileRight" = "Meta+Ctrl+R";
-      # "kwin"."PoloniumResizeTileUp" = "Meta+Ctrl+S";
-      # "kwin"."PoloniumRetileWindow" = "Meta+F";
-      # "kwin"."PoloniumShowSettings" = "Meta+|";
-      # "kwin"."PoloniumSwapAbove" = "Meta+Shift+S";
-      # "kwin"."PoloniumSwapBelow" = "Meta+Shift+T";
-      # "kwin"."PoloniumSwapLeft" = "Meta+Shift+C";
-      # "kwin"."PoloniumSwapRight" = "Meta+Shift+R";
 
       "kwin"."ShowDesktopGrid" = "Meta+F8";
       "kwin"."Suspend Compositing" = "Alt+Shift+F12";
@@ -83,7 +66,7 @@ in
       "kwin"."Switch to Previous Desktop" = "Meta+G";
       "kwin"."ToggleMouseClick" = "Meta+*";
       "kwin"."Window Close" = ["Alt+F4" "Meta+Q"];
-      "kwin"."Window Fullscreen" = ["Meta+Ctrl+F" "Meta+Shift+F"];
+      "kwin"."Window Fullscreen" = ["Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return"];
       "kwin"."Window Maximize" = ["Meta+PgUp" "Meta+Return"];
       "kwin"."Window Minimize" = "Meta+PgDown";
       "kwin"."Window On All Desktops" = "Meta+Alt+A";
@@ -178,6 +161,23 @@ in
       "plasmashell"."activate task manager entry 10" = [ ];
       "kaccess"."Toggle Screen Reader On and Off" = [ ];
       "kwin"."ExposeClassCurrentDesktop" = [ ];
+      # Polonium
+      "kwin"."PoloniumCycleLayouts" = [ ];
+      "kwin"."PoloniumFocusAbove" = [ ];
+      "kwin"."PoloniumFocusBelow" = [ ];
+      "kwin"."PoloniumFocusLeft" = [ ];
+      "kwin"."PoloniumFocusRight" = [ ];
+      "kwin"."PoloniumRebuildLayout" = [ ];
+      "kwin"."PoloniumResizeTileDown" = [ ];
+      "kwin"."PoloniumResizeTileLeft" = [ ];
+      "kwin"."PoloniumResizeTileRight" = [ ];
+      "kwin"."PoloniumResizeTileUp" = [ ];
+      "kwin"."PoloniumRetileWindow" = [ ];
+      "kwin"."PoloniumShowSettings" = [ ];
+      "kwin"."PoloniumSwapAbove" = [ ];
+      "kwin"."PoloniumSwapBelow" = [ ];
+      "kwin"."PoloniumSwapLeft" = [ ];
+      "kwin"."PoloniumSwapRight" = [ ];
       "kwin"."PoloniumEngineBTree" = [ ];
       "kwin"."PoloniumEngineHalf" = [ ];
       "kwin"."PoloniumEngineKWin" = [ ];

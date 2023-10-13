@@ -31,19 +31,6 @@ in
         "dolphinrc"."Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
         "dolphinrc"."VersionControl"."enabledPlugins" = "Git";
 
-        "kactivitymanagerdrc"."Plugins"."org.kde.ActivityManager.VirtualDesktopSwitchEnabled" = true;
-        "kactivitymanagerdrc"."activities"."1a022626-6b5d-4327-a49f-b39c98e9f964" = "Default";
-        "kactivitymanagerdrc"."activities"."1f882cf9-20dd-499e-a4dc-8dacd02c0098" = "Multi Monitor";
-        "kactivitymanagerdrc"."activities"."370dd3b2-4a17-4fbf-8d4e-0623736b1e9b" = "Workout";
-        "kactivitymanagerdrc"."activities"."5597b1ff-ecc1-4a01-8d1b-de18fce84580" = "Blackhole";
-        "kactivitymanagerdrc"."activities"."9bb3e0db-53af-47e6-9f12-433d64799b35" = "Work";
-        "kactivitymanagerdrc"."activities-descriptions"."1f882cf9-20dd-499e-a4dc-8dacd02c0098" = "Rearange stuff when multiple monitors are connected";
-        "kactivitymanagerdrc"."activities-descriptions"."5597b1ff-ecc1-4a01-8d1b-de18fce84580" = "background stuff";
-        "kactivitymanagerdrc"."activities-icons"."1a022626-6b5d-4327-a49f-b39c98e9f964" = "preferences-desktop-default-applications";
-        "kactivitymanagerdrc"."activities-icons"."1f882cf9-20dd-499e-a4dc-8dacd02c0098" = "video-joined-displays-symbolic";
-        "kactivitymanagerdrc"."activities-icons"."370dd3b2-4a17-4fbf-8d4e-0623736b1e9b" = "activities";
-        "kactivitymanagerdrc"."activities-icons"."5597b1ff-ecc1-4a01-8d1b-de18fce84580" = "activities";
-        "kactivitymanagerdrc"."activities-icons"."9bb3e0db-53af-47e6-9f12-433d64799b35" = "activities";
         # Peripherals
         "kcminputrc"."ButtonRebinds.Tablet.Wacom Intuos BT S Pad"."0" = "Key,Ctrl+Z";
         "kcminputrc"."ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."0" = "Key,Ctrl+Z";
@@ -120,11 +107,9 @@ in
         "kdeglobals"."WM"."inactiveBackground" = "90,84,51";
         "kdeglobals"."WM"."inactiveBlend" = "143,133,117";
         "kdeglobals"."WM"."inactiveForeground" = "158,155,140";
-        "kglobalshortcutsrc"."ActivityManager"."_k_friendly_name" = "Activity Manager";
         # TODO: parameterize
         "kglobalshortcutsrc"."Alacritty.desktop"."_k_friendly_name" = "Alacritty";
         "kglobalshortcutsrc"."KDE Keyboard Layout Switcher"."_k_friendly_name" = "Keyboard Layout Switcher";
-        "kglobalshortcutsrc"."alacrittydropdown.sh.desktop"."_k_friendly_name" = "alacrittydropdown.sh.desktop";
         "kglobalshortcutsrc"."emacsclient.desktop"."_k_friendly_name" = "Emacs (Client)";
         "kglobalshortcutsrc"."kaccess"."_k_friendly_name" = "Accessibility";
         "kglobalshortcutsrc"."kcm_touchpad"."_k_friendly_name" = "Touchpad";
@@ -182,17 +167,13 @@ in
         "kwinrc"."Plugins"."blurEnabled" = true;
         "kwinrc"."Plugins"."contrastEnabled" = true;
         "kwinrc"."Plugins"."diminactiveEnabled" = true;
-        "kwinrc"."Plugins"."karouselEnabled" = false;
         "kwinrc"."Plugins"."kwin4_effect_dimscreenEnabled" = true;
         "kwinrc"."Plugins"."kwin4_effect_glitchEnabled" = true;
         "kwinrc"."Plugins"."kwin4_effect_scaleEnabled" = false;
         "kwinrc"."Plugins"."kwin4_effect_translucencyEnabled" = true;
         "kwinrc"."Plugins"."kzonesEnabled" = false;
-        "kwinrc"."Plugins"."poloniumEnabled" = true;
         "kwinrc"."Script-kzones"."invertedMode" = true;
         "kwinrc"."Script-kzones"."modifierKey" = 0;
-        "kwinrc"."Script-polonium"."KeepTiledBelow" = false;
-        "kwinrc"."Script-polonium"."MaximizeSingle" = true;
         "kwinrc"."Tiling"."padding" = 10;
         "kwinrc"."Tiling.171a710f-6a25-5610-9384-46e044880bcf"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         "kwinrc"."Tiling.1ab459e4-6e57-5b6a-8a28-c777c1875520"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
