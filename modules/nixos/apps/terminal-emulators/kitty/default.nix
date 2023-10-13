@@ -45,7 +45,7 @@ in
           background_opacity = "0.99";
           placement_strategy = "center";
           hide_window_decorations = "yes";
-          confirm_os_window_close = -1;
+          confirm_os_window_close = 0;
 
           # Layouts
           enabled_layouts = "*";
