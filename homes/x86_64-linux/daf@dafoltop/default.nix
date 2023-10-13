@@ -17,16 +17,15 @@ in
 
     cli-apps = {
       fish = enabled;
-      neovim = enabled;
       helix = enabled;
       home-manager = enabled;
+      lazygit = enabled;
       neovim = enabled;
       nushell = enabled;
       starship = enabled;
       zellij = enabled;
       zoxide = enabled;
       zsh = enabled;
-      lazygit = enabled;
     };
 
     tools = {

@@ -49,6 +49,7 @@ in
       wl-clipboard
 
       # Themes
+      dafos.abstractdark-sddm-theme
       dafos.kde-warm-eyes
       gruvbox-gtk-theme
       kde-gruvbox
@@ -70,6 +71,7 @@ in
       displayManager.sddm = {
         enable = true;
         wayland.enable = cfg.wayland;
+        theme = "abstractdark-sddm-theme";
       };
       desktopManager.plasma5.enable = true;
       desktopManager.plasma5.useQtScaling = true;
