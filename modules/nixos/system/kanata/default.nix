@@ -33,17 +33,16 @@ in
     )
 
     (defsrc
-      grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-      tab  q    w    e    r    t    y    u    i    o    p    [    ]
-      caps a    s    d    f    g    h    j    k    l    ;    '    ret
-      lsft '<   z    x    c    v    b    n    m    ,    .    /    rsft
+      grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+      tab     q    w    e    r    t    y    u    i    o    p    [    ]
+      caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+      lsft    '<   z    x    c    v    b    n    m    ,    .    /    rsft
       lctl lmet lalt           spc            ralt rctl
     )
 
     (defalias
       ;; toggle layer aliases
-      arr (layer-toggle arrows)
-      sym (layer-toggle symbols)
+      ars (layer-toggle arrows-symbols)
 
       ;; tap within $tt for esc, hold more than $ht for lctl
       cap      (tap-hold $tt $ht esc lctl)
@@ -51,10 +50,10 @@ in
       lMf      (tap-hold-release $tt $ht f lmet)
       lCd      (tap-hold-release $tt $ht d lctrl)
       rSspc    (tap-hold-release $tt $ht spc rsft)
-      <ar      (tap-hold-release $tt $ht RA-à @arr)
+      <ars     (tap-hold-release $tt $ht RA-à @ars)
       rAbspc   (tap-hold-release $tt $ht bspc ralt)
-      aarr     (tap-hold-release $tt $ht a @arr)
-      ;sym     (tap-hold-release $tt $ht ; @sym)
+      aars     (tap-hold-release $tt $ht a @ars)
+      ;ars     (tap-hold-release $tt $ht ; @ars)
 
       [     AG-4
       ]     AG-5
@@ -71,27 +70,19 @@ in
     )
 
     (deflayer bepow
-      _     _     _    _      _      _    _    _    _    _    _    _    _    _
-      _     _     _    _      _     'w    _    _    _    _    _    à    è
-      @cap  @aarr _    @lCd   @lMf   _    _    _    _    _    @;sym _    _
-      _     @<ar 'z    _      _      _    _    _    _    _    _     _    @rS
-      _     _    _            @rSspc          @rAbspc  _
+      _     _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _    'w     _     _     _     _     _     à     è
+      @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
+      _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rS
+      _     _     _                   @rSspc               @rAbspc  _
     )
 
-    (deflayer symbols
-      _     _    _    _    _    _     _    _    _    _    _    _    _    _
-      _     @|   @/   @'lp @'rp _     _    _    _    _    _    _    _
-      _     @at  @<   @[   @]   @>    _    _    _    _    _    _    _
-      _     _    @\   _    @{   @}   _     _    _    _    _    _    _
-      _     _    _          _               _    _
-    )
-
-    (deflayer arrows
-      _    f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  _
-      _    _      _    _   _    _    _    pgdn pgup _    _    _    _
-      _    home   _    _   end  _    left down up   rght _    _    _
-      _    _      _    _   _    _    _    _    _    home end  _
-      _    _    _              _              _    _    _
+    (deflayer arrows-symbols
+      _     f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12  _
+      _     @|     @/     @'lp   @'rp   _      _      pgdn   pgup   _      _       _       _
+      _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
+      _     _      @\     _      @{     @}     _      _      _      home   end     _       _
+      _     _     _                     _                           _     _
     )
   '';
 
