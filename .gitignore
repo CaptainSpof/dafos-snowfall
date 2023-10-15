@@ -3,6 +3,7 @@
 
 # Running `nixos-rebuild build` or `nix build` generates a result directory.
 result
+repl-result-out
 
 # Running `nixos-rebuild build-vm` and starting the VM adds a file for
 # the virtual storage drive.
@@ -10,3 +11,6 @@ result
 
 # A useful artifact when working with configuration documentation
 options.json
+
+# backup stuff
+*.bak
