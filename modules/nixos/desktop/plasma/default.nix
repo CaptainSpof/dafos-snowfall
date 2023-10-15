@@ -40,7 +40,7 @@ in
     };
     color-scheme = mkOpt (enum [ "light" "dark" ]) "dark" "The color scheme to use.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
-    touchScreen = mkBoolOpt false "Whether or not to use Wayland.";
+    touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
     extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
   };
 

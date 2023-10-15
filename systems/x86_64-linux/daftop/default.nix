@@ -12,10 +12,15 @@ with lib.dafos;
   dafos = {
     archetypes = {
       workstation = enabled;
+      gaming = enabled;
     };
 
     apps = {
       qbittorrent = enabled;
+    };
+
+    desktop = {
+      plasma.touchScreen = true;
     };
 
     security = {
