@@ -65,10 +65,6 @@
     vault-service.url = "github:DeterminateSystems/nixos-vault-service";
     vault-service.inputs.nixpkgs.follows = "nixpkgs";
 
-    # GPG default configuration
-    gpg-base-conf.url = "github:drduh/config";
-    gpg-base-conf.flake = false;
-
     bibata-cursors.url = "github:suchipi/Bibata_Cursor";
     bibata-cursors.flake = false;
   };

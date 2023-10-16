@@ -41,7 +41,7 @@ in
 
       security = {
         doas = disabled;
-        gpg = enabled;
+        gpg = disabled;
         keyring = enabled;
       };
 
