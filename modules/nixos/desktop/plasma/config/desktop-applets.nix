@@ -80,6 +80,7 @@ in
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Wallpaper.org.kde.slideshow.General"."Image" = "file:///home/daf/Pictures/wallpapers/pixel-art/pa-landscape-07.gif";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Wallpaper.org.kde.slideshow.General"."SlidePaths" = "/home/daf/Pictures/wallpapers/pixel-art/";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.10.Applets.21.Configuration"."PreloadWeight" = 92;
+      # Panel
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2"."activityId" = "";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2"."formfactor" = 3;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2"."immutability" = 1;
@@ -92,7 +93,7 @@ in
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."autoFontAndSize" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."dateFormat" = "custom";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontFamily" = "Noto Sans";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontSize" = 6;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontSize" = 8;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontStyleName" = "Regular";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.ConfigDialog"."DialogWidth" = 720;
@@ -145,7 +146,7 @@ in
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Appearance"."title" = "Memory Usage";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.ConfigDialog"."DialogWidth" = 720;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.SensorColors"."memory/physical/used" = "170,85,0";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.SensorColors"."memory/physical/used" = "214,93,14";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."highPrioritySensorIds" = "[\"memory/physical/used\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."lowPrioritySensorIds" = "[\"memory/physical/total\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."totalSensors" = "[\"memory/physical/usedPercent\"]";
