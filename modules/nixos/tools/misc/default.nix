@@ -28,6 +28,18 @@ in
         enable = true;
         arguments = ["--smart-case"];
       };
+
+      programs.less = {
+        enable = true;
+        keys = ''
+          c   next-tag
+          C   prev-tag
+          t   forw-line
+          s   back-line
+          T   forw-scroll
+          S   back-scroll
+        '';
+      };
     };
   };
 }
