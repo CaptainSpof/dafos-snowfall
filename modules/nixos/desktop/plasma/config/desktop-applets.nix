@@ -1,5 +1,8 @@
-{ ... }:
+{ config, inputs, lib, ... }:
 
+let
+  inherit (inputs) plasma-manager;
+in
 {
   programs.plasma = {
     configFile = {
@@ -21,6 +24,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1"."location" = 0;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1"."plugin" = "org.kde.plasma.folder";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1"."wallpaperplugin" = "org.kde.slideshow";
+      # Minimalist Clock
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32"."plugin" = "com.github.prayag2.minimalistclock";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32.Configuration.Appearance"."date_font_family" = "Sarasa Mono Slab TC";
@@ -35,6 +39,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32.Configuration.Appearance"."time_word_spacing" = 12;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32.Configuration.ConfigDialog"."DialogHeight" = 614;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.32.Configuration.ConfigDialog"."DialogWidth" = 832;
+      # System Monitor · CPU
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33"."plugin" = "org.kde.plasma.systemmonitor.cpucore";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration"."CurrentPreset" = "org.kde.plasma.systemmonitor";
@@ -48,20 +53,12 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu.*/usage" = "131,165,152";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu0/usage" = "131,165,152";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu1/usage" = "131,152,165";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu10/usage" = "158,135,206";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu11/usage" = "185,135,206";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu12/usage" = "206,135,200";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu13/usage" = "206,135,174";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu14/usage" = "206,135,147";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu15/usage" = "206,149,135";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu2/usage" = "135,131,165";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu3/usage" = "161,131,165";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu4/usage" = "165,131,144";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu5/usage" = "165,144,131";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu6/usage" = "161,165,131";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu7/usage" = "135,165,131";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu8/usage" = "135,165,206";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.SensorColors"."cpu/cpu9/usage" = "135,138,206";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.Sensors"."highPrioritySensorIds" = "[\"cpu/cpu.*/usage\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.Sensors"."totalSensors" = "[\"cpu/all/usage\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.org.kde.ksysguard.barchart.General"."rangeAuto" = false;
@@ -69,6 +66,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.org.kde.ksysguard.barchart.General"."showGridLines" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.org.kde.ksysguard.barchart.General"."showLegend" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.33.Configuration.org.kde.ksysguard.barchart.General"."showYAxisLabels" = false;
+      # Thermal Monitor
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.38"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.38"."plugin" = "org.kde.olib.thermalmonitor";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.1.Applets.38.Configuration"."PreloadWeight" = 55;
@@ -91,13 +89,10 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2"."wallpaperplugin" = "org.kde.image";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19"."plugin" = "org.kde.plasma.digitalclock";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration"."PreloadWeight" = 60;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration"."popupHeight" = 450;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration"."popupWidth" = 396;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."autoFontAndSize" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."dateFormat" = "custom";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontFamily" = "Noto Sans";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontSize" = 8;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontSize" = 6;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.Appearance"."fontStyleName" = "Regular";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.19.Configuration.ConfigDialog"."DialogWidth" = 720;
@@ -110,13 +105,13 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.ConfigDialog"."DialogWidth" = 720;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."decimalPlace" = 0;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."fontSize" = 1.100000;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."iconSize" = 0.900000;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."fontSize" = 1.1;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."iconSize" = 0.9;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."iconType" = "▼ ▲";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."shortUnits" = true;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."showSeconds" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."speedUnits" = "bytes";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."sufixSize" = 0.800000;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."sufixSize" = 0.8;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.General"."updateInterval" = 1500;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.27.Configuration.Network"."netSources" = "[{\"path\":\"network/wlp1s0\"\\,\"name\":\"DafWifi - 5Ghz\"\\,\"index\":1\\,\"checked\":true}]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.28"."immutability" = 1;
@@ -146,16 +141,15 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31"."plugin" = "org.kde.plasma.systemmonitor.memory";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration"."CurrentPreset" = "org.kde.plasma.systemmonitor";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration"."PreloadWeight" = 100;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Appearance"."chartFace" = "org.kde.ksysguard.linechart";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Appearance"."title" = "Memory Usage";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.ConfigDialog"."DialogWidth" = 720;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.SensorColors"."memory/physical/used" = "214,93,14";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.SensorColors"."memory/physical/used" = "170,85,0";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."highPrioritySensorIds" = "[\"memory/physical/used\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."lowPrioritySensorIds" = "[\"memory/physical/total\"]";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.Sensors"."totalSensors" = "[\"memory/physical/usedPercent\"]";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.org.kde.ksysguard.linechart.General"."lineChartFillOpacity" = 25;
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.org.kde.ksysguard.linechart.General"."lineChartFillOpacity" = 50;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.org.kde.ksysguard.linechart.General"."lineChartSmooth" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.org.kde.ksysguard.linechart.General"."showGridLines" = false;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration.org.kde.ksysguard.linechart.General"."showLegend" = false;
@@ -334,36 +328,28 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."lastScreen" = 0;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."location" = 5;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."plugin" = "org.kde.plasma.private.systemtray";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."popupHeight" = 432;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."popupWidth" = 432;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8"."wallpaperplugin" = "org.kde.image";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.10"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.10"."plugin" = "org.kde.plasma.notifications";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.10.Configuration"."PreloadWeight" = 100;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.11"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.11"."plugin" = "org.kde.plasma.clipboard";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.11.Configuration"."PreloadWeight" = 80;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.12"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.12"."plugin" = "org.kde.plasma.devicenotifier";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.13"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.13"."plugin" = "org.kde.plasma.keyboardindicator";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.14"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.14"."plugin" = "org.kde.kscreen";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.14.Configuration"."PreloadWeight" = 55;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.15"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.15"."plugin" = "org.kde.plasma.printmanager";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.16"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.16"."plugin" = "org.kde.kdeconnect";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.16.Configuration"."PreloadWeight" = 65;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.17"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.17"."plugin" = "org.kde.plasma.volume";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.17.Configuration"."PreloadWeight" = 100;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.17.Configuration.General"."migrated" = true;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.18"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.18"."plugin" = "org.kde.plasma.keyboardlayout";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.21"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.21"."plugin" = "org.kde.plasma.nightcolorcontrol";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.21.Configuration"."PreloadWeight" = 0;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.22"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.22"."plugin" = "org.kde.plasma.battery";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.22.Configuration"."PreloadWeight" = 60;
@@ -375,14 +361,11 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.24.Configuration"."PreloadWeight" = 91;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.30"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.30"."plugin" = "org.kde.plasma.manage-inputmethod";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.39"."immutability" = 1;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.39"."plugin" = "org.kde.plasma.mediacontroller";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.39.Configuration"."PreloadWeight" = 0;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.Applets.9.Configuration"."PreloadWeight" = 42;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.ConfigDialog"."DialogWidth" = 720;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."extraItems" = "org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement,org.kde.plasma.manage-inputmethod";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."hiddenItems" = "org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."hiddenItems" = "org.kde.plasma.keyboardlayout";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."iconSpacing" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."knownItems" = "org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement";
       "plasma-org.kde.plasma.desktop-appletsrc"."ScreenMapping"."itemsOnDisabledScreens" = "";
