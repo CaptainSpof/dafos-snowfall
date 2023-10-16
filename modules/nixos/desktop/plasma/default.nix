@@ -16,6 +16,7 @@ let
     # pkgs.dafos.neve4plasma
     pkgs.dafos.plasma-applet-net-bandwidth-monitor
     pkgs.dafos.simple-overview-pager
+    pkgs.dafos.thermalmonitor
   ];
 in
 {
