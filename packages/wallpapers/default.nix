@@ -32,27 +32,16 @@ let
     { }
     images;
   installTarget = "$out/share/wallpapers";
-  installWallpapers = builtins.mapAttrs
-    (_name: wallpaper: ''
-      cp -r ${wallpaper} ${installTarget}/${wallpaper.fileName}
-    '')
-    wallpapers;
 in
 pkgs.stdenvNoCC.mkDerivation {
-  name = "dafos-wallpapers";
+  name = "dafos.wallpapers";
   src = ./wallpapers;
 
   installPhase = ''
     mkdir -p ${installTarget}
 
-    find * -type f -mindepth 0 -maxdepth 0 -exec cp -r ./{} ${installTarget}/{} ';'
+    find * -type f -mindepth 0 -maxdepth 0 -exec cp ./{} ${installTarget}/{} ';'
   '';
 
   passthru = { inherit names; } // wallpapers;
-
-  meta = with lib; {
-    description = "Some good wallpapers!";
-    license = licenses.asl20;
-    maintainers = with maintainers; [ jakehamilton ];
-  };
 }

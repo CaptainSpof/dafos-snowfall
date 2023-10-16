@@ -40,7 +40,6 @@ in
         hosts = inputs.self.nixosConfigurations;
       })
       deploy-rs
-      nixfmt
       nix-index
       nix-prefetch-git
       nix-output-monitor
