@@ -52,6 +52,8 @@ in
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
 
+  services.fwupd.enable = true;
+
   hardware.bluetooth = {
     enable = true;
     settings.General.Experimental = true;
