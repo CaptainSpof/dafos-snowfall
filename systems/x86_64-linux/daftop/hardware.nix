@@ -54,7 +54,10 @@ in
 
   hardware.opengl.enable = true;
 
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    settings.General.Experimental = true;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
