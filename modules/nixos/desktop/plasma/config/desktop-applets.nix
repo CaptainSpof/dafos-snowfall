@@ -1,8 +1,5 @@
-{ config, inputs, lib, ... }:
+{ ... }:
 
-let
-  inherit (inputs) plasma-manager;
-in
 {
   programs.plasma = {
     configFile = {
@@ -366,7 +363,7 @@ in
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.ConfigDialog"."DialogHeight" = 540;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.ConfigDialog"."DialogWidth" = 720;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."extraItems" = "org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement,org.kde.plasma.manage-inputmethod";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."hiddenItems" = "org.kde.plasma.keyboardlayout";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."hiddenItems" = "org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."iconSpacing" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.8.General"."knownItems" = "org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.plasma.notifications,org.kde.plasma.battery,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.keyboardindicator,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.kdeconnect,org.kde.plasma.volume,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.plasma.nightcolorcontrol,org.kde.plasma.networkmanagement";
       "plasma-org.kde.plasma.desktop-appletsrc"."ScreenMapping"."itemsOnDisabledScreens" = "";
