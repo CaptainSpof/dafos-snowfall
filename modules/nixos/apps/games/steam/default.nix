@@ -25,6 +25,7 @@ in
 
     environment.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
+      STEAM_FORCE_DESKTOPUI_SCALING = "2";
     };
   };
 }
