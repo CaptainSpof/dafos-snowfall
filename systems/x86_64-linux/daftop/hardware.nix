@@ -1,9 +1,7 @@
-{ config, lib, modulesPath, inputs, pkgs, ... }:
+{ lib, modulesPath, inputs, pkgs, ... }:
 
-let
-  inherit (inputs) nixos-hardware;
-in
-{
+let inherit (inputs) nixos-hardware;
+in {
   imports = with nixos-hardware.nixosModules; [
     (modulesPath + "/installer/scan/not-detected.nix")
     common-cpu-amd
@@ -59,11 +57,17 @@ in
     settings.General.Experimental = true;
   };
 
-  hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [ amdvlk libva libvdpau-va-gl vaapiVdpau ];
+  };
 
   hardware.sensor.iio.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
+
 }
