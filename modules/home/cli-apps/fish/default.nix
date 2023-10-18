@@ -90,8 +90,8 @@ in
             src = pkgs.fetchFromGitHub {
               owner = "PatrickF1";
               repo = "fzf.fish";
-              rev = "63c8f8e65761295da51029c5b6c9e601571837a1";
-              sha256 = "sha256-i9FcuQdmNlJnMWQp7myF3N0tMD/2I0CaMs/PlD8o1gw=";
+              rev = "8d99f0caa30a626369541f80848ffdbf28e96acc";
+              sha256 = "sha256-nTiFD8vWjafYE4HNemyoUr+4SgsqN3lIJlNX6IGk+aQ=";
             };
           }
           {
