@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.dafos;
@@ -21,5 +21,9 @@ in
         vlc = enabled;
       };
     };
+
+    environment.systemPackages = [
+      pkgs.yt-dlp
+    ];
   };
 }
