@@ -1,4 +1,4 @@
-{inputs, pkgs, ... }:
+{inputs, ... }:
 
 let
   inherit (inputs) plasma-manager;

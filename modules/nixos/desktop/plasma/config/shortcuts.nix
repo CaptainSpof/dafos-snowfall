@@ -1,8 +1,5 @@
-{ config, inputs, lib, ... }:
+{ ... }:
 
-let
-  inherit (inputs) plasma-manager;
-in
 {
   programs.plasma = {
     shortcuts = {
