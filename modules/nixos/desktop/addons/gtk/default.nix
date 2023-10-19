@@ -10,9 +10,9 @@ in
   options.dafos.desktop.addons.gtk = with types; {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
     theme = {
-      name = mkOpt str "Nordic-darker"
+      name = mkOpt str "Gruvbox-Dark-B"
         "The name of the GTK theme to apply.";
-      pkg = mkOpt package pkgs.nordic "The package to use for the theme.";
+      pkg = mkOpt package pkgs.gruvbox-gtk-theme "The package to use for the theme.";
     };
     cursor = {
       name = mkOpt str "Bibata-Modern-Ice"
