@@ -33,5 +33,7 @@ in
       texlive.combined.scheme-full
       (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
     ];
+
+    home.shellAliases = { "ne" = "emacsclient -nw"; };
   };
 }
