@@ -18,7 +18,7 @@ in
 
     services.kanata.keyboards."bepo".config = ''
     (defvar
-      tap-timeout   100
+      tap-timeout   200
       hold-timeout  250
       tt $tap-timeout
       ht $hold-timeout
@@ -28,6 +28,7 @@ in
       '<   86
       'w   27
       'z   26
+      'y   45
       à    44
       è    20
     )
@@ -43,6 +44,8 @@ in
     (defalias
       ;; toggle layer aliases
       ars (layer-toggle arrows-symbols)
+      gam (layer-switch gaming)
+      default (layer-switch bepow)
 
       ;; tap within $tt for esc, hold more than $ht for lctl
       cap      (tap-hold $tt $ht esc lctl)
@@ -54,6 +57,9 @@ in
       rAbspc   (tap-hold-release $tt $ht bspc ralt)
       aars     (tap-hold-release $tt $ht a @ars)
       ;ars     (tap-hold-release $tt $ht ; @ars)
+
+      grv      (tap-dance $tt (grv @gam))
+      bsl      (tap-dance $tt (bspc @default))
 
       [     AG-4
       ]     AG-5
@@ -70,7 +76,7 @@ in
     )
 
     (deflayer bepow
-      _     _     _     _     _     _     _     _     _     _     _     _     _     _
+      @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
       _     _     _     _     _    'w     _     _     _     _     _     à     è
       @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
       _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rS
@@ -83,6 +89,55 @@ in
       _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
       _     _      @\     _      @{     @}     _      _      _      home   end     _       _
       _     _     _                     _                           _     _
+    )
+
+    (defalias
+      '1  S-1
+      '2  S-2
+      '3  S-3
+      '4  S-4
+      '5  S-5
+      '6  S-6
+      '7  S-7
+      '8  S-8
+      '9  S-9
+      '0  S-0
+      'q   m
+      'e   f
+      'r   l
+      't   j
+      'u   s
+      'i   d
+      'o   r
+      'p   e
+      'a   a
+      's   k
+      'd   i
+      'f   /
+      'g   ,
+      'h   .
+      'j   p
+      'k   b
+      'l   o
+      ';   S-g
+      '    n
+      'x   c
+      'c   h
+      'v   u
+      'b   q
+      'n   ;
+      'm   '
+      ',   g
+      '.   v
+      '/   9
+    )
+
+    (deflayer gaming
+      grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
+      tab     @'q    'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
+      caps    @'a    @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
+      lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
+      lctl lmet lalt           spc            @rAbspc rctl
     )
   '';
 
