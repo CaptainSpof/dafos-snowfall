@@ -1,4 +1,4 @@
-{ config , lib , options , pkgs , ...}:
+{ config , lib , pkgs , ...}:
 
 let
   inherit (lib) types mkIf mkMerge;
@@ -35,12 +35,25 @@ let
     "geo.provider.use_geoclue" = false;
     "geo.provider.use_gpsd" = false;
     "intl.accept_languages" = "en-US = en";
+    "layout.css.has-selector.enabled" = true;
     "media.eme.enabled" = true;
     "media.ffmpeg.vaapi.enabled" = true;
-    # "media.hardware-video-decoding.force-enabled" = true;
     "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
+    "svg.context-properties.content.enabled" = true;
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-  };
+    "userChrome.RegularMenuIcons-Enabled" = true;
+    "userChrome.Tabs.Option2.Enabled" = true;
+    "userChrome.DarkTheme.TabFrameType.Border.Enabled" = true;
+    # "media.hardware-video-decoding.force-enabled" = true;
+  } // (mkIf (config.dafos.desktop.plasma.enable) {
+  # Allow to use Qt file picker
+    "widget.use-xdg-desktop-portal" = true;
+    "widget.use-xdg-desktop-portal.file-picker" = 1;
+    "widget.use-xdg-desktop-portal.settings" = 1;
+    "widget.use-xdg-desktop-portal.location" = 1;
+    "widget.use-xdg-desktop-portal.mime-handler" = 1;
+  });
+
 in
 {
   options.dafos.apps.firefox = with types; {
@@ -57,9 +70,28 @@ in
 
     dafos.home = {
       file = mkMerge [
+        # Fix tridactyl & plasma integration
+        (mkIf config.dafos.desktop.plasma.enable {
+          ".mozilla/native-messaging-hosts".source = pkgs.symlinkJoin {
+            name = "native-messaging-hosts";
+            paths = [
+              "${pkgs.plasma-browser-integration}/lib/mozilla/native-messaging-hosts"
+              "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts"
+            ];
+          };
+        })
         (mkIf config.dafos.desktop.gnome.enable {
           ".mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json".source = "${pkgs.chrome-gnome-shell}/lib/mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json";
         })
+        {
+          ".mozilla/firefox/${config.dafos.user.name}/chrome/" = {
+            source = lib.cleanSourceWith {
+              src = lib.cleanSource ./chrome/.;
+            };
+
+            recursive = true;
+          };
+        }
       ];
 
       extraOptions = {
@@ -77,7 +109,7 @@ in
               DisableFormHistory = true;
               DisablePocket = true;
               DisableTelemetry = true;
-              DisplayBookmarksToolbar = true;
+              DisplayBookmarksToolbar = false;
               DontCheckDefaultBrowser = true;
               FirefoxHome = {
                 Pocket = false;
@@ -105,6 +137,17 @@ in
                   installation_mode = "force_installed";
                   install_url = "https://gitlab.com/magnolia1234/bpc-uploads/-/raw/master/bypass_paywalls_clean-3.2.3.0-custom.xpi";
                 };
+
+                "ATBC@EasonWong" = {
+                  installation_mode = "force_installed";
+                  install_url = "https://addons.mozilla.org/firefox/downloads/file/4159211/adaptive_tab_bar_colour-2.1.4.xpi";
+                };
+
+                "bento" = {
+                  installation_mode = "force_installed";
+                  install_url = "https://addons.mozilla.org/firefox/downloads/file/3787567/bento-1.7.xpi";
+                };
+
               };
               Preferences = { };
             };
@@ -117,6 +160,8 @@ in
             extensions = with pkgs.nur.repos.rycee.firefox-addons; [
               bitwarden
               darkreader
+              org-capture # TODO: setup
+              plasma-integration
               simple-tab-groups
               sponsorblock
               stylus
