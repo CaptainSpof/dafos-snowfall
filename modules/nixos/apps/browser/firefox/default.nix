@@ -45,7 +45,15 @@ let
     "userChrome.Tabs.Option2.Enabled" = true;
     "userChrome.DarkTheme.TabFrameType.Border.Enabled" = true;
     # "media.hardware-video-decoding.force-enabled" = true;
-  };
+  } // (mkIf (config.dafos.desktop.plasma.enable) {
+  # Allow to use Qt file picker
+    "widget.use-xdg-desktop-portal" = true;
+    "widget.use-xdg-desktop-portal.file-picker" = 1;
+    "widget.use-xdg-desktop-portal.settings" = 1;
+    "widget.use-xdg-desktop-portal.location" = 1;
+    "widget.use-xdg-desktop-portal.mime-handler" = 1;
+  });
+
 in
 {
   options.dafos.apps.firefox = with types; {
@@ -62,6 +70,16 @@ in
 
     dafos.home = {
       file = mkMerge [
+        # Fix tridactyl & plasma integration
+        (mkIf config.dafos.desktop.plasma.enable {
+          ".mozilla/native-messaging-hosts".source = pkgs.symlinkJoin {
+            name = "native-messaging-hosts";
+            paths = [
+              "${pkgs.plasma-browser-integration}/lib/mozilla/native-messaging-hosts"
+              "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts"
+            ];
+          };
+        })
         (mkIf config.dafos.desktop.gnome.enable {
           ".mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json".source = "${pkgs.chrome-gnome-shell}/lib/mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json";
         })
@@ -74,7 +92,6 @@ in
             recursive = true;
           };
         }
-
       ];
 
       extraOptions = {
@@ -143,6 +160,8 @@ in
             extensions = with pkgs.nur.repos.rycee.firefox-addons; [
               bitwarden
               darkreader
+              org-capture # TODO: setup
+              plasma-integration
               simple-tab-groups
               sponsorblock
               stylus
