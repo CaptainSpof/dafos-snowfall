@@ -10,14 +10,16 @@ in
     common-pc
     common-pc-ssd
     common-pc-laptop
+    common-pc-laptop-acpi_call
   ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "tcp_bbr" "uhid" ];
 
     initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-      kernelModules = [ ];
+      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "uhid" ];
+      kernelModules = [ "kvm-intel" ];
     };
 
     extraModulePackages = [ ];
