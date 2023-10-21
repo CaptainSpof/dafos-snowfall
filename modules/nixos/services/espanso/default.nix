@@ -16,7 +16,7 @@ in
 
     dafos.user.extraGroups = [ "input" ];
 
-    # HACK: espanso fail to launch with this
+    # HACK: espanso fail to launch without this
     services.udev.packages = [ pkgs.logitech-udev-rules ];
 
     dafos.home = {
@@ -33,6 +33,7 @@ in
                 variant = "bepo";
               };
               backend = "Inject";
+              inject_delay = 5;
             };
           };
 
@@ -58,6 +59,7 @@ in
               ];
             };
             symbols = {
+              backend = "Clipboard";
               matches = [
                 {
                   trigger = ":ar";
