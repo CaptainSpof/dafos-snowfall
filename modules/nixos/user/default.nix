@@ -18,14 +18,14 @@ let
     passthru = { fileName = defaultIconFileName; };
 
   };
-  propagatedIcon = pkgs.runCommandNoCC "propagated-icon"
-    { passthru = { fileName = cfg.icon.fileName; }; }
-    ''
-      local target="$out/share/dafos-icons/user/${cfg.name}"
-      mkdir -p "$target"
+  propagatedIcon = pkgs.runCommandNoCC "propagated-icon" {
+    passthru = { fileName = cfg.icon.fileName; };
+  } ''
+    local target="$out/share/dafos-icons/user/${cfg.name}"
+    mkdir -p "$target"
 
-      cp ${cfg.icon} "$target/${cfg.icon.fileName}"
-    '';
+    cp ${cfg.icon} "$target/${cfg.icon.fileName}"
+  '';
   dirs = rec {
     home = "/home/${config.dafos.vars.username}";
     documents = "${home}/Documents";
@@ -40,9 +40,8 @@ let
   };
   username = config.dafos.vars.username;
   shell = config.dafos.vars.shell;
-in
-{
-  imports = [ ../../vars.nix];
+in {
+  imports = [ ../../vars.nix ];
 
   options.dafos.user = {
     name = mkOpt types.str username "The name to use for the user account.";
@@ -51,9 +50,11 @@ in
       "The initial password to use when the user is first created.";
     icon = mkOpt (types.nullOr types.package) defaultIcon
       "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
+    prompt-init = mkBoolOpt true
+      "Whether or not to show an initial message when opening a new shell.";
 
-    extraGroups = mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";
+    extraGroups =
+      mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";
     extraOptions = mkOpt types.attrs { }
       (mdDoc "Extra options passed to `users.users.<name>`.");
   };

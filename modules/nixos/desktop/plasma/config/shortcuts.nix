@@ -6,7 +6,7 @@ in
 {
   programs.plasma = {
     shortcuts = {
-      "Alacritty.desktop"."New" = "Meta+Alt+T";
+      "kitty.desktop"."_launch" = "Ctrl+Alt+T";
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
 
