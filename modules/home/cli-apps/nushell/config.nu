@@ -138,6 +138,5 @@ $env.config = {
       completer: $external_completers
     }
   }
-  cd: { abbreviations: true }
   color_config: $dark_theme
 }
