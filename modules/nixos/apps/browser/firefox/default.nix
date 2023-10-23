@@ -1,4 +1,4 @@
-{ config , lib , pkgs , ...}:
+{ config, lib, pkgs, ... }:
 
 let
   inherit (lib) types mkIf mkMerge;
@@ -16,7 +16,8 @@ let
     "browser.newtabpage.activity-stream.default.sites" = "";
     "browser.newtabpage.activity-stream.showSponsored" = false;
     "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-    "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
+    "browser.search.hiddenOneOffs" =
+      "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
     "browser.search.suggest.enabled" = false;
     "browser.sessionstore.warnOnQuit" = true;
     "browser.shell.checkDefaultBrowser" = false;
@@ -34,7 +35,8 @@ let
     "geo.provider.use_corelocation" = false;
     "geo.provider.use_geoclue" = false;
     "geo.provider.use_gpsd" = false;
-    "intl.accept_languages" = "en-US = en";
+    "intl.accept_languages" = "en-US = en,fr = fr";
+    "intl.local.requested" = "en-US,fr";
     "layers.acceleration.disabled" = true;
     "layout.css.has-selector.enabled" = true;
     "media.eme.enabled" = true;
@@ -47,7 +49,7 @@ let
     "userChrome.DarkTheme.TabFrameType.Border.Enabled" = true;
     # "media.hardware-video-decoding.force-enabled" = true;
   } // (mkIf (config.dafos.desktop.plasma.enable) {
-  # Allow to use Qt file picker
+    # Allow to use Qt file picker
     "widget.use-xdg-desktop-portal" = true;
     "widget.use-xdg-desktop-portal.file-picker" = 1;
     "widget.use-xdg-desktop-portal.settings" = 1;
@@ -55,8 +57,7 @@ let
     "widget.use-xdg-desktop-portal.mime-handler" = 1;
   });
 
-in
-{
+in {
   options.dafos.apps.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Firefox.";
     extraConfig =
@@ -67,7 +68,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.gnome.gnome-browser-connector.enable = config.dafos.desktop.gnome.enable;
+    services.gnome.gnome-browser-connector.enable =
+      config.dafos.desktop.gnome.enable;
 
     dafos.home = {
       file = mkMerge [
@@ -82,13 +84,12 @@ in
           };
         })
         (mkIf config.dafos.desktop.gnome.enable {
-          ".mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json".source = "${pkgs.chrome-gnome-shell}/lib/mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json";
+          ".mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json".source =
+            "${pkgs.chrome-gnome-shell}/lib/mozilla/native-messaging-hosts/org.gnome.chrome_gnome_shell.json";
         })
         {
           ".mozilla/firefox/${config.dafos.user.name}/chrome/" = {
-            source = lib.cleanSourceWith {
-              src = lib.cleanSource ./chrome/.;
-            };
+            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/.; };
 
             recursive = true;
           };
@@ -100,9 +101,7 @@ in
           enable = true;
 
           package = pkgs.wrapFirefox pkgs.firefox-beta-unwrapped {
-            cfg = {
-              enableTridactylNative = true;
-            };
+            cfg = { enableTridactylNative = true; };
 
             extraPolicies = {
               CaptivePortal = false;
@@ -131,22 +130,26 @@ in
 
                 "frankerfacez@frankerfacez.com" = {
                   installation_mode = "force_installed";
-                  install_url = "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
+                  install_url =
+                    "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
                 };
 
                 "magnolia_limited_permissions@12.34" = {
                   installation_mode = "force_installed";
-                  install_url = "https://gitlab.com/magnolia1234/bpc-uploads/-/raw/master/bypass_paywalls_clean-3.2.3.0-custom.xpi";
+                  install_url =
+                    "https://gitlab.com/magnolia1234/bpc-uploads/-/raw/master/bypass_paywalls_clean-3.2.3.0-custom.xpi";
                 };
 
                 "ATBC@EasonWong" = {
                   installation_mode = "force_installed";
-                  install_url = "https://addons.mozilla.org/firefox/downloads/file/4159211/adaptive_tab_bar_colour-2.1.4.xpi";
+                  install_url =
+                    "https://addons.mozilla.org/firefox/downloads/file/4159211/adaptive_tab_bar_colour-2.1.4.xpi";
                 };
 
                 "bento" = {
                   installation_mode = "force_installed";
-                  install_url = "https://addons.mozilla.org/firefox/downloads/file/3787567/bento-1.7.xpi";
+                  install_url =
+                    "https://addons.mozilla.org/firefox/downloads/file/3787567/bento-1.7.xpi";
                 };
 
               };
@@ -176,7 +179,8 @@ in
 
         # Tridactyl
         xdg.configFile."tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
-        xdg.configFile."tridactyl/themes/everforest-dark.css".source = ./tridactyl/tridactyl_style_everforest.css;
+        xdg.configFile."tridactyl/themes/everforest-dark.css".source =
+          ./tridactyl/tridactyl_style_everforest.css;
       };
     };
   };
