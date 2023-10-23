@@ -154,8 +154,8 @@ in
 
     (deflayer gaming
       grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
-      tab     @'q    'w    up     @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
-      caps    @'a    left  down   rght  @'g    @'h   @'j   @'k    @'l    @';    @'    ret
+      tab     @'q    up    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
+      caps    left   down  rght   @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
       lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
       lctl lmet lalt                     spc                @rAbspc rctl
     )
