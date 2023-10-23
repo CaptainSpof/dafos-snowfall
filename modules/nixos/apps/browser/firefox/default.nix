@@ -35,6 +35,7 @@ let
     "geo.provider.use_geoclue" = false;
     "geo.provider.use_gpsd" = false;
     "intl.accept_languages" = "en-US = en";
+    "layers.acceleration.disabled" = true;
     "layout.css.has-selector.enabled" = true;
     "media.eme.enabled" = true;
     "media.ffmpeg.vaapi.enabled" = true;
