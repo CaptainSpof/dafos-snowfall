@@ -8,7 +8,8 @@ in
     shortcuts = {
       "kitty.desktop"."_launch" = "Ctrl+Alt+T";
 
-      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
+      "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" =
+        "Meta+Alt+K";
 
       "emacsclient.desktop"."new-instance" = "Meta+É";
 
@@ -17,39 +18,28 @@ in
       "kcm_touchpad"."Toggle Touchpad" = "Touchpad Toggle";
 
       "kded5"."Show System Activity" = "Ctrl+Esc";
-      "kded5"."display" = ["Display" "Meta+P"];
+      "kded5"."display" = [ "Display" "Meta+P" ];
 
       "kmix"."decrease_microphone_volume" = "Microphone Volume Down";
       "kmix"."decrease_volume" = "Volume Down";
       "kmix"."increase_microphone_volume" = "Microphone Volume Up";
       "kmix"."increase_volume" = "Volume Up";
-      "kmix"."mic_mute" = ["Microphone Mute" "Meta+Volume Mute"];
+      "kmix"."mic_mute" = [ "Microphone Mute" "Meta+Volume Mute" ];
       "kmix"."mute" = "Volume Mute";
 
-      "ksmserver"."Lock Session" = ["Meta+Monitor Brightness Up" "Meta+Monitor Brightness Down" "Screensaver"];
+      "ksmserver"."Lock Session" = [
+        "Meta+Monitor Brightness Up"
+        "Meta+Monitor Brightness Down"
+        "Screensaver"
+      ];
       "ksmserver"."Log Out" = "Ctrl+Alt+Del";
 
       "kwin"."Activate Window Demanding Attention" = "Meta+Ctrl+A";
       "kwin"."Edit Tiles" = "Meta+Alt+Space";
       "kwin"."Expose" = "Meta+,";
-      "kwin"."ExposeAll" = ["Ctrl+F10" "Launch (C)"];
+      "kwin"."ExposeAll" = [ "Ctrl+F10" "Launch (C)" ];
       "kwin"."ExposeClass" = "Ctrl+F7";
-      # KZones
-      "kwin"."KZones: Cycle layouts" = "Ctrl+Alt+D";
-      "kwin"."KZones: Move active window to next zone" = "Ctrl+Alt+Right";
-      "kwin"."KZones: Move active window to previous zone" = "Ctrl+Alt+Left";
-      "kwin"."KZones: Move active window to zone 1" = "Ctrl+Alt+Num+1";
-      "kwin"."KZones: Move active window to zone 2" = "Ctrl+Alt+Num+2";
-      "kwin"."KZones: Move active window to zone 3" = "Ctrl+Alt+Num+3";
-      "kwin"."KZones: Move active window to zone 4" = "Ctrl+Alt+Num+4";
-      "kwin"."KZones: Move active window to zone 5" = "Ctrl+Alt+Num+5";
-      "kwin"."KZones: Move active window to zone 6" = "Ctrl+Alt+Num+6";
-      "kwin"."KZones: Move active window to zone 7" = "Ctrl+Alt+Num+7";
-      "kwin"."KZones: Move active window to zone 8" = "Ctrl+Alt+Num+8";
-      "kwin"."KZones: Move active window to zone 9" = "Ctrl+Alt+Num+9";
-      "kwin"."KZones: Switch to next window in current zone" = "Ctrl+Alt+Up";
-      "kwin"."KZones: Switch to previous window in current zone" = "Ctrl+Alt+Down";
-      "kwin"."KZones: Toggle OSD" = "Ctrl+Alt+C";
+      "kwin"."Window No Border" = [ "Meta+Shift+B" "Meta+Alt+B" ];
 
       "kwin"."Kill Window" = "Meta+Ctrl+Esc";
       "kwin"."MoveMouseToCenter" = "Meta+F6";
@@ -65,11 +55,12 @@ in
       "kwin"."Switch to Next Desktop" = "Meta+H";
       "kwin"."Switch to Previous Desktop" = "Meta+G";
       "kwin"."ToggleMouseClick" = "Meta+*";
-      "kwin"."Window Close" = ["Alt+F4" "Meta+Q"];
-      "kwin"."Window Fullscreen" = ["Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return"];
-      "kwin"."Window Maximize" = ["Meta+PgUp" "Meta+Return"];
+      "kwin"."Window Close" = [ "Alt+F4" "Meta+Q" ];
+      "kwin"."Window Fullscreen" =
+        [ "Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return" "Meta+Alt+Return" ];
+      "kwin"."Window Maximize" = [ "Meta+PgUp" "Meta+Return" ];
       "kwin"."Window Minimize" = "Meta+PgDown";
-      "kwin"."Window On All Desktops" = "Meta+Alt+A";
+      "kwin"."Window On All Desktops" = [ "Meta+Shift+P" "Meta+Alt+A" ];
       "kwin"."Window One Desktop to the Left" = "Meta+Shift+G";
       "kwin"."Window One Desktop to the Right" = "Meta+Shift+H";
       "kwin"."Window Operations Menu" = "Alt+F3";
@@ -78,9 +69,29 @@ in
       "kwin"."Window Quick Tile Right" = "Meta+Right";
       "kwin"."Window Quick Tile Top" = "Meta+Up";
       "kwin"."Window Resize" = "Meta+Alt+R";
-      "kwin"."Window to Next Screen" = ["Meta+Shift+Right" "Meta+Ctrl+Shift+R"];
-      "kwin"."Window to Previous Screen" = ["Meta+Shift+Left" "Meta+Ctrl+Shift+C"];
+      "kwin"."Window to Next Screen" =
+        [ "Meta+Shift+Right" "Meta+Ctrl+Shift+R" ];
+      "kwin"."Window to Previous Screen" =
+        [ "Meta+Shift+Left" "Meta+Ctrl+Shift+C" ];
       "kwin"."view_actual_size" = "Meta+0";
+
+      # KZones
+      "kwin"."KZones: Cycle layouts" = "Ctrl+Alt+D";
+      "kwin"."KZones: Move active window to next zone" = "Ctrl+Alt+Right";
+      "kwin"."KZones: Move active window to previous zone" = "Ctrl+Alt+Left";
+      "kwin"."KZones: Move active window to zone 1" = "Ctrl+Alt+Num+1";
+      "kwin"."KZones: Move active window to zone 2" = "Ctrl+Alt+Num+2";
+      "kwin"."KZones: Move active window to zone 3" = "Ctrl+Alt+Num+3";
+      "kwin"."KZones: Move active window to zone 4" = "Ctrl+Alt+Num+4";
+      "kwin"."KZones: Move active window to zone 5" = "Ctrl+Alt+Num+5";
+      "kwin"."KZones: Move active window to zone 6" = "Ctrl+Alt+Num+6";
+      "kwin"."KZones: Move active window to zone 7" = "Ctrl+Alt+Num+7";
+      "kwin"."KZones: Move active window to zone 8" = "Ctrl+Alt+Num+8";
+      "kwin"."KZones: Move active window to zone 9" = "Ctrl+Alt+Num+9";
+      "kwin"."KZones: Switch to next window in current zone" = "Ctrl+Alt+Up";
+      "kwin"."KZones: Switch to previous window in current zone" =
+        "Ctrl+Alt+Down";
+      "kwin"."KZones: Toggle OSD" = "Ctrl+Alt+C";
 
       "mediacontrol"."nextmedia" = "Media Next";
       "mediacontrol"."pausemedia" = "Media Pause";
@@ -90,13 +101,15 @@ in
 
       "org.kde.dolphin.desktop"."_launch" = "Meta+E";
       "org.kde.krunner.desktop"."RunClipboard" = "Alt+Shift+F2";
-      "org.kde.krunner.desktop"."_launch" = ["Meta+Space" "Alt+F2" "Search"];
+      "org.kde.krunner.desktop"."_launch" = [ "Meta+Space" "Alt+F2" "Search" ];
       "org.kde.plasma.emojier.desktop"."_launch" = "Meta+.";
 
       "org.kde.spectacle.desktop"."ActiveWindowScreenShot" = "Meta+Print";
       "org.kde.spectacle.desktop"."FullScreenScreenShot" = "Shift+Print";
-      "org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+Print";
-      "org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = "Meta+Ctrl+Print";
+      "org.kde.spectacle.desktop"."RectangularRegionScreenShot" =
+        "Meta+Shift+Print";
+      "org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" =
+        "Meta+Ctrl+Print";
       "org.kde.spectacle.desktop"."_launch" = "Print";
 
       "plasmashell"."clipboard_action" = "Meta+Ctrl+X";
@@ -129,7 +142,6 @@ in
       "kwin"."Window Maximize Vertical" = [ ];
       "kwin"."Window Move" = [ ];
       "kwin"."Window Move Center" = [ ];
-      "kwin"."Window No Border" = [ ];
       "kwin"."Window Pack Down" = [ ];
       "kwin"."Window Pack Left" = [ ];
       "kwin"."Window Pack Right" = [ ];
