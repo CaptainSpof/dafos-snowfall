@@ -38,13 +38,15 @@ in
       tab     q    w    e    r    t    y    u    i    o    p    [    ]
       caps    a    s    d    f    g    h    j    k    l    ;    '    ret
       lsft    '<   z    x    c    v    b    n    m    ,    .    /    rsft
-      lctl lmet lalt           spc            ralt rctl
+      lctl lmet lalt              spc            ralt rctl
     )
 
     (defalias
       ;; toggle layer aliases
-      ars (layer-toggle arrows-symbols)
+      ars (layer-while-held arrows-symbols)
       gam (layer-switch gaming)
+      qwe (layer-switch qwerty)
+      lsw (layer-while-held layers-switcher)
       default (layer-switch bepow)
 
       ;; tap within $tt for esc, hold more than $ht for lctl
@@ -58,9 +60,11 @@ in
       aars     (tap-hold-release $tt $ht a @ars)
       ;ars     (tap-hold-release $tt $ht ; @ars)
 
-      grv      (tap-dance $tt (grv @gam))
+      grv      (tap-hold-release $tt $ht grv @lsw)
       bsl      (tap-dance $tt (bspc @default))
+    )
 
+    (defalias
       [     AG-4
       ]     AG-5
       {     AG-x
@@ -80,6 +84,14 @@ in
       _     _     _     _     _    'w     _     _     _     _     _     à     è
       @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
       _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rS
+      _     _     _                   @rSspc               @rAbspc  _
+    )
+
+    (deflayer layers-switcher
+      @grv  @default   @qwe   @gam   _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _    _     _     _     _     _     _     _      _
       _     _     _                   @rSspc               @rAbspc  _
     )
 
@@ -132,12 +144,20 @@ in
       '/   9
     )
 
-    (deflayer gaming
+    (deflayer qwerty
       grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
       tab     @'q    'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
       caps    @'a    @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
       lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
-      lctl lmet lalt           spc            @rAbspc rctl
+      lctl lmet lalt                     spc                @rAbspc rctl
+    )
+
+    (deflayer gaming
+      grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
+      tab     @'q    'w    up     @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
+      caps    @'a    left  down   rght  @'g    @'h   @'j   @'k    @'l    @';    @'    ret
+      lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
+      lctl lmet lalt                     spc                @rAbspc rctl
     )
   '';
 
