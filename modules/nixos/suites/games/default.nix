@@ -5,12 +5,13 @@ with lib.dafos;
 let
   cfg = config.dafos.suites.games;
   apps = {
-    steam = enabled;
-    prismlauncher = enabled;
-    lutris = enabled;
-    winetricks = enabled;
-    protontricks = enabled;
     bottles = enabled;
+    gamemode = enabled;
+    lutris = enabled;
+    prismlauncher = enabled;
+    protontricks = enabled;
+    steam = enabled;
+    winetricks = enabled;
   };
   cli-apps = {
     wine = enabled;
