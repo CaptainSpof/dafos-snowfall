@@ -59,9 +59,7 @@ in
       rAbspc   (tap-hold-release $tt $ht bspc ralt)
       aars     (tap-hold-release $tt $ht a @ars)
       ;ars     (tap-hold-release $tt $ht ; @ars)
-
-      grv      (tap-hold-release $tt $ht grv @lsw)
-      bsl      (tap-dance $tt (bspc @default))
+      grv      (tap-hold-release $tt $ht (tap-dance $tt (grv @default)) @lsw)
     )
 
     (defalias
@@ -148,7 +146,7 @@ in
     )
 
     (deflayer qwerty
-      grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
+      @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
       tab     @'q    'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
       caps    @'a    @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
       lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
@@ -156,7 +154,7 @@ in
     )
 
     (deflayer gaming
-      grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    @bsl
+      @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
       tab     @'q    up    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
       caps    left   down  rght   @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
       lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
