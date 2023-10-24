@@ -38,6 +38,10 @@ in
         };
 
         shellAbbrs = rec {
+
+          # navigation
+          "~~" = "cd $(git rev-parse --show-toplevel)";
+
           # nix
           n = "nix";
           ns = "nix search --no-update-lock-file nixpkgs";
@@ -69,7 +73,6 @@ in
           y = "wl-copy";
           p = "wl-paste";
           pp = "pwd";
-          "~~" = "cd $PRJ_ROOT";
         };
 
         plugins = [
