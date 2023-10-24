@@ -77,6 +77,9 @@ in
       |     AG-q
       /     9
       \     AG-à
+      ~     AG-b
+      _     AG-spc
+      `     AG-S-è
     )
 
     (deflayer bepow
@@ -96,11 +99,11 @@ in
     )
 
     (deflayer arrows-symbols
-      _     f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12  _
+      @`     f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12     _
       _     @|     @/     @'lp   @'rp   _      _      pgdn   pgup   _      _       _       _
       _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
-      _     _      @\     _      @{     @}     _      _      _      home   end     _       _
-      _     _     _                     _                           _     _
+      _     _      @\     _      @{     @}     @~     _      _      home   end     _       _
+      _     _     _                     @_                           _     _
     )
 
     (defalias
