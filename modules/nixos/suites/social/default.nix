@@ -2,10 +2,8 @@
 
 with lib;
 with lib.dafos;
-let
-  cfg = config.dafos.suites.social;
-in
-{
+let cfg = config.dafos.suites.social;
+in {
   options.dafos.suites.social = with types; {
     enable = mkBoolOpt false "Whether or not to enable social configuration.";
   };
@@ -13,10 +11,7 @@ in
   config = mkIf cfg.enable {
     dafos = {
       apps = {
-        discord = {
-          enable = false;
-          chromium = disabled;
-        };
+        discord = { enable = true; };
         element = disabled;
         telegram = enabled;
       };
