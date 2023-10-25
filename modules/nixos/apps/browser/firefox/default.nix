@@ -164,8 +164,10 @@ in {
             extensions = with pkgs.nur.repos.rycee.firefox-addons; [
               bitwarden
               darkreader
+              consent-o-matic
               org-capture # TODO: setup
               plasma-integration
+              refined-github
               simple-tab-groups
               sponsorblock
               stylus
