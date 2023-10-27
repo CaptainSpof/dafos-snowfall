@@ -5,19 +5,28 @@ with lib.dafos;
 let
   cfg = config.dafos.desktop.plasma;
 
-  defaultExtensions = with pkgs.libsForQt5; [
+  defaultPackages = with pkgs.libsForQt5; [
+    # Apps
+    kate
     # Scripts
     kwin-dynamic-workspaces
     kzones
+  ] ++ (with pkgs; [
+    # Themes
+    dafos.abstractdark-sddm-theme
+    dafos.kde-warm-eyes
+    gruvbox-gtk-theme
+    kde-gruvbox
+    lightly-boehs
+    papirus-nord
     # Widgets & Plasmoids
     applet-window-buttons
-    pkgs.dafos.kde-controlcentre
-    pkgs.dafos.kde-minimalistclock
-    # pkgs.dafos.neve4plasma
-    pkgs.dafos.plasma-applet-net-bandwidth-monitor
-    pkgs.dafos.simple-overview-pager
-    pkgs.dafos.thermalmonitor
-  ];
+    dafos.kde-controlcentre
+    dafos.kde-minimalistclock
+    dafos.plasma-applet-net-bandwidth-monitor
+    dafos.simple-overview-pager
+    dafos.thermalmonitor
+  ]);
 in
 {
   imports = [ ./config/plasma-config.nix ];
@@ -48,19 +57,11 @@ in
     environment.systemPackages = with pkgs; [
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
-
-      # Themes
-      dafos.abstractdark-sddm-theme
-      dafos.kde-warm-eyes
-      gruvbox-gtk-theme
-      kde-gruvbox
-      lightly-boehs
-      papirus-nord
-    ] ++ lib.optional (cfg.touchScreen) [
-      # Virtual keyboard
-      maliit-framework
-      maliit-keyboard
-    ] ++ defaultExtensions ++ cfg.extensions;
+    ] ++ lib.optionals cfg.touchScreen [
+     # Virtual keyboard
+     maliit-framework
+     maliit-keyboard
+   ] ++ defaultPackages ++ cfg.extensions;
 
     # environment.plasma.excludePackages = [ ];
 
