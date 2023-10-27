@@ -1,4 +1,4 @@
-{inputs, pkgs, ... }:
+{inputs, ... }:
 
 let
   inherit (inputs) plasma-manager;
@@ -39,12 +39,6 @@ in
         "kcminputrc"."Libinput.1386.21203.Wacom HID 52D3 Pen"."Orientation" = 0;
         "kcminputrc"."Libinput.1386.914.Wacom Intuos Pro S Finger"."NaturalScroll" = true;
         "kcminputrc"."Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."ClickMethod" = 2;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."Enabled" = true;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."NaturalScroll" = true;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAcceleration" = 0.200;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAccelerationProfile" = 1;
-        "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."TapToClick" = true;
         "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat" = false;
         "kcminputrc"."Mouse"."cursorTheme" = "breeze_cursors";
         "kcminputrc"."Tmp"."update_info" = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
@@ -131,6 +125,9 @@ in
 
         "klaunchrc"."BusyCursorSettings"."Timeout" = 3;
         "klaunchrc"."TaskbarButtonSettings"."Timeout" = 3;
+
+        "klipperrc"."General"."IgnoreImages" = false;
+        "klipperrc"."General"."MaxClipItems" = 30;
 
         "krunnerrc"."General"."FreeFloating" = true;
         "krunnerrc"."Plugins"."appstreamEnabled" = false;
