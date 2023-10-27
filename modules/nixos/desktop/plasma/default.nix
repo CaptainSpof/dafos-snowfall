@@ -34,11 +34,6 @@ in
   options.dafos.desktop.plasma = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
-    wallpaper = {
-      light = mkOpt (oneOf [ str package ]) pkgs.dafos.wallpapers.nord-rainbow-light-nix "The light wallpaper to use.";
-      dark = mkOpt (oneOf [ str package ]) pkgs.dafos.wallpapers.nord-rainbow-dark-nix "The dark wallpaper to use.";
-    };
-    color-scheme = mkOpt (enum [ "light" "dark" ]) "dark" "The color scheme to use.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
     extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
@@ -47,21 +42,19 @@ in
   config = mkIf cfg.enable {
     dafos.system.xkb.enable = true;
     dafos.desktop.addons = {
-      wallpapers = disabled;
       electron-support = enabled;
       foot = enabled;
     };
 
-    programs.dconf.enable = true;
 
     environment.systemPackages = with pkgs; [
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
-    ] ++ lib.optionals cfg.touchScreen [
-     # Virtual keyboard
-     maliit-framework
-     maliit-keyboard
-   ] ++ defaultPackages ++ cfg.extensions;
+    ] ++ (lib.optionals cfg.touchScreen [
+      # Virtual keyboard
+      maliit-framework
+      maliit-keyboard
+    ]) ++ defaultPackages ++ cfg.extensions;
 
     # environment.plasma.excludePackages = [ ];
 
@@ -76,13 +69,13 @@ in
         theme = "abstractdark-sddm-theme";
       };
       desktopManager.plasma5.enable = true;
+      desktopManager.plasma5.phononBackend = "vlc";
       desktopManager.plasma5.useQtScaling = true;
       desktopManager.plasma5.runUsingSystemd = true;
     };
 
-    programs.kdeconnect = {
-      enable = true;
-    };
+    programs.dconf.enable = true;
+    programs.kdeconnect.enable = true;
 
     # Open firewall for samba connections to work.
     networking.firewall.extraCommands =
