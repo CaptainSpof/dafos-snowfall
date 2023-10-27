@@ -142,7 +142,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.3.Configuration.General"."icon" = "choice-round";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.3.Configuration.General"."systemFavorites" = "suspend\\,hibernate\\,reboot\\,shutdown";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.3.Configuration.Shortcuts"."global" = "Alt+F1";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.3.Shortcuts"."global" = "";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.3.Shortcuts"."global" = "Alt+F1";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31"."plugin" = "org.kde.plasma.systemmonitor.memory";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.31.Configuration"."CurrentPreset" = "org.kde.plasma.systemmonitor";
@@ -166,7 +166,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.35"."plugin" = "org.kde.plasma.marginsseparator";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.5"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.5"."plugin" = "org.kde.plasma.icontasks";
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.5.Configuration.General"."launchers" = "applications:systemsettings.desktop,preferred://filemanager,preferred://browser,file:///etc/profiles/per-user/daf/share/applications/emacsclient.desktop,file:///etc/profiles/per-user/daf/share/applications/kitty.desktop";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.5.Configuration.General"."launchers" = "applications:systemsettings.desktop,preferred://filemanager,preferred://browser,file:///etc/profiles/per-user/daf/share/applications/emacs.desktop,file:///etc/profiles/per-user/daf/share/applications/kitty.desktop";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.6"."immutability" = 1;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.6"."plugin" = "org.kde.plasma.marginsseparator";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.7"."immutability" = 1;
@@ -175,7 +175,7 @@
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.Applets.7.Configuration"."SystrayContainmentId" = 8;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.ConfigDialog"."DialogHeight" = 900;
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.ConfigDialog"."DialogWidth" = 171;
-      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.General"."AppletOrder" = "28;34;29;27;26;5;25;31;35;7;19;6;3";
+      "plasma-org.kde.plasma.desktop-appletsrc"."Containments.2.General"."AppletOrder" = "3;34;29;27;26;5;25;31;35;7;19;6;28";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.39"."ItemGeometries-1440x900" = "";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.39"."ItemGeometries-2048x864" = "";
       "plasma-org.kde.plasma.desktop-appletsrc"."Containments.39"."ItemGeometriesHorizontal" = "";
