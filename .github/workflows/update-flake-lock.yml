@@ -4,9 +4,6 @@ on:
   schedule:
     - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
 
-env:
-  GIT_COMMIT_MESSAGE: 'chore(flake.lock): bump'
-
 jobs:
   lockfile:
     runs-on: ubuntu-latest
@@ -19,10 +16,6 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         with:
           token: ${{ secrets.UPDATE_NIX_FLAKE_LOCK }}
-          git-author-name: 'Bauthor'
-          git-author-email: 'github-actions[bot]@users.noreply.github.com'
-          git-committer-name: 'Botmmitter'
-          git-committer-email: 'github-actions[bot]@users.noreply.github.com'
           pr-title: "chore(flake.lock): bump"
           pr-labels: |
             dependencies
