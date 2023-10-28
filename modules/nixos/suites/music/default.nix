@@ -16,7 +16,6 @@ in
       apps = {
         amberol = enabled;
         ardour.enable = cfg.mixing.enable;
-        cadence = disabled;
         pocketcasts = enabled;
         yt-music = enabled;
       };
