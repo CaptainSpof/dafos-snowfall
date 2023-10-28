@@ -15,6 +15,7 @@ jobs:
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@main
         with:
+          token: ${{ secrets.UPDATE_NIX_FLAKE_LOCK }}
           pr-title: "chore(flake.lock): bump"
           pr-labels: |
             dependencies
