@@ -11,12 +11,12 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       deadnix
-      nil
       nixfmt
       nixpkgs-fmt
       nixpkgs-hammering
       nixpkgs-lint-community
       nixpkgs-review
+      rnix-lsp
     ];
   };
 }
