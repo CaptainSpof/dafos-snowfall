@@ -3,12 +3,3 @@
 * Known Issues
 ** ~logiops~ is out of date
 Current ~nixpkgs~ version is 0.2.3, while upstream is 0.3.3
-
-** service needs to be restarted on boot
-
-The service probably starts too soon, but I haven't been able to fix it.
-For now run:
-
-#+begin_src bash
-sudo systemctl restart logid.service
-#+end_src
