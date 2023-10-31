@@ -16,7 +16,7 @@ in
       apps = {
         yuzu = enabled;
         pcsx2 = disabled;
-        dolphin = enabled;
+        dolphin = disabled;
       };
     };
   };
