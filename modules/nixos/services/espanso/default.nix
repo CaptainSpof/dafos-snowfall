@@ -34,6 +34,7 @@ in
               };
               backend = "Inject";
               inject_delay = 5;
+              key_delay = 5;
             };
           };
 
@@ -58,8 +59,20 @@ in
                 }
               ];
             };
+            templates = {
+              matches = [
+                {
+                  trigger = ":tick";
+                  replace = ''
+                    $|$
+                    ---
+                    **Refs:**
+                    -
+                  '';
+                }
+              ];
+            };
             symbols = {
-              backend = "Clipboard";
               matches = [
                 {
                   trigger = ":ar";
