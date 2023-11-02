@@ -4,6 +4,14 @@ with lib;
 with lib.dafos;
 let
   cfg = config.dafos.desktop.plasma;
+  vars = config.dafos.vars;
+  home-directory = "/home/${vars.username}";
+  script-adapter-fix = pkgs.writeScript "bluedevil-force-adapter-status" ''
+    #!/usr/bin/env bash
+    echo 'bluedevil: forcing autostart for bluetooth adapter ${cfg.bluetoothAdapter}' | systemd-cat
+    ${pkgs.gnused}/bin/sed -i 's/${cfg.bluetoothAdapter}_powered=false/${cfg.bluetoothAdapter}_powered=true/g' ${home-directory}/.config/bluedevilglobalrc
+  '';
+
 
   defaultPackages = with pkgs.libsForQt5; [
     # Apps
@@ -29,13 +37,17 @@ let
   ]);
 in
 {
-  imports = [ ./config/plasma-config.nix ];
+  imports = [
+    ../../../vars.nix
+    ./config/plasma-config.nix
+  ];
 
   options.dafos.desktop.plasma = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
+    bluetoothAdapter = mkOpt str "" "The bluetooth adapter ID";
     extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
   };
 
@@ -80,5 +92,16 @@ in
     # Open firewall for samba connections to work.
     networking.firewall.extraCommands =
       "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
+
+    dafos.home.extraOptions = {
+      systemd.user.services.bluedevil-adapter-fix = lib.optionalAttrs (cfg.bluetoothAdapter != "") {
+        Unit.Description = "Force adapter powered status";
+        Unit.After = [ "bluetooth.target" ];
+        Install.WantedBy = [ "default.target" ];
+
+        Service.Type = "oneshot";
+        Service.ExecStart = "/bin/sh ${script-adapter-fix}";
+      };
+    };
   };
 }

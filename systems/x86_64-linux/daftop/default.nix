@@ -24,6 +24,7 @@ in
 
     desktop = {
       plasma.touchScreen = true;
+      plasma.bluetoothAdapter = "A4:F9:33:0E:06:BD";
     };
 
     security = {
