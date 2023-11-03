@@ -28,12 +28,13 @@ in
 
     suites = {
       desktop = enabled;
-      office = enabled;
       development = enabled;
+      office = enabled;
       video = {
         enable = true;
         recording = enabled;
       };
+      yahrr = enabled;
     };
 
     system = { kanata = enabled; };
