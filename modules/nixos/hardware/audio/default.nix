@@ -8,6 +8,7 @@ in
 {
   options.dafos.hardware.audio = with types; {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
+    mpris-proxy.enable = mkBoolOpt false "Whether or not to enable mpris proxy.";
     alsa-monitor = mkOpt attrs { } "Alsa configuration.";
     nodes = mkOpt (listOf attrs) [ ]
       "Audio nodes to pass to Pipewire as `context.objects`.";
@@ -41,7 +42,7 @@ in
     dafos.user.extraGroups = [ "audio" ];
 
     dafos.home.extraOptions = {
-      systemd.user.services.mpris-proxy = {
+      systemd.user.services.mpris-proxy = lib.optionalAttrs cfg.mpris-proxy.enable {
         Unit.Description = "Mpris proxy";
         Unit.After = [ "network.target" "sound.target" ];
         Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
