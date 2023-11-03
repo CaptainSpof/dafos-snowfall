@@ -101,7 +101,7 @@ in {
           enable = true;
 
           package = pkgs.wrapFirefox pkgs.firefox-beta-unwrapped {
-            cfg = { enableTridactylNative = true; };
+            nativeMessagingHosts = [ pkgs.tridactyl-native ];
 
             extraPolicies = {
               CaptivePortal = false;
