@@ -25,6 +25,27 @@ in {
     kernelModules = [ "tcp_bbr" "kvm-amd" "uhid" ];
   };
 
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-label/nixos";
+      fsType = "ext4";
+    };
+    "/home" = {
+      device = "/dev/disk/by-label/home";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/boot";
+      fsType = "vfat";
+    };
+    "/mnt/videos" = {
+      # device = "//freebox-server.local/Freebox/Vidéos"; # FIXME: name unknown: mount after avahi?
+      device = "//192.168.0.254/Freebox/Vidéos";
+      fsType = "cifs";
+      options = [ "guest" "uid=1000" ];
+    };
+  };
+
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -47,10 +68,6 @@ in {
     extraPackages = with pkgs; [ amdvlk libva libvdpau-va-gl vaapiVdpau ];
   };
 
-  hardware.sensor.iio.enable = true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.amd.updateMicrocode = true;
-
 }
