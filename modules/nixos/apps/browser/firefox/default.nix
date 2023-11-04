@@ -163,8 +163,10 @@ in {
             inherit (config.dafos.user) name;
             extensions = with pkgs.nur.repos.rycee.firefox-addons; [
               bitwarden
-              darkreader
               consent-o-matic
+              darkreader
+              french-language-pack
+              languagetool
               org-capture # TODO: setup
               plasma-integration
               refined-github
