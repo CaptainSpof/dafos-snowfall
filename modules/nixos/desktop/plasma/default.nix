@@ -48,6 +48,7 @@ in
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
     bluetoothAdapter = mkOpt str "" "The bluetooth adapter ID";
+    autoLoginUser = mkOpt str "" "The user to auto login with.";
     extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
   };
 
@@ -73,13 +74,20 @@ in
     services.xserver = {
       enable = true;
 
-      libinput.enable = true;
-      displayManager.defaultSession = mkIf cfg.wayland "plasmawayland";
-      displayManager.sddm = {
-        enable = true;
-        wayland.enable = cfg.wayland;
-        theme = "abstractdark-sddm-theme";
+      displayManager = {
+        defaultSession = mkIf cfg.wayland "plasmawayland";
+        sddm = {
+          enable = true;
+          wayland.enable = cfg.wayland;
+          theme = "abstractdark-sddm-theme";
+        };
+        autoLogin = lib.optionalAttrs (cfg.autoLoginUser != "") {
+          enable = true;
+          user = cfg.autoLoginUser;
+        };
       };
+
+      libinput.enable = true;
       desktopManager.plasma5.enable = true;
       desktopManager.plasma5.phononBackend = "vlc";
       desktopManager.plasma5.useQtScaling = true;

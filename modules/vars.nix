@@ -39,6 +39,7 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDU0z8wC6aL3EelbY83Ucj1+2TMKt+lKjQkzEH6jFaWu daf@dafoltop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILGBJKhslXRQ4Bt8Nu3/YK799UsUpzpP6sDVkVw36nLR daf@dafpi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIET2RYV7eTvXNuTOfLVM3Q1ALrUkYNqMC9NawIoo6+Kb daf@dafbox"
     ] "The public keys to apply.";
   };
 }
