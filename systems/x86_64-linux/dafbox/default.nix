@@ -1,13 +1,15 @@
-{ lib, inputs, ... }:
+{ config, lib, inputs, ... }:
 
 with lib;
 with lib.dafos;
 let
   inherit (inputs) plasma-manager;
+  vars = config.dafos.vars;
 in
 {
   imports = [
     ./hardware.nix
+    ../../../modules/vars.nix
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -20,6 +22,11 @@ in
 
     apps = {
       qbittorrent = enabled;
+    };
+
+    desktop = {
+      plasma.bluetoothAdapter = "00:15:83:F4:BD:83";
+      plasma.autoLoginUser = vars.username;
     };
 
     security = {
