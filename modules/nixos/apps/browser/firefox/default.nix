@@ -4,6 +4,27 @@ let
   inherit (lib) types mkIf mkMerge;
   inherit (lib.dafos) mkBoolOpt mkOpt;
 
+  windowed = pkgs.nur.repos.rycee.firefox-addons.buildFirefoxXpiAddon {
+    pname = "windowed";
+    version = "31";
+    addonId = "{477dbe5e-1742-4641-a2c3-b6113bb5cf6e}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/3908084/windowed-31.xpi";
+    sha256 = "sha256-Db0VPr7xRwiLigfkGmT7ZGB6ANkHMDvhoeHn56vyzYs=";
+    meta = with lib;
+      {
+        homepage = "https://github.com/dralletje/Windowed";
+        description = "extension to keep fullscreen windows contained";
+        license = licenses.gpl3;
+        mozPermissions = [
+          "browserSettings"
+          "menus"
+          "storage"
+          "tabs"
+        ];
+        platforms = platforms.all;
+      };
+  };
+
   cfg = config.dafos.apps.firefox;
   defaultSettings = {
     "accessibility.typeaheadfind.enablesound" = false;
@@ -36,6 +57,7 @@ let
     "geo.provider.use_geoclue" = false;
     "geo.provider.use_gpsd" = false;
     "intl.accept_languages" = "en-US = en,fr = fr";
+    "browser.translations.neverTranslateLanguages" = "fr";
     "intl.local.requested" = "en-US,fr";
     "layers.acceleration.disabled" = true;
     "layout.css.has-selector.enabled" = true;
@@ -177,6 +199,7 @@ in {
               tridactyl
               ublock-origin
               user-agent-string-switcher
+              windowed
             ];
           };
         };
