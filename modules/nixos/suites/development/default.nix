@@ -9,9 +9,9 @@ in
   options.dafos.suites.development = with types; {
     enable = mkBoolOpt false
       "Whether or not to enable common development configuration.";
-    dockerEnable =
+    podmanEnable =
       mkBoolOpt false
-        "Whether or not to enable docker development configuration.";
+        "Whether or not to enable podman development configuration.";
     goEnable =
       mkBoolOpt false
         "Whether or not to enable go development configuration.";
@@ -66,7 +66,7 @@ in
       };
 
       virtualisation = {
-        podman.enable = cfg.dockerEnable;
+        podman.enable = cfg.podmanEnable;
       };
     };
   };

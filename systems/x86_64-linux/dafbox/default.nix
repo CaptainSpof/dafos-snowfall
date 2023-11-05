@@ -35,7 +35,10 @@ in
 
     suites = {
       desktop = enabled;
-      development = enabled;
+      development = {
+        enable = true;
+        podmanEnable = true;
+      };
       office = enabled;
       video = {
         enable = true;
