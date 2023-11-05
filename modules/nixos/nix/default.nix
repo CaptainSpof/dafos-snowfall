@@ -41,6 +41,7 @@ in
       })
       deploy-rs
       nix-index
+      nix-init
       nix-prefetch-git
       nix-output-monitor
       # TODO: revive flake-checker

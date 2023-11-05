@@ -22,8 +22,5 @@ in
       LC_TIME = vars.locale.alt;
       LANG = vars.locale.default;
     };
-
-    # REVIEW
-    # console = { keyMap = mkForce "us"; };
   };
 }
