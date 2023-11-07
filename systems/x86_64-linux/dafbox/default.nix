@@ -1,9 +1,8 @@
-{ config, lib, inputs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.dafos;
 let
-  inherit (inputs) plasma-manager;
   vars = config.dafos.vars;
 in
 {

@@ -1,4 +1,4 @@
-{ channels, ... }:
+{ ... }:
 
 _final: _prev:
 
