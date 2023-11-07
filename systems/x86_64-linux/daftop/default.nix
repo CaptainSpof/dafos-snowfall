@@ -53,7 +53,7 @@ in
           "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."ClickMethod" = 2;
           "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."Enabled" = true;
           "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."NaturalScroll" = true;
-          "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAcceleration" = 0.200000;
+          "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAcceleration" = 0.45;
           "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAccelerationProfile" = 1;
           "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."TapToClick" = true;
         };

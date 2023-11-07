@@ -1,4 +1,4 @@
-{inputs, ... }:
+{ pkgs, inputs, ... }:
 
 let
   inherit (inputs) plasma-manager;
@@ -190,9 +190,8 @@ in
         "kwinrc"."Tiling.e0e290f5-009f-5e5b-ba02-948f6ba81a95"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[]}";
         "kwinrc"."Tiling.ef4b55d5-5107-5c91-87f7-4cc43cf5e590"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         "kwinrc"."TouchEdges"."Bottom" = "ApplicationLauncher";
-        # FIXME: maliit-keyboard
-        "kwinrc"."Wayland"."InputMethod[$e]" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
-        "kwinrc"."Wayland"."InputMethod\x5b$e\x5d" = "/run/current-system/sw/share/applications/com.github.maliit.keyboard.desktop";
+        "kwinrc"."Wayland"."InputMethod[$e]" = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
+        "kwinrc"."Wayland"."InputMethod\x5b$e\x5d" = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
         "kwinrc"."Wayland"."VirtualKeyboardEnabled" = false;
         "kwinrc"."Windows"."CenterSnapZone" = 100;
         "kwinrc"."Windows"."ElectricBorderCooldown" = 400;
