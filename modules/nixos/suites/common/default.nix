@@ -11,9 +11,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.dafos.list-iommu
-      pkgs.dafos.run-me
+    environment.systemPackages = with pkgs; [
+      dafos.list-iommu
+      powertop
     ];
 
     dafos = {

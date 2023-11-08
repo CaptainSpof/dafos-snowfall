@@ -42,20 +42,17 @@ in
 
   swapDevices = [ ];
 
-  # swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  # Enable DHCP on the wireless link
+  networking.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
-
+  hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.enable = true;
-
   hardware.bluetooth.enable = true;
 
-  # Enable DHCP on the wireless link
-  networking = {
-    useDHCP = lib.mkDefault true;
-  };
+  services.thermald.enable = true;
+
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+  powerManagement.powertop.enable = true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
