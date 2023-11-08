@@ -42,7 +42,7 @@ in
       security = {
         doas = disabled;
         gpg = disabled;
-        keyring = enabled;
+        keyring.enable = config.dafos.desktop.gnome.enable;
       };
 
       services = {

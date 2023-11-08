@@ -28,7 +28,7 @@ in
       startLimitIntervalSec = 0;
       serviceConfig = {
         Type = "simple";
-        ExecStartPre = "${pkgs.kmod}/bin/modprobe hid_logitech_hidpp || :";
+        ExecStartPre = "${pkgs.kmod}/bin/modprobe hid_logitech_hidpp";
         ExecStart = "${pkgs.logiops}/bin/logid -c " + ./logid.cfg;
         ExecReload = "/bin/kill -HUP $MAINPID";
         Restart = "on-failure";

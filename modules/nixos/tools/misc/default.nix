@@ -19,6 +19,7 @@ in
       fzf
       jq
       killall
+      procs
       unzip
       wget
     ];
