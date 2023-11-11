@@ -48,6 +48,7 @@ in
       qwe (layer-switch qwerty)
       lsw (layer-while-held layers-switcher)
       default (layer-switch bepow)
+      bas     (layer-switch basic)
 
       ;; tap within $tt for esc, hold more than $ht for lctl
       cap      (tap-hold $tt $ht esc lctl)
@@ -89,7 +90,7 @@ in
     )
 
     (deflayer layers-switcher
-      @grv  @default   @qwe   @gam   _     _     _     _     _     _     _     _     _     _
+      @grv  @default   @qwe   @gam   @bas _     _     _     _     _     _     _     _     _
       _     _     _     _     _     _     _     _     _     _     _     _     _
       _     _     _     _     _     _     _     _     _     _     _     _     _
       _     _     _     _     _    _     _     _     _     _     _     _      _
@@ -160,6 +161,15 @@ in
       lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
       lctl lmet lalt                     spc                @rAbspc rctl
     )
+
+    (deflayer basic
+      @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _     _     _     _     _     _     _     _     _     _     _
+      _     _     _                       _                 _     _
+    )
+
   '';
 
   };
