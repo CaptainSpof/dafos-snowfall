@@ -35,6 +35,10 @@ in
       gpg = mkForce disabled;
     };
 
+    services = {
+      home-assistant = enabled;
+    };
+
     suites = {
       art = mkForce disabled;
       desktop = enabled;
