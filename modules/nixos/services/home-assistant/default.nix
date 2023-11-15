@@ -22,10 +22,12 @@ in
     services.home-assistant = {
       enable = true;
       extraComponents = [
+        "apple_tv"
         "backup"
         "esphome"
         "forked_daapd"
         "freebox"
+        "google_translate"
         "ipp"
         "met"
         "netatmo"
@@ -40,41 +42,32 @@ in
         pychromecast
       ];
 
-      # TODO: need a PR to be merged
-      # customComponents = with pkgs.home-assistant-custom-components; [
-      #   prometheus-sensor
-      # ];
+      customComponents = with pkgs.home-assistant-custom-components; [
+        prometheus-sensor
+        pkgs.dafos.adaptive-lighting
+      ];
+
+      customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+        mini-graph-card
+        mini-media-player
+        pkgs.dafos.lovelace-mushroom
+      ];
 
       config = {
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
-        default_config = {};
+        default_config = {
+          name = "DafHome";
+        };
 
-        "automation manual" = [
-          {
-            alias = "Living Room · Turn on Lights";
-            trigger = {
-              platform = "device";
-              domain = "zha";
-              device_id = "0e5fb6683244a298f90a8e332b883f7c";
-              type = "remote_button_short_press";
-              subtype = "turn_on";
-            };
-            action = {
-              service = "light.turn_on";
-              target.entity_id = [
-                "light.living_room_ceiling_1_light"
-                "light.living_room_ceiling_2_light"
-              ];
-            };
-          }
-        ];
+        "automation manual" = [ ];
         "automation ui" = "!include automations.yaml";
-
+        "scene ui" = "!include scenes.yaml";
+        "script ui" = "!include scripts.yaml";
       };
     };
     networking.firewall = {
-      allowedTCPPorts = [ 80 443 8123 8883 ];
+      allowedTCPPorts = [ 80 443 8123 ];
     };
   };
 }
