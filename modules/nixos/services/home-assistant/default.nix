@@ -15,6 +15,8 @@ in
 
   config = mkIf cfg.enable {
 
+    dafos.user.extraGroups = [ "hass" ];
+
     environment.systemPackages = with pkgs; [
       ffmpeg_5
     ];
