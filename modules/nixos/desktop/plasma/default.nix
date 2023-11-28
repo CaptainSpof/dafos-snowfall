@@ -16,6 +16,7 @@ let
   defaultPackages = with pkgs.libsForQt5; [
     # Apps
     kate
+    filelight
     # Scripts
     kwin-dynamic-workspaces
     kzones
