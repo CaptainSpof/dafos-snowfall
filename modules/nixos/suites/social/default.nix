@@ -11,9 +11,10 @@ in {
   config = mkIf cfg.enable {
     dafos = {
       apps = {
-        discord = { enable = true; };
+        discord = enabled;
         element = disabled;
         telegram = enabled;
+        teamspeak = enabled;
       };
     };
   };
