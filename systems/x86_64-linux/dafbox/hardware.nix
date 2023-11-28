@@ -36,12 +36,13 @@ in {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
-    "/mnt/videos" = {
-      # device = "//freebox-server.local/Freebox/Vidéos"; # FIXME: name unknown: mount after avahi?
-      device = "//192.168.0.254/Freebox/Vidéos";
-      fsType = "cifs";
-      options = [ "guest" "uid=1000" ];
-    };
+    # FIXME
+    # "/mnt/videos" = {
+    #   # device = "//freebox-server.local/Freebox/Vidéos"; # FIXME: name unknown: mount after avahi?
+    #   device = "//192.168.0.254/Freebox/Vidéos";
+    #   fsType = "cifs";
+    #   options = [ "guest" "uid=1000" ];
+    # };
   };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
