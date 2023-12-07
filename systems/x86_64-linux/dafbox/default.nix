@@ -24,7 +24,7 @@ in
     };
 
     desktop = {
-      plasma.bluetoothAdapter = "00:15:83:F4:BD:83";
+      plasma.bluetoothAdapter = "74:97:79:D8:5B:D2";
       plasma.autoLoginUser = vars.username;
     };
 
@@ -43,7 +43,6 @@ in
         enable = true;
         recording = enabled;
       };
-      yahrr = enabled;
     };
 
     system = { kanata = enabled; };
