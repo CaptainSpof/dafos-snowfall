@@ -64,6 +64,10 @@ in
       Host *
         HostKeyAlgorithms +ssh-rsa
 
+      Host github.com
+        IdentityFile ~/.ssh/gh@captainspof.pem
+        IdentitiesOnly yes
+
       ${optionalString cfg.manage-other-hosts other-hosts-config}
     '';
 
