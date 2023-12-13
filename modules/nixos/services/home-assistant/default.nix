@@ -34,6 +34,7 @@ in
         "met"
         "netatmo"
         "radio_browser"
+        "roborock"
         "samsungtv"
         "wled"
         "yeelight"
@@ -45,8 +46,7 @@ in
       ];
 
       customComponents = with pkgs.home-assistant-custom-components; [
-        prometheus-sensor
-        pkgs.dafos.adaptive-lighting
+        adaptive_lighting
       ];
 
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
@@ -61,11 +61,40 @@ in
         default_config = {
           name = "DafHome";
         };
+        lovelace.mode = "yaml";
+        lovelace.resources = [
+          {
+            url = "/local/nixos-lovelace-modules/mushroom.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/mini-graph-card-bundle.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/mini-media-player-bundle.js";
+            type = "module";
+          }
+        ];
 
         "automation manual" = [ ];
         "automation ui" = "!include automations.yaml";
         "scene ui" = "!include scenes.yaml";
         "script ui" = "!include scripts.yaml";
+
+        sensor = {
+          platform = "time_date";
+          display_options = [
+            "time"
+            "date"
+            "date_time"
+            "date_time_utc"
+            "date_time_iso"
+            "time_date"
+            "time_utc"
+            "beat"
+          ];
+        };
       };
     };
     networking.firewall = {
