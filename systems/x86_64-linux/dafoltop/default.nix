@@ -30,12 +30,11 @@ in
     };
 
     suites = {
+      art = mkForce disabled;
       desktop = enabled;
-      office = enabled;
-      development = enabled;
+      social = mkForce disabled;
       video = {
         enable = true;
-        recording = enabled;
       };
       yahrr = enabled;
     };
