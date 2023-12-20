@@ -33,11 +33,15 @@ in
         "ipp"
         "met"
         "netatmo"
+	      "sonarr"
+	      "radarr"
         "radio_browser"
         "roborock"
         "samsungtv"
+        "tailscale"
         "wled"
         "yeelight"
+        "zeroconf"
         "zha"
       ];
 
