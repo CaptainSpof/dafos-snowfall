@@ -14,6 +14,7 @@ in
     dafos = {
       services = {
         jellyfin = enabled;
+        prowlarr = enabled;
         radarr = enabled;
         readarr = enabled;
         sonarr = enabled;
