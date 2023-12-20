@@ -21,7 +21,7 @@ in
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc" "uhid" ];
       kernelModules = [ "kvm-intel" ];
     };
-
+    supportedFilesystems = [ "cifs" ];
     extraModulePackages = [ ];
   };
 
@@ -40,7 +40,20 @@ in
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/videos" =
+    { device = "//192.168.0.254/Freebox/Vidéos";
+      fsType = "cifs";
+      options = [ "guest" "uid=1000" ];
+    };
+
   swapDevices = [ ];
+
+  systemd.automounts = [{
+    description = "Automount for Freebox";
+    where = "/mnt/videos";
+    wantedBy = [ "default.target" ];
+  }];
+
 
   # Enable DHCP on the wireless link
   networking.useDHCP = lib.mkDefault true;
