@@ -12,6 +12,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
+      cifs-utils
       pkgs.dafos.list-iommu
       powertop
     ];
