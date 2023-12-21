@@ -41,7 +41,11 @@ in
         };
       };
     };
-    programs.gh.enable = true;
+    programs.gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
+      settings.version = 1;
+    };
     programs.fish = mkIf fish.enable {
       shellAbbrs = {
         g = "git";
