@@ -7,10 +7,6 @@ with lib.dafos;
 
   boot.loader.grub.enable = true;
 
-  programs.sway.extraSessionCommands = ''
-    WLR_NO_HARDWARE_CURSORS=1
-  '';
-
   dafos = {
     nix = enabled;
 
