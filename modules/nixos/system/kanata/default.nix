@@ -52,7 +52,7 @@ in
 
       ;; tap within $tt for esc, hold more than $ht for lctl
       cap      (tap-hold $tt $ht esc lctl)
-      rS       (tap-hold-release $tt $ht up rsft)
+      rbspc    (tap-hold-release $tt $ht up bspc)
       lMf      (tap-hold-release $tt $ht f lmet)
       lCd      (tap-hold-release $tt $ht d lctrl)
       rSspc    (tap-hold-release $tt $ht spc rsft)
@@ -85,7 +85,7 @@ in
       @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
       _     _     _     _     _    'w     _     _     _     _     _     à     è
       @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
-      _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rS
+      _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rbspc
       _     _     _                   @rSspc               @rAbspc  _
     )
 
