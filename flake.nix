@@ -41,7 +41,8 @@
     nuenv.url = "github:DeterminateSystems/nuenv";
 
     # Plasma-Manager
-    plasma-manager.url = "github:mcdonc/plasma-manager/enable-look-and-feel-settings";
+    # plasma-manager.url = "github:mcdonc/plasma-manager/enable-look-and-feel-settings";
+    plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 

@@ -13,6 +13,14 @@ in
 
     programs.plasma = {
       enable = true;
+
+      workspace = {
+        clickItemTo = "open";
+        tooltipDelay = 5;
+        theme = "gruvbox";
+        colorscheme = "BreezeDark";
+      };
+
       configFile = {
         "baloofilerc"."Basic Settings"."Indexing-Enabled" = false;
         "baloofilerc"."General"."dbVersion" = 2;
@@ -76,7 +84,7 @@ in
         "kdeglobals"."General"."XftSubPixel" = "rgb";
         "kdeglobals"."KDE"."ShowDeleteCommand" = false;
         "kdeglobals"."KDE"."SingleClick" = true;
-        "kdeglobals"."KDE"."widgetStyle" = "Lightly";
+        # "kdeglobals"."KDE"."widgetStyle" = "Lightly";
         "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
         "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
         "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
@@ -172,6 +180,7 @@ in
         "kwinrc"."Script-kzones"."invertedMode" = true;
         "kwinrc"."Script-kzones"."modifierKey" = 0;
         "kwinrc"."Tiling"."padding" = 10;
+        # FIXME: escape '.'
         "kwinrc"."Tiling.171a710f-6a25-5610-9384-46e044880bcf"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         "kwinrc"."Tiling.1ab459e4-6e57-5b6a-8a28-c777c1875520"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
         "kwinrc"."Tiling.29821dcd-1f9a-5dc9-b1d8-b362bff52f86"."tiles" = "{\"layoutDirection\":\"horizontal\",\"tiles\":[{\"width\":0.25},{\"width\":0.5},{\"width\":0.25}]}";
@@ -199,11 +208,11 @@ in
         "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
         "kwinrc"."Windows"."NextFocusPrefersMouse" = true;
         "kwinrc"."Xwayland"."Scale" = 2;
-        "kwinrc"."org.kde.kdecoration2"."BorderSize" = "Tiny";
-        "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto" = false;
-        "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "XAI";
-        "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "NHMS";
-        "kwinrc"."org.kde.kdecoration2"."ShowToolTips" = false;
+        "kwinrc"."org\\.kde\\.kdecoration2"."BorderSize" = "Tiny";
+        "kwinrc"."org\\.kde\\.kdecoration2"."BorderSizeAuto" = false;
+        "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnLeft" = "XAI";
+        "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnRight" = "NHMS";
+        "kwinrc"."org\\.kde\\.kdecoration2"."ShowToolTips" = false;
         "kwinrulesrc"."1"."Description" = "Window settings for Color Picker";
         "kwinrulesrc"."1"."size" = "264,157";
         "kwinrulesrc"."1"."sizerule" = 3;
@@ -272,7 +281,7 @@ in
         "kxkbrc"."Layout"."Use" = true;
         "kxkbrc"."Layout"."VariantList" = "bepo,us";
         "plasmanotifyrc"."Notifications"."PopupPosition" = "BottomRight";
-        "plasmarc"."Theme"."name" = "gruvbox";
+        # "plasmarc"."Theme"."name" = "gruvbox";
         "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
         "systemsettingsrc"."Open-with settings"."CompletionMode" = 1;
       };
