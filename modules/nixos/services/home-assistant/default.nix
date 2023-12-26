@@ -26,18 +26,21 @@ in
       extraComponents = [
         "apple_tv"
         "backup"
+        "cast"
         "esphome"
         "forked_daapd"
         "freebox"
         "google_translate"
         "ipp"
         "met"
+        "mobile_app"
         "netatmo"
 	      "sonarr"
 	      "radarr"
         "radio_browser"
         "roborock"
         "samsungtv"
+        "telegram"
         "tailscale"
         "wled"
         "yeelight"
@@ -56,7 +59,11 @@ in
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
         mini-graph-card
         mini-media-player
+        pkgs.dafos.lovelace-layout-card
+        pkgs.dafos.lovelace-fold-entity-row
+        pkgs.dafos.lovelace-auto-entities
         pkgs.dafos.lovelace-mushroom
+        pkgs.dafos.button-card
       ];
 
       config = {
@@ -69,6 +76,22 @@ in
         lovelace.resources = [
           {
             url = "/local/nixos-lovelace-modules/mushroom.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/layout-card.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/button-card.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/fold-entity-row.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/auto-entities.js";
             type = "module";
           }
           {
