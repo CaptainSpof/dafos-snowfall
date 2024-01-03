@@ -57,6 +57,7 @@ in
 
   # Enable DHCP on the wireless link
   networking.useDHCP = lib.mkDefault true;
+  networking.enableIPv6 = false;
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.enable = true;
