@@ -18,7 +18,7 @@ in
         clickItemTo = "open";
         tooltipDelay = 5;
         theme = "gruvbox";
-        colorscheme = "BreezeDark";
+        colorScheme = "BreezeDark";
       };
 
       configFile = {
