@@ -20,6 +20,7 @@ in
         obs.enable = cfg.recording.enable;
         pitivi.enable = cfg.editing.enable;
         vlc = enabled;
+        jellyfin-media-player = enabled;
       };
     };
 
