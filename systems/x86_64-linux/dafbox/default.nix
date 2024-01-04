@@ -36,7 +36,6 @@ in
       desktop = enabled;
       development = {
         enable = true;
-        podmanEnable = true;
       };
       office = enabled;
       video = {
