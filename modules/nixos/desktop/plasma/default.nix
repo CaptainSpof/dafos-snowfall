@@ -22,7 +22,7 @@ let
     kzones
   ] ++ (with pkgs; [
     # Themes
-    dafos.abstractdark-sddm-theme
+    # dafos.abstractdark-sddm-theme
     dafos.kde-warm-eyes
     gruvbox-gtk-theme
     kde-gruvbox
@@ -78,11 +78,11 @@ in
       displayManager = {
         # defaultSession = mkIf cfg.wayland "plasmawayland";
         defaultSession = mkIf cfg.wayland "plasma";
-        sddm = {
-          enable = true;
-          wayland.enable = cfg.wayland;
-          theme = "abstractdark-sddm-theme";
-        };
+        # sddm = {
+        #   enable = true;
+        #   wayland.enable = cfg.wayland;
+        #   theme = "abstractdark-sddm-theme";
+        # };
         autoLogin = lib.optionalAttrs (cfg.autoLoginUser != "") {
           enable = true;
           user = cfg.autoLoginUser;
