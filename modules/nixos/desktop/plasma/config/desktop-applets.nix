@@ -2,6 +2,41 @@
 
 {
   programs.plasma = {
+    panels = [
+      # Windows-like panel at the bottom
+      {
+        location = "left";
+        height = 60;
+        widgets = [
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.icontasks"
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock"
+          "org.kde.plasma.pager"
+          "org.kde.plasma.kickoff"
+        ];
+        iconTasksLaunchers = [
+          "org.kde.dolphin.desktop"
+          "firefox.desktop"
+          "kitty.desktop"
+          "emacsclient.desktop"
+          "steam.desktop"
+        ];
+      }
+      # Global menu at the top
+      {
+        location = "top";
+        height = 28;
+        hiding = "autohide";
+        widgets = [
+          "org.kde.plasma.appmenu"
+        ];
+      }
+    ];
+
     # configFile = {
     #   "plasma-org.kde.plasma.desktop-appletsrc"."ActionPlugins.0"."MiddleButton;NoModifier" = "org.kde.paste";
     #   "plasma-org.kde.plasma.desktop-appletsrc"."ActionPlugins.0"."RightButton;NoModifier" = "org.kde.contextmenu";
