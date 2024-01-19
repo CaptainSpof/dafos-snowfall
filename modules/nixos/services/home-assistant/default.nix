@@ -59,10 +59,10 @@ in
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
         mini-graph-card
         mini-media-player
+        mushroom
         pkgs.dafos.lovelace-layout-card
         pkgs.dafos.lovelace-fold-entity-row
         pkgs.dafos.lovelace-auto-entities
-        pkgs.dafos.lovelace-mushroom
         pkgs.dafos.button-card
       ];
 
