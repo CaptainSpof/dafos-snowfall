@@ -3,27 +3,40 @@
 {
   programs.plasma = {
     panels = [
-      # Windows-like panel at the bottom
       {
         location = "left";
         height = 60;
         widgets = [
           "org.kde.plasma.panelspacer"
           "org.kde.plasma.marginsseparator"
-          "org.kde.plasma.icontasks"
+          {
+            name = "org.kde.plasma.icontasks";
+            config = {
+              General = {
+                launchers = [
+                  "applications:org.kde.dolphin.desktop"
+                  "applications:firefox.desktop"
+                  "applications:kitty.desktop"
+                  "applications:emacsclient.desktop"
+                  "applications:steam.desktop"
+                ];
+              };
+            };
+          }
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.panelspacer"
           "org.kde.plasma.systemtray"
           "org.kde.plasma.digitalclock"
           "org.kde.plasma.pager"
-          "org.kde.plasma.kickoff"
-        ];
-        iconTasksLaunchers = [
-          "org.kde.dolphin.desktop"
-          "firefox.desktop"
-          "kitty.desktop"
-          "emacsclient.desktop"
-          "steam.desktop"
+          {
+            name = "org.kde.plasma.kickoff";
+            config = {
+              General = {
+                icon = "choice-round";
+                paneSwap = "true";
+              };
+            };
+          }
         ];
       }
       # Global menu at the top
@@ -274,7 +287,7 @@
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.ConfigDialog"."DialogHeight" = 510;
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.ConfigDialog"."DialogWidth" = 680;
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.General"."favoritesPortedToKAstats" = true;
-    #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.General"."icon" = "choice-round";
+    #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.General"."onicon" = "choice-round";
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.General"."systemFavorites" = "suspend\\,hibernate\\,reboot\\,shutdown";
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.45.Configuration.Shortcuts"."global" = "Alt+F1";
     #   "plasma-org.kde.plasma.desktop-appletsrc"."Containments.44.Applets.47"."immutability" = 1;

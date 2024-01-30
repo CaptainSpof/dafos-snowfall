@@ -8,7 +8,7 @@ in
     imports = [
       plasma-manager.homeManagerModules.plasma-manager
       ./shortcuts.nix
-      ./desktop-applets.nix
+      ./panels.nix
     ];
 
     programs.plasma = {
