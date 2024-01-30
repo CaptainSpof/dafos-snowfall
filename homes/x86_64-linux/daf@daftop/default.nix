@@ -14,6 +14,7 @@ in
       alacritty = enabled;
       emacs = enabled;
       firefox = {
+        enable = true;
         gpuAcceleration = true;
         hardwareDecoding = true;
         settings = {
