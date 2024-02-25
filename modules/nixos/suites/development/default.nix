@@ -9,6 +9,9 @@ in
   options.dafos.suites.development = with types; {
     enable = mkBoolOpt false
       "Whether or not to enable common development configuration.";
+    aws.enable =
+      mkBoolOpt false
+        "Whether or not to enable aws development configuration.";
     podmanEnable =
       mkBoolOpt false
         "Whether or not to enable podman development configuration.";
@@ -54,6 +57,7 @@ in
       };
 
       tools = {
+        aws.enable = cfg.aws.enable;
         direnv = enabled;
         http = enabled;
         k8s.enable = cfg.kubernetesEnable;

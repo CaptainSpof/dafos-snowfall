@@ -14,6 +14,8 @@ in
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  services.xserver.videoDrivers = mkDefault [ "amdgpu" ];
+
   dafos = {
     archetypes = {
       workstation = enabled;
@@ -37,7 +39,10 @@ in
     suites = {
       desktop = enabled;
       office = enabled;
-      development = enabled;
+      development = {
+        enable = true;
+        aws = enabled;
+      };
       video = {
         enable = true;
         recording = enabled;
