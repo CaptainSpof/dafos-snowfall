@@ -58,11 +58,6 @@
     pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
     pre-commit-hooks.inputs.flake-compat.follows = "flake-compat";
 
-    # kde2nix
-    kde2nix.url = "github:nix-community/kde2nix";
-    kde2nix.inputs.flake-utils.follows = "flake-utils";
-    kde2nix.inputs.pre-commit-hooks.follows = "pre-commit-hooks";
-
     # nh
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
@@ -121,7 +116,6 @@
           nh.nixosModules.default
           nix-ld.nixosModules.nix-ld
           vault-service.nixosModules.nixos-vault-service
-          kde2nix.nixosModules.plasma6
         ];
 
         systems.modules.home = with inputs; [
