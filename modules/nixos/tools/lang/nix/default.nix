@@ -16,7 +16,6 @@ in {
       nixpkgs-hammering
       nixpkgs-lint-community
       nixpkgs-review
-      rnix-lsp
     ];
   };
 }
