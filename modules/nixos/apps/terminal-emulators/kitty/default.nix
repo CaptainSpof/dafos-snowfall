@@ -62,7 +62,7 @@ in
           inactive_tab_font_style = "normal";
 
           # Shell
-          shell = "${pkgs.zellij}/bin/zellij";
+          shell = "${pkgs.zellij}/bin/zellij -l compact";
         };
       };
     };
