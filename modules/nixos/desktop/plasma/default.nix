@@ -91,10 +91,6 @@ in
 
       libinput.enable = true;
       desktopManager.plasma6.enable = true;
-      # desktopManager.plasma5.enable = true;
-      # desktopManager.plasma5.phononBackend = "vlc";
-      # desktopManager.plasma5.useQtScaling = true;
-      # desktopManager.plasma5.runUsingSystemd = true;
     };
 
     programs.dconf.enable = true;
