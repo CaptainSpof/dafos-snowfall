@@ -5,6 +5,18 @@ with lib.dafos;
 let
   cfg = config.dafos.services.home-assistant;
   vars = config.dafos.vars;
+  pyforked-daapd = pkgs.python3Packages.buildPythonPackage rec {
+    pname = "pyforked-daapd";
+    version = "v0.1.14";
+    propagatedBuildInputs = [ pkgs.python3Packages.aiohttp ];
+
+    src = pkgs.fetchFromGitHub {
+      owner = "uvjustin";
+      repo = "${pname}";
+      rev = "21d901d4ececdfa9391a12f9be70c8d2e7bcd424";
+      sha256 = "sha256-dPDhBe/CEslgEomt5HgAf4nbW0izXM5fSNRe96ULYlg=";
+    };
+  };
 in
 {
   imports = [ ../../../vars.nix ];
@@ -21,9 +33,40 @@ in
       ffmpeg_5
     ];
 
+    services.mosquitto = {
+      enable = true;
+      listeners = [{
+        acl = [ "pattern readwrite #" ];
+        omitPasswordAuth = true;
+        settings.allow_anonymous = true;
+      }];
+    };
+
+    services.zigbee2mqtt = {
+      enable = true;
+      settings = {
+        homeassistant = config.services.home-assistant.enable;
+        permit_join = true;
+        mqtt = {
+          server = "mqtt://127.0.0.1:1883";
+          base_topic = "zigbee2mqtt";
+        };
+        frontend = {
+          port = 8090;
+        };
+        serial = {
+          port = "/dev/ttyACM1";
+          adapter = "deconz";
+        };
+        advanced = { log_level = "debug"; };
+      };
+    };
+
     services.home-assistant = {
       enable = true;
       extraComponents = [
+	      "radarr"
+	      "sonarr"
         "apple_tv"
         "backup"
         "cast"
@@ -32,16 +75,18 @@ in
         "freebox"
         "google_translate"
         "ipp"
+        "local_calendar"
+        "ld2410_ble"
         "met"
         "mobile_app"
+        "mqtt"
         "netatmo"
-	      "sonarr"
-	      "radarr"
         "radio_browser"
         "roborock"
         "samsungtv"
-        "telegram"
         "tailscale"
+        "telegram"
+        "tuya"
         "wled"
         "yeelight"
         "zeroconf"
@@ -50,6 +95,7 @@ in
 
       extraPackages = ps: with ps; [
         pychromecast
+        pyforked-daapd
       ];
 
       customComponents = with pkgs.home-assistant-custom-components; [
@@ -69,9 +115,7 @@ in
       config = {
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
-        default_config = {
-          name = "DafHome";
-        };
+        default_config = { };
         lovelace.mode = "yaml";
         lovelace.resources = [
           {
@@ -119,11 +163,27 @@ in
             "date_time_iso"
             "time_date"
             "time_utc"
-            "beat"
           ];
         };
       };
     };
+
+    virtualisation.oci-containers = {
+      backend = "podman";
+      containers.ha-fusion = {
+        volumes = [
+          "/var/lib/hass:/app/data"
+        ];
+        ports = [ "5050:5050" ];
+        environment.TZ = vars.timezone;
+        environment.HASS_URL = "http://dafoltop:8123";
+        image = "ghcr.io/matt8707/ha-fusion";
+        extraOptions = [
+          "--network=host"
+        ];
+      };
+    };
+
     networking.firewall = {
       allowedTCPPorts = [ 80 443 8123 ];
     };
