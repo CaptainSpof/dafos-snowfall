@@ -18,6 +18,7 @@ in
       enable = true;
       user = username;
       openFirewall = true;
+      cacheDir = "/home/daf/.cache/jellyfin";
     };
   };
 }

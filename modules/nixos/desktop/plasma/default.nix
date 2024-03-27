@@ -76,7 +76,6 @@ in
       enable = true;
 
       displayManager = {
-        # defaultSession = mkIf cfg.wayland "plasmawayland";
         defaultSession = mkIf cfg.wayland "plasma";
         # sddm = {
         #   enable = true;

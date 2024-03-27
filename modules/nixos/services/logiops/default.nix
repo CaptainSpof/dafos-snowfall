@@ -20,7 +20,6 @@ in
     '';
 
     systemd.services.logid = {
-      enable = true;
       description = "Logitech Configuration Daemon.";
       wantedBy = [ "graphical.target" ];
       after = [ "multi-user.target" ];
