@@ -6,7 +6,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
 
     # NixPkgs (nixos-unstable)
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # NixPkgs Unstable (nixos-unstable)
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
@@ -17,6 +17,13 @@
 
     # Nix User Repository (master)
     nur.url = "github:nix-community/NUR";
+
+    # Flake Compat
+    flake-compat.url = "github:nix-community/flake-compat";
+    flake-compat.flake = false;
+
+    # Flake Utils
+    flake-utils.url = "github:numtide/flake-utils";
 
     # Hardware Configuration
     nixos-hardware.url = "github:nixos/nixos-hardware";
@@ -45,6 +52,12 @@
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
+    # Pre Commit Hooks
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
+    pre-commit-hooks.inputs.flake-compat.follows = "flake-compat";
+
     # nh
     nh.url = "github:viperML/nh";
     nh.inputs.nixpkgs.follows = "nixpkgs";
@@ -69,55 +82,56 @@
     bibata-cursors.flake = false;
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "dafos";
-          title = "It ain't pretty, but it's mine.";
+        snowfall = {
+          meta = {
+            name = "dafos";
+            title = "It ain't pretty, but it's mine.";
+          };
+
+          namespace = "dafos";
+        };
+      };
+    in
+      lib.mkFlake {
+        channels-config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [ "openssl-1.1.1w" ];
         };
 
-        namespace = "dafos";
+        overlays = with inputs; [
+          flake.overlays.default
+          nuenv.overlays.default
+          nur.overlay
+        ];
+
+        systems.modules.nixos = with inputs; [
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          nh.nixosModules.default
+          nix-ld.nixosModules.nix-ld
+          vault-service.nixosModules.nixos-vault-service
+        ];
+
+        systems.modules.home = with inputs; [
+          plasma-manager.homeManagerModules.plasma-manager
+        ];
+
+        systems.hosts.dafoltop.modules = with inputs; [
+          nixos-generators.nixosModules.all-formats
+        ];
+
+        deploy = lib.mkDeploy { inherit (inputs) self; };
+
+        checks =
+          builtins.mapAttrs
+            (_system: deploy-lib:
+              deploy-lib.deployChecks inputs.self.deploy)
+            inputs.deploy-rs.lib;
       };
-    };
-  in
-    lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
-        permittedInsecurePackages = [ "openssl-1.1.1w" ];
-      };
-
-      overlays = with inputs; [
-        flake.overlays.default
-        nuenv.overlays.default
-        nur.overlay
-      ];
-
-      systems.modules.nixos = with inputs; [
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        nh.nixosModules.default
-        nix-ld.nixosModules.nix-ld
-        vault-service.nixosModules.nixos-vault-service
-      ];
-
-      systems.modules.home = with inputs; [
-        plasma-manager.homeManagerModules.plasma-manager
-      ];
-
-      systems.hosts.dafoltop.modules = with inputs; [
-        nixos-generators.nixosModules.all-formats
-      ];
-
-      deploy = lib.mkDeploy {inherit (inputs) self;};
-
-      checks =
-        builtins.mapAttrs
-        (_system: deploy-lib:
-          deploy-lib.deployChecks inputs.self.deploy)
-        inputs.deploy-rs.lib;
-    };
 }

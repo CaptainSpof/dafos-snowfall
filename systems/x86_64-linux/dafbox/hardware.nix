@@ -54,8 +54,6 @@ in {
   networking.useDHCP = lib.mkDefault true;
   networking.interfaces.eno1.wakeOnLan.enable = true;
 
-  services.fwupd.enable = true;
-
   hardware.bluetooth = {
     enable = true;
     settings.General.Experimental = true;

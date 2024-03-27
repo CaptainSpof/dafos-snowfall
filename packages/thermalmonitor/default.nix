@@ -6,8 +6,8 @@ libsForQt5.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "olib14";
     repo = "thermalmonitor";
-    rev = "v0.1.1-kf5";
-    sha256 = "sha256-AxoWwGpJkfXNXl1uol3RfqsB8n7ry0satyAfJnK1aZY=";
+    rev = "v0.1.3";
+    sha256 = "sha256-Gp2PWn8arDblIrgZYuBf08GJ29Nwg4cY33xoJXdD/t8=";
   };
 
   buildInputs = with libsForQt5; [
