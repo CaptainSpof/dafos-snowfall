@@ -19,6 +19,12 @@ in
         readarr = enabled;
         sonarr = enabled;
       };
+      apps = {
+        qbittorrent = {
+          enable = true;
+          nox.enable = true;
+        };
+      };
     };
   };
 }
