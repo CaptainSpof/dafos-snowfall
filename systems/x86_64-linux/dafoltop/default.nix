@@ -37,6 +37,7 @@ in
 
     services = {
       home-assistant = enabled;
+      mealie = enabled;
     };
 
     suites = {
