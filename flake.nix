@@ -58,10 +58,6 @@
     pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
     pre-commit-hooks.inputs.flake-compat.follows = "flake-compat";
 
-    # nh
-    nh.url = "github:viperML/nh";
-    nh.inputs.nixpkgs.follows = "nixpkgs";
-
     # System Deployment
     deploy-rs.url = "github:serokell/deploy-rs";
     deploy-rs.inputs.nixpkgs.follows = "nixpkgs";
@@ -113,7 +109,6 @@
         systems.modules.nixos = with inputs; [
           disko.nixosModules.disko
           home-manager.nixosModules.home-manager
-          nh.nixosModules.default
           nix-ld.nixosModules.nix-ld
           vault-service.nixosModules.nixos-vault-service
         ];

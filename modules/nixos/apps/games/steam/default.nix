@@ -17,8 +17,9 @@ in
 
     hardware.steam-hardware.enable = true;
 
-    environment.systemPackages = with pkgs.dafos; [
-      steam
+    environment.systemPackages = with pkgs; [
+      pkgs.dafos.steam
+      steamtinkerlaunch
     ];
 
     environment.sessionVariables = {

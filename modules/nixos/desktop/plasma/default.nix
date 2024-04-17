@@ -20,6 +20,7 @@ let
     # Scripts
     kwin-dynamic-workspaces
     kzones
+    polonium
   ] ++ (with pkgs; [
     # Themes
     # dafos.abstractdark-sddm-theme
