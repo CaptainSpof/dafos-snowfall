@@ -21,6 +21,7 @@ in
       killall
       procs
       unzip
+      unrar
       wget
     ];
 

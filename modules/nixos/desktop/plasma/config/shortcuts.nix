@@ -3,7 +3,7 @@
 {
   programs.plasma = {
     shortcuts = {
-      "kitty.desktop"."_launch" = "Ctrl+Alt+T";
+      "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" =
         "Meta+Alt+K";
@@ -34,7 +34,7 @@
       "kwin"."Activate Window Demanding Attention" = "Meta+Ctrl+A";
       "kwin"."Edit Tiles" = "Meta+Alt+Space";
       "kwin"."Expose" = "Meta+,";
-      "kwin"."ExposeAll" = [ "Ctrl+F10" "Launch (C)" ];
+      "kwin"."ExposeAll" = [ "Launch (C)" ];
       "kwin"."ExposeClass" = "Ctrl+F7";
       "kwin"."Window No Border" = [ "Meta+Shift+B" "Meta+Alt+B" ];
 
