@@ -37,6 +37,7 @@ in
       hardware = {
         audio = enabled;
         networking = enabled;
+        sensors = enabled;
         storage = enabled;
       };
 

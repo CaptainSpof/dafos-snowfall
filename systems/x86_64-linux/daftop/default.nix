@@ -15,7 +15,6 @@ in
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.xserver.videoDrivers = mkDefault [ "amdgpu" ];
-  services.mealie = enabled;
 
   dafos = {
     archetypes = {
