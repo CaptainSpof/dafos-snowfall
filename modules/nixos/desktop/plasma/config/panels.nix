@@ -5,6 +5,7 @@
     panels = [
       {
         location = "left";
+        floating = true;
         height = 60;
         widgets = [
           "org.kde.plasma.panelspacer"
@@ -43,9 +44,12 @@
       {
         location = "top";
         height = 28;
+        floating = true;
         hiding = "autohide";
         widgets = [
           "org.kde.plasma.appmenu"
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.digitalclock"
         ];
       }
     ];
