@@ -5,18 +5,6 @@ with lib.dafos;
 let
   cfg = config.dafos.services.home-assistant;
   vars = config.dafos.vars;
-  pyforked-daapd = pkgs.python3Packages.buildPythonPackage rec {
-    pname = "pyforked-daapd";
-    version = "v0.1.14";
-    propagatedBuildInputs = [ pkgs.python3Packages.aiohttp ];
-
-    src = pkgs.fetchFromGitHub {
-      owner = "uvjustin";
-      repo = "${pname}";
-      rev = "21d901d4ececdfa9391a12f9be70c8d2e7bcd424";
-      sha256 = "sha256-dPDhBe/CEslgEomt5HgAf4nbW0izXM5fSNRe96ULYlg=";
-    };
-  };
 in
 {
   imports = [ ../../../vars.nix ];
@@ -46,7 +34,7 @@ in
       enable = true;
       settings = {
         homeassistant = config.services.home-assistant.enable;
-        permit_join = true;
+        permit_join = false;
         mqtt = {
           server = "mqtt://127.0.0.1:1883";
           base_topic = "zigbee2mqtt";
@@ -71,6 +59,7 @@ in
         "backup"
         "cast"
         "esphome"
+        "ibeacon"
         "forked_daapd"
         "freebox"
         "google_translate"
@@ -95,7 +84,6 @@ in
 
       extraPackages = ps: with ps; [
         pychromecast
-        pyforked-daapd
       ];
 
       customComponents = with pkgs.home-assistant-custom-components; [
@@ -105,6 +93,7 @@ in
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
         mini-graph-card
         mini-media-player
+        multiple-entity-row
         mushroom
         pkgs.dafos.lovelace-layout-card
         pkgs.dafos.lovelace-fold-entity-row
@@ -165,22 +154,6 @@ in
             "time_utc"
           ];
         };
-      };
-    };
-
-    virtualisation.oci-containers = {
-      backend = "podman";
-      containers.ha-fusion = {
-        volumes = [
-          "/var/lib/hass:/app/data"
-        ];
-        ports = [ "5050:5050" ];
-        environment.TZ = vars.timezone;
-        environment.HASS_URL = "http://dafoltop:8123";
-        image = "ghcr.io/matt8707/ha-fusion";
-        extraOptions = [
-          "--network=host"
-        ];
       };
     };
 
