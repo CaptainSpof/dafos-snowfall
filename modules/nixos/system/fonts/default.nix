@@ -16,8 +16,6 @@ in
       LOG_ICONS = "true";
     };
 
-    environment.systemPackages = with pkgs; [ font-manager ];
-
     fonts.packages = with pkgs;
       [
         noto-fonts
