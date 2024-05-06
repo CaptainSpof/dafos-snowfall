@@ -171,17 +171,18 @@
       "kaccess"."Toggle Screen Reader On and Off" = [ ];
       "kwin"."ExposeClassCurrentDesktop" = [ ];
       # Polonium
+      "kwin"."PoloniumCycleEngine" = "Meta+/";
       "kwin"."PoloniumCycleLayouts" = [ ];
       "kwin"."PoloniumFocusAbove" = [ ];
       "kwin"."PoloniumFocusBelow" = [ ];
       "kwin"."PoloniumFocusLeft" = [ ];
       "kwin"."PoloniumFocusRight" = [ ];
       "kwin"."PoloniumRebuildLayout" = [ ];
-      "kwin"."PoloniumResizeTileDown" = [ ];
-      "kwin"."PoloniumResizeTileLeft" = [ ];
-      "kwin"."PoloniumResizeTileRight" = [ ];
-      "kwin"."PoloniumResizeTileUp" = [ ];
-      "kwin"."PoloniumRetileWindow" = [ ];
+      "kwin"."PoloniumResizeTileDown" = "Meta+Ctrl+T";
+      "kwin"."PoloniumResizeTileLeft" = "Meta+Ctrl+C";
+      "kwin"."PoloniumResizeTileRight" = "Meta+Ctrl+R";
+      "kwin"."PoloniumResizeTileUp" = "Meta+Ctrl+S";
+      "kwin"."PoloniumRetileWindow" = "Meta+F";
       "kwin"."PoloniumShowSettings" = [ ];
       "kwin"."PoloniumSwapAbove" = [ ];
       "kwin"."PoloniumSwapBelow" = [ ];
@@ -203,7 +204,7 @@
       "kwin"."Switch to Desktop 2" = [ ];
       "kwin"."Switch to Desktop 3" = [ ];
       "kwin"."Switch to Desktop 4" = [ ];
-      "kwin"."Show Desktop" = [ ];
+      "kwin"."Show Desktop" = "Meta+D";
     };
   };
 }
