@@ -3,7 +3,7 @@
 {
   programs.plasma = {
     shortcuts = {
-      "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
+      "services/kitty"."_launch" = "Ctrl+Alt+T";
 
       "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" =
         "Meta+Alt+K";

@@ -20,6 +20,9 @@ with lib.dafos;
     };
 
     home-manager = {
+      # enables backing up existing files instead of erroring if conflicts exist
+      backupFileExtension = "hm.old";
+
       useUserPackages = true;
       useGlobalPkgs = true;
 

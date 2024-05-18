@@ -25,9 +25,9 @@ let
     # Themes
     # dafos.abstractdark-sddm-theme
     dafos.kde-warm-eyes
+    dafos.lightly-qt6
     gruvbox-gtk-theme
     kde-gruvbox
-    lightly-boehs
     papirus-nord
     # Widgets & Plasmoids
     applet-window-buttons

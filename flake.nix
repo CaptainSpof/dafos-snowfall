@@ -37,8 +37,8 @@
     snowfall-lib.inputs.nixpkgs.follows = "nixpkgs";
 
     # Snowfall Flake
-    flake.url = "github:snowfallorg/flake";
-    flake.inputs.nixpkgs.follows = "nixpkgs";
+    snowfall-flake.url = "github:snowfallorg/flake";
+    snowfall-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     # Comma
     comma.url = "github:nix-community/comma";
@@ -101,7 +101,7 @@
         };
 
         overlays = with inputs; [
-          flake.overlays.default
+          snowfall-flake.overlays.default
           nuenv.overlays.default
           nur.overlay
         ];

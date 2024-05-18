@@ -24,6 +24,7 @@ in
         settings = {
           # Cursor
           cursor_shape = "underline";
+          cursor_underline_thicness = "2.0";
           cursor_blink_interval = -1;
           cursor_stop_blinking_after = "15.0";
 
@@ -50,17 +51,10 @@ in
 
           # Tabs
           tab_bar_edge = "bottom";
-          tab_bar_margin_width = "0.0";
-          tab_bar_min_tabs = 1;
-          tab_bar_style = "powerline";
-          tab_powerline_style = "slanted";
-          tab_separator = " ┇ ";
-          tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
-          active_tab_font_style = "bold";
-          inactive_tab_font_style = "normal";
+          tab_bar_style = "hidden";
 
           # Shell
-          shell = "${pkgs.zellij}/bin/zellij -l compact";
+          shell = ".";
         };
       };
     };

@@ -7,11 +7,15 @@ let
 in
 {
   options.dafos.cli-apps.zellij = {
-    enable = mkEnableOption "Zellij";
+    enable = mkEnableOption "Whether or not to enable zellij.";
   };
 
   config = mkIf cfg.enable {
-    programs.zellij.enable = true;
+
+    programs.zellij = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     home.file.".config/zellij" = {
       source = ./config;

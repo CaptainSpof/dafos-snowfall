@@ -179,10 +179,11 @@ themes {
 
 theme "gruvbox-dark"
 mouse_mode true
-scroll_buffer_size 10000
+scroll_buffer_size 15000
 copy_command "wl-copy"
 copy_clipboard "primary"
 mirror_session true
+session_serialization true
 
 plugins {
     session-manager { path "session-manager"; }

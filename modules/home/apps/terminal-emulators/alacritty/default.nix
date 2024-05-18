@@ -17,8 +17,6 @@ in
 
       settings = {
         shell = { program = "${pkgs.zellij}/bin/zellij"; };
-        tabspace = 4;
-        mouse = { hide_cursor_typing = true; };
         window = {
           opacity = 1;
           decorations = "none";
