@@ -12,9 +12,11 @@ in
   config = mkIf cfg.enable {
     console.useXkbConfig = true;
     services.xserver = {
-      layout = "fr";
-      xkbVariant = "bepo";
-      xkbOptions = "caps:escape";
+      xkb = {
+        layout = "fr";
+        variant = "bepo";
+        options = "caps:escape";
+      };
     };
   };
 }

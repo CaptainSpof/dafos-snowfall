@@ -89,14 +89,14 @@ in
       ];
 
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+        button-card
         mini-graph-card
         mini-media-player
         multiple-entity-row
         mushroom
-        pkgs.dafos.lovelace-layout-card
-        pkgs.dafos.lovelace-fold-entity-row
         pkgs.dafos.lovelace-auto-entities
-        pkgs.dafos.button-card
+        pkgs.dafos.lovelace-fold-entity-row
+        pkgs.dafos.lovelace-layout-card
       ];
 
       config = {

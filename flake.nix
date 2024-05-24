@@ -54,9 +54,6 @@
 
     # Pre Commit Hooks
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
-    pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
-    pre-commit-hooks.inputs.flake-compat.follows = "flake-compat";
 
     # System Deployment
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -85,12 +82,12 @@
         src = ./.;
 
         snowfall = {
+          namespace = "dafos";
+
           meta = {
             name = "dafos";
             title = "It ain't pretty, but it's mine.";
           };
-
-          namespace = "dafos";
         };
       };
     in

@@ -11,7 +11,7 @@ in {
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       deadnix
-      nixfmt
+      nixfmt-classic
       nixpkgs-fmt
       nixpkgs-hammering
       nixpkgs-lint-community

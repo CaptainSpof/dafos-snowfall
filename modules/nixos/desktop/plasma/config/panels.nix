@@ -8,6 +8,32 @@
         floating = true;
         height = 60;
         widgets = [
+          {
+            systemMonitor = {
+              title = "CPU Usage";
+              sensors = [
+                {
+                  name = "cpu/all/usage";
+                  color = "250,179,135"; # Peach
+                }
+              ];
+              totalSensors = ["cpu/all/usage"];
+              textOnlySensors = ["cpu/all/averageTemperature" "cpu/all/averageFrequency"];
+            };
+          }
+          {
+            systemMonitor = {
+              title = "Memory Usage";
+              sensors = [
+                {
+                  name = "memory/physical/usedPercent";
+                  color = "166,227,161"; # Green
+                }
+              ];
+              totalSensors = ["memory/physical/usedPercent"];
+              textOnlySensors = ["memory/physical/used" "memory/physical/total"];
+            };
+          }
           "org.kde.plasma.panelspacer"
           "org.kde.plasma.marginsseparator"
           {
@@ -26,7 +52,18 @@
           }
           "org.kde.plasma.marginsseparator"
           "org.kde.plasma.panelspacer"
-          "org.kde.plasma.systemtray"
+          {
+            systemTray = {
+              icons.scaleToFit = true;
+              items = {
+                shown = ["org.kde.plasma.battery"];
+                hidden = [];
+                configs = {
+                  battery.showPercentage = true;
+                };
+              };
+            };
+          }
           "org.kde.plasma.digitalclock"
           "org.kde.plasma.pager"
           {

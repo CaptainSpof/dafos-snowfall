@@ -43,7 +43,7 @@ let
 in {
   options.${namespace}.user = {
     name = mkOpt types.str username "The name to use for the user account.";
-    fullName = mkOpt types.str username "The full name of the user.";
+    fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";
     email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user for git.";
 
     gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";

@@ -14,7 +14,7 @@ in
     environment.systemPackages = [ pkgs.nssmdns ];
     services.avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       publish = {
         enable = true;
         addresses = true;
