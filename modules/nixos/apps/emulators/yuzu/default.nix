@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.yuzu;
+  cfg = config.${namespace}.apps.yuzu;
 in
 {
-  options.dafos.apps.yuzu = with types; {
+  options.${namespace}.apps.yuzu = with types; {
     enable = mkBoolOpt false "Whether or not to enable Yuzu.";
   };
 

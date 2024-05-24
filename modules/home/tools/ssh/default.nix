@@ -1,11 +1,11 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.dafos.tools.ssh;
+  cfg = config.${namespace}.tools.ssh;
 in
 {
-  options.dafos.tools.ssh = {
+  options.${namespace}.tools.ssh = {
     enable = mkEnableOption "SSH";
   };
 

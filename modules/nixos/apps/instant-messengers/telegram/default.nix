@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.telegram;
+  cfg = config.${namespace}.apps.telegram;
 in
 {
-  options.dafos.apps.telegram = with types; {
+  options.${namespace}.apps.telegram = with types; {
     enable = mkBoolOpt false "Whether or not to enable Telegram.";
   };
 

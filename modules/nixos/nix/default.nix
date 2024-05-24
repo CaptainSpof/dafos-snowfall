@@ -1,9 +1,9 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.nix;
+  cfg = config.${namespace}.nix;
 
   substituters-submodule = types.submodule ({ ... }: {
     options = with types; {
@@ -12,7 +12,7 @@ let
   });
 in
 {
-  options.dafos.nix = with types; {
+  options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
     package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
 
@@ -54,7 +54,7 @@ in
     };
 
     nix =
-      let users = [ "root" config.dafos.user.name ] ++
+      let users = [ "root" config.${namespace}.user.name ] ++
                   optional config.services.hydra.enable "hydra";
       in
         {
@@ -79,7 +79,7 @@ in
               ++
               (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
 
-          } // (lib.optionalAttrs config.dafos.tools.direnv.enable {
+          } // (lib.optionalAttrs config.${namespace}.tools.direnv.enable {
             keep-outputs = true;
             keep-derivations = true;
           });

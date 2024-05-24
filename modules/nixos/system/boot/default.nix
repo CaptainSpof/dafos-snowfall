@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.system.boot;
+with lib.${namespace};
+let cfg = config.${namespace}.system.boot;
 in
 {
-  options.dafos.system.boot = with types; {
+  options.${namespace}.system.boot = with types; {
     enable = mkBoolOpt false "Whether or not to enable booting.";
   };
 

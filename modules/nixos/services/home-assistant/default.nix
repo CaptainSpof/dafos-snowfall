@@ -1,14 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.services.home-assistant;
-  vars = config.dafos.vars;
+  cfg = config.${namespace}.services.home-assistant;
 in
 {
-  imports = [ ../../../vars.nix ];
-  options.dafos.services.home-assistant = with types; {
+  options.${namespace}.services.home-assistant = with types; {
     enable = mkBoolOpt false "Whether or not to enable home-assistant.";
     serialPort = mkOpt str "/dev/ttyACM0" "The serial port to use.";
   };

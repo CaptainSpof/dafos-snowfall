@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.archetypes.gaming;
+  cfg = config.${namespace}.archetypes.gaming;
 in
 {
-  options.dafos.archetypes.gaming = with types; {
+  options.${namespace}.archetypes.gaming = with types; {
     enable = mkBoolOpt false "Whether or not to enable the gaming archetype.";
   };
 

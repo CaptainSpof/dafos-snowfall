@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.virtualbox;
+  cfg = config.${namespace}.apps.virtualbox;
 in
 {
-  options.dafos.apps.virtualbox = with types; {
+  options.${namespace}.apps.virtualbox = with types; {
     enable = mkBoolOpt false "Whether or not to enable Virtualbox.";
   };
 

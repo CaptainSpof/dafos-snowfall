@@ -1,11 +1,12 @@
 { pkgs
 , lib
 , gitHostCommitUrl ? "https://github.com/jakehamilton/config/commit"
+, namespace
 , ...
 }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   new-meta = with lib; {
     description = "A helper show the current git revision of the system configuration.";

@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.user;
+  cfg = config.${namespace}.user;
   defaultIconFileName = "profile.png";
   defaultIcon = pkgs.stdenvNoCC.mkDerivation {
     name = "default-icon";
@@ -27,7 +27,7 @@ let
     cp ${cfg.icon} "$target/${cfg.icon.fileName}"
   '';
   dirs = rec {
-    home = "/home/${config.dafos.vars.username}";
+    home = "/home/${username}";
     documents = "${home}/Documents";
     downloads = "${home}/Downloads";
     music = "${home}/Music";
@@ -38,13 +38,16 @@ let
     sync = "${home}/Sync";
     org = "${sync}/Org";
   };
-  username = config.dafos.vars.username;
-  shell = config.dafos.vars.shell;
+  username = "daf";
+  shell = pkgs.fish;
 in {
-  imports = [ ../../vars.nix ];
-
-  options.dafos.user = {
+  options.${namespace}.user = {
     name = mkOpt types.str username "The name to use for the user account.";
+    fullName = mkOpt types.str username "The full name of the user.";
+    email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user for git.";
+
+    gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
+    gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";
 
     initialPassword = mkOpt types.str "omgchangeme"
       "The initial password to use when the user is first created.";
@@ -52,6 +55,20 @@ in {
       "The profile picture to use for the user.";
     prompt-init = mkBoolOpt true
       "Whether or not to show an initial message when opening a new shell.";
+
+    theme.dark =
+      mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
+    theme.light =
+      mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
+    font.term = mkOpt types.str "Hack Nerd Font Mono"
+      "Terminal Font to use for the system.";
+
+    authorizedKeys = mkOpt (types.listOf types.str) [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDU0z8wC6aL3EelbY83Ucj1+2TMKt+lKjQkzEH6jFaWu daf@dafoltop"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILGBJKhslXRQ4Bt8Nu3/YK799UsUpzpP6sDVkVw36nLR daf@dafpi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9pWuxUUYo7wwCIfMUkrlfyrpT4IDeWnqldrgm6TIl0 daf@dafbox"
+    ] "The public keys to apply.";
 
     extraGroups =
       mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";

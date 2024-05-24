@@ -1,10 +1,10 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, namespace, ... }:
 
 let
   tailscale-key = builtins.getEnv "TAILSCALE_AUTH_KEY";
 in
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
   virtualisation.digitalOcean = {
     rebuildFromUserData = false;

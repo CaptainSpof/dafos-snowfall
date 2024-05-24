@@ -1,12 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 let
-  cfg = config.dafos.services.avahi;
+  cfg = config.${namespace}.services.avahi;
 
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.dafos.services.avahi = {
+  options.${namespace}.services.avahi = {
     enable = mkEnableOption "Avahi";
   };
 

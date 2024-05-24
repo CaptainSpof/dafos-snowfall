@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 let
   inherit (lib) types mkIf;
-  inherit (lib.dafos) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
-  cfg = config.dafos.apps.gamemode;
+  cfg = config.${namespace}.apps.gamemode;
 in {
-  options.dafos.apps.gamemode = with types; {
+  options.${namespace}.apps.gamemode = with types; {
     enable = mkBoolOpt false "Whether or not to enable gamemode.";
     endscript =
       mkOpt (nullOr str) null "The script to run when disabling gamemode.";

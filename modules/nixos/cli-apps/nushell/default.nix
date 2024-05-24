@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.nushell;
+  cfg = config.${namespace}.cli-apps.nushell;
 in
 {
-  options.dafos.cli-apps.nushell = with types; {
+  options.${namespace}.cli-apps.nushell = with types; {
     enable = mkBoolOpt false "Whether or not to enable Nushell.";
   };
 

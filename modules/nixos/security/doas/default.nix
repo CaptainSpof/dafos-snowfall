@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.security.doas;
+with lib.${namespace};
+let cfg = config.${namespace}.security.doas;
 in
 {
-  options.dafos.security.doas = {
+  options.${namespace}.security.doas = {
     enable = mkBoolOpt false "Whether or not to replace sudo with doas.";
   };
 
@@ -17,7 +17,7 @@ in
     security.doas = {
       enable = true;
       extraRules = [{
-        users = [ config.dafos.user.name ];
+        users = [ config.${namespace}.user.name ];
         noPass = true;
         keepEnv = true;
       }];

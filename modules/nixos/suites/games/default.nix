@@ -1,9 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.games;
+  cfg = config.${namespace}.suites.games;
   apps = {
     bottles = enabled;
     gamemode = enabled;
@@ -19,7 +19,7 @@ let
   };
 in
 {
-  options.dafos.suites.games = with types; {
+  options.${namespace}.suites.games = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable common games configuration.";
   };

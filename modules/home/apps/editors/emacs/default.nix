@@ -1,13 +1,13 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 let
   inherit (lib) mkIf types;
-  inherit (lib.dafos) mkOpt mkBoolOpt;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
-  cfg = config.dafos.apps.emacs;
+  cfg = config.${namespace}.apps.emacs;
 in
 {
-  options.dafos.apps.emacs = {
+  options.${namespace}.apps.emacs = {
     enable = mkBoolOpt false "Whether or not to enable Emacs";
     package = mkOpt types.package pkgs.emacs29-pgtk "The Emacs package to be used.";
   };

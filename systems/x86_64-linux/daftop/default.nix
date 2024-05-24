@@ -1,16 +1,10 @@
-{ config, lib, inputs, ... }:
+{ config, lib, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let
-  inherit (inputs) plasma-manager;
-  vars = config.dafos.vars;
-in
-{
-  imports = [
-    ./hardware.nix
-    ../../../modules/vars.nix
-  ];
+with lib.${namespace};
+let inherit (inputs) plasma-manager;
+in {
+  imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -22,19 +16,15 @@ in
       gaming = enabled;
     };
 
-    apps = {
-      qbittorrent = enabled;
-    };
+    apps = { qbittorrent = enabled; };
 
     desktop = {
       plasma.touchScreen = true;
       plasma.bluetoothAdapter = "A4:F9:33:0E:06:BD";
-      plasma.autoLoginUser = vars.username;
+      plasma.autoLoginUser = config.${namespace}.user.name;
     };
 
-    security = {
-      gpg = mkForce disabled;
-    };
+    security = { gpg = mkForce disabled; };
 
     suites = {
       desktop = enabled;
@@ -49,9 +39,7 @@ in
       };
     };
 
-    system = {
-      kanata = enabled;
-    };
+    system = { kanata = enabled; };
 
     home.extraOptions = {
       imports = [ plasma-manager.homeManagerModules.plasma-manager ];

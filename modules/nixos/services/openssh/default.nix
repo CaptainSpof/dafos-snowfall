@@ -1,19 +1,19 @@
-{ config, lib, host ? "", format ? "", inputs ? { }, ... }:
+{ config, lib, host ? "", format ? "", inputs ? { }, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.services.openssh;
+  cfg = config.${namespace}.services.openssh;
 
   # @TODO(jakehamilton): This is a hold-over from an earlier Snowfall Lib version which used
   # the specialArg `name` to provide the host name.
   name = host;
 
-  authorizedKeys = config.dafos.vars.authorizedKeys;
+  authorizedKeys = config.${namespace}.user.authorizedKeys;
 
   other-hosts = lib.filterAttrs
     (key: host:
-      key != name && (host.config.dafos.user.name or null) != null)
+      key != name && (host.config.${namespace}.user.name or null) != null)
     ((inputs.self.nixosConfigurations or { }));
 
   other-hosts-config = lib.concatMapStringsSep
@@ -21,7 +21,7 @@ let
     (name:
       let
         remote = other-hosts.${name};
-        remote-user-name = remote.config.dafos.user.name;
+        remote-user-name = remote.config.${namespace}.user.name;
       in
         ''
         Host ${name}
@@ -35,7 +35,7 @@ let
     (builtins.attrNames other-hosts);
 in
 {
-  options.dafos.services.openssh = with types; {
+  options.${namespace}.services.openssh = with types; {
     enable = mkBoolOpt false "Whether or not to configure OpenSSH support.";
     port = mkOpt port 2222 "The port to listen on (in addition to 22).";
     manage-other-hosts = mkOpt bool true "Whether or not to add other host configurations to SSH config.";

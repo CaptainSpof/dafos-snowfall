@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.system.kanata;
+with lib.${namespace};
+let cfg = config.${namespace}.system.kanata;
 in
 {
-  options.dafos.system.kanata = with types; {
+  options.${namespace}.system.kanata = with types; {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
   };
 

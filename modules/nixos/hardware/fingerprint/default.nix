@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.hardware.fingerprint;
+with lib.${namespace};
+let cfg = config.${namespace}.hardware.fingerprint;
 in
 {
-  options.dafos.hardware.fingerprint = with types; {
+  options.${namespace}.hardware.fingerprint = with types; {
     enable = mkBoolOpt false "Whether or not to enable fingerprint support.";
   };
 

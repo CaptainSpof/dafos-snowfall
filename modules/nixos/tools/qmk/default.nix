@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.qmk;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.qmk;
 in
 {
-  options.dafos.tools.qmk = with types; {
+  options.${namespace}.tools.qmk = with types; {
     enable = mkBoolOpt false "Whether or not to enable QMK";
   };
 

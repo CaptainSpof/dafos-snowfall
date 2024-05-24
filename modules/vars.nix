@@ -1,10 +1,10 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, namespace, ... }:
 
 let
   inherit (lib) types;
-  inherit (lib.dafos) mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 in {
-  options.dafos.vars = {
+  options.${namespace}.vars = {
     fullname = mkOpt types.str "Cédric Da Fonseca" "The full name of the user";
     username = mkOpt types.str "daf" "The user account";
 

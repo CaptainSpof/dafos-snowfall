@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.archetypes.server;
+  cfg = config.${namespace}.archetypes.server;
 in
 {
-  options.dafos.archetypes.server = with types; {
+  options.${namespace}.archetypes.server = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable the server archetype.";
   };

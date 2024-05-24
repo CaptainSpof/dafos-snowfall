@@ -1,11 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.system.fonts;
-in
-{
-  options.dafos.system.fonts = with types; {
+with lib.${namespace};
+let cfg = config.${namespace}.system.fonts;
+in {
+  options.${namespace}.system.fonts = with types; {
     enable = mkBoolOpt false "Whether or not to manage fonts.";
     fonts = mkOpt (listOf package) [ ] "Custom font packages to install.";
   };

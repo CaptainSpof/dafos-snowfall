@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.pitivi;
+  cfg = config.${namespace}.apps.pitivi;
 in
 {
-  options.dafos.apps.pitivi = with types; {
+  options.${namespace}.apps.pitivi = with types; {
     enable = mkBoolOpt false "Whether or not to enable Pitivi.";
   };
 

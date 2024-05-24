@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.common;
+  cfg = config.${namespace}.suites.common;
 in
 {
-  options.dafos.suites.common = with types; {
+  options.${namespace}.suites.common = with types; {
     enable = mkBoolOpt false "Whether or not to enable common configuration.";
   };
 
@@ -44,7 +44,7 @@ in
       security = {
         doas = disabled;
         gpg = disabled;
-        keyring.enable = config.dafos.desktop.gnome.enable;
+        keyring.enable = config.${namespace}.desktop.gnome.enable;
       };
 
       services = {

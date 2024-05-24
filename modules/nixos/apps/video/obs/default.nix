@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.obs;
+  cfg = config.${namespace}.apps.obs;
 in
 {
-  options.dafos.apps.obs = with types; {
+  options.${namespace}.apps.obs = with types; {
     enable = mkBoolOpt false "Whether or not to enable support for OBS.";
   };
 

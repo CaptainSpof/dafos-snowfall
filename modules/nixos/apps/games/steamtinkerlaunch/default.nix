@@ -1,12 +1,12 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, namespace, ... }:
 
 let
-  cfg = config.dafos.apps.steamtinkerlaunch;
+  cfg = config.${namespace}.apps.steamtinkerlaunch;
 
   inherit (lib) mkIf mkEnableOption;
 in
 {
-  options.dafos.apps.steamtinkerlaunch = {
+  options.${namespace}.apps.steamtinkerlaunch = {
     enable = mkEnableOption "Steam Tinker Launch";
   };
 

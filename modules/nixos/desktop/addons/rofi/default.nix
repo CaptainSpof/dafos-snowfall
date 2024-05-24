@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.rofi;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.rofi;
 in
 {
-  options.dafos.desktop.addons.rofi = with types; {
+  options.${namespace}.desktop.addons.rofi = with types; {
     enable =
       mkBoolOpt false "Whether to enable Rofi in the desktop environment.";
   };

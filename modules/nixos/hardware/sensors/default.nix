@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.hardware.sensors;
+  cfg = config.${namespace}.hardware.sensors;
 in
 {
-  options.dafos.hardware.sensors = with types; {
+  options.${namespace}.hardware.sensors = with types; {
     enable = mkBoolOpt false "Whether or not to enable sensors support.";
   };
 

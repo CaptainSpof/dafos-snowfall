@@ -1,19 +1,19 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.expressvpn;
+  cfg = config.${namespace}.apps.expressvpn;
 in
 {
-  options.dafos.apps.expressvpn = {
+  options.${namespace}.apps.expressvpn = {
     enable = mkBoolOpt false "Whether or not to enable ExpressVPN.";
   };
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       dafos.expressvpn
-    ] ++ optionals config.dafos.desktop.gnome.enable [
+    ] ++ optionals config.${namespace}.desktop.gnome.enable [
       gnomeExtensions.evpn-shell-assistant
     ];
 

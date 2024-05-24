@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
   dafos = {
     nix = enabled;

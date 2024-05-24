@@ -1,11 +1,11 @@
-{ lib, host ? null, ... }:
+{ lib, host ? null, namespace, ... }:
 
 let
   inherit (lib) types;
-  inherit (lib.dafos) mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 in
 {
-  options.dafos.host = {
+  options.${namespace}.host = {
     name = mkOpt (types.nullOr types.str) host "The host name.";
   };
 }

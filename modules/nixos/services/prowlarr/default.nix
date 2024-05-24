@@ -1,15 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.prowlarr;
+  cfg = config.${namespace}.services.prowlarr;
 
-  username = config.dafos.vars.username;
+  username = config.${namespace}.config.name;
+
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.services.prowlarr = {
+in {
+  options.${namespace}.services.prowlarr = {
     enable = mkEnableOption "Whether or not to configure Prowlarr";
   };
 

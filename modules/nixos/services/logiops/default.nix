@@ -1,12 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 let
-  cfg = config.dafos.services.logiops;
+  cfg = config.${namespace}.services.logiops;
 
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.dafos.services.logiops = {
+  options.${namespace}.services.logiops = {
     enable = mkEnableOption "Logiops";
   };
 

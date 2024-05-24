@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.yahrr;
+  cfg = config.${namespace}.suites.yahrr;
 in
 {
-  options.dafos.suites.yahrr = with types; {
+  options.${namespace}.suites.yahrr = with types; {
     enable = mkBoolOpt false "Whether or not to enable yahrr configuration.";
   };
 

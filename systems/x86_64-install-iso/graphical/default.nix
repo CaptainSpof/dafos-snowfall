@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.

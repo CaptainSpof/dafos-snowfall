@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.lutris;
+  cfg = config.${namespace}.apps.lutris;
 in
 {
-  options.dafos.apps.lutris = with types; {
+  options.${namespace}.apps.lutris = with types; {
     enable = mkBoolOpt false "Whether or not to enable Lutris.";
   };
 

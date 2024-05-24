@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.jellyfin-media-player;
+  cfg = config.${namespace}.apps.jellyfin-media-player;
 in
 {
-  options.dafos.apps.jellyfin-media-player = with types; {
+  options.${namespace}.apps.jellyfin-media-player = with types; {
     enable = mkBoolOpt false "Whether or not to enable jellyfin-media-player.";
   };
 

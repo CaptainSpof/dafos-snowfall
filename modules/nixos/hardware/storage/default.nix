@@ -1,11 +1,11 @@
-{ options, config, pkgs, lib, ... }:
+{ options, config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.hardware.storage;
+with lib.${namespace};
+let cfg = config.${namespace}.hardware.storage;
 in
 {
-  options.dafos.hardware.storage = with types; {
+  options.${namespace}.hardware.storage = with types; {
     enable = mkBoolOpt false
       "Whether or not to enable support for extra storage devices.";
   };

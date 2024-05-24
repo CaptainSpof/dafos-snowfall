@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.amberol;
+  cfg = config.${namespace}.apps.amberol;
 in
 {
-  options.dafos.apps.amberol = with types; {
+  options.${namespace}.apps.amberol = with types; {
     enable = mkBoolOpt false "Whether or not to enable Amberol.";
   };
 

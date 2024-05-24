@@ -1,15 +1,12 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.radarr;
+  cfg = config.${namespace}.services.radarr;
 
-  username = config.dafos.vars.username;
+  username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.services.radarr = {
+in {
+  options.${namespace}.services.radarr = {
     enable = mkEnableOption "Whether or not to configure Radarr";
   };
 

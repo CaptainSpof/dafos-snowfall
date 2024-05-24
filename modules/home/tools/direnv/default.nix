@@ -1,13 +1,13 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.direnv;
-  fish = config.dafos.cli-apps.fish;
+  cfg = config.${namespace}.tools.direnv;
+  fish = config.${namespace}.cli-apps.fish;
 in
 {
-  options.dafos.tools.direnv = with types; {
+  options.${namespace}.tools.direnv = with types; {
     enable = mkBoolOpt false "Whether or not to enable direnv.";
   };
 

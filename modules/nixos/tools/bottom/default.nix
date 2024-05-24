@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.bottom;
+  cfg = config.${namespace}.tools.bottom;
 in
 {
-  options.dafos.tools.bottom = with types; {
+  options.${namespace}.tools.bottom = with types; {
     enable = mkBoolOpt false "Whether or not to enable Bottom.";
   };
 

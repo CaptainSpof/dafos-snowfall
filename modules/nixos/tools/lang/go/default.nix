@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.lang.go;
+  cfg = config.${namespace}.tools.lang.go;
 in
 {
-  options.dafos.tools.lang.go = with types; {
+  options.${namespace}.tools.lang.go = with types; {
     enable = mkBoolOpt false "Whether or not to enable Go support.";
   };
 

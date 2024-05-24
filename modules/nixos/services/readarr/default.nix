@@ -1,15 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.readarr;
+  cfg = config.${namespace}.services.readarr;
 
-  username = config.dafos.vars.username;
+  username = config.${namespace}.user.name;
+
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.services.readarr = {
+in {
+  options.${namespace}.services.readarr = {
     enable = mkEnableOption "Whether or not to configure Readarr";
   };
 

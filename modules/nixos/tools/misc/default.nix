@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.misc;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.misc;
 in
 {
-  options.dafos.tools.misc = with types; {
+  options.${namespace}.tools.misc = with types; {
     enable = mkBoolOpt false "Whether or not to enable common utilities.";
   };
 

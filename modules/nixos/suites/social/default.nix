@@ -1,10 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.suites.social;
+with lib.${namespace};
+let cfg = config.${namespace}.suites.social;
 in {
-  options.dafos.suites.social = with types; {
+  options.${namespace}.suites.social = with types; {
     enable = mkBoolOpt false "Whether or not to enable social configuration.";
   };
 

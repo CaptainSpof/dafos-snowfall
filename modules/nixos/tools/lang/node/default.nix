@@ -1,11 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.lang.node;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.lang.node;
 in
 {
-  options.dafos.tools.lang.node = with types; {
+  options.${namespace}.tools.lang.node = with types; {
     enable = mkBoolOpt false "Whether or not to install and configure git";
     pkg = mkOpt package pkgs.nodejs-18_x "The NodeJS package to use";
     prettier = {

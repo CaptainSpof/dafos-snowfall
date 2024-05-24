@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.foot;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.foot;
 in
 {
-  options.dafos.desktop.addons.foot = with types; {
+  options.${namespace}.desktop.addons.foot = with types; {
     enable = mkBoolOpt false "Whether to enable Foot, a terminal emulator.";
   };
 

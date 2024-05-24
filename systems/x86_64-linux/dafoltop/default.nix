@@ -1,15 +1,13 @@
-{ config, inputs, lib, ... }:
+{ config, inputs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
   inherit (inputs) plasma-manager;
-  vars = config.dafos.vars;
 in
 {
   imports = [
     ./hardware.nix
-    ../../../modules/vars.nix
   ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -29,7 +27,7 @@ in
       qbittorrent = enabled;
     };
 
-    desktop.plasma.autoLoginUser = vars.username;
+    desktop.plasma.autoLoginUser = config.${namespace}.user.name;
 
     security = {
       gpg = mkForce disabled;

@@ -1,15 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.kitty;
-  vars = config.dafos.vars;
-in
-{
-  imports = [ ../../../../vars.nix ];
-
-  options.dafos.apps.kitty = with types; {
+  cfg = config.${namespace}.apps.kitty;
+  fontTerm = config.${namespace}.user.font.term;
+  themeDark = config.${namespace}.user.theme.dark;
+in {
+  options.${namespace}.apps.kitty = with types; {
     enable = mkBoolOpt false "Whether or not to enable Kitty.";
   };
 
@@ -17,9 +15,9 @@ in
     dafos.home.extraOptions = {
       programs.kitty = {
         enable = true;
-        font.name = vars.font.term;
+        font.name = fontTerm;
         font.size = 12;
-        theme = vars.theme.dark;
+        theme = themeDark;
         shellIntegration.enableFishIntegration = true;
         settings = {
           # Cursor

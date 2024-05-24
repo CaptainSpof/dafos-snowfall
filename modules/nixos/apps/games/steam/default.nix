@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.steam;
+  cfg = config.${namespace}.apps.steam;
 in
 {
-  options.dafos.apps.steam = with types; {
+  options.${namespace}.apps.steam = with types; {
     enable = mkBoolOpt false "Whether or not to enable support for Steam.";
     uiScaling = mkBoolOpt false "Whether or not to enable UI scaling for Steam.";
   };

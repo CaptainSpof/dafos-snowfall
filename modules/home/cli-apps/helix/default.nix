@@ -1,13 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.cli-apps.helix;
+  cfg = config.${namespace}.cli-apps.helix;
 in
 {
-  options.dafos.cli-apps.helix = {
+  options.${namespace}.cli-apps.helix = {
     enable = mkBoolOpt false "Whether or not to enable Helix";
   };
 

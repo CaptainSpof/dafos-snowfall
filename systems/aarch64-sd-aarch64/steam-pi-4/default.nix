@@ -1,7 +1,7 @@
-{ pkgs, config, lib, modulesPath, inputs, ... }:
+{ pkgs, config, lib, modulesPath, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
   steam-pi-setup = pkgs.writeShellApplication {
     name = "steam-pi-setup";
@@ -48,7 +48,7 @@ in
 
     displayManager = {
       defaultSession = "none+openbox";
-      autoLogin.user = config.dafos.user.name;
+      autoLogin.user = config.${namespace}.user.name;
 
       lightdm = {
         enable = true;

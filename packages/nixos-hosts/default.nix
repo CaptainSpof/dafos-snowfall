@@ -3,13 +3,14 @@
 , writeShellApplication
 , substituteAll
 , gum
+, namespace
 , hosts ? { }
 , ...
 }:
 
 let
   inherit (lib) mapAttrsToList concatStringsSep;
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   substitute = args: builtins.readFile (substituteAll args);
 

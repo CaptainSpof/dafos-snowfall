@@ -1,4 +1,4 @@
-{ lib, inputs }:
+{ lib, inputs, namespace }:
 
 let
   inherit (inputs) deploy-rs;
@@ -24,7 +24,7 @@ rec {
         (result: name:
           let
             host = hosts.${name};
-            user = host.config.dafos.user.name or null;
+            user = host.config.${namespace}.user.name or null;
             inherit (host.pkgs) system;
           in
           result // {
@@ -37,7 +37,7 @@ rec {
                   user = "root";
                   sshUser = user;
                 } // lib.optionalAttrs
-                  (host.config.dafos.security.doas.enable or false)
+                  (host.config.${namespace}.security.doas.enable or false)
                   {
                     sudo = "doas -u";
                   };

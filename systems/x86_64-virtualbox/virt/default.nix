@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
   virtualisation.virtualbox.guest.enable = true;
 

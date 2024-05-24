@@ -1,7 +1,7 @@
 #+title: Emacs
 
 * How to install
-1. ensure ~config.dafos.apps.emacs.enable~ is set to ~true~, for both ~nixos~ and ~home~ modules
+1. ensure ~config.${namespace}.apps.emacs.enable~ is set to ~true~, for both ~nixos~ and ~home~ modules
 2. clone ~doom~:
    #+begin_src bash
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs

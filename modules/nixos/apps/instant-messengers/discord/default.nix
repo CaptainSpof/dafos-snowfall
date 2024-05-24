@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 let
   inherit (lib) mkIf getExe;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.apps.discord;
+  cfg = config.${namespace}.apps.discord;
 in {
-  options.dafos.apps.discord = {
+  options.${namespace}.apps.discord = {
     enable = mkBoolOpt false "Whether or not to enable Discord.";
     canary.enable = mkBoolOpt false "Whether or not to enable Discord Canary.";
     firefox.enable = mkBoolOpt false

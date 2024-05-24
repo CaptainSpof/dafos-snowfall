@@ -1,15 +1,15 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.fup-repl;
+  cfg = config.${namespace}.tools.fup-repl;
   fup-repl = pkgs.writeShellScriptBin "fup-repl" ''
     ${pkgs.fup-repl}/bin/repl ''${@}
   '';
 in
 {
-  options.dafos.tools.fup-repl = with types; {
+  options.${namespace}.tools.fup-repl = with types; {
     enable = mkBoolOpt false "Whether to enable fup-repl or not";
   };
 

@@ -3,12 +3,13 @@
 , makeWrapper
 , fetchFromGitHub
 , runCommandNoCC
-, flakeSource ? "/home/daf/.config/dafos"
+, flakeSource ? "/home/daf/.config.${namespace}"
+, namespace
 , ...
 }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   flake-compat = fetchFromGitHub {
     owner = "edolstra";

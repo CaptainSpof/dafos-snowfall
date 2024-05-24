@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.zellij;
+  cfg = config.${namespace}.cli-apps.zellij;
 in
 {
-  options.dafos.cli-apps.zellij = with types; {
+  options.${namespace}.cli-apps.zellij = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zellij.";
   };
 

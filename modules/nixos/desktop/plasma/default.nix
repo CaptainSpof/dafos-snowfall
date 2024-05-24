@@ -1,11 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.desktop.plasma;
-  vars = config.dafos.vars;
-  home-directory = "/home/${vars.username}";
+  cfg = config.${namespace}.desktop.plasma;
+  home-directory = "/home/${config.${namespace}.user.name}";
   script-adapter-fix = pkgs.writeScript "bluedevil-force-adapter-status" ''
     #!/usr/bin/env bash
     echo 'bluedevil: forcing autostart for bluetooth adapter ${cfg.bluetoothAdapter}' | systemd-cat
@@ -40,11 +39,10 @@ let
 in
 {
   imports = [
-    ../../../vars.nix
     ./config/plasma-config.nix
   ];
 
-  options.dafos.desktop.plasma = with types; {
+  options.${namespace}.desktop.plasma = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";

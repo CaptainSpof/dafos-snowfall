@@ -1,7 +1,7 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
   gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
 

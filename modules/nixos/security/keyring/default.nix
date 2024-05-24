@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.security.keyring;
+  cfg = config.${namespace}.security.keyring;
 in
 {
-  options.dafos.security.keyring = with types; {
+  options.${namespace}.security.keyring = with types; {
     enable = mkBoolOpt false "Whether to enable gnome keyring.";
   };
 

@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.electron-support;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.electron-support;
 in
 {
-  options.dafos.desktop.addons.electron-support = with types; {
+  options.${namespace}.desktop.addons.electron-support = with types; {
     enable = mkBoolOpt false
       "Whether to enable electron support in the desktop environment.";
   };

@@ -1,10 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.lang.nix;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.lang.nix;
 in {
-  options.dafos.tools.lang.nix = with types; {
+  options.${namespace}.tools.lang.nix = with types; {
     enable = mkBoolOpt false "Whether or not to install and configure git";
   };
 

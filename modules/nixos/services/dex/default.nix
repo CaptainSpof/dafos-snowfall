@@ -1,10 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 let
   inherit (builtins) map removeAttrs;
   inherit (lib) mapAttrs concatMap concatMapStringsSep;
 
-  cfg = config.dafos.services.dex;
+  cfg = config.${namespace}.services.dex;
 
   process-client-settings = client:
     if client ? secretFile then
@@ -51,7 +51,7 @@ let
 
 in
 {
-  options.dafos.services.dex = {
+  options.${namespace}.services.dex = {
     enable = lib.mkEnableOption "Dex, the OpenID Connect and OAuth 2 identity provider";
 
     stateDir = lib.mkOption {

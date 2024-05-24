@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.development;
+  cfg = config.${namespace}.suites.development;
 in
 {
-  options.dafos.suites.development = with types; {
+  options.${namespace}.suites.development = with types; {
     enable = mkBoolOpt false
       "Whether or not to enable common development configuration.";
     aws.enable =

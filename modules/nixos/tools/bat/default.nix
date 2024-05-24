@@ -1,13 +1,13 @@
-{ config , lib , pkgs , ...}:
+{ config , lib , pkgs , namespace, ...}:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.tools.bat;
+  cfg = config.${namespace}.tools.bat;
 in
 {
-  options.dafos.tools.bat = {
+  options.${namespace}.tools.bat = {
     enable = mkBoolOpt false "Whether or not to enable bat.";
   };
 

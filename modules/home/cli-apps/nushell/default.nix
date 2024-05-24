@@ -1,12 +1,12 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dafos.cli-apps.nushell;
+  cfg = config.${namespace}.cli-apps.nushell;
 in
 {
-  options.dafos.cli-apps.nushell = {
+  options.${namespace}.cli-apps.nushell = {
     enable = mkEnableOption "Nushell";
   };
 

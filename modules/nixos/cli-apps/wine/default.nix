@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.wine;
+  cfg = config.${namespace}.cli-apps.wine;
 in
 {
-  options.dafos.cli-apps.wine = with types; {
+  options.${namespace}.cli-apps.wine = with types; {
     enable = mkBoolOpt false "Whether or not to enable Wine.";
   };
 

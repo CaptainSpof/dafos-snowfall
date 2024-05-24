@@ -1,15 +1,12 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.jellyfin;
-
-  username = config.dafos.vars.username;
+  cfg = config.${namespace}.services.jellyfin;
+  username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
+in {
 
-  options.dafos.services.jellyfin = {
+  options.${namespace}.services.jellyfin = {
     enable = mkEnableOption "Whether or not to configure Jellyfin";
   };
 

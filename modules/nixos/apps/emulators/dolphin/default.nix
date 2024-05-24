@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.dolphin;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.dolphin;
 in
 {
-  options.dafos.apps.dolphin = with types; {
+  options.${namespace}.apps.dolphin = with types; {
     enable = mkBoolOpt false "Whether or not to enable Dolphin.";
   };
 

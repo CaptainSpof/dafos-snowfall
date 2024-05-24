@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.krita;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.krita;
 in
 {
-  options.dafos.apps.krita = with types; {
+  options.${namespace}.apps.krita = with types; {
     enable = mkBoolOpt false "Whether or not to enable Krita.";
   };
 

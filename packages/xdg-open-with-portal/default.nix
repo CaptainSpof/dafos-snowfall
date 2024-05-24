@@ -1,10 +1,10 @@
 # Taken from https://github.com/LunNova/nixos-configs
 # 💖 Thank you!
 
-{ lib, writeShellScriptBin, glib, ... }:
+{ lib, writeShellScriptBin, glib, namespace, ... }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   new-meta = with lib; {
     description = "A replacement for the default xdg-open program which correctly handles portals.";

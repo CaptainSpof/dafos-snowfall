@@ -1,9 +1,9 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.security.gpg;
+  cfg = config.${namespace}.security.gpg;
 
   gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
 
@@ -15,7 +15,7 @@ let
   '';
 in
 {
-  options.dafos.security.gpg = with types; {
+  options.${namespace}.security.gpg = with types; {
     enable = mkBoolOpt false "Whether or not to enable GPG.";
     agentTimeout = mkOpt int 5 "The amount of time to wait before continuing with shell init.";
   };

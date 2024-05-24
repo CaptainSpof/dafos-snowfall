@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.comma;
+  cfg = config.${namespace}.tools.comma;
 in
 {
-  options.dafos.tools.comma = with types; {
+  options.${namespace}.tools.comma = with types; {
     enable = mkBoolOpt false "Whether or not to enable comma.";
   };
 

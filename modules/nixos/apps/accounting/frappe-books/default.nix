@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.frappe-books;
+  cfg = config.${namespace}.apps.frappe-books;
 in
 {
-  options.dafos.apps.frappe-books = with types; {
+  options.${namespace}.apps.frappe-books = with types; {
     enable = mkBoolOpt false "Whether or not to enable FrappeBooks.";
   };
 

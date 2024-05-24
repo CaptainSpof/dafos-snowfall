@@ -1,13 +1,13 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.qbittorrent;
-  username = config.dafos.vars.username;
+  cfg = config.${namespace}.apps.qbittorrent;
+  username = config.${namespace}.user.name;
 in
 {
-  options.dafos.apps.qbittorrent = {
+  options.${namespace}.apps.qbittorrent = {
     enable = mkBoolOpt false "Whether or not to enable QBittorent.";
     nox.enable = mkBoolOpt false "Whether or not to enable QBittorent no X.";
   };

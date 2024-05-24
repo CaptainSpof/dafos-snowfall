@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.freetube;
+  cfg = config.${namespace}.apps.freetube;
 in
 {
-  options.dafos.apps.freetube = with types; {
+  options.${namespace}.apps.freetube = with types; {
     enable = mkBoolOpt false "Whether or not to enable FreeTube.";
   };
 

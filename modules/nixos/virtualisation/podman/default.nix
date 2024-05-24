@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.virtualisation.podman;
+with lib.${namespace};
+let cfg = config.${namespace}.virtualisation.podman;
 in
 {
-  options.dafos.virtualisation.podman = with types; {
+  options.${namespace}.virtualisation.podman = with types; {
     enable = mkBoolOpt false "Whether or not to enable Podman.";
   };
 

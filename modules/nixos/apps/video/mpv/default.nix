@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.mpv;
+  cfg = config.${namespace}.apps.mpv;
 in
 {
-  options.dafos.apps.mpv = with types; {
+  options.${namespace}.apps.mpv = with types; {
     enable = mkBoolOpt false "Whether or not to enable mpv.";
   };
 

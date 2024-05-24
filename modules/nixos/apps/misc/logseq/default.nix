@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.logseq;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.logseq;
 in
 {
-  options.dafos.apps.logseq = with types; {
+  options.${namespace}.apps.logseq = with types; {
     enable = mkBoolOpt false "Whether or not to enable logseq.";
   };
 

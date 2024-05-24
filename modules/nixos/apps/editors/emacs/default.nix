@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.emacs;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.emacs;
 in
 {
-  options.dafos.apps.emacs = with types; {
+  options.${namespace}.apps.emacs = with types; {
     enable = mkBoolOpt false "Whether or not to enable Emacs.";
   };
 

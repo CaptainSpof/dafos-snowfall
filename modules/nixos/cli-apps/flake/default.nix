@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.flake;
+  cfg = config.${namespace}.cli-apps.flake;
 in
 {
-  options.dafos.cli-apps.flake = with types; {
+  options.${namespace}.cli-apps.flake = with types; {
     enable = mkBoolOpt false "Whether or not to enable flake.";
   };
 

@@ -1,7 +1,7 @@
-{ lib, makeDesktopItem, symlinkJoin, ... }:
+{ lib, makeDesktopItem, symlinkJoin, namespace, ... }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   steam-pipewire = makeDesktopItem {
     name = "Steam (Pipewire)";

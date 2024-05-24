@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.xdg-portal;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.xdg-portal;
 in
 {
-  options.dafos.desktop.addons.xdg-portal = with types; {
+  options.${namespace}.desktop.addons.xdg-portal = with types; {
     enable = mkBoolOpt false "Whether or not to add support for xdg portal.";
   };
 

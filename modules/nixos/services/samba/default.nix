@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.samba;
+  cfg = config.${namespace}.services.samba;
 
   inherit (lib)
     types
@@ -10,7 +10,7 @@ let
     mapAttrs
     optionalAttrs;
 
-  inherit (lib.dafos)
+  inherit (lib.${namespace})
     mkOpt
     mkBoolOpt;
 
@@ -30,7 +30,7 @@ let
   });
 in
 {
-  options.dafos.services.samba = with types; {
+  options.${namespace}.services.samba = with types; {
     enable = mkEnableOption "Samba";
     workgroup = mkOpt str "WORKGROUP" "The workgroup to use.";
     browseable = mkBoolOpt true "Whether the shares are browseable.";
@@ -66,7 +66,7 @@ in
           browseable = bool-to-yes-no value.browseable;
           "read only" = bool-to-yes-no value.read-only;
         } // (optionalAttrs value.only-owner-editable {
-          "write list" = config.dafos.user.name;
+          "write list" = config.${namespace}.user.name;
           "read list" = "guest, nobody";
           "create mask" = "0755";
         }) // value.extra-config)

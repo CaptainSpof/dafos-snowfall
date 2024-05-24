@@ -1,14 +1,14 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dafos.cli-apps.zsh;
+  cfg = config.${namespace}.cli-apps.zsh;
 in
 {
-  options.dafos.cli-apps.zsh = {
+  options.${namespace}.cli-apps.zsh = {
     enable = mkEnableOption "ZSH";
 
     prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";

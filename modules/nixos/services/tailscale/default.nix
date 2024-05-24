@@ -1,11 +1,11 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.services.tailscale;
+with lib.${namespace};
+let cfg = config.${namespace}.services.tailscale;
 in
 {
-  options.dafos.services.tailscale = with types; {
+  options.${namespace}.services.tailscale = with types; {
     enable = mkBoolOpt false "Whether or not to configure Tailscale";
     autoconnect = {
       enable = mkBoolOpt false "Whether or not to enable automatic connection to Tailscale";

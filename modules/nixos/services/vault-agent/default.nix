@@ -1,9 +1,9 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.services.vault-agent;
+  cfg = config.${namespace}.services.vault-agent;
 
   # nixos-vault-service places generated files here:
   # https://github.com/DeterminateSystems/nixos-vault-service/blob/45e65627dff5dc4bb40d0f2595916f37e78959c1/module/helpers.nix#L4
@@ -85,7 +85,7 @@ in
   #   inputs.vault-service.nixosModules.nixos-vault-service
   # ];
 
-  options.dafos.services.vault-agent = {
+  options.${namespace}.services.vault-agent = {
     enable = mkEnableOption "Vault Agent";
 
     settings = mkOpt types.attrs { } "Default Vault Agent configuration.";

@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.pcsx2;
+  cfg = config.${namespace}.apps.pcsx2;
 in
 {
-  options.dafos.apps.pcsx2 = with types; {
+  options.${namespace}.apps.pcsx2 = with types; {
     enable = mkBoolOpt false "Whether or not to enable PCSX2.";
   };
 

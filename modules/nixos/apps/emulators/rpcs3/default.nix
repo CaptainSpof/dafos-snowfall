@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.rpcs3;
+  cfg = config.${namespace}.apps.rpcs3;
 in
 {
-  options.dafos.apps.rpcs3 = with types; {
+  options.${namespace}.apps.rpcs3 = with types; {
     enable = mkBoolOpt false "Whether or not to enable rpcs3.";
   };
 

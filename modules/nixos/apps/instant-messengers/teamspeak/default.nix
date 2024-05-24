@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.teamspeak;
+  cfg = config.${namespace}.apps.teamspeak;
 in {
-  options.dafos.apps.teamspeak = {
+  options.${namespace}.apps.teamspeak = {
     enable = mkBoolOpt false "Whether or not to enable TeamSpeak.";
   };
 

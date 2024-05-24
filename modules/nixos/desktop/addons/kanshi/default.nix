@@ -1,14 +1,14 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.desktop.addons.kanshi;
-  user = config.dafos.user;
+  cfg = config.${namespace}.desktop.addons.kanshi;
+  user = config.${namespace}.user;
   home = config.users.users.${user.name}.home;
 in
 {
-  options.dafos.desktop.addons.kanshi = with types; {
+  options.${namespace}.desktop.addons.kanshi = with types; {
     enable =
       mkBoolOpt false "Whether to enable Kanshi in the desktop environment.";
   };

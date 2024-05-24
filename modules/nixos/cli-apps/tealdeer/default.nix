@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.tealdeer;
+  cfg = config.${namespace}.cli-apps.tealdeer;
 in
 {
-  options.dafos.cli-apps.tealdeer = with types; {
+  options.${namespace}.cli-apps.tealdeer = with types; {
     enable = mkBoolOpt false "Whether or not to enable Tealdeer.";
   };
 

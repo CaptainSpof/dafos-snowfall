@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.bottles;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.bottles;
 in
 {
-  options.dafos.apps.bottles = with types; {
+  options.${namespace}.apps.bottles = with types; {
     enable = mkBoolOpt false "Whether or not to enable Bottles.";
   };
 

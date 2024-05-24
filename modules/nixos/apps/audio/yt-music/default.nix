@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.yt-music;
+  cfg = config.${namespace}.apps.yt-music;
 in
 {
-  options.dafos.apps.yt-music = with types; {
+  options.${namespace}.apps.yt-music = with types; {
     enable = mkBoolOpt false "Whether or not to enable YouTube Music.";
   };
 

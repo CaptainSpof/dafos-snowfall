@@ -1,7 +1,7 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  inherit (lib.dafos) enabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   dafos = {

@@ -1,13 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.desktop.addons.gtk;
+  cfg = config.${namespace}.desktop.addons.gtk;
   gdmCfg = config.services.xserver.displayManager.gdm;
 in
 {
-  options.dafos.desktop.addons.gtk = with types; {
+  options.${namespace}.desktop.addons.gtk = with types; {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
     theme = {
       name = mkOpt str "Gruvbox-Dark-B"

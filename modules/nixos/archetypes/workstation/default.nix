@@ -1,10 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 with lib;
-with lib.dafos;
-let cfg = config.dafos.archetypes.workstation;
+with lib.${namespace};
+let cfg = config.${namespace}.archetypes.workstation;
 in
 {
-  options.dafos.archetypes.workstation = with types; {
+  options.${namespace}.archetypes.workstation = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable the workstation archetype.";
   };

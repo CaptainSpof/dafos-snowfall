@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.aws;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.aws;
 in
 {
-  options.dafos.tools.aws = with types; {
+  options.${namespace}.tools.aws = with types; {
     enable = mkBoolOpt false "Whether or not to enable aws.";
   };
 

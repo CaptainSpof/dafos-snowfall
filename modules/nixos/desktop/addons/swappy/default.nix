@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.swappy;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.swappy;
 in
 {
-  options.dafos.desktop.addons.swappy = with types; {
+  options.${namespace}.desktop.addons.swappy = with types; {
     enable =
       mkBoolOpt false "Whether to enable Swappy in the desktop environment.";
   };

@@ -1,9 +1,9 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.services.vault;
+  cfg = config.${namespace}.services.vault;
 
   package = if cfg.ui then pkgs.vault-bin else pkgs.vault;
 
@@ -54,7 +54,7 @@ let
     cfg.policies;
 in
 {
-  options.dafos.services.vault = {
+  options.${namespace}.services.vault = {
     enable = mkEnableOption "Vault";
 
     ui = mkBoolOpt true "Whether the UI should be enabled.";

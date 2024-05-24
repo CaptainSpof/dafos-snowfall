@@ -1,13 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.virtualisation.kvm;
-  user = config.dafos.user;
+  cfg = config.${namespace}.virtualisation.kvm;
+  user = config.${namespace}.user;
 in
 {
-  options.dafos.virtualisation.kvm = with types; {
+  options.${namespace}.virtualisation.kvm = with types; {
     enable = mkBoolOpt false "Whether or not to enable KVM virtualisation.";
     vfioIds = mkOpt (listOf str) [ ]
       "The hardware IDs to pass through to a virtual machine.";

@@ -1,13 +1,13 @@
-{ config , lib, pkgs , ...}:
+{ config , lib, pkgs, namespace, ...}:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.apps.alacritty;
+  cfg = config.${namespace}.apps.alacritty;
 in
 {
-  options.dafos.apps.alacritty = {
+  options.${namespace}.apps.alacritty = {
     enable = mkBoolOpt false "Whether or not to enable alacritty.";
   };
 

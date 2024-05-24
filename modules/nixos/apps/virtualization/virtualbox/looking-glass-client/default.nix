@@ -1,13 +1,13 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.looking-glass-client;
-  user = config.dafos.user;
+  cfg = config.${namespace}.apps.looking-glass-client;
+  user = config.${namespace}.user;
 in
 {
-  options.dafos.apps.looking-glass-client = with types; {
+  options.${namespace}.apps.looking-glass-client = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable the Looking Glass client.";
   };

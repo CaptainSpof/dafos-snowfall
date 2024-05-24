@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.k8s;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.k8s;
 in
 {
-  options.dafos.tools.k8s = with types; {
+  options.${namespace}.tools.k8s = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable common Kubernetes utilities.";
   };

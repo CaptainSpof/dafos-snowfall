@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.desktop.gnome;
+  cfg = config.${namespace}.desktop.gnome;
   gdmHome = config.users.users.gdm.home;
 
   defaultExtensions = with pkgs.gnomeExtensions; [
@@ -30,7 +30,7 @@ let
   mkTuple = lib.home-manager.hm.gvariant.mkTuple;
 in
 {
-  options.dafos.desktop.gnome = with types; {
+  options.${namespace}.desktop.gnome = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Gnome as the desktop environment.";
     wallpaper = {
@@ -89,8 +89,8 @@ in
       };
 
       script = ''
-        config_file=/var/lib/AccountsService/users/${config.dafos.user.name}
-        icon_file=/run/current-system/sw/share/dafos-icons/user/${config.dafos.user.name}/${config.dafos.user.icon.fileName}
+        config_file=/var/lib/AccountsService/users/${config.${namespace}.user.name}
+        icon_file=/run/current-system/sw/share/dafos-icons/user/${config.${namespace}.user.name}/${config.${namespace}.user.icon.fileName}
 
         if ! [ -d "$(dirname "$config_file")"]; then
           mkdir -p "$(dirname "$config_file")"
@@ -148,16 +148,16 @@ in
             ];
             favorite-apps =
               [ "org.gnome.Nautilus.desktop" ]
-              ++ optional config.dafos.apps.firefox.enable "firefox.desktop"
-              ++ optional config.dafos.apps.vscode.enable "code.desktop"
-              ++ optional config.dafos.apps.emacs.enable "emacs.desktop"
+              ++ optional config.${namespace}.apps.firefox.enable "firefox.desktop"
+              ++ optional config.${namespace}.apps.vscode.enable "code.desktop"
+              ++ optional config.${namespace}.apps.emacs.enable "emacs.desktop"
               # TODO: enable based on default terminal emulator
-              # ++ optional config.dafos.desktop.addons.foot.enable "org.codeberg.dnkl.foot.desktop"
-              # ++ optional config.dafos.apps.alacritty.enable "alacritty.desktop"
-              ++ optional config.dafos.apps.kitty.enable "kitty.desktop"
-              ++ optional config.dafos.apps.discord.enable "discord.desktop"
-              ++ optional config.dafos.apps.element.enable "element-desktop.desktop"
-              ++ optional config.dafos.apps.steam.enable "steam.desktop";
+              # ++ optional config.${namespace}.desktop.addons.foot.enable "org.codeberg.dnkl.foot.desktop"
+              # ++ optional config.${namespace}.apps.alacritty.enable "alacritty.desktop"
+              ++ optional config.${namespace}.apps.kitty.enable "kitty.desktop"
+              ++ optional config.${namespace}.apps.discord.enable "discord.desktop"
+              ++ optional config.${namespace}.apps.element.enable "element-desktop.desktop"
+              ++ optional config.${namespace}.apps.steam.enable "steam.desktop";
           };
 
           "org/gnome/desktop/background" = {
@@ -257,8 +257,8 @@ in
             menu-button-icon-image = 23;
 
             menu-button-terminal =
-              if config.dafos.desktop.addons.term.enable then
-                lib.getExe config.dafos.desktop.addons.term.pkg
+              if config.${namespace}.desktop.addons.term.enable then
+                lib.getExe config.${namespace}.desktop.addons.term.pkg
               else
                 lib.getExe pkgs.gnome.gnome-terminal;
           };

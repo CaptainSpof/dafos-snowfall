@@ -1,13 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.dafos) enabled;
+  inherit (lib.${namespace}) enabled;
 
-  cfg = config.dafos.cli-apps.home-manager;
+  cfg = config.${namespace}.cli-apps.home-manager;
 in
 {
-  options.dafos.cli-apps.home-manager = {
+  options.${namespace}.cli-apps.home-manager = {
     enable = mkEnableOption "home-manager";
   };
 

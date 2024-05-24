@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.music;
+  cfg = config.${namespace}.suites.music;
 in
 {
-  options.dafos.suites.music = with types; {
+  options.${namespace}.suites.music = with types; {
     enable = mkBoolOpt false "Whether or not to enable music configuration.";
     mixing.enable = mkBoolOpt false "Whether or not to enable music mixing configuration.";
   };

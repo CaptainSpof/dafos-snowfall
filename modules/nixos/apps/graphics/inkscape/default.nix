@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.inkscape;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.inkscape;
 in
 {
-  options.dafos.apps.inkscape = with types; {
+  options.${namespace}.apps.inkscape = with types; {
     enable = mkBoolOpt false "Whether or not to enable Inkscape.";
   };
 

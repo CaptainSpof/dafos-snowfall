@@ -2,11 +2,12 @@
 , writeShellApplication
 , python311
 , venvDir ? "$HOME/.proton-up-venv"
+, namespace
 , ...
 }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   nix-get-proton-up =
     writeShellApplication

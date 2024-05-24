@@ -1,7 +1,7 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, namespace, ... }:
 
 let
-  inherit (lib.dafos) override-meta;
+  inherit (lib.${namespace}) override-meta;
 
   nix-update-index =
     pkgs.writeShellScriptBin "nix-update-index" ''

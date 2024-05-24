@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.proton;
+  cfg = config.${namespace}.cli-apps.proton;
 in
 {
-  options.dafos.cli-apps.proton = with types; {
+  options.${namespace}.cli-apps.proton = with types; {
     enable = mkBoolOpt false "Whether or not to enable Proton.";
   };
 

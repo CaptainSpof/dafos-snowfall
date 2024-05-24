@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.emulation;
+  cfg = config.${namespace}.suites.emulation;
 in
 {
-  options.dafos.suites.emulation = with types; {
+  options.${namespace}.suites.emulation = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable emulation configuration.";
   };

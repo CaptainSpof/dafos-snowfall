@@ -1,12 +1,12 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dafos.cli-apps.neovim;
+  cfg = config.${namespace}.cli-apps.neovim;
 in
 {
-  options.dafos.cli-apps.neovim = {
+  options.${namespace}.cli-apps.neovim = {
     enable = mkEnableOption "Neovim";
   };
 

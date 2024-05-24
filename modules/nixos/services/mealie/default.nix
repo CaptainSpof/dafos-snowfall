@@ -1,21 +1,14 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.mealie;
+  cfg = config.${namespace}.services.mealie;
 
-  username = config.dafos.vars.username;
+  username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.services.mealie = {
+in {
+  options.${namespace}.services.mealie = {
     enable = mkEnableOption "Whether or not to configure Mealie";
   };
 
-  config = mkIf cfg.enable {
-    services.mealie = {
-      enable = true;
-    };
-  };
+  config = mkIf cfg.enable { services.mealie = { enable = true; }; };
 }

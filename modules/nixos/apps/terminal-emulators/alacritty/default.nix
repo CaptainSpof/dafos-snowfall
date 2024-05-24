@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.alacritty;
+  cfg = config.${namespace}.apps.alacritty;
 in
 {
-  options.dafos.apps.alacritty = with types; {
+  options.${namespace}.apps.alacritty = with types; {
     enable = mkBoolOpt false "Whether or not to enable Alacritty.";
   };
 

@@ -1,13 +1,13 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dafos.cli-apps.fish;
-  starship = config.dafos.cli-apps.starship;
+  cfg = config.${namespace}.cli-apps.fish;
+  starship = config.${namespace}.cli-apps.starship;
 in
 {
-  options.dafos.cli-apps.fish = {
+  options.${namespace}.cli-apps.fish = {
     enable = mkEnableOption "Fish";
   };
 

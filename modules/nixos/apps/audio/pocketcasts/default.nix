@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.pocketcasts;
+  cfg = config.${namespace}.apps.pocketcasts;
 in
 {
-  options.dafos.apps.pocketcasts = with types; {
+  options.${namespace}.apps.pocketcasts = with types; {
     enable = mkBoolOpt false "Whether or not to enable Pocketcasts.";
   };
 

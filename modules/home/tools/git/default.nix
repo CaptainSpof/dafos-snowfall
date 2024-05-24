@@ -1,21 +1,18 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.dafos) mkOpt enabled;
+  inherit (lib.${namespace}) mkOpt enabled;
 
-  cfg = config.dafos.tools.git;
-  user = config.dafos.user;
-  vars = config.dafos.vars;
-  fish = config.dafos.cli-apps.fish;
+  cfg = config.${namespace}.tools.git;
+  user = config.${namespace}.user;
+  fish = config.${namespace}.cli-apps.fish;
 in
 {
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.tools.git = {
+  options.${namespace}.tools.git = {
     enable = mkEnableOption "Git";
-    userName = mkOpt types.str vars.git.username "The name to configure git with.";
-    userEmail = mkOpt types.str vars.git.email "The email to configure git with.";
+    userName = mkOpt types.str user.gitUsername "The name to configure git with.";
+    userEmail = mkOpt types.str user.gitEmail "The email to configure git with.";
     # FIXME: setup ssh keys
     signingKey =
       mkOpt types.str "" "The key ID to sign commits with.";
@@ -37,7 +34,7 @@ in
         push = { autoSetupRemote = true; };
         core = { whitespace = "trailing-space,space-before-tab"; };
         safe = {
-          directory = "${user.home}/.config/dafos";
+          directory = "${user.home}/.config.${namespace}";
         };
       };
     };

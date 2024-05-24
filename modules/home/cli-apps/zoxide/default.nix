@@ -1,15 +1,15 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.zoxide;
-  nushell = config.dafos.cli-apps.nushell;
-  fish = config.dafos.cli-apps.fish;
-  zsh = config.dafos.cli-apps.zsh;
+  cfg = config.${namespace}.cli-apps.zoxide;
+  nushell = config.${namespace}.cli-apps.nushell;
+  fish = config.${namespace}.cli-apps.fish;
+  zsh = config.${namespace}.cli-apps.zsh;
 in
 {
-  options.dafos.cli-apps.zoxide = {
+  options.${namespace}.cli-apps.zoxide = {
     enable = mkEnableOption "Zoxide";
   };
 

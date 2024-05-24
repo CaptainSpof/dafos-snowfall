@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.office.libreoffice;
+  cfg = config.${namespace}.apps.office.libreoffice;
 in
 {
-  options.dafos.apps.office.libreoffice = with types; {
+  options.${namespace}.apps.office.libreoffice = with types; {
     enable = mkBoolOpt false "Whether or not to enable Libreoffice.";
   };
 

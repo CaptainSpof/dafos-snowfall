@@ -1,9 +1,9 @@
-{ options, config, lib, ... }:
+{ options, config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
-  options.dafos.home = with types; {
+  options.${namespace}.home = with types; {
     file = mkOpt attrs { }
       (mdDoc "A set of files to be managed by home-manager's `home.file`.");
     configFile = mkOpt attrs { }
@@ -14,9 +14,9 @@ with lib.dafos;
   config = {
     dafos.home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions options.dafos.home.file;
+      home.file = mkAliasDefinitions options.${namespace}.home.file;
       xdg.enable = true;
-      xdg.configFile = mkAliasDefinitions options.dafos.home.configFile;
+      xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
     };
 
     home-manager = {
@@ -26,8 +26,8 @@ with lib.dafos;
       useUserPackages = true;
       useGlobalPkgs = true;
 
-      users.${config.dafos.user.name} =
-        mkAliasDefinitions options.dafos.home.extraOptions;
+      users.${config.${namespace}.user.name} =
+        mkAliasDefinitions options.${namespace}.home.extraOptions;
     };
   };
 }

@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.blender;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.blender;
 in
 {
-  options.dafos.apps.blender = with types; {
+  options.${namespace}.apps.blender = with types; {
     enable = mkBoolOpt false "Whether or not to enable Blender.";
   };
 

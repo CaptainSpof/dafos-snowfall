@@ -1,15 +1,15 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
 
-  cfg = config.dafos.cli-apps.starship;
-  fish = config.dafos.cli-apps.fish;
-  nushell = config.dafos.cli-apps.nushell;
-  zsh = config.dafos.cli-apps.zsh;
+  cfg = config.${namespace}.cli-apps.starship;
+  fish = config.${namespace}.cli-apps.fish;
+  nushell = config.${namespace}.cli-apps.nushell;
+  zsh = config.${namespace}.cli-apps.zsh;
 in
 {
-  options.dafos.cli-apps.starship = {
+  options.${namespace}.cli-apps.starship = {
     enable = mkEnableOption "Starship";
   };
 

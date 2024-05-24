@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.art;
+  cfg = config.${namespace}.suites.art;
 in
 {
-  options.dafos.suites.art = with types; {
+  options.${namespace}.suites.art = with types; {
     enable = mkBoolOpt false "Whether or not to enable art configuration.";
     drawing.enable = mkBoolOpt true "Whether or not to enable art drawing configuration.";
     vector.enable = mkBoolOpt false "Whether or not to enable art vector configuration.";

@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.eza;
+  cfg = config.${namespace}.cli-apps.eza;
 in
 {
-  options.dafos.cli-apps.eza = with types; {
+  options.${namespace}.cli-apps.eza = with types; {
     enable = mkBoolOpt false "Whether or not to enable Eza.";
   };
 

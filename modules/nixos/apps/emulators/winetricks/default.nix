@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.winetricks;
+  cfg = config.${namespace}.apps.winetricks;
 in
 {
-  options.dafos.apps.winetricks = with types; {
+  options.${namespace}.apps.winetricks = with types; {
     enable = mkBoolOpt false "Whether or not to enable Winetricks.";
   };
 

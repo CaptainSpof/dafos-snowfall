@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.hardware.audio;
+  cfg = config.${namespace}.hardware.audio;
 in
 {
-  options.dafos.hardware.audio = with types; {
+  options.${namespace}.hardware.audio = with types; {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
     mpris-proxy.enable = mkBoolOpt false "Whether or not to enable mpris proxy.";
     alsa-monitor = mkOpt attrs { } "Alsa configuration.";

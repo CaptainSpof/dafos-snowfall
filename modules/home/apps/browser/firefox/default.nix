@@ -1,15 +1,15 @@
-{ config , lib , options , pkgs , ...}:
+{ config , lib , options , pkgs, namespace, ...}:
 
 let
   inherit (lib) types mkIf mkMerge optionalAttrs;
-  inherit (lib.dafos) mkBoolOpt mkOpt;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
-  cfg = config.dafos.apps.firefox;
+  cfg = config.${namespace}.apps.firefox;
 
-  firefoxPath = ".mozilla/firefox/${config.dafos.user.name}";
+  firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
 in
 {
-  options.dafos.apps.firefox = with types;
+  options.${namespace}.apps.firefox = with types;
     {
       enable = mkBoolOpt false "Whether or not to enable Firefox.";
       hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
@@ -110,9 +110,9 @@ in
       };
 
 
-      profiles.${config.dafos.user.name} = {
+      profiles.${config.${namespace}.user.name} = {
         inherit (cfg) extraConfig;
-        inherit (config.dafos.user) name;
+        inherit (config.${namespace}.user) name;
 
         id = 0;
 
@@ -121,6 +121,7 @@ in
           bitwarden
           consent-o-matic
           darkreader
+          enhancer-for-youtube
           firefox-color
           french-language-pack
           languagetool

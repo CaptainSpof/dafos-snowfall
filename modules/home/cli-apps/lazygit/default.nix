@@ -1,13 +1,13 @@
-{ config , lib , options , ...}:
+{ config , lib , options , namespace, ...}:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.cli-apps.lazygit;
+  cfg = config.${namespace}.cli-apps.lazygit;
 in
 {
-  options.dafos.cli-apps.lazygit = {
+  options.${namespace}.cli-apps.lazygit = {
     enable = mkBoolOpt false "Whether or not to enable lazygit.";
   };
 

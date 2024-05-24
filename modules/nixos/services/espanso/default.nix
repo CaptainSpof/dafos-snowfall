@@ -1,14 +1,15 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.services.espanso;
-  vars = config.dafos.vars;
+  cfg = config.${namespace}.services.espanso;
+  email = config.${namespace}.user.email;
+  gitEmail = config.${namespace}.user.gitEmail;
+  fullName = config.${namespace}.user.fullName;
 in
 {
-  imports = [ ../../../vars.nix ];
-  options.dafos.services.espanso = with types; {
+  options.${namespace}.services.espanso = with types; {
     enable = mkBoolOpt false "Whether or not to enable espanso.";
   };
 
@@ -43,11 +44,11 @@ in
               matches = [
                 {
                   trigger = "@me";
-                  replace = vars.email;
+                  replace = email;
                 }
                 {
                   trigger = "@cs";
-                  replace = vars.git.email;
+                  replace = gitEmail;
                 }
               ];
             };
@@ -55,7 +56,7 @@ in
               matches = [
                 {
                   trigger = ":me";
-                  replace = vars.fullname;
+                  replace = fullName;
                 }
               ];
             };

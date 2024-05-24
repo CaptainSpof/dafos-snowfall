@@ -1,19 +1,16 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.git;
-  user = config.dafos.user;
-  vars = config.dafos.vars;
+  cfg = config.${namespace}.tools.git;
+  user = config.${namespace}.user;
 in
 {
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.tools.git = with types; {
+  options.${namespace}.tools.git = with types; {
     enable = mkBoolOpt false "Whether or not to install and configure git.";
-    userName = mkOpt types.str vars.git.username "The name to configure git with.";
-    userEmail = mkOpt types.str vars.git.email "The email to configure git with.";
+    userName = mkOpt types.str user.gitUsername "The name to configure git with.";
+    userEmail = mkOpt types.str user.gitEmail "The email to configure git with.";
     # FIXME?
     signingKey =
       mkOpt types.str "" "The key ID to sign commits with.";
@@ -37,7 +34,7 @@ in
           push = { autoSetupRemote = true; };
           core = { whitespace = "trailing-space,space-before-tab"; };
           safe = {
-            directory = "${config.users.users.${user.name}.home}/.config/dafos";
+            directory = "${config.users.users.${user.name}.home}/.config.${namespace}";
           };
         };
       };

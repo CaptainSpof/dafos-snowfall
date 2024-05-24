@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.system.env;
+with lib.${namespace};
+let cfg = config.${namespace}.system.env;
 in
 {
-  options.dafos.system.env = with types;
+  options.${namespace}.system.env = with types;
     mkOption {
       type = attrsOf (oneOf [ str path (listOf (either str path)) ]);
       apply = mapAttrs (_n: v:

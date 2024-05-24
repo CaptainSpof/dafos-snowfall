@@ -1,15 +1,10 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let
-  vars = config.dafos.vars;
-in
-{
-  imports = [
-    ./hardware.nix
-    ../../../modules/vars.nix
-  ];
+with lib.${namespace};
+let username = config.${namespace}.user.name;
+in {
+  imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -21,24 +16,18 @@ in
       gaming = enabled;
     };
 
-    apps = {
-      qbittorrent = enabled;
-    };
+    apps = { qbittorrent = enabled; };
 
     desktop = {
       plasma.bluetoothAdapter = "74:97:79:D8:5B:D2";
-      plasma.autoLoginUser = vars.username;
+      plasma.autoLoginUser = username;
     };
 
-    security = {
-      gpg = mkForce disabled;
-    };
+    security = { gpg = mkForce disabled; };
 
     suites = {
       desktop = enabled;
-      development = {
-        enable = true;
-      };
+      development = { enable = true; };
       office = enabled;
       video = {
         enable = true;

@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.common-slim;
+  cfg = config.${namespace}.suites.common-slim;
 in
 {
-  options.dafos.suites.common-slim = with types; {
+  options.${namespace}.suites.common-slim = with types; {
     enable = mkBoolOpt false "Whether or not to enable common-slim configuration.";
   };
 

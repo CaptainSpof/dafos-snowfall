@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.nautilus;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.nautilus;
 in
 {
-  options.dafos.desktop.addons.nautilus = with types; {
+  options.${namespace}.desktop.addons.nautilus = with types; {
     enable = mkBoolOpt false "Whether to enable the gnome file manager.";
   };
 

@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.system.xkb;
+with lib.${namespace};
+let cfg = config.${namespace}.system.xkb;
 in
 {
-  options.dafos.system.xkb = with types; {
+  options.${namespace}.system.xkb = with types; {
     enable = mkBoolOpt false "Whether or not to configure xkb.";
   };
 

@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.apps.vscode;
+with lib.${namespace};
+let cfg = config.${namespace}.apps.vscode;
 in
 {
-  options.dafos.apps.vscode = with types; {
+  options.${namespace}.apps.vscode = with types; {
     enable = mkBoolOpt false "Whether or not to enable vscode.";
   };
 

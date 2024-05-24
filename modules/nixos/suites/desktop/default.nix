@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.desktop;
+  cfg = config.${namespace}.suites.desktop;
 in
 {
-  options.dafos.suites.desktop = with types; {
+  options.${namespace}.suites.desktop = with types; {
     enable =
       mkBoolOpt false "Whether or not to enable common desktop configuration.";
   };

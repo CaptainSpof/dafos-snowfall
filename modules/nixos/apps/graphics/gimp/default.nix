@@ -1,12 +1,12 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.gimp;
+  cfg = config.${namespace}.apps.gimp;
 in
 {
-  options.dafos.apps.gimp = with types; {
+  options.${namespace}.apps.gimp = with types; {
     enable = mkBoolOpt false "Whether or not to enable Gimp.";
   };
 

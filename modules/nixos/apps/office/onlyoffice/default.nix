@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.apps.office.onlyoffice;
+  cfg = config.${namespace}.apps.office.onlyoffice;
 in
 {
-  options.dafos.apps.office.onlyoffice = with types; {
+  options.${namespace}.apps.office.onlyoffice = with types; {
     enable = mkBoolOpt false "Whether or not to enable OnlyOffice.";
   };
 

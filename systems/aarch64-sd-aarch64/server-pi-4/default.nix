@@ -1,7 +1,7 @@
-{ lib, modulesPath, inputs, ... }:
+{ lib, modulesPath, inputs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 {
   imports = with inputs.nixos-hardware.nixosModules; [
     (modulesPath + "/installer/scan/not-detected.nix")

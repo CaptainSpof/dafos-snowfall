@@ -1,13 +1,13 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  inherit (lib.dafos) enabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   dafos = {
     user = {
       enable = true;
-      name = config.snowfallorg.user.name;
+      name = config.${namespace}.user.name;
     };
 
     apps = {

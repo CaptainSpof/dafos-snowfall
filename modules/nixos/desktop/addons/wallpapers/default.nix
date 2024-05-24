@@ -1,12 +1,12 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
   inherit (pkgs.dafos) wallpapers;
 in
 {
-  options.dafos.desktop.addons.wallpapers = with types; {
+  options.${namespace}.desktop.addons.wallpapers = with types; {
     enable = mkBoolOpt false
       "Whether or not to add wallpapers to ~/Pictures/wallpapers.";
   };

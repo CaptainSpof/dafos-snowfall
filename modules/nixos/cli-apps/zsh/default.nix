@@ -1,12 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.cli-apps.zsh;
+  cfg = config.${namespace}.cli-apps.zsh;
 in
 {
-  options.dafos.cli-apps.zsh = with types; {
+  options.${namespace}.cli-apps.zsh = with types; {
     enable = mkBoolOpt false "Whether or not to enable Zsh.";
   };
 

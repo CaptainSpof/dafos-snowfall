@@ -1,13 +1,13 @@
-{ config , lib , options , pkgs , ...}:
+{ config , lib , options , pkgs , namespace, ...}:
 
 let
   inherit (lib) mkIf mkMerge;
-  inherit (lib.dafos) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.dafos.apps.firefox;
+  cfg = config.${namespace}.apps.firefox;
 in
 {
-  options.dafos.apps.firefox =
+  options.${namespace}.apps.firefox =
     {
       enable = mkBoolOpt false "Whether or not to enable Firefox.";
     };

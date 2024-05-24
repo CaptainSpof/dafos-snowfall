@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.wofi;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.wofi;
 in
 {
-  options.dafos.desktop.addons.wofi = with types; {
+  options.${namespace}.desktop.addons.wofi = with types; {
     enable =
       mkBoolOpt false "Whether to enable the Wofi in the desktop environment.";
   };

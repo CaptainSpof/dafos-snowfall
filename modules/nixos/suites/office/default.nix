@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.suites.office;
+  cfg = config.${namespace}.suites.office;
 in {
-  options.dafos.suites.office = with types; {
+  options.${namespace}.suites.office = with types; {
     enable = mkBoolOpt false "Whether or not to enable office configuration.";
   };
 

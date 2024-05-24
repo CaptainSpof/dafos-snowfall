@@ -1,12 +1,10 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
   inherit (lib) types mkIf mkDefault mkMerge;
-  inherit (lib.dafos) mkOpt;
+  inherit (lib.${namespace}) mkOpt;
 
-  cfg = config.dafos.user;
-
-  vars = config.dafos.vars;
+  cfg = config.${namespace}.user;
 
   home-directory =
     if cfg.name == null then
@@ -15,14 +13,15 @@ let
       "/home/${cfg.name}";
 in
 {
-  imports = [ ../../vars.nix ];
 
-  options.dafos.user = {
+  options.${namespace}.user = {
     enable = mkOpt types.bool false "Whether to configure the user account.";
-    name = mkOpt (types.nullOr types.str) vars.username "The user account.";
+    name = mkOpt (types.nullOr types.str) (config.snowfallorg.user.name or "daf") "The user account.";
 
-    fullName = mkOpt types.str vars.fullname "The full name of the user.";
-    email = mkOpt types.str vars.email "The email of the user.";
+    fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";
+    email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user.";
+    gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
+    gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";
 
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
   };

@@ -1,11 +1,11 @@
-{ config, lib, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.services.printing;
+with lib.${namespace};
+let cfg = config.${namespace}.services.printing;
 in
 {
-  options.dafos.services.printing = with types; {
+  options.${namespace}.services.printing = with types; {
     enable = mkBoolOpt false "Whether or not to configure printing support.";
   };
 

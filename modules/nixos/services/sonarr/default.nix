@@ -1,15 +1,12 @@
-{ lib, config, ... }:
+{ lib, config, namespace, ... }:
 
 let
-  cfg = config.dafos.services.sonarr;
+  cfg = config.${namespace}.services.sonarr;
 
-  username = config.dafos.vars.username;
+  username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in
-{
-  imports = [ ../../../vars.nix ];
-
-  options.dafos.services.sonarr = {
+in {
+  options.${namespace}.services.sonarr = {
     enable = mkEnableOption "Whether or not to configure Sonarr";
   };
 

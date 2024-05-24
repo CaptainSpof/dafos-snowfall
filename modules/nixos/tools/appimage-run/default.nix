@@ -1,12 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
+with lib.${namespace};
 let
-  cfg = config.dafos.tools.appimage-run;
+  cfg = config.${namespace}.tools.appimage-run;
 in
 {
-  options.dafos.tools.appimage-run = with types; {
+  options.${namespace}.tools.appimage-run = with types; {
     enable = mkBoolOpt false "Whether or not to enable appimage-run.";
   };
 

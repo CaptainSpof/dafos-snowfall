@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.desktop.addons.term;
+with lib.${namespace};
+let cfg = config.${namespace}.desktop.addons.term;
 in
 {
-  options.dafos.desktop.addons.term = with types; {
+  options.${namespace}.desktop.addons.term = with types; {
     enable = mkBoolOpt false "Whether to enable the gnome terminal.";
     pkg = mkOpt package pkgs.foot "The terminal to install.";
   };

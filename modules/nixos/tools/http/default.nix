@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
-with lib.dafos;
-let cfg = config.dafos.tools.http;
+with lib.${namespace};
+let cfg = config.${namespace}.tools.http;
 in
 {
-  options.dafos.tools.http = with types; {
+  options.${namespace}.tools.http = with types; {
     enable = mkBoolOpt false "Whether or not to enable common http utilities.";
   };
 
