@@ -32,6 +32,7 @@ in {
       development = {
         enable = true;
         aws = enabled;
+        podmanEnable = true;
       };
       video = {
         enable = true;
