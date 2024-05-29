@@ -26,6 +26,7 @@ in
       };
 
       cli-apps = {
+        bandwhich = enabled;
         eza = enabled;
         fish = enabled;
         flake = enabled;
