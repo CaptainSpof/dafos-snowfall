@@ -56,7 +56,6 @@ in
     dafos.system.xkb.enable = true;
     dafos.desktop.addons = {
       electron-support = enabled;
-      foot = enabled;
     };
 
 
@@ -76,11 +75,6 @@ in
 
       displayManager = {
         defaultSession = mkIf cfg.wayland "plasma";
-        # sddm = {
-        #   enable = true;
-        #   wayland.enable = cfg.wayland;
-        #   theme = "abstractdark-sddm-theme";
-        # };
         autoLogin = lib.optionalAttrs (cfg.autoLoginUser != "") {
           enable = true;
           user = cfg.autoLoginUser;

@@ -1,7 +1,7 @@
-{ config , lib , options , pkgs , namespace, ...}:
+{ config , lib , namespace, ...}:
 
 let
-  inherit (lib) mkIf mkMerge;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.apps.firefox;

@@ -10,7 +10,7 @@ let
 in
 {
   options.${namespace}.cli-apps.starship = {
-    enable = mkEnableOption "Starship";
+    enable = mkEnableOption "Whether or not to enable Starship";
   };
 
   config = mkIf cfg.enable {

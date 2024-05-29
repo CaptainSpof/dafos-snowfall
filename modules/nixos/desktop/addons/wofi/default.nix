@@ -16,7 +16,6 @@ in
     # config -> .config/wofi/config
     # css -> .config/wofi/style.css
     # colors -> $XDG_CACHE_HOME/wal/colors
-    # dafos.home.configFile."foot/foot.ini".source = ./foot.ini;
     dafos.home.configFile."wofi/config".source = ./config;
     dafos.home.configFile."wofi/style.css".source = ./style.css;
   };

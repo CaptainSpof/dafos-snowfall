@@ -10,15 +10,17 @@ let
 in
 {
   options.${namespace}.cli-apps.zoxide = {
-    enable = mkEnableOption "Zoxide";
+    enable = mkEnableOption "Whether or not to enable Zoxide";
   };
 
   config = mkIf cfg.enable {
     programs.zoxide = {
       enable = true;
+
       enableFishIntegration = fish.enable;
       enableNushellIntegration = nushell.enable;
       enableZshIntegration = zsh.enable;
+
       options = [ "--cmd=c" ];
     };
   };

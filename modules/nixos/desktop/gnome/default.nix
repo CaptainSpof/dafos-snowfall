@@ -51,7 +51,6 @@ in
       gtk = enabled;
       wallpapers = enabled;
       electron-support = enabled;
-      foot = enabled;
     };
 
     environment.systemPackages = with pkgs; [
@@ -152,7 +151,6 @@ in
               ++ optional config.${namespace}.apps.vscode.enable "code.desktop"
               ++ optional config.${namespace}.apps.emacs.enable "emacs.desktop"
               # TODO: enable based on default terminal emulator
-              # ++ optional config.${namespace}.desktop.addons.foot.enable "org.codeberg.dnkl.foot.desktop"
               # ++ optional config.${namespace}.apps.alacritty.enable "alacritty.desktop"
               ++ optional config.${namespace}.apps.kitty.enable "kitty.desktop"
               ++ optional config.${namespace}.apps.discord.enable "discord.desktop"

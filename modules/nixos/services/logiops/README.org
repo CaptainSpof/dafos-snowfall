@@ -1,5 +1,0 @@
-#+title: Logiops
-
-* Known Issues
-** ~logiops~ is out of date
-Current ~nixpkgs~ version is 0.2.3, while upstream is 0.3.3

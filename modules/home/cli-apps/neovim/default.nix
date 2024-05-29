@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.cli-apps.neovim = {
-    enable = mkEnableOption "Neovim";
+    enable = mkEnableOption "Whether or not to enable Neovim";
   };
 
   config = mkIf cfg.enable {

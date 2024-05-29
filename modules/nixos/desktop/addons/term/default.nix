@@ -7,7 +7,7 @@ in
 {
   options.${namespace}.desktop.addons.term = with types; {
     enable = mkBoolOpt false "Whether to enable the gnome terminal.";
-    pkg = mkOpt package pkgs.foot "The terminal to install.";
+    pkg = mkOpt package pkgs.kitty "The terminal to install.";
   };
 
   config = mkIf cfg.enable { environment.systemPackages = [ cfg.pkg ]; };

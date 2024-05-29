@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.cli-apps.nushell = {
-    enable = mkEnableOption "Nushell";
+    enable = mkEnableOption "Whether or not to enable Nushell";
   };
 
   config = mkIf cfg.enable {

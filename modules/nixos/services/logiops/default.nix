@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.services.logiops = {
-    enable = mkEnableOption "Logiops";
+    enable = mkEnableOption "Whether or not to enable Logiops";
   };
 
   config = mkIf cfg.enable {

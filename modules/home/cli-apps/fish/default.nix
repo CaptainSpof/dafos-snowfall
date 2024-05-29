@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.cli-apps.fish = {
-    enable = mkEnableOption "Fish";
+    enable = mkEnableOption "Whether or not to enable Fish";
   };
 
   config = mkIf cfg.enable {

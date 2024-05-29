@@ -9,7 +9,7 @@ let
 in
 {
   options.${namespace}.cli-apps.zsh = {
-    enable = mkEnableOption "ZSH";
+    enable = mkEnableOption "Whether or not to enable zsh";
 
     prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
   };

@@ -8,7 +8,7 @@
     # NixPkgs (nixos-unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # NixPkgs Unstable (nixos-unstable)
+    # NixPkgs Master (nixos-unstable)
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # Home Manager

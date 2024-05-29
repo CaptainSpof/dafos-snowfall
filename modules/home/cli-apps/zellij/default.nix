@@ -4,14 +4,16 @@ with lib;
 with lib.${namespace};
 let cfg = config.${namespace}.cli-apps.zellij;
 in {
-  options.${namespace}.cli-apps.zellij = { enable = mkEnableOption "Zellij"; };
+  options.${namespace}.cli-apps.zellij = {
+    enable = mkEnableOption "Whether or not to enable Zellij";
+  };
 
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
       settings = {
         auto_layouts = true;
-        default_layout = "compact"; # or compact
+        default_layout = "compact";
 
         ui.pane_frames = {
           rounded_corners = true;

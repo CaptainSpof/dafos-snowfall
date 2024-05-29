@@ -3,8 +3,6 @@
 let
   cfg = config.${namespace}.services.prowlarr;
 
-  username = config.${namespace}.config.name;
-
   inherit (lib) mkEnableOption mkIf;
 in {
   options.${namespace}.services.prowlarr = {

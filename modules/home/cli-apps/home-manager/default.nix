@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.cli-apps.home-manager = {
-    enable = mkEnableOption "home-manager";
+    enable = mkEnableOption "Whether or not to enable Home Manager";
   };
 
   config = mkIf cfg.enable {
