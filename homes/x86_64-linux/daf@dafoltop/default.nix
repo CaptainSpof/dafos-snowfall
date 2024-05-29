@@ -7,7 +7,7 @@ in
   dafos = {
     user = {
       enable = true;
-      name = config.${namespace}.user.name;
+      name = config.snowfallorg.user.name;
     };
 
     apps = {

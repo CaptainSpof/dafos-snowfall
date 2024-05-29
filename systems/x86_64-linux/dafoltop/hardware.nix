@@ -43,17 +43,18 @@ in
   fileSystems."/mnt/videos" =
     { device = "//192.168.0.254/Freebox/Vidéos";
       fsType = "cifs";
-      options = [ "guest" "uid=1000" ];
+      options = [
+        "guest"
+        "noauto"
+        "uid=1000"
+        "vers=1.0"
+        "nounix"
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"
+      ];
     };
 
   swapDevices = [ ];
-
-  systemd.automounts = [{
-    description = "Automount for Freebox";
-    where = "/mnt/videos";
-    wantedBy = [ "default.target" ];
-  }];
-
 
   # Enable DHCP on the wireless link
   networking.useDHCP = lib.mkDefault true;
