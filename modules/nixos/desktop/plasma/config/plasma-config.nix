@@ -17,7 +17,7 @@ in
       workspace = {
         clickItemTo = "open";
         # tooltipDelay = 5;
-        # cursorTheme = "breeze_cursors";
+        cursorTheme = "breeze_cursors";
         colorScheme = "gruvbox";
         lookAndFeel = "org.kde.breezetwilight.desktop";
       };
@@ -51,10 +51,40 @@ in
         kcminputrc."Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
         kcminputrc.Mouse."X11LibInputXAccelProfileFlat" = false;
 
-        "kdeglobals"."KDE"."widgetStyle" = "Lightly";
+        kdeglobals.KDE.widgetStyle = "Lightly";
+
         kwinrc = {
-          "Windows"."BorderlessMaximizedWindows" = true;
+          Effect-blur.BlurStrength = 3;
+          Effect-overview.BorderActivate = 7;
+          Effect-overview.BorderActivateAll = 9;
+          ElectricBorders.TopRight = "LockScreen";
+          ModifierOnlyShortcuts.Meta = "org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Overview";
+          NightColor = {
+            Active = true;
+            NightTemperature = 3800;
+          };
+          Plugins = {
+            blurEnabled = true;
+            contrastEnabled = true;
+            diminactiveEnabled = true;
+          };
+          Windows = {
+            BorderlessMaximizedWindows = true;
+            CenterSnapZone = 100;
+            ElectricBorderCooldown = 400;
+            ElectricBorderDelay = 350;
+            FocusPolicy = "FocusFollowsMouse";
+            NextFocusPrefersMouse = true;
+          };
         };
+
+      #   "kwinrc"."MouseBindings"."CommandAllWheel" = "Previous/Next Desktop";
+      #   "kwinrc"."Xwayland"."Scale" = 2;
+      #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSize" = "Tiny";
+      #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSizeAuto" = false;
+      #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnLeft" = "XAI";
+      #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnRight" = "NHMS";
+      #   "kwinrc"."org\\.kde\\.kdecoration2"."ShowToolTips" = false;
 
         krunnerrc = {
           General.FreeFloating.value = true;
@@ -92,8 +122,6 @@ in
       #   "kdeglobals"."General"."XftHintStyle" = "hintmedium";
       #   "kdeglobals"."General"."XftSubPixel" = "rgb";
       #   "kdeglobals"."KDE"."ShowDeleteCommand" = false;
-      #   "kdeglobals"."KDE"."SingleClick" = true;
-      #   # "kdeglobals"."KDE"."widgetStyle" = "Lightly";
       #   "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       #   "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
       #   "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
@@ -157,51 +185,6 @@ in
       #   "krunnerrc"."Runners.krunner_spellcheck"."requireTriggerWord" = true;
       #   "krunnerrc"."Runners.krunner_spellcheck"."trigger" = "~";
 
-      #   "kwalletrc"."Wallet"."First Use" = false;
-
-      #   "kwinrc"."Windows"."BorderlessMaximizedWindows" = true;
-      #   "kwinrc"."Compositing"."LatencyPolicy" = "Medium";
-      #   "kwinrc"."Effect-kwin4_effect_glitch"."Color" = "108,78,70";
-      #   "kwinrc"."Effect-kwin4_effect_glitch"."Duration" = 850;
-      #   "kwinrc"."Effect-kwin4_effect_glitch"."Scale" = 2;
-      #   "kwinrc"."Effect-kwin4_effect_glitch"."Speed" = 0.8;
-      #   "kwinrc"."Effect-kwin4_effect_glitch"."Strength" = 10;
-      #   "kwinrc"."Effect-overview"."BorderActivate" = 7;
-      #   "kwinrc"."Effect-windowview"."BorderActivateAll" = 9;
-      #   "kwinrc"."ElectricBorders"."TopRight" = "LockScreen";
-      #   "kwinrc"."ModifierOnlyShortcuts"."Meta" = "org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Overview";
-      #   "kwinrc"."MouseBindings"."CommandAllWheel" = "Previous/Next Desktop";
-      #   "kwinrc"."NightColor"."Active" = true;
-      #   "kwinrc"."NightColor"."LatitudeAuto" = 48.8909;
-      #   "kwinrc"."NightColor"."LongitudeAuto" = 2.2093;
-      #   "kwinrc"."NightColor"."NightTemperature" = 3800;
-      #   "kwinrc"."Plugins"."bismuthEnabled" = true;
-      #   "kwinrc"."Plugins"."blurEnabled" = true;
-      #   "kwinrc"."Plugins"."contrastEnabled" = true;
-      #   "kwinrc"."Plugins"."diminactiveEnabled" = true;
-      #   "kwinrc"."Plugins"."kwin4_effect_dimscreenEnabled" = true;
-      #   "kwinrc"."Plugins"."kwin4_effect_glitchEnabled" = true;
-      #   "kwinrc"."Plugins"."kwin4_effect_scaleEnabled" = false;
-      #   "kwinrc"."Plugins"."kwin4_effect_translucencyEnabled" = true;
-      #   "kwinrc"."Plugins"."kzonesEnabled" = false;
-      #   "kwinrc"."Script-kzones"."invertedMode" = true;
-      #   "kwinrc"."Script-kzones"."modifierKey" = 0;
-      #   "kwinrc"."Tiling"."padding" = 10;
-      #   "kwinrc"."TouchEdges"."Bottom" = "ApplicationLauncher";
-      #   "kwinrc"."Wayland"."InputMethod[$e]" = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
-      #   "kwinrc"."Wayland"."InputMethod\x5b$e\x5d" = "${pkgs.maliit-keyboard}/share/applications/com.github.maliit.keyboard.desktop";
-      #   "kwinrc"."Wayland"."VirtualKeyboardEnabled" = false;
-      #   "kwinrc"."Windows"."CenterSnapZone" = 100;
-      #   "kwinrc"."Windows"."ElectricBorderCooldown" = 400;
-      #   "kwinrc"."Windows"."ElectricBorderDelay" = 350;
-      #   "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-      #   "kwinrc"."Windows"."NextFocusPrefersMouse" = true;
-      #   "kwinrc"."Xwayland"."Scale" = 2;
-      #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSize" = "Tiny";
-      #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSizeAuto" = false;
-      #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnLeft" = "XAI";
-      #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnRight" = "NHMS";
-      #   "kwinrc"."org\\.kde\\.kdecoration2"."ShowToolTips" = false;
       #   "kxkbrc"."Layout"."DisplayNames" = "bé,";
       #   "kxkbrc"."Layout"."LayoutList" = "fr,fr";
       #   "kxkbrc"."Layout"."Use" = true;

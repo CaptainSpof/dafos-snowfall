@@ -12,27 +12,19 @@ let
   '';
 
 
-  defaultPackages = with pkgs.libsForQt5; [
+  defaultPackages = with pkgs.kdePackages; [
     # Apps
     kate
     filelight
-    # Scripts
-    kwin-dynamic-workspaces
-    kzones
-    polonium
   ] ++ (with pkgs; [
     # Themes
-    # dafos.abstractdark-sddm-theme
     dafos.kde-warm-eyes
     dafos.lightly-qt6
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-nord
     # Widgets & Plasmoids
-    applet-window-buttons
-    dafos.kde-controlcentre
     dafos.kde-minimalistclock
-    dafos.plasma-applet-net-bandwidth-monitor
     dafos.simple-overview-pager
     dafos.thermalmonitor
   ]);
