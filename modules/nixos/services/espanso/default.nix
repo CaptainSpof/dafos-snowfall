@@ -17,9 +17,6 @@ in
 
     dafos.user.extraGroups = [ "input" ];
 
-    # HACK: espanso fail to launch without this
-    services.udev.packages = [ pkgs.logitech-udev-rules ];
-
     dafos.home = {
       extraOptions = {
 
