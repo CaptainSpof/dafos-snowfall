@@ -25,8 +25,6 @@ let
     papirus-nord
     # Widgets & Plasmoids
     dafos.kde-minimalistclock
-    dafos.simple-overview-pager
-    dafos.thermalmonitor
   ]);
 in
 {

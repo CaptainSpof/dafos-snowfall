@@ -46,7 +46,6 @@ in
         kcminputrc."ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."6" = "Key,Ctrl+Z";
         kcminputrc."Libinput.1386.914.Wacom Intuos Pro S Finger"."NaturalScroll" = true;
         kcminputrc."Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
-
         # Mouse settings
         kcminputrc."Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
         kcminputrc.Mouse."X11LibInputXAccelProfileFlat" = false;

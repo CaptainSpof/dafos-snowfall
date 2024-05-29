@@ -36,13 +36,20 @@ in {
       device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
-    # FIXME
-    # "/mnt/videos" = {
-    #   # device = "//freebox-server.local/Freebox/Vidéos"; # FIXME: name unknown: mount after avahi?
-    #   device = "//192.168.0.254/Freebox/Vidéos";
-    #   fsType = "cifs";
-    #   options = [ "guest" "uid=1000" ];
-    # };
+    "/mnt/videos" = {
+      depends = [ "/" ];
+      device = "//192.168.0.254/Freebox/Vidéos";
+      fsType = "cifs";
+      options = [
+        "guest"
+        "noauto"
+        "uid=1000"
+        "vers=1.0"
+        "nounix"
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"
+      ];
+    };
   };
 
   swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
@@ -63,15 +70,8 @@ in {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      amdvlk
-      libva
-      libvdpau-va-gl
-      vaapiVdpau
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
+    extraPackages = with pkgs; [ amdvlk libva libvdpau-va-gl vaapiVdpau ];
+    extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

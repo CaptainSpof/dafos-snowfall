@@ -11,6 +11,8 @@ in {
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
+      enableFishIntegration = true;
+
       settings = {
         auto_layouts = true;
         default_layout = "compact";
