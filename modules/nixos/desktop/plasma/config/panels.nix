@@ -11,10 +11,12 @@
           {
             systemMonitor = {
               title = "CPU Usage";
+              displayStyle = "org.kde.ksysguard.linechart";
               sensors = [
                 {
                   name = "cpu/all/usage";
                   color = "250,179,135"; # Peach
+                  label = "CPU Usage";
                 }
               ];
               totalSensors = ["cpu/all/usage"];
@@ -24,10 +26,12 @@
           {
             systemMonitor = {
               title = "Memory Usage";
+              displayStyle = "org.kde.ksysguard.linechart";
               sensors = [
                 {
                   name = "memory/physical/usedPercent";
                   color = "166,227,161"; # Green
+                  label = "Memory Usage";
                 }
               ];
               totalSensors = ["memory/physical/usedPercent"];
