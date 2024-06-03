@@ -11,9 +11,10 @@ in
     enable = mkBoolOpt false "Whether or not to install and configure git.";
     userName = mkOpt types.str user.gitUsername "The name to configure git with.";
     userEmail = mkOpt types.str user.gitEmail "The email to configure git with.";
-    # FIXME?
+    # FIXME: setup ssh keys
     signingKey =
       mkOpt types.str "" "The key ID to sign commits with.";
+    signByDefault = mkOpt types.bool false "Whether to sign commits by default.";
   };
 
   config = mkIf cfg.enable {
@@ -24,10 +25,10 @@ in
         enable = true;
         inherit (cfg) userName userEmail;
         lfs = enabled;
-        # signing = {
-        #   key = cfg.signingKey;
-        #   signByDefault = mkIf gpg.enable true;
-        # };
+        signing = {
+          key = cfg.signingKey;
+          inherit (cfg) signByDefault;
+        };
         extraConfig = {
           init = { defaultBranch = "main"; };
           pull = { rebase = true; };
