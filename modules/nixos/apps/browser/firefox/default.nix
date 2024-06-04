@@ -4,12 +4,12 @@ let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.apps.firefox;
+  cfg = config.${namespace}.apps._firefox;
 in
 {
-  options.${namespace}.apps.firefox =
+  options.${namespace}.apps._firefox =
     {
-      enable = mkBoolOpt false "Whether or not to enable Firefox.";
+      enable = mkBoolOpt false "Whether or not to enable firefox.";
     };
 
   config = mkIf cfg.enable {

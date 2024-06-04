@@ -8,8 +8,8 @@ let
 in
 {
   options.${namespace}.apps.qbittorrent = {
-    enable = mkBoolOpt false "Whether or not to enable QBittorent.";
-    nox.enable = mkBoolOpt false "Whether or not to enable QBittorent no X.";
+    enable = mkBoolOpt false "Whether or not to enable qbittorent.";
+    nox.enable = mkBoolOpt false "Whether or not to enable qbittorent-nox.";
   };
 
   config = mkIf cfg.enable {

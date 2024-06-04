@@ -13,10 +13,6 @@ let
     steam = enabled;
     winetricks = enabled;
   };
-  cli-apps = {
-    wine = enabled;
-    proton = enabled;
-  };
 in
 {
   options.${namespace}.suites.games = with types; {
@@ -24,5 +20,5 @@ in
       mkBoolOpt false "Whether or not to enable common games configuration.";
   };
 
-  config = mkIf cfg.enable { dafos = { inherit apps cli-apps; }; };
+  config = mkIf cfg.enable { dafos = { inherit apps; }; };
 }

@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
 with lib.${namespace};
@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.apps.obs = with types; {
-    enable = mkBoolOpt false "Whether or not to enable support for OBS.";
+    enable = mkBoolOpt false "Whether or not to enable support for obs.";
   };
 
   config = mkIf cfg.enable {

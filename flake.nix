@@ -2,8 +2,8 @@
   description = "Here lies my shipwrecks. I mean fleet of hosts.";
 
   inputs = {
-    # NixPkgs (nixos-23.05)
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    # NixPkgs (nixos-24.05)
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # NixPkgs (nixos-unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -91,7 +91,6 @@
       lib.mkFlake {
         channels-config = {
           allowUnfree = true;
-          permittedInsecurePackages = [ "openssl-1.1.1w" ];
         };
 
         overlays = with inputs; [
@@ -109,10 +108,6 @@
 
         systems.modules.home = with inputs; [
           plasma-manager.homeManagerModules.plasma-manager
-        ];
-
-        systems.hosts.dafoltop.modules = with inputs; [
-          nixos-generators.nixosModules.all-formats
         ];
 
         deploy = lib.mkDeploy { inherit (inputs) self; };

@@ -106,6 +106,8 @@ in {
       };
     };
 
+    programs.fish.enable = true;
+
     users.users.${cfg.name} = {
       isNormalUser = true;
 
@@ -122,7 +124,9 @@ in {
       # system to select).
       uid = 1000;
 
-      extraGroups = [ ] ++ cfg.extraGroups;
+      extraGroups = [
+        "input"
+      ] ++ cfg.extraGroups;
     } // cfg.extraOptions;
   };
 }

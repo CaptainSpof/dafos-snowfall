@@ -1,9 +1,8 @@
-{ config, lib, inputs, namespace, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
 with lib.${namespace};
-let inherit (inputs) plasma-manager;
-in {
+{
   imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -19,9 +18,20 @@ in {
     apps = { qbittorrent = enabled; };
 
     desktop = {
-      plasma.touchScreen = true;
-      plasma.bluetoothAdapter = "A4:F9:33:0E:06:BD";
-      plasma.autoLoginUser = config.${namespace}.user.name;
+      plasma = {
+        touchScreen = true;
+        bluetoothAdapter = "A4:F9:33:0E:06:BD";
+        autoLoginUser = config.${namespace}.user.name;
+        config = {
+          virtualDesktopsNames = [
+            "Mail"
+            "Video"
+            "Other"
+            "Stuff"
+            "Yes"
+          ];
+        };
+      };
     };
 
     security = { gpg = mkForce disabled; };
@@ -29,11 +39,7 @@ in {
     suites = {
       desktop = enabled;
       office = enabled;
-      development = {
-        enable = true;
-        aws = enabled;
-        podmanEnable = true;
-      };
+      development = enabled;
       video = {
         enable = true;
         recording = enabled;
@@ -41,21 +47,6 @@ in {
     };
 
     system = { kanata = enabled; };
-
-    home.extraOptions = {
-      imports = [ plasma-manager.homeManagerModules.plasma-manager ];
-
-      programs.plasma = {
-        configFile = {
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."ClickMethod" = 2;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."Enabled" = true;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."NaturalScroll" = true;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAcceleration" = 0.45;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAccelerationProfile" = 1;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."TapToClick" = true;
-        };
-      };
-    };
   };
 
   # This value determines the NixOS release from which the default

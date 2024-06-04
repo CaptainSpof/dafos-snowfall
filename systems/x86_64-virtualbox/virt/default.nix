@@ -13,10 +13,7 @@ with lib.${namespace};
     apps = {
       firefox = enabled;
       logseq = enabled;
-      vscode = enabled;
     };
-
-    cli-apps = { neovim = enabled; };
 
     desktop = {
       gnome = {

@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.apps.amberol = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Amberol.";
+    enable = mkBoolOpt false "Whether or not to enable amberol.";
   };
 
   config =

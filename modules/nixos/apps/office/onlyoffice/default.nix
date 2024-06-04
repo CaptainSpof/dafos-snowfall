@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.apps.office.onlyoffice = with types; {
-    enable = mkBoolOpt false "Whether or not to enable OnlyOffice.";
+    enable = mkBoolOpt false "Whether or not to enable onlyoffice.";
   };
 
   config = mkIf cfg.enable {

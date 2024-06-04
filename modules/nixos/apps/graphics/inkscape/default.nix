@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
 with lib.${namespace};
@@ -6,7 +6,7 @@ let cfg = config.${namespace}.apps.inkscape;
 in
 {
   options.${namespace}.apps.inkscape = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Inkscape.";
+    enable = mkBoolOpt false "Whether or not to enable inkscape.";
   };
 
   config = mkIf cfg.enable {

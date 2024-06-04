@@ -46,8 +46,8 @@ in
       enable = true;
 
       settings = {
-        PermitRootLogin = if format == "install-iso" then "yes" else "no";
         PasswordAuthentication = false;
+        PermitRootLogin = if format == "install-iso" then "yes" else "no";
       };
 
       extraConfig = ''

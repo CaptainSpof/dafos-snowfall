@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.apps.ardour = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Ardour.";
+    enable = mkBoolOpt false "Whether or not to enable ardour.";
   };
 
   config =

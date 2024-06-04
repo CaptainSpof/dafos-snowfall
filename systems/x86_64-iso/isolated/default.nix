@@ -40,12 +40,7 @@ in
     };
 
     apps = {
-      vscode = enabled;
       firefox = enabled;
-    };
-
-    cli-apps = {
-      neovim = enabled;
     };
 
     tools = {
@@ -61,18 +56,15 @@ in
     home.file.".gnupg/gpg.conf".source = gpgConf;
     home.file.".gnupg/gpg-agent.conf".text = gpgAgentConf;
 
-    hardware = {
-      networking = {
-        # Networking is explicitly disabled in this environment.
-        enable = mkForce false;
-      };
-    };
-
     security = { doas = disabled; };
 
     system = {
       fonts = enabled;
       locale = enabled;
+      networking = {
+        # Networking is explicitly disabled in this environment.
+        enable = mkForce false;
+      };
       time = enabled;
       xkb = enabled;
     };

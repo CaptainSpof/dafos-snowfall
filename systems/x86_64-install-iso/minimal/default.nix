@@ -10,11 +10,6 @@ with lib.${namespace};
   dafos = {
     nix = enabled;
 
-    cli-apps = {
-      neovim = enabled;
-      zellij = enabled;
-    };
-
     tools = {
       git = enabled;
       misc = enabled;
@@ -23,10 +18,6 @@ with lib.${namespace};
         node = enabled;
         nix = enabled;
       };
-    };
-
-    hardware = {
-      networking = enabled;
     };
 
     services = {
@@ -41,6 +32,7 @@ with lib.${namespace};
       boot = enabled;
       fonts = enabled;
       locale = enabled;
+      networking = enabled;
       time = enabled;
       xkb = enabled;
     };

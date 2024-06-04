@@ -12,13 +12,7 @@ with lib.${namespace};
 
     apps = {
       firefox = enabled;
-      vscode = enabled;
       gparted = enabled;
-    };
-
-    cli-apps = {
-      neovim = enabled;
-      zellij = enabled;
     };
 
     desktop = {
@@ -46,7 +40,6 @@ with lib.${namespace};
 
     hardware = {
       audio = enabled;
-      networking = enabled;
     };
 
     services = {
@@ -63,6 +56,7 @@ with lib.${namespace};
       boot = enabled;
       fonts = enabled;
       locale = enabled;
+      networking = enabled;
       time = enabled;
       xkb = enabled;
     };

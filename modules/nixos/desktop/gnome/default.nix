@@ -148,7 +148,6 @@ in
             favorite-apps =
               [ "org.gnome.Nautilus.desktop" ]
               ++ optional config.${namespace}.apps.firefox.enable "firefox.desktop"
-              ++ optional config.${namespace}.apps.vscode.enable "code.desktop"
               ++ optional config.${namespace}.apps.emacs.enable "emacs.desktop"
               # TODO: enable based on default terminal emulator
               # ++ optional config.${namespace}.apps.alacritty.enable "alacritty.desktop"

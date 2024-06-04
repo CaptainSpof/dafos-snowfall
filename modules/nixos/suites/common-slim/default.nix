@@ -20,19 +20,11 @@ in
     dafos = {
       nix = enabled;
 
-      apps = {
-        alacritty = enabled;
-      };
-
-      cli-apps = {
-        fish = enabled;
+      programs.terminal.tools = {
         flake = enabled;
-        nushell = enabled;
-        tealdeer = enabled;
       };
 
       hardware = {
-        networking = enabled;
         storage = enabled;
       };
 
@@ -50,13 +42,12 @@ in
         boot = enabled;
         fonts = enabled;
         locale = enabled;
+        networking = enabled;
         time = enabled;
         xkb = enabled;
       };
 
       tools = {
-        bat = enabled;
-        bottom = enabled;
         comma = enabled;
         direnv = enabled;
         fup-repl = enabled;

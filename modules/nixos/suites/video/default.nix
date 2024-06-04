@@ -18,7 +18,6 @@ in
         freetube = disabled;
         mpv = enabled;
         obs.enable = cfg.recording.enable;
-        pitivi.enable = cfg.editing.enable;
         vlc = enabled;
         jellyfin-media-player = enabled;
       };

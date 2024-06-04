@@ -1,4 +1,4 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
 with lib.${namespace};
@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.apps.gimp = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Gimp.";
+    enable = mkBoolOpt false "Whether or not to enable gimp.";
   };
 
   config =

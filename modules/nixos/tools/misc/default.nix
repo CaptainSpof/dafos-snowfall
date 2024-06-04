@@ -26,11 +26,6 @@ in
     ];
 
     dafos.home.extraOptions = {
-      programs.ripgrep = {
-        enable = true;
-        arguments = ["--smart-case"];
-      };
-
       programs.less = {
         enable = true;
         keys = ''

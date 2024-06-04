@@ -15,12 +15,14 @@ in
     dafos = {
       desktop = {
         gnome = disabled;
-        plasma = enabled;
+        plasma = {
+          enable = true;
+          panels.enable = true;
+        };
         addons = { wallpapers = enabled; };
       };
 
       apps = {
-        firefox = enabled;
         gparted = enabled;
       };
     };

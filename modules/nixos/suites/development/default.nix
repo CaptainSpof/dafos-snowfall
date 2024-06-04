@@ -49,15 +49,10 @@ in
     dafos = {
       apps = {
         emacs = enabled;
-        vscode = enabled;
-      };
-
-      cli-apps = {
-        neovim = enabled;
       };
 
       tools = {
-        aws.enable = cfg.aws.enable;
+        # aws.enable = cfg.aws.enable;
         direnv = enabled;
         http = enabled;
         k8s.enable = cfg.kubernetesEnable;
