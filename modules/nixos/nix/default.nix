@@ -78,11 +78,7 @@ in
               [ cfg.default-substituter.key ]
               ++
               (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
-
-          } // (lib.optionalAttrs config.${namespace}.tools.direnv.enable {
-            keep-outputs = true;
-            keep-derivations = true;
-          });
+          };
 
           gc = {
             automatic = true;

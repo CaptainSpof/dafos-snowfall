@@ -9,7 +9,6 @@ with lib.${namespace};
     tools = {
       misc = enabled;
       git = enabled;
-      http = enabled;
     };
 
     security = { doas = disabled; };

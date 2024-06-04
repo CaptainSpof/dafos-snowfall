@@ -12,7 +12,6 @@ with lib.${namespace};
 
     apps = {
       firefox = enabled;
-      gparted = enabled;
     };
 
     desktop = {
@@ -28,9 +27,7 @@ with lib.${namespace};
     };
 
     tools = {
-      k8s = enabled;
       git = enabled;
-      http = enabled;
       misc = enabled;
       lang = {
         nix = enabled;

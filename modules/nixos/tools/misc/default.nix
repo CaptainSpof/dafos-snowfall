@@ -10,33 +10,23 @@ in
   };
 
   config = mkIf cfg.enable {
-    dafos.home.configFile."wgetrc".text = "";
-
     environment.systemPackages = with pkgs; [
+      coreutils
+      curl
       duf
       fd
       file
+      findutils
       fzf
       jq
       killall
+      lsof
+      pciutils
       procs
-      unzip
       unrar
+      unzip
       wget
+      xclip
     ];
-
-    dafos.home.extraOptions = {
-      programs.less = {
-        enable = true;
-        keys = ''
-          c   next-tag
-          C   prev-tag
-          t   forw-line
-          s   back-line
-          T   forw-scroll
-          S   back-scroll
-        '';
-      };
-    };
   };
 }

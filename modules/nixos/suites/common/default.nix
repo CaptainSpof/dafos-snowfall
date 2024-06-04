@@ -12,6 +12,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      appimage-run
       cifs-utils
       dafos.list-iommu
       powertop
@@ -59,9 +60,7 @@ in
 
       tools = {
         comma = enabled;
-        fup-repl = enabled;
         git = enabled;
-        http = enabled;
         misc = enabled;
         nix-ld = enabled;
       };

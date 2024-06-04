@@ -16,7 +16,6 @@ in
       desktop = enabled;
       games = enabled;
       social = enabled;
-      media = enabled;
     };
   };
 }

@@ -43,6 +43,13 @@ in
         aws.enable = true;
       };
       games = enabled;
+      graphics = {
+        enable = true;
+        drawing.enable = true;
+      };
+      music = enabled;
+      office = enabled;
+      video = enabled;
     };
   };
 }

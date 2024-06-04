@@ -49,10 +49,7 @@ in
 
       tools = {
         comma = enabled;
-        direnv = enabled;
-        fup-repl = enabled;
         git = enabled;
-        http = enabled;
       };
     };
   };

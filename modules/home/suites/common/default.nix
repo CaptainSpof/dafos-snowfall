@@ -37,8 +37,10 @@ in
             bottom = enabled;
             direnv = enabled;
             eza = enabled;
+            fup-repl = enabled;
             git = enabled;
             home-manager = enabled;
+            less = enabled;
             ripgrep = enabled;
             starship = enabled;
             zellij = enabled;

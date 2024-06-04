@@ -20,15 +20,7 @@ in
         common = enabled;
         desktop = enabled;
         development = enabled;
-        art = enabled;
-        video = enabled;
         social = enabled;
-        media = enabled;
-        music = enabled;
-      };
-
-      tools = {
-        appimage-run = enabled;
       };
     };
   };

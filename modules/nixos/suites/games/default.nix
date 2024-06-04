@@ -5,13 +5,8 @@ with lib.${namespace};
 let
   cfg = config.${namespace}.suites.games;
   apps = {
-    bottles = enabled;
-    gamemode = enabled;
-    lutris = enabled;
     prismlauncher = enabled;
-    protontricks = enabled;
     steam = enabled;
-    winetricks = enabled;
   };
 in
 {

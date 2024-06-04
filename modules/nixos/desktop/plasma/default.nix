@@ -11,10 +11,7 @@ let
   #   ${pkgs.gnused}/bin/sed -i 's/${cfg.bluetoothAdapter}_powered=false/${cfg.bluetoothAdapter}_powered=true/g' ${home-directory}/.config/bluedevilglobalrc
   # '';
 
-  defaultPackages = with pkgs.kdePackages; [
-    # Apps
-    filelight
-  ] ++ (with pkgs; [
+  defaultPackages = (with pkgs; [
     # Themes
     dafos.kde-warm-eyes
     dafos.lightly-qt6

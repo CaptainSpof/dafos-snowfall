@@ -39,12 +39,8 @@ in
     };
 
     suites = {
-      art = mkForce disabled;
       desktop = enabled;
       social = mkForce disabled;
-      video = {
-        enable = true;
-      };
       yahrr = enabled;
     };
 
@@ -54,18 +50,6 @@ in
 
     home.extraOptions = {
       imports = [ plasma-manager.homeManagerModules.plasma-manager ];
-
-      programs.plasma = {
-        configFile = {
-          # disable screensaver
-          # "kscreenlockerrc"."Daemon"."Autolock" = false;
-          # "kscreenlockerrc"."Daemon"."LockOnResume" = false;
-          # touchpad settings
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."NaturalScroll" = true;
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."PointerAccelerationProfile" = 1;
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."TapToClick" = true;
-        };
-      };
     };
   };
 

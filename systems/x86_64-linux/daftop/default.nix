@@ -31,6 +31,14 @@ with lib.${namespace};
             "Yes"
           ];
         };
+        panels = {
+          launchers = [
+            "applications:org.kde.dolphin.desktop"
+            "applications:firefox-beta.desktop"
+            "applications:kitty.desktop"
+            "applications:emacsclient.desktop"
+          ];
+        };
       };
     };
 
@@ -38,12 +46,7 @@ with lib.${namespace};
 
     suites = {
       desktop = enabled;
-      office = enabled;
       development = enabled;
-      video = {
-        enable = true;
-        recording = enabled;
-      };
     };
 
     system = { kanata = enabled; };

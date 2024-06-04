@@ -11,7 +11,7 @@ in
     aws.enable = mkBoolOpt false "Whether or not to enable aws development configuration.";
     docker.enable = mkBoolOpt false "Whether or not to enable docker development configuration.";
     kubernetes.enable = mkBoolOpt false "Whether or not to enable kubernetes development configuration.";
-    nix.enable = mkBoolOpt false "Whether or not to enable nix development configuration.";
+    nix.enable = mkBoolOpt true "Whether or not to enable nix development configuration.";
     sql.enable = mkBoolOpt false "Whether or not to enable sql development configuration.";
   };
 
@@ -24,13 +24,20 @@ in
           onefetch
           postman
           github-desktop
+          tokei # need to know how many lines of poorly written code you typed ? 🦀
           wildcard
         ]
         ++ lib.optionals cfg.nix.enable [
+          alejandra
+          deadnix
+          nil
+          nix-update
+          nixfmt-classic
+          nixpkgs-fmt
+          nixpkgs-hammering
           nixpkgs-hammering
           nixpkgs-lint-community
           nixpkgs-review
-          nix-update
         ]
         ++ lib.optionals cfg.sql.enable [
           dbeaver-bin

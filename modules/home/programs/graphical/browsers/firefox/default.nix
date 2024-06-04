@@ -51,7 +51,13 @@ in
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox-beta;
+      package = pkgs.firefox-beta.override (orig: {
+        nativeMessagingHosts =
+          (orig.nativeMessagingHosts or [ ]) ++ [
+            pkgs.tridactyl-native
+          ];
+      });
+      # package = pkgs.firefox-beta;
 
       policies = {
         CaptivePortal = false;
@@ -136,7 +142,7 @@ in
         ];
 
         search = {
-          default = "Google";
+          default = "DuckDuckGo";
           privateDefault = "DuckDuckGo";
           force = true;
         };

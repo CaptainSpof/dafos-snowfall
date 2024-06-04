@@ -28,11 +28,6 @@ in {
     suites = {
       desktop = enabled;
       development = { enable = true; };
-      office = enabled;
-      video = {
-        enable = true;
-        recording = enabled;
-      };
     };
 
     system = { kanata = enabled; };

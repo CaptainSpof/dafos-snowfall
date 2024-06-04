@@ -13,7 +13,6 @@ with lib.${namespace};
     tools = {
       git = enabled;
       misc = enabled;
-      http = enabled;
       lang = {
         node = enabled;
         nix = enabled;
