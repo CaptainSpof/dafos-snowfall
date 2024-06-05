@@ -20,11 +20,9 @@ in {
     initrd = {
       availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
-      kernelModules = [ "amdgpu" ];
       luks.devices."crypted".device =
         "/dev/disk/by-uuid/2740b97b-a34c-43d5-9a5b-bb86521690ca";
     };
-    kernelModules = [ "tcp_bbr" "kvm-amd" "uhid" ];
   };
 
   fileSystems = {

@@ -42,6 +42,11 @@ with lib.${namespace};
       };
     };
 
+    hardware = {
+      cpu.amd = enabled;
+      gpu.amd = enabled;
+    };
+
     security = { gpg = mkForce disabled; };
 
     suites = {
