@@ -4,7 +4,8 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.apps.discord;
-in {
+in
+{
   options.${namespace}.apps.discord = {
     enable = mkBoolOpt false "Whether or not to enable Discord.";
     canary.enable = mkBoolOpt false "Whether or not to enable Discord Canary.";

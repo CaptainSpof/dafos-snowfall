@@ -26,22 +26,26 @@ in
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/0c5fdf84-5560-4d25-888b-1788147d0c2c";
+    {
+      device = "/dev/disk/by-uuid/0c5fdf84-5560-4d25-888b-1788147d0c2c";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D0D5-28D9";
+    {
+      device = "/dev/disk/by-uuid/D0D5-28D9";
       fsType = "vfat";
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/d5455556-00a8-401b-8c06-294f431fa6ee";
+    {
+      device = "/dev/disk/by-uuid/d5455556-00a8-401b-8c06-294f431fa6ee";
       fsType = "ext4";
     };
 
   fileSystems."/mnt/videos" =
-    { device = "//192.168.0.254/Freebox/Vidéos";
+    {
+      device = "//192.168.0.254/Freebox/Vidéos";
       fsType = "cifs";
       options = [
         "guest"

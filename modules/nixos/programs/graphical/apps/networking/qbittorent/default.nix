@@ -16,8 +16,8 @@ in
 
     systemd.services.qbittorrent = mkIf cfg.nox.enable {
       description = "qBittorrent (headless)";
-      wantedBy = ["multi-user.target"];
-      after = ["network.target"];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" ];
 
       serviceConfig = {
         ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";

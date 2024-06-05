@@ -21,10 +21,10 @@ in
         '';
 
         interactiveShellInit = ''
-        set fzf_history_opts "--bind=ctrl-r:toggle-sort,ctrl-z:ignore"
-        set -a fzf_history_opts "--nth=4.."
-        bind \cr _fzf_search_history # HACK: override CTRL+R binding to the one defined in fzf.fish plugin
-      '';
+          set fzf_history_opts "--bind=ctrl-r:toggle-sort,ctrl-z:ignore"
+          set -a fzf_history_opts "--nth=4.."
+          bind \cr _fzf_search_history # HACK: override CTRL+R binding to the one defined in fzf.fish plugin
+        '';
 
         functions = {
           fish_greeting = ''

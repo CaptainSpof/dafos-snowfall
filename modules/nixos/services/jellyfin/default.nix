@@ -4,7 +4,8 @@ let
   cfg = config.${namespace}.services.jellyfin;
   username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
 
   options.${namespace}.services.jellyfin = {
     enable = mkEnableOption "Whether or not to configure Jellyfin";

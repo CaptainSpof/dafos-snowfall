@@ -35,7 +35,6 @@ in
           nixfmt-classic
           nixpkgs-fmt
           nixpkgs-hammering
-          nixpkgs-hammering
           nixpkgs-lint-community
           nixpkgs-review
         ]

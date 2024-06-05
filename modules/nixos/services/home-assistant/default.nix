@@ -15,9 +15,9 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    environment.systemPackages = with pkgs; [
-      ffmpeg_5
-    ];
+    # environment.systemPackages = with pkgs; [
+    #   ffmpeg_5
+    # ];
 
     services.mosquitto = {
       enable = true;
@@ -51,8 +51,8 @@ in
     services.home-assistant = {
       enable = true;
       extraComponents = [
-	      "radarr"
-	      "sonarr"
+        "radarr"
+        "sonarr"
         "apple_tv"
         "backup"
         "cast"

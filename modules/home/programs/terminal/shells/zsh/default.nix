@@ -31,9 +31,9 @@ in
 
           # Improved vim bindings.
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        ''+ optionalString cfg.prompt-init ''
-              ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
-            '';
+        '' + optionalString cfg.prompt-init ''
+          ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
+        '';
 
         shellAliases = {
           say = "${pkgs.toilet}/bin/toilet -f pagga";

@@ -4,7 +4,8 @@ let
   cfg = config.${namespace}.services.mealie;
 
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${namespace}.services.mealie = {
     enable = mkEnableOption "Whether or not to configure Mealie";
   };

@@ -23,7 +23,7 @@ let
         remote = other-hosts.${name};
         remote-user-name = remote.config.${namespace}.user.name;
       in
-        ''
+      ''
         Host ${name}
           IdentityFile ~/.ssh/daf@${host}.pem
           IdentitiesOnly yes

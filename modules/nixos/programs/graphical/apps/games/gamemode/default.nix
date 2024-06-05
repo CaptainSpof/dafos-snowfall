@@ -4,7 +4,8 @@ let
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.apps.gamemode;
-in {
+in
+{
   options.${namespace}.apps.gamemode = with types; {
     enable = mkBoolOpt false "Whether or not to enable gamemode.";
     endscript =

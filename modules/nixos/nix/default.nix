@@ -21,9 +21,10 @@ in
       key = mkOpt str "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "The trusted public key for the substituter.";
     };
 
-    extra-substituters = mkOpt (attrsOf substituters-submodule) {
-      "https://viperml.cachix.org" = { key = "viperml.cachix.org-1:qZhKBMTfmcLL+OG6fj/hzsMEedgKvZVFRRAhq7j8Vh8="; };
-    } "Extra substituters to configure.";
+    extra-substituters = mkOpt (attrsOf substituters-submodule)
+      {
+        "https://viperml.cachix.org" = { key = "viperml.cachix.org-1:qZhKBMTfmcLL+OG6fj/hzsMEedgKvZVFRRAhq7j8Vh8="; };
+      } "Extra substituters to configure.";
   };
 
   config = mkIf cfg.enable {
@@ -54,42 +55,43 @@ in
     };
 
     nix =
-      let users = [ "root" config.${namespace}.user.name ] ++
-                  optional config.services.hydra.enable "hydra";
+      let
+        users = [ "root" config.${namespace}.user.name ] ++
+          optional config.services.hydra.enable "hydra";
       in
-        {
-          package = cfg.package;
+      {
+        package = cfg.package;
 
-          settings = {
-            experimental-features = "nix-command flakes";
-            http-connections = 50;
-            warn-dirty = false;
-            log-lines = 50;
-            sandbox = "relaxed";
-            auto-optimise-store = true;
-            trusted-users = users;
-            allowed-users = users;
+        settings = {
+          experimental-features = "nix-command flakes";
+          http-connections = 50;
+          warn-dirty = false;
+          log-lines = 50;
+          sandbox = "relaxed";
+          auto-optimise-store = true;
+          trusted-users = users;
+          allowed-users = users;
 
-            substituters =
-              [ cfg.default-substituter.url ]
-              ++
-              (mapAttrsToList (name: _value: name) cfg.extra-substituters);
-            trusted-public-keys =
-              [ cfg.default-substituter.key ]
-              ++
-              (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
-          };
-
-          gc = {
-            automatic = true;
-            dates = "weekly";
-            options = "--delete-older-than 30d";
-          };
-
-          # flake-utils-plus
-          generateRegistryFromInputs = true;
-          generateNixPathFromInputs = true;
-          linkInputs = true;
+          substituters =
+            [ cfg.default-substituter.url ]
+            ++
+            (mapAttrsToList (name: _value: name) cfg.extra-substituters);
+          trusted-public-keys =
+            [ cfg.default-substituter.key ]
+            ++
+            (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
         };
+
+        gc = {
+          automatic = true;
+          dates = "weekly";
+          options = "--delete-older-than 30d";
+        };
+
+        # flake-utils-plus
+        generateRegistryFromInputs = true;
+        generateNixPathFromInputs = true;
+        linkInputs = true;
+      };
   };
 }

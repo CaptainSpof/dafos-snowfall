@@ -8,7 +8,7 @@ in
 {
   options.${namespace}.desktop.plasma.config = with types; {
     enable = mkBoolOpt true "Whether or not to configure plasma config.";
-    virtualDesktopsNames = mkOpt (listOf str) [ "Desktop 1" "Desktop 2" "Desktop 3" "Desktop 4"] "The names to give to the virtual desktops";
+    virtualDesktopsNames = mkOpt (listOf str) [ "Desktop 1" "Desktop 2" "Desktop 3" "Desktop 4" ] "The names to give to the virtual desktops";
   };
 
   config = mkIf cfg.enable {

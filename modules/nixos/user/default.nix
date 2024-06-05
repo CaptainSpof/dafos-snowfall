@@ -18,9 +18,10 @@ let
     passthru = { fileName = defaultIconFileName; };
 
   };
-  propagatedIcon = pkgs.runCommandNoCC "propagated-icon" {
-    passthru = { fileName = cfg.icon.fileName; };
-  } ''
+  propagatedIcon = pkgs.runCommandNoCC "propagated-icon"
+    {
+      passthru = { fileName = cfg.icon.fileName; };
+    } ''
     local target="$out/share/dafos-icons/user/${cfg.name}"
     mkdir -p "$target"
 
@@ -40,7 +41,8 @@ let
   };
   username = "daf";
   shell = pkgs.fish;
-in {
+in
+{
   options.${namespace}.user = {
     name = mkOpt types.str username "The name to use for the user account.";
     fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";

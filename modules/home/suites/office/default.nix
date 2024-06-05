@@ -4,7 +4,8 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.suites.office;
-in {
+in
+{
   options.${namespace}.suites.office = with types; {
     enable = mkBoolOpt false "Whether or not to enable office configuration.";
     onlyoffice.enable = mkBoolOpt false "Whether or not to enable onlyoffice configuration.";

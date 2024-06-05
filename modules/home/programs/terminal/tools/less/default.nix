@@ -1,4 +1,4 @@
-{ config , lib , namespace, ...}:
+{ config, lib, namespace, ... }:
 
 let
   inherit (lib) mkIf;
@@ -15,13 +15,13 @@ in
     programs.less = {
       enable = true;
       keys = ''
-          c   next-tag
-          C   prev-tag
-          t   forw-line
-          s   back-line
-          T   forw-scroll
-          S   back-scroll
-        '';
+        c   next-tag
+        C   prev-tag
+        t   forw-line
+        s   back-line
+        T   forw-scroll
+        S   back-scroll
+      '';
     };
   };
 }

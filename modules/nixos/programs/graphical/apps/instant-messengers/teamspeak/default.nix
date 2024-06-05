@@ -4,7 +4,8 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.apps.teamspeak;
-in {
+in
+{
   options.${namespace}.apps.teamspeak = {
     enable = mkBoolOpt false "Whether or not to enable TeamSpeak.";
   };

@@ -37,8 +37,8 @@ in
                       label = "CPU Usage";
                     }
                   ];
-                  totalSensors = ["cpu/all/usage"];
-                  textOnlySensors = ["cpu/all/averageTemperature" "cpu/all/averageFrequency"];
+                  totalSensors = [ "cpu/all/usage" ];
+                  textOnlySensors = [ "cpu/all/averageTemperature" "cpu/all/averageFrequency" ];
                 };
               }
               {
@@ -52,14 +52,14 @@ in
                       label = "Memory Usage";
                     }
                   ];
-                  totalSensors = ["memory/physical/usedPercent"];
-                  textOnlySensors = ["memory/physical/used" "memory/physical/total"];
+                  totalSensors = [ "memory/physical/usedPercent" ];
+                  textOnlySensors = [ "memory/physical/used" "memory/physical/total" ];
                 };
               }
               "org.kde.plasma.panelspacer"
               "org.kde.plasma.marginsseparator"
               {
-        name = "org.kde.plasma.icontasks";
+                name = "org.kde.plasma.icontasks";
                 config = {
                   General = {
                     launchers = cfg.launchers;
@@ -72,8 +72,8 @@ in
                 systemTray = {
                   icons.scaleToFit = true;
                   items = {
-                    shown = ["org.kde.plasma.battery"];
-                    hidden = [];
+                    shown = [ "org.kde.plasma.battery" ];
+                    hidden = [ ];
                     configs = {
                       battery.showPercentage = true;
                     };

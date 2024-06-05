@@ -1,9 +1,8 @@
-{
-  inputs,
-  mkShell,
-  pkgs,
-  system,
-  ...
+{ inputs
+, mkShell
+, pkgs
+, system
+, ...
 }:
 let
   inherit (inputs) snowfall-flake;

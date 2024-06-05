@@ -19,7 +19,7 @@ in
         theme = "everforest_dark";
         editor = {
           indent-guides.enable = true;
-          
+
           cursor-shape = {
             insert = "bar";
             normal = "block";
@@ -172,8 +172,8 @@ in
 
         keys.insert."à" = {
           t = "normal_mode";
-          s = [":write"];
-          q = [":write-quit"];
+          s = [ ":write" ];
+          q = [ ":write-quit" ];
         };
       };
     };

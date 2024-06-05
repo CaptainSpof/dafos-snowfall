@@ -6,7 +6,8 @@ let
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
   fontTerm = config.${namespace}.user.font.term;
   themeDark = config.${namespace}.user.theme.dark;
-in {
+in
+{
   options.${namespace}.programs.terminal.emulators.kitty = with types; {
     enable = mkBoolOpt false "Whether or not to enable Kitty.";
   };

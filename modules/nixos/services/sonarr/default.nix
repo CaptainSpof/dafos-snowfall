@@ -5,7 +5,8 @@ let
 
   username = config.${namespace}.user.name;
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${namespace}.services.sonarr = {
     enable = mkEnableOption "Whether or not to configure Sonarr";
   };

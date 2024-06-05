@@ -6,7 +6,8 @@ let
   username = config.${namespace}.user.name;
 
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.${namespace}.services.readarr = {
     enable = mkEnableOption "Whether or not to configure Readarr";
   };
