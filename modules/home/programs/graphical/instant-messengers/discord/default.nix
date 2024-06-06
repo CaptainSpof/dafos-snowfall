@@ -1,12 +1,12 @@
 { config, lib, pkgs, namespace, ... }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.apps.discord;
+  cfg = config.${namespace}.programs.graphical.instant-messengers.discord;
 in
 {
-  options.${namespace}.apps.discord = {
+  options.${namespace}.programs.graphical.instant-messengers.discord = {
     enable = mkBoolOpt false "Whether or not to enable Discord.";
     canary.enable = mkBoolOpt false "Whether or not to enable Discord Canary.";
     firefox.enable = mkBoolOpt false
@@ -15,16 +15,16 @@ in
 
   config = mkIf cfg.enable {
 
-    environment.systemPackages = lib.optional cfg.enable pkgs.discord
+    home.packages = lib.optional cfg.enable pkgs.discord
       ++ lib.optional cfg.canary.enable pkgs.dafos.discord
       ++ lib.optional cfg.firefox.enable pkgs.dafos.discord-firefox;
 
-    system.userActivationScripts = {
-      postInstall = ''
-        echo "Running betterdiscord install"
-        source ${config.system.build.setEnvironment}
-        ${getExe pkgs.betterdiscordctl} install || true
-      '';
-    };
+    # system.userActivationScripts = {
+    #   postInstall = ''
+    #     echo "Running betterdiscord install"
+    #     source ${config.system.build.setEnvironment}
+    #     ${getExe pkgs.betterdiscordctl} install || true
+    #   '';
+    # };
   };
 }

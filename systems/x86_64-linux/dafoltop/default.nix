@@ -40,7 +40,7 @@ in
 
     suites = {
       desktop = enabled;
-      social = mkForce disabled;
+      # social = mkForce disabled;
       yahrr = enabled;
     };
 

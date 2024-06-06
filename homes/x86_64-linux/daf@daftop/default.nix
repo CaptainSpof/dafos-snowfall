@@ -27,6 +27,9 @@ in
             };
           };
         };
+        instant-messengers = {
+          teamspeak.enable = lib.mkForce false;
+        };
       };
 
       terminal = {
@@ -38,17 +41,22 @@ in
 
     suites = {
       common = enabled;
+
       development = {
         enable = true;
         aws.enable = true;
       };
+
       games = enabled;
+
       graphics = {
         enable = true;
         drawing.enable = true;
       };
+
       music = enabled;
       office = enabled;
+      social = enabled;
       video = enabled;
     };
   };

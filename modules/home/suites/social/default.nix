@@ -10,7 +10,7 @@ in {
 
   config = mkIf cfg.enable {
     dafos = {
-      apps = {
+      programs.graphical.instant-messengers = {
         discord = enabled;
         element = disabled;
         telegram = enabled;
