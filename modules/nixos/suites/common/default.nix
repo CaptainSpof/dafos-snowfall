@@ -26,6 +26,7 @@ in
           tools = {
             bandwhich = enabled;
             flake = enabled;
+            nix-ld = enabled;
           };
         };
       };
@@ -56,13 +57,6 @@ in
         networking = enabled;
         time = enabled;
         xkb = enabled;
-      };
-
-      tools = {
-        comma = enabled;
-        git = enabled;
-        misc = enabled;
-        nix-ld = enabled;
       };
     };
   };

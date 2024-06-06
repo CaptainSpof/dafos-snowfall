@@ -34,7 +34,7 @@ bind S tabnext
 
 # Mode
 bind , mode ignore
-bind --mode=ignore <esc> mode normal
+# bind --mode=ignore <esc> mode normal
 bind --mode=ignore <C-g> mode normal
 
 # Scrolling

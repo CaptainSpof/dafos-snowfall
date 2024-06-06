@@ -40,6 +40,10 @@
     snowfall-flake.url = "github:snowfallorg/flake";
     snowfall-flake.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Weekly updating nix-index database
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     # Comma
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
@@ -97,6 +101,10 @@
         snowfall-flake.overlays.default
         nuenv.overlays.default
         nur.overlay
+      ];
+
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
       ];
 
       systems.modules.nixos = with inputs; [

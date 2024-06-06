@@ -18,8 +18,8 @@ in
 
     services.kanata.keyboards."bepo".config = ''
       (defvar
-        tap-timeout   200
-        hold-timeout  250
+        tap-timeout   150
+        hold-timeout  300
         tt $tap-timeout
         ht $hold-timeout
       )

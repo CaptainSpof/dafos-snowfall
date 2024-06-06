@@ -1,4 +1,4 @@
-{ config, lib, namespace, ... }:
+{ config, lib, namespace, pkgs, ... }:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
@@ -11,6 +11,25 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    home.packages = with pkgs; [
+      coreutils
+      curl
+      duf
+      fd
+      file
+      findutils
+      fzf
+      jq
+      killall
+      lsof
+      pciutils
+      procs
+      unrar
+      unzip
+      wget
+      xclip
+    ];
 
     dafos = {
       programs = {
@@ -35,6 +54,7 @@ in
           tools = {
             bat = enabled;
             bottom = enabled;
+            comma = enabled;
             direnv = enabled;
             eza = enabled;
             fup-repl = enabled;

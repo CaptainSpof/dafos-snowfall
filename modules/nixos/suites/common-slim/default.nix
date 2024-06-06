@@ -46,11 +46,6 @@ in
         time = enabled;
         xkb = enabled;
       };
-
-      tools = {
-        comma = enabled;
-        git = enabled;
-      };
     };
   };
 }
