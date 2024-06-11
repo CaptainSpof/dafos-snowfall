@@ -1,10 +1,7 @@
-{ config, inputs, lib, namespace, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
 with lib.${namespace};
-let
-  inherit (inputs) plasma-manager;
-in
 {
   imports = [
     ./hardware.nix
@@ -40,16 +37,11 @@ in
 
     suites = {
       desktop = enabled;
-      # social = mkForce disabled;
       yahrr = enabled;
     };
 
     system = {
       kanata = enabled;
-    };
-
-    home.extraOptions = {
-      imports = [ plasma-manager.homeManagerModules.plasma-manager ];
     };
   };
 
