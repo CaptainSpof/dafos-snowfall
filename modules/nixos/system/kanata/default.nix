@@ -34,6 +34,7 @@ in
       )
 
       (defsrc
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
         tab     q    w    e    r    t    y    u    i    o    p    [    ]
         caps    a    s    d    f    g    h    j    k    l    ;    '    ret
@@ -53,13 +54,16 @@ in
         ;; tap within $tt for esc, hold more than $ht for lctl
         cap      (tap-hold $tt $ht esc lctl)
         rbspc    (tap-hold-release $tt $ht up bspc)
-        lMf      (tap-hold-release $tt $ht f lmet)
-        lCd      (tap-hold-release $tt $ht d lctrl)
+
+        ;; home row mode
+        lMf      (tap-hold-release $tt $ht f lmet)  ;; e
+        lCd      (tap-hold-release $tt $ht d lctrl) ;; i
+        aars     (tap-hold-release $tt $ht a @ars)  ;; a
+        ;ars     (tap-hold-release $tt $ht ; @ars)  ;; n
+
         rSspc    (tap-hold-release $tt $ht spc rsft)
         <ars     (tap-hold-release $tt $ht RA-à @ars)
         rAbspc   (tap-hold-release $tt $ht bspc ralt)
-        aars     (tap-hold-release $tt $ht a @ars)
-        ;ars     (tap-hold-release $tt $ht ; @ars)
         grv      (tap-hold-release $tt $ht (tap-dance $tt (grv @default)) @lsw)
       )
 
@@ -82,6 +86,7 @@ in
       )
 
       (deflayer bepow
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
         _     _     _     _     _    'w     _     _     _     _     _     à     è
         @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
@@ -90,6 +95,7 @@ in
       )
 
       (deflayer layers-switcher
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @grv  @default   @qwe   @gam   @bas _     _     _     _     _     _     _     _     _
         _     _     _     _     _     _     _     _     _     _     _     _     _
         _     _     _     _     _     _     _     _     _     _     _     _     _
@@ -98,11 +104,12 @@ in
       )
 
       (deflayer arrows-symbols
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @`     f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12     _
         _     @|     @/     @'lp   @'rp   _      _      pgdn   pgup   _      _       _       _
         _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
         _     _      @\     _      @{     @}     @~     _      _      home   end     _       _
-        _     _     _                     @_                           _     _
+        _     _     _                     bspc                           _     _
       )
 
       (defalias
@@ -147,6 +154,7 @@ in
       )
 
       (deflayer qwerty
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
         tab     @'q    'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
         caps    @'a    @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
@@ -155,6 +163,7 @@ in
       )
 
       (deflayer gaming
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
         tab     @'q    up    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
         caps    left   down  rght   @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
@@ -163,6 +172,7 @@ in
       )
 
       (deflayer basic
+        esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
         @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
         _     _     _     _     _     _     _     _     _     _     _     _     _
         _     _     _     _     _     _     _     _     _     _     _     _     _

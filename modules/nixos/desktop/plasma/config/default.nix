@@ -41,14 +41,16 @@ in
           ## Peripherals
 
           # Tablet settings
-          kcminputrc."ButtonRebinds.Tablet.Wacom Intuos BT S Pad"."0" = "Key,Ctrl+Z";
-          kcminputrc."ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."0" = "Key,Ctrl+Z";
-          kcminputrc."ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."6" = "Key,Ctrl+Z";
-          kcminputrc."Libinput.1386.914.Wacom Intuos Pro S Finger"."NaturalScroll" = true;
-          kcminputrc."Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
-          # Mouse settings
-          kcminputrc."Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
-          kcminputrc.Mouse."X11LibInputXAccelProfileFlat" = false;
+          kcminputrc = {
+            "ButtonRebinds.Tablet.Wacom Intuos BT S Pad"."0" = "Key,Ctrl+Z";
+            "ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."0" = "Key,Ctrl+Z";
+            "ButtonRebinds.Tablet.Wacom Intuos Pro S Pad"."6" = "Key,Ctrl+Z";
+            "Libinput.1386.914.Wacom Intuos Pro S Finger"."NaturalScroll" = true;
+            "Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
+            # Mouse settings
+            "Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
+            Mouse."X11LibInputXAccelProfileFlat" = false;
+          };
 
           kdeglobals.KDE.widgetStyle = "Lightly";
 
@@ -75,15 +77,13 @@ in
               FocusPolicy = "FocusFollowsMouse";
               NextFocusPrefersMouse = true;
             };
+            "org.kde.kdecoration2" = {
+              BorderSize = "Tiny";
+              BorderSizeAuto = false;
+              library = "org.kde.breeze";
+              theme = "Breeze";
+            };
           };
-
-          #   "kwinrc"."MouseBindings"."CommandAllWheel" = "Previous/Next Desktop";
-          #   "kwinrc"."Xwayland"."Scale" = 2;
-          #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSize" = "Tiny";
-          #   "kwinrc"."org\\.kde\\.kdecoration2"."BorderSizeAuto" = false;
-          #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnLeft" = "XAI";
-          #   "kwinrc"."org\\.kde\\.kdecoration2"."ButtonsOnRight" = "NHMS";
-          #   "kwinrc"."org\\.kde\\.kdecoration2"."ShowToolTips" = false;
 
           krunnerrc = {
             General.FreeFloating.value = true;
@@ -135,7 +135,6 @@ in
         #   "klipperrc"."General"."IgnoreImages" = false;
         #   "klipperrc"."General"."MaxClipItems" = 30;
 
-        #   "krunnerrc"."Plugins"."appstreamEnabled" = false;
         #   "krunnerrc"."Runners.CharacterRunner"."aliases" = "ar";
         #   "krunnerrc"."Runners.CharacterRunner"."codes" = 002192;
         #   "krunnerrc"."Runners.CharacterRunner"."triggerWord" = "$";
