@@ -57,7 +57,6 @@ in
             pkgs.tridactyl-native
           ];
       });
-      # package = pkgs.firefox-beta;
 
       policies = {
         CaptivePortal = false;
@@ -142,7 +141,7 @@ in
         ];
 
         search = {
-          default = "DuckDuckGo";
+          default = "Google";
           privateDefault = "DuckDuckGo";
           force = true;
         };
