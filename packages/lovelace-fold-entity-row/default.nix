@@ -26,8 +26,8 @@ stdenvNoCC.mkDerivation rec {
   passthru.entrypoint = "fold-entity-row.js";
 
   meta = with lib; {
-    description = "";
-    homepage = "";
+    description = "🔹 A foldable row for entities card, containing other rows";
+    homepage = "https://github.com/thomasloven/lovelace-fold-entity-row";
     license = licenses.mit;
   };
 }

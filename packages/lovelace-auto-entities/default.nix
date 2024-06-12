@@ -5,13 +5,13 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "lovelace-auto-entities";
-  version = "1.12.1";
+  version = "1.13.0";
 
   src = fetchFromGitHub {
     owner = "thomasloven";
     repo = "lovelace-auto-entities";
-    rev = "refs/tags/${version}";
-    hash = "sha256-yeIgE1YREmCKdjHAWlUf7RfDZfC+ww3+jR/8AdKtZ7U=";
+    rev = "refs/tags/v${version}";
+    hash = "sha256-ls8Jqt5SdiY5ROhtaSS4ZvoY+nHv6UB1RYApOJzC1VQ=";
   };
 
   dontBuild = true;

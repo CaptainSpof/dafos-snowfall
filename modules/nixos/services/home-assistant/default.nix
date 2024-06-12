@@ -90,6 +90,7 @@ in
 
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
         button-card
+        card-mod
         mini-graph-card
         mini-media-player
         multiple-entity-row
@@ -111,6 +112,10 @@ in
           }
           {
             url = "/local/nixos-lovelace-modules/layout-card.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/card-mod.js";
             type = "module";
           }
           {
