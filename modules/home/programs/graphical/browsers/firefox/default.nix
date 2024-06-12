@@ -51,6 +51,7 @@ in
 
     programs.firefox = {
       enable = true;
+
       package = pkgs.firefox-beta.override (orig: {
         nativeMessagingHosts =
           (orig.nativeMessagingHosts or [ ]) ++ [
@@ -70,12 +71,15 @@ in
           Pocket = false;
           Snippets = false;
         };
+
         PasswordManagerEnabled = false;
         # PromptForDownloadLocation = true;
+
         UserMessaging = {
           ExtensionRecommendations = false;
           SkipOnboarding = true;
         };
+
         ExtensionSettings = {
           "ebay@search.mozilla.org".installation_mode = "blocked";
           "amazondotcom@search.mozilla.org".installation_mode = "blocked";

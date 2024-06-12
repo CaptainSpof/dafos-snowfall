@@ -20,7 +20,6 @@ with lib.${namespace};
     desktop = {
       plasma = {
         touchScreen = true;
-        bluetoothAdapter = "A4:F9:33:0E:06:BD";
         autoLoginUser = config.${namespace}.user.name;
         config = {
           virtualDesktopsNames = [

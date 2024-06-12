@@ -19,7 +19,6 @@ with lib.${namespace};
 
     desktop = {
       plasma = {
-        bluetoothAdapter = "74:97:79:D8:5B:D2";
         autoLoginUser = config.${namespace}.user.name;
         config = {
           virtualDesktopsNames = [
