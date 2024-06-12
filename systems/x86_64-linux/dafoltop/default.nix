@@ -3,9 +3,7 @@
 with lib;
 with lib.${namespace};
 {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -20,15 +18,11 @@ with lib.${namespace};
       workstation = enabled;
     };
 
-    apps = {
-      qbittorrent = enabled;
-    };
+    apps = { qbittorrent = enabled; };
 
     desktop.plasma.autoLoginUser = config.${namespace}.user.name;
 
-    security = {
-      gpg = mkForce disabled;
-    };
+    security.gpg = mkForce disabled;
 
     services = {
       home-assistant = enabled;
@@ -40,9 +34,7 @@ with lib.${namespace};
       yahrr = enabled;
     };
 
-    system = {
-      kanata = enabled;
-    };
+    system = { kanata = enabled; };
   };
 
   # This value determines the NixOS release from which the default

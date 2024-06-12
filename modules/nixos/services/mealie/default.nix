@@ -10,5 +10,12 @@ in
     enable = mkEnableOption "Whether or not to configure Mealie";
   };
 
-  config = mkIf cfg.enable { services.mealie = { enable = true; }; };
+  config = mkIf cfg.enable {
+    services.mealie = {
+      enable = true;
+      settings = {
+        BASE_URL = "http://localhost:9000";
+      };
+    };
+  };
 }

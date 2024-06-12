@@ -37,6 +37,9 @@ in
           browsers = {
             firefox = enabled;
           };
+          editors = {
+            emacs = enabled;
+          };
         };
 
         terminal = {
