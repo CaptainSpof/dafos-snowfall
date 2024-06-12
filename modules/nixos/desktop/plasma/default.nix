@@ -30,7 +30,6 @@ in
       electron-support = enabled;
     };
 
-
     environment.systemPackages = with pkgs; [
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
@@ -44,11 +43,12 @@ in
       desktopManager.plasma6.enable = true;
 
       displayManager = {
-        defaultSession = mkIf cfg.wayland "plasma";
         autoLogin = lib.optionalAttrs (cfg.autoLoginUser != "") {
           enable = true;
           user = cfg.autoLoginUser;
         };
+        defaultSession = mkIf cfg.wayland "plasma";
+        sddm.enable = true;
       };
 
       libinput.enable = true;
