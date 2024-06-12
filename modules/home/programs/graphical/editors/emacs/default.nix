@@ -25,15 +25,18 @@ in
       extraPackages = (epkgs: with epkgs; [ vterm pdf-tools sqlite ]);
     };
 
-    home.packages = with pkgs; [
-      djvu2pdf
-      gcc
-      sqlite
-      cmake
-      texlive.combined.scheme-full
-      (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
-    ];
+    home = {
+      packages = with pkgs; [
+        djvu2pdf
+        gcc
+        sqlite
+        cmake
+        texlive.combined.scheme-full
+        (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
+      ];
 
-    home.shellAliases = { "ne" = "emacsclient -nw"; };
+      sessionPath = [ "$XDG_CONFIG_HOME/emacs/bin" ];
+      shellAliases = { "ne" = "emacsclient -nw"; };
+    };
   };
 }

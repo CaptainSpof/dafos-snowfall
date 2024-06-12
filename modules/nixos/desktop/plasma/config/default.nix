@@ -25,7 +25,7 @@ in
         };
 
         kwin = {
-          effects.shakeCursor.enable = true;
+          effects.shakeCursor.enable = false;
           virtualDesktops = {
             animation = "slide";
             rows = 1;
