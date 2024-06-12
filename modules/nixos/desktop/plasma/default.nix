@@ -48,7 +48,6 @@ in
           user = cfg.autoLoginUser;
         };
         defaultSession = mkIf cfg.wayland "plasma";
-        sddm.enable = true;
       };
 
       libinput.enable = true;

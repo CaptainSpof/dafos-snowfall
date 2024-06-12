@@ -56,6 +56,7 @@ in
         nativeMessagingHosts =
           (orig.nativeMessagingHosts or [ ]) ++ [
             pkgs.tridactyl-native
+            pkgs.plasma-browser-integration
           ];
       });
 
