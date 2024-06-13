@@ -7,13 +7,10 @@ let
   user = config.${namespace}.user.name;
   home = config.${namespace}.user.home;
 
-  daftop.id = "QUWBY5V-V7TFQHJ-N6DSROW-TE53IXD-RVDUJZV-5XGHNIA-PLPIUW7-BEHMGAQ";
-  dafbox = {
-    id = "MG2JJVN-X3EQTRB-33WPAOV-OLMPVOC-PL2J2EL-GPNLXTA-BLDU6YK-ONUVJQ3";
-  };
-  dafphone = {
-    id = "2RY63N4-F3XSFO7-CUZRJD2-KEIM4QT-AAQINLH-QLLPJ2Z-CC7MN3A-J5YDQA3";
-  };
+  dafbox.id   = "MG2JJVN-X3EQTRB-33WPAOV-OLMPVOC-PL2J2EL-GPNLXTA-BLDU6YK-ONUVJQ3";
+  dafoltop.id = "7AOREJR-3BX2E3F-6WMRZRK-AWD4GKS-GZXTACF-EY3ZINT-IRQVL4I-25JYZQP";
+  dafphone.id = "2RY63N4-F3XSFO7-CUZRJD2-KEIM4QT-AAQINLH-QLLPJ2Z-CC7MN3A-J5YDQA3";
+  daftop.id   = "QUWBY5V-V7TFQHJ-N6DSROW-TE53IXD-RVDUJZV-5XGHNIA-PLPIUW7-BEHMGAQ";
 in
 {
   options.${namespace}.services.syncthing = with types; {
@@ -26,13 +23,11 @@ in
 
       inherit user;
       configDir = "${home}/.config/syncthing";
-      devices = {
-        inherit daftop dafbox dafphone;
-      };
+      devices = { inherit dafbox dafoltop dafphone daftop; };
       folders = {
         "Test" = {
-          path = "${home}/Sync/Test"; # Which folder to add to Syncthing
-          devices = [ "daftop" "dafbox" "dafphone" ]; # Which devices to share the folder with
+          path = "${home}/Sync/Test";
+          devices = [  "dafbox" "dafoltop" "dafphone" "daftop" ];
         };
       };
     };

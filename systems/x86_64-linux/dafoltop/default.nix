@@ -27,6 +27,7 @@ with lib.${namespace};
     services = {
       home-assistant = enabled;
       mealie = enabled;
+      syncthing = enabled;
     };
 
     suites = {

@@ -70,7 +70,11 @@ in
               "org.kde.plasma.panelspacer"
               {
                 systemTray = {
-                  icons.scaleToFit = true;
+                  icons = {
+                    scaleToFit = true;
+                    spacing = "small";
+                  };
+
                   items = {
                     shown = [ "org.kde.plasma.battery" ];
                     hidden = [ ];
