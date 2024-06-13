@@ -14,6 +14,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       libreoffice
+      rnote # FIXME: seems broken
     ]
     ++ lib.optionals cfg.onlyoffice.enable [
       onlyoffice-bin

@@ -15,10 +15,6 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    # environment.systemPackages = with pkgs; [
-    #   ffmpeg_5
-    # ];
-
     services.mosquitto = {
       enable = true;
       listeners = [{
@@ -98,6 +94,7 @@ in
         pkgs.dafos.lovelace-auto-entities
         pkgs.dafos.lovelace-fold-entity-row
         pkgs.dafos.lovelace-layout-card
+        pkgs.dafos.bubble-card
       ];
 
       config = {
@@ -108,6 +105,10 @@ in
         lovelace.resources = [
           {
             url = "/local/nixos-lovelace-modules/mushroom.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/bubble-card.js";
             type = "module";
           }
           {
