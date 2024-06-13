@@ -3,10 +3,10 @@
 with lib;
 with lib.dafos;
 let
-  cfg = config.${namespace}.apps.steam;
+  cfg = config.${namespace}.programs.graphical.apps.games.steam;
 in
 {
-  options.dafos.apps.steam = with types; {
+  options.dafos.programs.graphical.apps.games.steam = with types; {
     enable = mkBoolOpt false "Whether or not to enable support for Steam.";
     uiScaling = mkBoolOpt false "Whether or not to enable UI scaling for Steam.";
   };
@@ -15,7 +15,7 @@ in
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      extraCompatPackages = mkIf cfg.enable [
+      extraCompatPackages = [
         pkgs.proton-ge-bin
       ];
     };
