@@ -100,9 +100,11 @@ in
             floating = true;
             hiding = "autohide";
             widgets = [
+              "com.github.antroids.application-title-bar"
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               "org.kde.plasma.digitalclock"
+              "org.kde.plasma.panelspacer"
             ];
           }
         ];

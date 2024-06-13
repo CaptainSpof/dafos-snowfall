@@ -13,6 +13,7 @@ let
     kde-gruvbox
     papirus-nord
     # Widgets & Plasmoids
+    application-title-bar
   ]);
 in
 {
