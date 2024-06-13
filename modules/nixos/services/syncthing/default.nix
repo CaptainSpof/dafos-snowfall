@@ -7,7 +7,7 @@ let cfg = config.${namespace}.services.syncthing;
     home = config.${namespace}.user.home;
 
     daftop.id = "QUWBY5V-V7TFQHJ-N6DSROW-TE53IXD-RVDUJZV-5XGHNIA-PLPIUW7-BEHMGAQ";
-
+    dafbox.id = "MG2JJVN-X3EQTRB-33WPAOV-OLMPVOC-PL2J2EL-GPNLXTA-BLDU6YK-ONUVJQ3";
 in
 {
   options.${namespace}.services.syncthing = with types; {
@@ -21,12 +21,12 @@ in
       inherit user;
       configDir = "${home}/.config/syncthing";
       devices = {
-        inherit daftop;
+        inherit daftop dafbox;
       };
       folders = {
         "Test" = {
           path = "${home}/Sync/Test";    # Which folder to add to Syncthing
-          # devices = [ "device1" "device2" ];      # Which devices to share the folder with
+          devices = [ "daftop" "dafbox" ];      # Which devices to share the folder with
         };
       };
     };
