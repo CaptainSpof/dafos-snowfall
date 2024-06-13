@@ -28,16 +28,17 @@ let
     cp ${cfg.icon} "$target/${cfg.icon.fileName}"
   '';
   dirs = rec {
-    home = "/home/${username}";
+    config = "${home}/.config";
     documents = "${home}/Documents";
     downloads = "${home}/Downloads";
+    home = "/home/${username}";
     music = "${home}/Music";
+    org = "${sync}/Org";
     pictures = "${home}/Pictures";
-    videos = "${home}/Videos";
     projects = "${home}/Projects";
     repositories = "${home}/Repositories";
     sync = "${home}/Sync";
-    org = "${sync}/Org";
+    videos = "${home}/Videos";
   };
   username = "daf";
   shell = pkgs.fish;
@@ -47,6 +48,7 @@ in
     name = mkOpt types.str username "The name to use for the user account.";
     fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";
     email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user for git.";
+    home = mkOpt (types.nullOr types.str) dirs.home "The user's home directory.";
 
     gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
     gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";

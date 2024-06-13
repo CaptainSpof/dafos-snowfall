@@ -6,9 +6,9 @@ let cfg = config.${namespace}.services.tailscale;
 in
 {
   options.${namespace}.services.tailscale = with types; {
-    enable = mkBoolOpt false "Whether or not to configure Tailscale";
+    enable = mkBoolOpt false "Whether or not to configure tailscale";
     autoconnect = {
-      enable = mkBoolOpt false "Whether or not to enable automatic connection to Tailscale";
+      enable = mkBoolOpt false "Whether or not to enable automatic connection to tailscale";
       key = mkOpt str "" "The authentication key to use";
     };
   };

@@ -48,6 +48,8 @@ with lib.${namespace};
 
     security = { gpg = mkForce disabled; };
 
+    services.syncthing = enabled;
+
     suites = {
       desktop = enabled;
       development = enabled;
