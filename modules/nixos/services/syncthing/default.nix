@@ -25,6 +25,10 @@ in
       configDir = "${home}/.config/syncthing";
       devices = { inherit dafbox dafoltop dafphone daftop; };
       folders = {
+        "Org" = {
+          path = "${home}/Sync/Org";
+          devices = [  "dafbox" "dafoltop" "dafphone" "daftop" ];
+        };
         "Test" = {
           path = "${home}/Sync/Test";
           devices = [  "dafbox" "dafoltop" "dafphone" "daftop" ];
