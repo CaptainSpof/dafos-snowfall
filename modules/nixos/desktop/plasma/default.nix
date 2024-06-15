@@ -6,6 +6,8 @@ let
   cfg = config.${namespace}.desktop.plasma;
 
   defaultPackages = (with pkgs; [
+    # Apps
+    kdePackages.kweather
     # Themes
     dafos.kde-warm-eyes
     dafos.lightly-qt6
