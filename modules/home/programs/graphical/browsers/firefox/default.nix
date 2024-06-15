@@ -88,6 +88,8 @@ in
           "ddg@search.mozilla.org".installation_mode = "blocked";
           "wikipedia@search.mozilla.org".installation_mode = "blocked";
 
+          "tridactyl".installation_mode = "force_installed";
+
           "frankerfacez@frankerfacez.com" = {
             installation_mode = "force_installed";
             install_url =

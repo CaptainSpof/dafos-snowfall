@@ -71,7 +71,7 @@ in
               {
                 systemTray = {
                   icons = {
-                    scaleToFit = true;
+                    scaleToFit = false;
                     spacing = "small";
                   };
 
