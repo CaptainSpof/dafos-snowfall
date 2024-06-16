@@ -10,6 +10,9 @@ in
     numlock.enable = mkBoolOpt true "Whether or not to enable auto numlock on boot";
     # FIXME/HACK: ugly hack, need to learn how to coerce list of str to lines
     excludedDevices = mkOpt (types.lines) ''"ZMK Project Kyria Keyboard"'' "The devices to be excluded";
+    tapTimeout = mkOpt (types.number) 150 "The value for chord-timeout";
+    holdTimeout = mkOpt (types.number) 300 "The value for chord-timeout";
+    chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout";
   };
 
   config = mkIf cfg.enable {
@@ -40,11 +43,12 @@ in
         '';
         config = ''
           (defvar
-            tap-timeout   150
-            hold-timeout  300
-            chord-timeout 10
+            tap-timeout   ${toString cfg.tapTimeout}
+            hold-timeout  ${toString cfg.holdTimeout}
+            chord-timeout ${toString cfg.chordTimeout}
             tt $tap-timeout
             ht $hold-timeout
+            ct $chord-timeout
           )
 
           (deflocalkeys-linux

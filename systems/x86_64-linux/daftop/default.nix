@@ -55,7 +55,13 @@ with lib.${namespace};
       development = enabled;
     };
 
-    system = { kanata = enabled; };
+    system = {
+      kanata = {
+        enable = true;
+
+        chordTimeout = 25;
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default
