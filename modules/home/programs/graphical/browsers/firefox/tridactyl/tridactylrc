@@ -44,6 +44,9 @@ set smoothscroll = true
 set scrollduration = 10
 
 # Vim search mode
+# Case insensitive only if fully lowercase
+set findcase smart
+
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
@@ -94,3 +97,11 @@ set searchurls.y https://www.youtube.com/results?search_query=
 bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl youtu((\.be)|(be\.com)) F hint -b -J
 bindurl youtu((\.be)|(be\.com)) tf hint -t -J
+
+# Only hint search results on Google
+bindurl www.google.com f hint -Jc #search a
+bindurl www.google.com F hint -Jbc #search a
+
+# Only hint search results on DuckDuckGo
+bindurl ^https://duckduckgo.com f hint -Jc [data-testid="result"]
+bindurl ^https://duckduckgo.com F hint -Jbc [data-testid="result"]
