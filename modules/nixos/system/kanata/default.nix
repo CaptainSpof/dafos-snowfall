@@ -42,6 +42,7 @@ in
           (defvar
             tap-timeout   150
             hold-timeout  300
+            chord-timeout 10
             tt $tap-timeout
             ht $hold-timeout
           )
@@ -91,6 +92,10 @@ in
             <ars     (tap-hold-release $tt $ht RA-à @ars) ;; à → arrows-symbols
             rAbspc   (tap-hold-release $tt $ht bspc ralt) ;; bspc → alt
             grv      (tap-hold-release $tt $ht (tap-dance $tt (grv @dft)) @lsw)
+
+            ;; chords
+            cht (chord chords j) ;; t
+            chs (chord chords k) ;; s
           )
 
           (defalias
@@ -131,11 +136,17 @@ in
             '0  kp0
           )
 
+          (defchords chords $chord-timeout
+            (j  ) j
+            (k  ) k
+            (j k) C-bspc
+          )
+
           (deflayer bépow
             _     _     _     _     _     _     _     _     _     _     _     _     _    _
             @grv  _     _     _     _     _     _     _     _     _     _     @mc=  _    _
             _     _     _     _     _    'w     _     _     _     _     _     à     è
-            @cap  @numa _     @lCi  @lMe  _     _     _     _     _     @ars; _     _
+            @cap  @numa _     @lCi  @lMe  _     _     @cht  @chs  _     @ars; _     _
             _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rbspc
             _     _     _                   @rSspc               @rAbspc  _
           )
