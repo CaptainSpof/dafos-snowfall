@@ -1,17 +1,20 @@
-{ lib, config, namespace, ... }:
+{ lib, config, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.programs.terminal.tools.zellij;
-in {
+let
+  inherit (lib) getExe mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.programs.terminal.tools.zellij;
+in
+{
   options.${namespace}.programs.terminal.tools.zellij = {
-    enable = mkEnableOption "Whether or not to enable zellij";
+    enable = mkBoolOpt false "Whether or not to enable zellij";
   };
 
   config = mkIf cfg.enable {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = true;
+      package = pkgs.zellij;
 
       settings = {
         auto_layouts = true;
@@ -31,6 +34,12 @@ in {
         };
       };
     };
+
+    programs.fish.interactiveShellInit = ''
+      if not test -n "$INSIDE_EMACS"
+        eval (${getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
+      end
+    '';
 
     home.file.".config/zellij" = {
       source = ./config;

@@ -1,4 +1,5 @@
 { config, lib, pkgs, namespace, ... }:
+
 let
   inherit (lib) getExe mkForce mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
