@@ -9,7 +9,7 @@ in
 {
   options.${namespace}.programs.graphical.editors.emacs = {
     enable = mkBoolOpt false "Whether or not to enable emacs";
-    package = mkOpt types.package pkgs.emacs29-pgtk "The emacs package to be used.";
+    package = mkOpt types.package pkgs.emacs-pgtk "The emacs package to be used.";
   };
 
   config = mkIf cfg.enable {

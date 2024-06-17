@@ -51,6 +51,10 @@
     # Nuenv
     nuenv.url = "github:DeterminateSystems/nuenv";
 
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.inputs.flake-utils.follows = "flake-utils";
+
     # Plasma-Manager
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -92,38 +96,39 @@
         };
       };
     in
-    lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
+      lib.mkFlake {
+        channels-config = {
+          allowUnfree = true;
+        };
+
+        overlays = with inputs; [
+          snowfall-flake.overlays.default
+          nuenv.overlays.default
+          nur.overlay
+          emacs-overlay.overlays.default
+        ];
+
+        homes.modules = with inputs; [
+          nix-index-database.hmModules.nix-index
+        ];
+
+        systems.modules.nixos = with inputs; [
+          disko.nixosModules.disko
+          home-manager.nixosModules.home-manager
+          nix-ld.nixosModules.nix-ld
+          vault-service.nixosModules.nixos-vault-service
+        ];
+
+        systems.modules.home = with inputs; [
+          plasma-manager.homeManagerModules.plasma-manager
+        ];
+
+        deploy = lib.mkDeploy { inherit (inputs) self; };
+
+        checks =
+          builtins.mapAttrs
+            (_system: deploy-lib:
+              deploy-lib.deployChecks inputs.self.deploy)
+            inputs.deploy-rs.lib;
       };
-
-      overlays = with inputs; [
-        snowfall-flake.overlays.default
-        nuenv.overlays.default
-        nur.overlay
-      ];
-
-      homes.modules = with inputs; [
-        nix-index-database.hmModules.nix-index
-      ];
-
-      systems.modules.nixos = with inputs; [
-        disko.nixosModules.disko
-        home-manager.nixosModules.home-manager
-        nix-ld.nixosModules.nix-ld
-        vault-service.nixosModules.nixos-vault-service
-      ];
-
-      systems.modules.home = with inputs; [
-        plasma-manager.homeManagerModules.plasma-manager
-      ];
-
-      deploy = lib.mkDeploy { inherit (inputs) self; };
-
-      checks =
-        builtins.mapAttrs
-          (_system: deploy-lib:
-            deploy-lib.deployChecks inputs.self.deploy)
-          inputs.deploy-rs.lib;
-    };
 }
