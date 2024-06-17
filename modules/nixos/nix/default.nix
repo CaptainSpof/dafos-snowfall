@@ -23,7 +23,7 @@ in
 
     extra-substituters = mkOpt (attrsOf substituters-submodule)
       {
-        "https://viperml.cachix.org" = { key = "viperml.cachix.org-1:qZhKBMTfmcLL+OG6fj/hzsMEedgKvZVFRRAhq7j8Vh8="; };
+        "https://nix-community.cachix.org" = { key = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="; };
       } "Extra substituters to configure.";
   };
 
