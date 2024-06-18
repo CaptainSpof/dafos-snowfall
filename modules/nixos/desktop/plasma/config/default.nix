@@ -19,15 +19,18 @@ in
         workspace = {
           clickItemTo = "open";
           # tooltipDelay = 5;
-          cursorTheme = "breeze_cursors";
+          cursor.theme = "breeze_cursors";
           colorScheme = "gruvbox";
           lookAndFeel = "org.kde.breezetwilight.desktop";
         };
 
         kwin = {
-          effects.shakeCursor.enable = false;
+          effects = {
+            shakeCursor.enable = false;
+            desktopSwitching.animation = "slide";
+          };
+
           virtualDesktops = {
-            animation = "slide";
             rows = 1;
             names = cfg.virtualDesktopsNames;
           };

@@ -23,19 +23,21 @@ in
 
       inherit user;
       configDir = "${home}/.config/syncthing";
-      devices = { inherit dafbox dafoltop dafphone daftop; };
-      folders = {
-        "Audio" = {
-          path = "${home}/Sync/Audio";
-          devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
-        };
-        "Org" = {
-          path = "${home}/Sync/Org";
-          devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
-        };
-        "Test" = {
-          path = "${home}/Sync/Test";
-          devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
+      settings = {
+        devices = { inherit dafbox dafoltop dafphone daftop; };
+        folders = {
+          "Audio" = {
+            path = "${home}/Sync/Audio";
+            devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
+          };
+          "Org" = {
+            path = "${home}/Sync/Org";
+            devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
+          };
+          "Test" = {
+            path = "${home}/Sync/Test";
+            devices = [ "dafbox" "dafoltop" "dafphone" "daftop" ];
+          };
         };
       };
     };
