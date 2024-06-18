@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.services.mealie = {
-    enable = mkEnableOption "Whether or not to configure Mealie";
+    enable = mkEnableOption "Whether or not to configure mealie.";
   };
 
   config = mkIf cfg.enable {

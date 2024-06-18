@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.services.radarr = {
-    enable = mkEnableOption "Whether or not to configure Radarr";
+    enable = mkEnableOption "Whether or not to configure radarr.";
   };
 
   config = mkIf cfg.enable {

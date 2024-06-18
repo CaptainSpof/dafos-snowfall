@@ -9,7 +9,7 @@ let
 in
 {
   options.${namespace}.services.readarr = {
-    enable = mkEnableOption "Whether or not to configure Readarr";
+    enable = mkEnableOption "Whether or not to configure readarr.";
   };
 
   config = mkIf cfg.enable {

@@ -14,7 +14,7 @@ let
 in
 {
   options.${namespace}.services.syncthing = with types; {
-    enable = mkBoolOpt false "Whether or not to configure syncthing";
+    enable = mkBoolOpt false "Whether or not to configure syncthing.";
   };
 
   config = mkIf cfg.enable {

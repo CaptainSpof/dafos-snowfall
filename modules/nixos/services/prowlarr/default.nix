@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.services.prowlarr = {
-    enable = mkEnableOption "Whether or not to configure Prowlarr";
+    enable = mkEnableOption "Whether or not to configure prowlarr.";
   };
 
   config = mkIf cfg.enable {

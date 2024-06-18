@@ -6,7 +6,7 @@ let cfg = config.${namespace}.system.networking;
 in
 {
   options.${namespace}.system.networking = with types; {
-    enable = mkBoolOpt false "Whether or not to enable networking support";
+    enable = mkBoolOpt false "Whether or not to enable networking support.";
     hosts = mkOpt attrs { }
       (mdDoc "An attribute set to merge with `networking.hosts`");
   };

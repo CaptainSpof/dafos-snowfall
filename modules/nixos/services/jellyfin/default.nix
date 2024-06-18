@@ -8,7 +8,7 @@ in
 {
 
   options.${namespace}.services.jellyfin = {
-    enable = mkEnableOption "Whether or not to configure Jellyfin";
+    enable = mkEnableOption "Whether or not to configure jellyfin.";
   };
 
   config = mkIf cfg.enable {
