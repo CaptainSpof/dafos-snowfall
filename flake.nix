@@ -96,39 +96,39 @@
         };
       };
     in
-      lib.mkFlake {
-        channels-config = {
-          allowUnfree = true;
-        };
-
-        overlays = with inputs; [
-          snowfall-flake.overlays.default
-          nuenv.overlays.default
-          nur.overlay
-          emacs-overlay.overlays.default
-        ];
-
-        homes.modules = with inputs; [
-          nix-index-database.hmModules.nix-index
-        ];
-
-        systems.modules.nixos = with inputs; [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          nix-ld.nixosModules.nix-ld
-          vault-service.nixosModules.nixos-vault-service
-        ];
-
-        systems.modules.home = with inputs; [
-          plasma-manager.homeManagerModules.plasma-manager
-        ];
-
-        deploy = lib.mkDeploy { inherit (inputs) self; };
-
-        checks =
-          builtins.mapAttrs
-            (_system: deploy-lib:
-              deploy-lib.deployChecks inputs.self.deploy)
-            inputs.deploy-rs.lib;
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
       };
+
+      overlays = with inputs; [
+        snowfall-flake.overlays.default
+        nuenv.overlays.default
+        nur.overlay
+        emacs-overlay.overlays.default
+      ];
+
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
+      ];
+
+      systems.modules.nixos = with inputs; [
+        disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        nix-ld.nixosModules.nix-ld
+        vault-service.nixosModules.nixos-vault-service
+      ];
+
+      systems.modules.home = with inputs; [
+        plasma-manager.homeManagerModules.plasma-manager
+      ];
+
+      deploy = lib.mkDeploy { inherit (inputs) self; };
+
+      checks =
+        builtins.mapAttrs
+          (_system: deploy-lib:
+            deploy-lib.deployChecks inputs.self.deploy)
+          inputs.deploy-rs.lib;
+    };
 }
