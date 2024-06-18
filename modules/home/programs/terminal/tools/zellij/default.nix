@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.zellij = {
-    enable = mkBoolOpt false "Whether or not to enable zellij";
+    enable = mkBoolOpt false "Whether or not to enable zellij.";
   };
 
   config = mkIf cfg.enable {

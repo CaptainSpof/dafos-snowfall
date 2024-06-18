@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.shells.nushell = {
-    enable = mkEnableOption "Whether or not to enable Nushell";
+    enable = mkEnableOption "Whether or not to enable nushell.";
   };
 
   config = mkIf cfg.enable {

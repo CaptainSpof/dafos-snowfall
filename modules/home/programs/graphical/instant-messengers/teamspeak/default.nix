@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.programs.graphical.instant-messengers.teamspeak = {
-    enable = mkBoolOpt false "Whether or not to enable TeamSpeak.";
+    enable = mkBoolOpt false "Whether or not to enable teamspeak.";
   };
 
   config = mkIf cfg.enable {

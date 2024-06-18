@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.home-manager = {
-    enable = mkEnableOption "Whether or not to enable home-manager";
+    enable = mkEnableOption "Whether or not to enable home-manager.";
   };
 
   config = mkIf cfg.enable {

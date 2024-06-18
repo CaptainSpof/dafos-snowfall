@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.editors.neovim = {
-    enable = mkEnableOption "Whether or not to enable Neovim";
+    enable = mkEnableOption "Whether or not to enable neovim.";
   };
 
   config = mkIf cfg.enable {

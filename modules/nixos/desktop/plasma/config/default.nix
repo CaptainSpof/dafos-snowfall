@@ -56,6 +56,7 @@ in
 
           kwinrc = {
             Effect-blur.BlurStrength = 3;
+            Effect-diminactive.DimFullScreen = false;
             Effect-overview.BorderActivate = 7;
             Effect-overview.BorderActivateAll = 9;
             ElectricBorders.TopRight = "LockScreen";
@@ -104,7 +105,6 @@ in
         #   "dolphinrc"."MainWindow.Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
         #   "dolphinrc"."Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
 
-        #   # TODO: parameterize
         #   "kdeglobals"."KDE"."ShowDeleteCommand" = false;
         #   "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
         #   "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;

@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.shells.fish = {
-    enable = mkEnableOption "Whether or not to enable fish";
+    enable = mkEnableOption "Whether or not to enable fish.";
   };
 
   config = mkIf cfg.enable {

@@ -7,11 +7,11 @@ in
 {
   options.${namespace}.system.kanata = with types; {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
-    numlock.enable = mkBoolOpt true "Whether or not to enable auto numlock on boot";
-    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" ] "The devices to be excluded";
-    tapTimeout = mkOpt (types.number) 150 "The value for chord-timeout";
-    holdTimeout = mkOpt (types.number) 300 "The value for chord-timeout";
-    chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout";
+    numlock.enable = mkBoolOpt true "Whether or not to enable auto numlock on boot.";
+    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" ] "The devices to be excluded.";
+    tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
+    holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
+    chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout.";
   };
 
   config = mkIf cfg.enable {
@@ -186,7 +186,7 @@ in
               @`    @`     @'lp   @'rp   ;      _      _      _      _      _      _       _       _      _
               _     @{     @'lp   @'rp   @}     _      _      pgdn   pgup   _      _       _       _
               _     @at    @=     @_     @$     @*     left   down   up     rght   _       _       _
-              _     _      @\     _      @{     @}     @~     _      _      home   end     _       _
+              _     _      @|     @\     @{     @}     @~     _      _      home   end     _       _
               _     _     _                     bspc                           _     _
             )
 

@@ -11,7 +11,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.fup-repl = {
-    enable = mkBoolOpt false "Whether to enable fup-repl or not";
+    enable = mkBoolOpt false "Whether or not to enable fup-repl.";
   };
 
   config = mkIf cfg.enable { home.packages = [ fup-repl ]; };

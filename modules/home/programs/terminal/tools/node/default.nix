@@ -7,23 +7,23 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.node = with types; {
-    enable = mkBoolOpt false "Whether or not to install and configure node";
+    enable = mkBoolOpt false "Whether or not to install and configure node.";
     flyctl = {
-      enable = mkBoolOpt true "Whether or not to install flyctl";
-      pkg = mkOpt package pkgs.flyctl "The flyctl package to use";
+      enable = mkBoolOpt true "Whether or not to install flyctl.";
+      pkg = mkOpt package pkgs.flyctl "The flyctl package to use.";
     };
-    pkg = mkOpt package pkgs.nodejs-18_x "The NodeJS package to use";
+    pkg = mkOpt package pkgs.nodejs-18_x "The NodeJS package to use.";
     pnpm = {
-      enable = mkBoolOpt true "Whether or not to install pnpm";
-      pkg = mkOpt package pkgs.nodePackages.pnpm "The NodeJS package to use";
+      enable = mkBoolOpt true "Whether or not to install pnpm.";
+      pkg = mkOpt package pkgs.nodePackages.pnpm "The NodeJS package to use.";
     };
     prettier = {
-      enable = mkBoolOpt true "Whether or not to install prettier";
-      pkg = mkOpt package pkgs.nodePackages.prettier "The NodeJS package to use";
+      enable = mkBoolOpt true "Whether or not to install prettier.";
+      pkg = mkOpt package pkgs.nodePackages.prettier "The NodeJS package to use.";
     };
     yarn = {
-      enable = mkBoolOpt true "Whether or not to install yarn";
-      pkg = mkOpt package pkgs.nodePackages.yarn "The NodeJS package to use";
+      enable = mkBoolOpt true "Whether or not to install yarn.";
+      pkg = mkOpt package pkgs.nodePackages.yarn "The NodeJS package to use.";
     };
   };
 

@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.programs.graphical.instant-messengers.telegram = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Telegram.";
+    enable = mkBoolOpt false "Whether or not to enable telegram.";
   };
 
   config = mkIf cfg.enable {

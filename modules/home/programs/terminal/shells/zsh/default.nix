@@ -9,7 +9,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.shells.zsh = {
-    enable = mkEnableOption "Whether or not to enable zsh";
+    enable = mkEnableOption "Whether or not to enable zsh.";
 
     prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
   };

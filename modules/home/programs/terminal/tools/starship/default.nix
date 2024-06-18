@@ -10,7 +10,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.starship = {
-    enable = mkEnableOption "Whether or not to enable starship";
+    enable = mkEnableOption "Whether or not to enable starship.";
   };
 
   config = mkIf cfg.enable {

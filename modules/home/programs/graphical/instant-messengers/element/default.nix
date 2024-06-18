@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.programs.graphical.instant-messengers.element = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Element.";
+    enable = mkBoolOpt false "Whether or not to enable element.";
   };
 
   config = mkIf cfg.enable {

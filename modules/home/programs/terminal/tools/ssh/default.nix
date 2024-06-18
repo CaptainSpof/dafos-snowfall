@@ -6,7 +6,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.ssh = {
-    enable = mkEnableOption "SSH";
+    enable = mkEnableOption "Whether or not to enable ssh.";
   };
 
   config = mkIf cfg.enable {

@@ -10,7 +10,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.zoxide = {
-    enable = mkEnableOption "Whether or not to enable zoxide";
+    enable = mkEnableOption "Whether or not to enable zoxide.";
   };
 
   config = mkIf cfg.enable {

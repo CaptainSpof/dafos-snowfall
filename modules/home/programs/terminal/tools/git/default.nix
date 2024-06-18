@@ -10,12 +10,11 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.git = {
-    enable = mkEnableOption "Whether or not to enable git";
+    enable = mkEnableOption "Whether or not to enable git.";
     userName = mkOpt types.str user.gitUsername "The name to configure git with.";
     userEmail = mkOpt types.str user.gitEmail "The email to configure git with.";
     # FIXME: setup ssh keys
-    signingKey =
-      mkOpt types.str "" "The key ID to sign commits with.";
+    signingKey = mkOpt types.str "" "The key ID to sign commits with.";
     signByDefault = mkOpt types.bool false "Whether to sign commits by default.";
   };
 

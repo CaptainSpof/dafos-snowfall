@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.editors.helix = {
-    enable = mkBoolOpt false "Whether or not to enable Helix";
+    enable = mkBoolOpt false "Whether or not to enable helix.";
   };
 
   config = mkIf cfg.enable {

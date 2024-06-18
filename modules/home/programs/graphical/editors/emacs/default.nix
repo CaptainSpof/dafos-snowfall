@@ -8,7 +8,7 @@ let
 in
 {
   options.${namespace}.programs.graphical.editors.emacs = {
-    enable = mkBoolOpt false "Whether or not to enable emacs";
+    enable = mkBoolOpt false "Whether or not to enable emacs.";
     package = mkOpt types.package pkgs.emacs-pgtk "The emacs package to be used.";
   };
 

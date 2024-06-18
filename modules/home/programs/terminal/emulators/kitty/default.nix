@@ -9,7 +9,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.emulators.kitty = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Kitty.";
+    enable = mkBoolOpt false "Whether or not to enable kitty.";
   };
 
   config = mkIf cfg.enable {
