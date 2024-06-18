@@ -1,14 +1,9 @@
-{ config, inputs, lib, namespace, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
 with lib.${namespace};
-let
-  inherit (inputs) plasma-manager;
-in
 {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -23,50 +18,24 @@ in
       workstation = enabled;
     };
 
-    apps = {
-      qbittorrent = enabled;
-    };
+    apps = { qbittorrent = enabled; };
 
     desktop.plasma.autoLoginUser = config.${namespace}.user.name;
 
-    security = {
-      gpg = mkForce disabled;
-    };
+    security.gpg = mkForce disabled;
 
     services = {
       home-assistant = enabled;
       mealie = enabled;
+      syncthing = enabled;
     };
 
     suites = {
-      art = mkForce disabled;
       desktop = enabled;
-      social = mkForce disabled;
-      video = {
-        enable = true;
-      };
       yahrr = enabled;
     };
 
-    system = {
-      kanata = enabled;
-    };
-
-    home.extraOptions = {
-      imports = [ plasma-manager.homeManagerModules.plasma-manager ];
-
-      programs.plasma = {
-        configFile = {
-          # disable screensaver
-          # "kscreenlockerrc"."Daemon"."Autolock" = false;
-          # "kscreenlockerrc"."Daemon"."LockOnResume" = false;
-          # touchpad settings
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."NaturalScroll" = true;
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."PointerAccelerationProfile" = 1;
-          # "kcminputrc"."Libinput.1267.12419.ETD2303:00 04F3:3083 Touchpad"."TapToClick" = true;
-        };
-      };
-    };
+    system = { kanata = enabled; };
   };
 
   # This value determines the NixOS release from which the default

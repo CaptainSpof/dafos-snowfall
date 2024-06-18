@@ -16,10 +16,6 @@ in
       suites = {
         common-slim = enabled;
       };
-
-      cli-apps = {
-        neovim = enabled;
-      };
     };
   };
 }

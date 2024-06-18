@@ -12,11 +12,7 @@ with lib.${namespace};
 
     apps = {
       firefox = enabled;
-      logseq = enabled;
-      vscode = enabled;
     };
-
-    cli-apps = { neovim = enabled; };
 
     desktop = {
       gnome = {
@@ -31,9 +27,7 @@ with lib.${namespace};
     };
 
     tools = {
-      k8s = enabled;
       git = enabled;
-      http = enabled;
       misc = enabled;
       lang = {
         nix = enabled;

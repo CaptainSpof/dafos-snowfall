@@ -7,43 +7,57 @@ in
   dafos = {
     user = {
       enable = true;
-      name = config.snowfallorg.user.name;
+      inherit (config.snowfallorg.user) name;
     };
 
-    apps = {
-      alacritty = enabled;
-      emacs = enabled;
-      firefox = {
-        enable = true;
-        gpuAcceleration = true;
-        hardwareDecoding = true;
-        settings = {
-          # "dom.ipc.processCount.webIsolated" = 9;
-          # "dom.maxHardwareConcurrency" = 16;
-          "media.av1.enabled" = false;
-          # "media.ffvpx.enabled" = false;
-          # "media.hardware-video-decoding.force-enabled" = true;
-          "media.hardwaremediakeys.enabled" = true;
+    programs = {
+      graphical = {
+        browsers = {
+          firefox = {
+            enable = true;
+            gpuAcceleration = true;
+            hardwareDecoding = true;
+            settings = {
+              # "dom.ipc.processCount.webIsolated" = 9;
+              # "dom.maxHardwareConcurrency" = 16;
+              "media.av1.enabled" = false;
+              # "media.ffvpx.enabled" = false;
+              # "media.hardware-video-decoding.force-enabled" = true;
+              "media.hardwaremediakeys.enabled" = true;
+            };
+          };
+        };
+        instant-messengers = {
+          teamspeak.enable = lib.mkForce false;
+        };
+      };
+
+      terminal = {
+        tools = {
+          ssh = enabled;
         };
       };
     };
 
-    cli-apps = {
-      fish = enabled;
-      helix = enabled;
-      home-manager = enabled;
-      neovim = enabled;
-      nushell = enabled;
-      starship = enabled;
-      zellij = enabled;
-      zoxide = enabled;
-      zsh = enabled;
-      lazygit = enabled;
-    };
+    suites = {
+      common = enabled;
 
-    tools = {
-      git = enabled;
-      direnv = enabled;
+      development = {
+        enable = true;
+        aws.enable = true;
+      };
+
+      games = enabled;
+
+      graphics = {
+        enable = true;
+        drawing.enable = true;
+      };
+
+      music = enabled;
+      office = enabled;
+      social = enabled;
+      video = enabled;
     };
   };
 }

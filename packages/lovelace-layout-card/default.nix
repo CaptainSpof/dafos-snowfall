@@ -1,20 +1,17 @@
-{ lib
-, buildNpmPackage
-, fetchFromGitHub
-}:
+{ lib, buildNpmPackage, fetchFromGitHub }:
 
 buildNpmPackage rec {
   pname = "lovelace-layout-card";
-  version = "2.4.4";
+  version = "2.4.5";
 
   src = fetchFromGitHub {
     owner = "thomasloven";
     repo = "lovelace-layout-card";
-    rev = "refs/tags/${version}";
-    hash = "sha256-/NKtzv1wWQNfwEYc0Y5It1NeBCU+Tg/jCYBB92uINT4=";
+    rev = "refs/tags/v${version}";
+    hash = "sha256-JqHpd3u3HT9JuAfCQW0Bg/UIQ/pzurQBp9/PFa+0/u0=";
   };
 
-  npmDepsHash = "sha256-HRQlmgzJF79hRGXwAXf4RluAJ/qK6nGk8qe67hAqnSc=";
+  npmDepsHash = "sha256-1Crvtux1IbdtZ5dMxhYcrCw/6IxLpNwNwUMEJpWm4HM=";
 
   installPhase = ''
     runHook preInstall
@@ -28,8 +25,8 @@ buildNpmPackage rec {
   passthru.entrypoint = "layout-card.js";
 
   meta = with lib; {
-    description = "";
-    homepage = "";
-    license = licenses.gpl2;
+    description = "🔹 Get more control over the placement of lovelace cards.";
+    homepage = "https://github.com/thomasloven/lovelace-layout-card";
+    license = licenses.mit;
   };
 }

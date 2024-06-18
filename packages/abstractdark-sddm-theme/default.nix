@@ -15,5 +15,5 @@ pkgs.stdenv.mkDerivation rec {
     mkdir -p $out/share/sddm/themes/abstractdark-sddm-theme
     cp -R ./* $out/share/sddm/themes/abstractdark-sddm-theme
     cp ${img} $out/share/sddm/themes/abstractdark-sddm-theme/background.png
-   '';
+  '';
 }

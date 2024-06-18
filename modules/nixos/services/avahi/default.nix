@@ -7,7 +7,7 @@ let
 in
 {
   options.${namespace}.services.avahi = {
-    enable = mkEnableOption "Avahi";
+    enable = mkEnableOption "Whether or not to enable avahi.";
   };
 
   config = mkIf cfg.enable {

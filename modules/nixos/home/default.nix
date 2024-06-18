@@ -26,8 +26,9 @@ with lib.${namespace};
       useUserPackages = true;
       useGlobalPkgs = true;
 
-      users.${config.${namespace}.user.name} =
-        mkAliasDefinitions options.${namespace}.home.extraOptions;
+      users.${config.${namespace}.user.name} = mkAliasDefinitions options.${namespace}.home.extraOptions;
+
+      verbose = true;
     };
   };
 }

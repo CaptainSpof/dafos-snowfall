@@ -7,170 +7,253 @@ in
 {
   options.${namespace}.system.kanata = with types; {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
+    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" ] "The devices to be excluded.";
+    tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
+    holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
+    chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout.";
   };
 
   config = mkIf cfg.enable {
-    services.kanata.enable = true;
-
     environment.systemPackages = with pkgs; [
       kanata
     ];
 
-    services.kanata.keyboards."bepo".config = ''
-    (defvar
-      tap-timeout   200
-      hold-timeout  250
-      tt $tap-timeout
-      ht $hold-timeout
-    )
+    services.kanata = {
+      enable = true;
 
-    (deflocalkeys-linux
-      '<   86
-      'w   27
-      'z   26
-      'y   45
-      à    44
-      è    20
-    )
+      keyboards."bepo" =
+        let
+          mkExcludedDevices = devices:
+            let
+              devicesString = pipe devices [
+                (map (device: "\"" + device + "\""))
+                (concatStringsSep " ")
+              ];
+            in
+            optionalString ((length devices) > 0) "linux-dev-names-exclude (${devicesString})";
+        in
+        {
+          extraDefCfg = ''
+            ${mkExcludedDevices cfg.excludedDevices}
+          '';
+          config = ''
+            (defvar
+              tap-timeout   ${toString cfg.tapTimeout}
+              hold-timeout  ${toString cfg.holdTimeout}
+              chord-timeout ${toString cfg.chordTimeout}
+              tt $tap-timeout
+              ht $hold-timeout
+              ct $chord-timeout
+            )
 
-    (defsrc
-      grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
-      tab     q    w    e    r    t    y    u    i    o    p    [    ]
-      caps    a    s    d    f    g    h    j    k    l    ;    '    ret
-      lsft    '<   z    x    c    v    b    n    m    ,    .    /    rsft
-      lctl lmet lalt              spc            ralt rctl
-    )
+            (deflocalkeys-linux
+              '<   86
+              'w   27
+              'z   26
+              'y   45
+              à    44
+              è    20
+            )
 
-    (defalias
-      ;; toggle layer aliases
-      ars (layer-while-held arrows-symbols)
-      gam (layer-switch gaming)
-      qwe (layer-switch qwerty)
-      lsw (layer-while-held layers-switcher)
-      default (layer-switch bepow)
-      bas     (layer-switch basic)
+            (defsrc
+              esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  del
+              grv     1    2    3    4    5    6    7    8    9    0    -    =    bspc
+              tab     q    w    e    r    t    y    u    i    o    p    [    ]
+              caps    a    s    d    f    g    h    j    k    l    ;    '    ret
+              lsft    '<   z    x    c    v    b    n    m    ,    .    /    rsft
+              lctl lmet lalt              spc            ralt rctl
+            )
 
-      ;; tap within $tt for esc, hold more than $ht for lctl
-      cap      (tap-hold $tt $ht esc lctl)
-      rbspc    (tap-hold-release $tt $ht up bspc)
-      lMf      (tap-hold-release $tt $ht f lmet)
-      lCd      (tap-hold-release $tt $ht d lctrl)
-      rSspc    (tap-hold-release $tt $ht spc rsft)
-      <ars     (tap-hold-release $tt $ht RA-à @ars)
-      rAbspc   (tap-hold-release $tt $ht bspc ralt)
-      aars     (tap-hold-release $tt $ht a @ars)
-      ;ars     (tap-hold-release $tt $ht ; @ars)
-      grv      (tap-hold-release $tt $ht (tap-dance $tt (grv @default)) @lsw)
-    )
+            (defalias
+              ;; toggle layer aliases
+              ars   (layer-while-held arrows-symbols)
+              med   (layer-while-held media-controls)
+              num   (layer-while-held numbers)
+              gam   (layer-switch gaming)
+              qwe   (layer-switch qwerty)
+              lsw   (layer-while-held layers-switcher)
+              dft   (layer-switch bépow)
+              bas   (layer-switch basic)
 
-    (defalias
-      [     AG-4
-      ]     AG-5
-      {     AG-x
-      }     AG-c
-      'lp   4
-      'rp   5
-      <     AG-2
-      >     AG-3
-      at    6
-      |     AG-q
-      /     9
-      \     AG-à
-      ~     AG-b
-      _     AG-spc
-      `     AG-S-è
-    )
+              ;; tap within $tt for esc, hold more than $ht for lctl
+              cap      (tap-hold $tt $ht esc lctl)
+              rbspc    (tap-hold-release $tt $ht up bspc)
 
-    (deflayer bepow
-      @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _    'w     _     _     _     _     _     à     è
-      @cap  @aars _     @lCd  @lMf  _     _     _     _     _     @;ars _     _
-      _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rbspc
-      _     _     _                   @rSspc               @rAbspc  _
-    )
+              ;; home row mode
+              lMe      (tap-hold-release $tt $ht f lmet)   ;; e → meta
+              lCi      (tap-hold-release $tt $ht d lctrl)  ;; i → ctrl
+              numa     (tap-hold-release $tt $ht a @num)   ;; a → numbers
+              ars;     (tap-hold-release $tt $ht ; @ars)   ;; n → arrows-symbols
 
-    (deflayer layers-switcher
-      @grv  @default   @qwe   @gam   @bas _     _     _     _     _     _     _     _     _
-      _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _    _     _     _     _     _     _     _      _
-      _     _     _                   @rSspc               @rAbspc  _
-    )
+              mc=      (tap-hold-release $tt $ht min @med) ;; = → media-controls
 
-    (deflayer arrows-symbols
-      @`     f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12     _
-      _     @|     @/     @'lp   @'rp   _      _      pgdn   pgup   _      _       _       _
-      _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
-      _     _      @\     _      @{     @}     @~     _      _      home   end     _       _
-      _     _     _                     @_                           _     _
-    )
+              rSspc    (tap-hold-release $tt $ht spc rsft)  ;; spc → shift
+              <ars     (tap-hold-release $tt $ht RA-à @ars) ;; à → arrows-symbols
+              rAbspc   (tap-hold-release $tt $ht bspc ralt) ;; bspc → alt
+              grv      (tap-hold-release $tt $ht (tap-dance $tt (grv @dft)) @lsw)
 
-    (defalias
-      '1  S-1
-      '2  S-2
-      '3  S-3
-      '4  S-4
-      '5  S-5
-      '6  S-6
-      '7  S-7
-      '8  S-8
-      '9  S-9
-      '0  S-0
-      'q   m
-      'e   f
-      'r   l
-      't   j
-      'u   s
-      'i   d
-      'o   r
-      'p   e
-      'a   a
-      's   k
-      'd   i
-      'f   /
-      'g   ,
-      'h   .
-      'j   p
-      'k   b
-      'l   o
-      ';   S-g
-      '    n
-      'x   c
-      'c   h
-      'v   u
-      'b   q
-      'n   ;
-      'm   '
-      ',   g
-      '.   v
-      '/   9
-    )
+              ;; chords
+              cht (chord chords j) ;; t
+              chs (chord chords k) ;; s
+            )
 
-    (deflayer qwerty
-      @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
-      tab     @'q    'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
-      caps    @'a    @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
-      lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
-      lctl lmet lalt                     spc                @rAbspc rctl
-    )
+            (defalias
+              [     AG-4
+              ]     AG-5
+              {     AG-x
+              }     AG-c
+              'lp   4
+              'rp   5
+              at    6
+              +     7
+              -     8
+              /     9
+              *     0
+              <     AG-2
+              >     AG-3
+              |     AG-q
+              \     AG-à
+              ~     AG-b
+              _     AG-spc
+              `     AG-S-è
+              $     `
+              =     -
+              %     =
+              :     S-v
+            )
 
-    (deflayer gaming
-      @grv     @'1    @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -    =    _
-      tab     @'q    up    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
-      caps    left   down  rght   @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
-      lsft    '<     'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
-      lctl lmet lalt                     spc                @rAbspc rctl
-    )
+            (defalias
+              '1  kp1
+              '2  kp2
+              '3  kp3
+              '4  kp4
+              '5  kp5
+              '6  kp6
+              '7  kp7
+              '8  kp8
+              '9  kp9
+              '0  kp0
+            )
 
-    (deflayer basic
-      @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _     _     _     _     _     _     _     _     _     _     _
-      _     _     _                       _                 _     _
-    )
+            (defchords chords $chord-timeout
+              (j  ) j
+              (k  ) k
+              (j k) C-bspc
+            )
 
-  '';
+            (deflayer bépow
+              _     _     _     _     _     _     _     _     _     _     _     _     _    _
+              @grv  _     _     _     _     _     _     _     _     _     _     @mc=  _    _
+              _     _     _     _     _    'w     _     _     _     _     _     à     è
+              @cap  @numa _     @lCi  @lMe  _     _     @cht  @chs  _     @ars; _     _
+              _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rbspc
+              _     _     _                   @rSspc               @rAbspc  _
+            )
 
+            (deflayer layers-switcher
+              _     _     _     _     _     _     _     _     _     _     _     _     _    _
+              @grv  @dft  @qwe  @gam  @bas  _     _     _     _     _     _     _     _    _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _                   @rSspc               @rAbspc  _
+            )
+
+            (deflayer arrows-symbols-bak
+              _     _      _      _      _      _      _      _      _      _      _       _       _      _
+              @`    f1     f2     f3     f4     f5     f6     f7     f8     f9     f10     f11     f12    _
+              _     @|     @/     @'lp   @'rp   _      _      pgdn   pgup   _      _       _       _
+              _     @at    @<     @[     @]     @>     left   down   up     rght   _       _       _
+              _     _      @\     _      @{     @}     @~     _      _      home   end     _       _
+              _     _     _                     bspc                           _     _
+            )
+
+            (deflayer arrows-symbols
+              _     _      _      _      _      _      _      _      _      _      _       _       _      _
+              @`    @`     @'lp   @'rp   ;      _      _      _      _      _      _       _       _      _
+              _     @{     @'lp   @'rp   @}     _      _      pgdn   pgup   _      _       _       _
+              _     @at    @=     @_     @$     @*     left   down   up     rght   _       _       _
+              _     _      @|     @\     @{     @}     @~     _      _      home   end     _       _
+              _     _     _                     bspc                           _     _
+            )
+
+            (deflayer media-controls
+              _     _      _      _      _      _      _      _      _      _      _     _     _     _
+              _     mute   voldwn volu   _      brdwn  brup   pp     prev   next   prnt  _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _                     bspc                            _     _
+            )
+
+            (deflayer numbers
+              _     _     _     _     _     _     _     _     _     _     _     _     _    _
+              _     _     _     _     _     _     _     _     _     _     _     _     _    _
+              _     _     _     _     _     _     @%    @'1   @'2   @'3   @:    _     _
+              _     _     _     _     _     _     @+    @'4   @'5   @'6   @-    _     _
+              _     _     _     _     _     _     @*    @'7   @'8   @'9   @/    _     _
+              _     _     _                   @'0                   _     _
+            )
+
+            (defalias
+              'q   m
+              'e   f
+              'r   l
+              't   j
+              'u   s
+              'i   d
+              'o   r
+              'p   e
+              'a   a
+              's   k
+              'd   i
+              'f   /
+              'g   ,
+              'h   .
+              'j   p
+              'k   b
+              'l   o
+              ';   S-g
+              '    n
+              'x   c
+              'c   h
+              'v   u
+              'b   q
+              'n   ;
+              'm   '
+              ',   g
+              '.   v
+              '/   9
+            )
+
+            (deflayer qwerty
+              esc     f1    f2    f3     f4     f5     f6    f7    f8     f9     f10    f11   f12  del
+              @grv    @'1   @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -     =    _
+              tab     @'q   'w    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
+              caps    @'a   @'s   @'d    @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
+              lsft    '<    'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
+              lctl lmet lalt                     spc                @rAbspc rctl
+            )
+
+            (deflayer gaming
+              esc     f1    f2    f3     f4     f5     f6    f7    f8     f9     f10    f11   f12  del
+              @grv    @'1   @'2   @'3    @'4    @'5    @'6   @'7   @'8    @'9    @'0    -     =    _
+              tab     @'q   up    @'e    @'r    @'t    'y    @'u   @'i    @'o    @'p    @[    @]
+              caps    left  down  rght   @'f    @'g    @'h   @'j   @'k    @'l    @';    @'    ret
+              lsft    '<    'z    @'x    @'c    @'v    @'b   @'n   @'m    @',    @'.    @'/   rsft
+              lctl lmet lalt                     spc                @rAbspc rctl
+            )
+
+            (deflayer basic
+              _     _     _     _     _     _     _     _     _     _     _     _     _     _
+              @grv  _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _     _     _     _     _     _     _     _     _     _     _
+              _     _     _                       _                 _     _
+            )
+          '';
+        };
+    };
   };
 }

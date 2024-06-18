@@ -2,8 +2,7 @@
 
 with lib;
 with lib.${namespace};
-let username = config.${namespace}.user.name;
-in {
+{
   imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -19,20 +18,41 @@ in {
     apps = { qbittorrent = enabled; };
 
     desktop = {
-      plasma.bluetoothAdapter = "74:97:79:D8:5B:D2";
-      plasma.autoLoginUser = username;
+      plasma = {
+        autoLoginUser = config.${namespace}.user.name;
+        config = {
+          virtualDesktopsNames = [
+            "Mail"
+            "Video"
+            "Other"
+            "Stuff"
+            "Yes"
+          ];
+        };
+        panels = {
+          launchers = [
+            "applications:org.kde.dolphin.desktop"
+            "applications:firefox-beta.desktop"
+            "applications:kitty.desktop"
+            "applications:emacsclient.desktop"
+            "applications:steam.desktop"
+          ];
+        };
+      };
+    };
+
+    hardware = {
+      cpu.amd = enabled;
+      gpu.amd = enabled;
     };
 
     security = { gpg = mkForce disabled; };
 
+    services.syncthing = enabled;
+
     suites = {
       desktop = enabled;
-      development = { enable = true; };
-      office = enabled;
-      video = {
-        enable = true;
-        recording = enabled;
-      };
+      development = enabled;
     };
 
     system = { kanata = enabled; };

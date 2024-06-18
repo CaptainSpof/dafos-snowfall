@@ -15,10 +15,6 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    environment.systemPackages = with pkgs; [
-      ffmpeg_5
-    ];
-
     services.mosquitto = {
       enable = true;
       listeners = [{
@@ -51,8 +47,8 @@ in
     services.home-assistant = {
       enable = true;
       extraComponents = [
-	      "radarr"
-	      "sonarr"
+        "radarr"
+        "sonarr"
         "apple_tv"
         "backup"
         "cast"
@@ -90,6 +86,7 @@ in
 
       customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
         button-card
+        card-mod
         mini-graph-card
         mini-media-player
         multiple-entity-row
@@ -97,6 +94,7 @@ in
         pkgs.dafos.lovelace-auto-entities
         pkgs.dafos.lovelace-fold-entity-row
         pkgs.dafos.lovelace-layout-card
+        pkgs.dafos.bubble-card
       ];
 
       config = {
@@ -110,7 +108,15 @@ in
             type = "module";
           }
           {
+            url = "/local/nixos-lovelace-modules/bubble-card.js";
+            type = "module";
+          }
+          {
             url = "/local/nixos-lovelace-modules/layout-card.js";
+            type = "module";
+          }
+          {
+            url = "/local/nixos-lovelace-modules/card-mod.js";
             type = "module";
           }
           {

@@ -1,9 +1,8 @@
-{ config, lib, inputs, namespace, ... }:
+{ config, lib, namespace, ... }:
 
 with lib;
 with lib.${namespace};
-let inherit (inputs) plasma-manager;
-in {
+{
   imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -19,41 +18,48 @@ in {
     apps = { qbittorrent = enabled; };
 
     desktop = {
-      plasma.touchScreen = true;
-      plasma.bluetoothAdapter = "A4:F9:33:0E:06:BD";
-      plasma.autoLoginUser = config.${namespace}.user.name;
+      plasma = {
+        touchScreen = true;
+        autoLoginUser = config.${namespace}.user.name;
+        config = {
+          virtualDesktopsNames = [
+            "Mail"
+            "Video"
+            "Other"
+            "Stuff"
+            "Yes"
+          ];
+        };
+        panels = {
+          launchers = [
+            "applications:org.kde.dolphin.desktop"
+            "applications:firefox-beta.desktop"
+            "applications:kitty.desktop"
+            "applications:emacsclient.desktop"
+          ];
+        };
+      };
+    };
+
+    hardware = {
+      cpu.amd = enabled;
+      gpu.amd = enabled;
     };
 
     security = { gpg = mkForce disabled; };
 
+    services.syncthing = enabled;
+
     suites = {
       desktop = enabled;
-      office = enabled;
-      development = {
-        enable = true;
-        aws = enabled;
-        podmanEnable = true;
-      };
-      video = {
-        enable = true;
-        recording = enabled;
-      };
+      development = enabled;
     };
 
-    system = { kanata = enabled; };
+    system = {
+      kanata = {
+        enable = true;
 
-    home.extraOptions = {
-      imports = [ plasma-manager.homeManagerModules.plasma-manager ];
-
-      programs.plasma = {
-        configFile = {
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."ClickMethod" = 2;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."Enabled" = true;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."NaturalScroll" = true;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAcceleration" = 0.45;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."PointerAccelerationProfile" = 1;
-          # "kcminputrc"."Libinput.1739.52804.MSFT0001:00 06CB:CE44 Touchpad"."TapToClick" = true;
-        };
+        chordTimeout = 25;
       };
     };
   };

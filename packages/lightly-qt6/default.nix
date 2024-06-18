@@ -1,9 +1,9 @@
-{
-  lib,
-  fetchFromGitHub,
-  extra-cmake-modules,
-  kdePackages,
-  fetchurl,
+{ lib
+, fetchFromGitHub
+, extra-cmake-modules
+, kdePackages
+, fetchurl
+,
 }:
 
 kdePackages.mkKdeDerivation {
@@ -27,17 +27,18 @@ kdePackages.mkKdeDerivation {
         url = "https://github.com/boehs/Lightly/files/14444935/lightlystyleconfig.json";
         sha256 = "sha256-ORQk0QirDB9dF3RdgmH5sstqQqqSEfOE6lh1YEUz+iM=";
       };
-    in ''
-            mkdir tmp
-            cd tmp
-            tar -xv -f ${config-tar-gz}
-            cd ..
+    in
+    ''
+      mkdir tmp
+      cd tmp
+      tar -xv -f ${config-tar-gz}
+      cd ..
 
-            cp -v tmp/config/CMakeLists.txt kdecoration/config/CMakeLists.txt
-            cp -v tmp/config/kcm_lightlydecoration.json kdecoration/config/kcm_lightlydecoration.json
-            cp -v tmp/config/kcm_lightlydecoration.cpp kdecoration/config/kcm_lightlydecoration.cpp
-            cp -v ${lightlystyleconfig-json} kstyle/config/lightlystyleconfig.json
-        '';
+      cp -v tmp/config/CMakeLists.txt kdecoration/config/CMakeLists.txt
+      cp -v tmp/config/kcm_lightlydecoration.json kdecoration/config/kcm_lightlydecoration.json
+      cp -v tmp/config/kcm_lightlydecoration.cpp kdecoration/config/kcm_lightlydecoration.cpp
+      cp -v ${lightlystyleconfig-json} kstyle/config/lightlystyleconfig.json
+    '';
 
   extraBuildInputs = [
     kdePackages.kdecoration

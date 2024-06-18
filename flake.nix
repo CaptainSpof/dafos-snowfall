@@ -2,8 +2,8 @@
   description = "Here lies my shipwrecks. I mean fleet of hosts.";
 
   inputs = {
-    # NixPkgs (nixos-23.05)
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
+    # NixPkgs (nixos-24.05)
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # NixPkgs (nixos-unstable)
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -40,12 +40,20 @@
     snowfall-flake.url = "github:snowfallorg/flake";
     snowfall-flake.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Weekly updating nix-index database
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     # Comma
     comma.url = "github:nix-community/comma";
     comma.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nuenv
     nuenv.url = "github:DeterminateSystems/nuenv";
+
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    emacs-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    emacs-overlay.inputs.flake-utils.follows = "flake-utils";
 
     # Plasma-Manager
     plasma-manager.url = "github:pjones/plasma-manager";
@@ -88,39 +96,39 @@
         };
       };
     in
-      lib.mkFlake {
-        channels-config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [ "openssl-1.1.1w" ];
-        };
-
-        overlays = with inputs; [
-          snowfall-flake.overlays.default
-          nuenv.overlays.default
-          nur.overlay
-        ];
-
-        systems.modules.nixos = with inputs; [
-          disko.nixosModules.disko
-          home-manager.nixosModules.home-manager
-          nix-ld.nixosModules.nix-ld
-          vault-service.nixosModules.nixos-vault-service
-        ];
-
-        systems.modules.home = with inputs; [
-          plasma-manager.homeManagerModules.plasma-manager
-        ];
-
-        systems.hosts.dafoltop.modules = with inputs; [
-          nixos-generators.nixosModules.all-formats
-        ];
-
-        deploy = lib.mkDeploy { inherit (inputs) self; };
-
-        checks =
-          builtins.mapAttrs
-            (_system: deploy-lib:
-              deploy-lib.deployChecks inputs.self.deploy)
-            inputs.deploy-rs.lib;
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
       };
+
+      overlays = with inputs; [
+        snowfall-flake.overlays.default
+        nuenv.overlays.default
+        nur.overlay
+        emacs-overlay.overlays.default
+      ];
+
+      homes.modules = with inputs; [
+        nix-index-database.hmModules.nix-index
+      ];
+
+      systems.modules.nixos = with inputs; [
+        disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        nix-ld.nixosModules.nix-ld
+        vault-service.nixosModules.nixos-vault-service
+      ];
+
+      systems.modules.home = with inputs; [
+        plasma-manager.homeManagerModules.plasma-manager
+      ];
+
+      deploy = lib.mkDeploy { inherit (inputs) self; };
+
+      checks =
+        builtins.mapAttrs
+          (_system: deploy-lib:
+            deploy-lib.deployChecks inputs.self.deploy)
+          inputs.deploy-rs.lib;
+    };
 }

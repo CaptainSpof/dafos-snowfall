@@ -12,6 +12,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      appimage-run
       cifs-utils
       dafos.list-iommu
       powertop
@@ -20,24 +21,18 @@ in
     dafos = {
       nix = enabled;
 
-      apps = {
-        alacritty = enabled;
-        kitty = enabled;
-      };
-
-      cli-apps = {
-        bandwhich = enabled;
-        eza = enabled;
-        fish = enabled;
-        flake = enabled;
-        nushell = enabled;
-        tealdeer = enabled;
-        zsh = enabled;
+      programs = {
+        terminal = {
+          tools = {
+            bandwhich = enabled;
+            flake = enabled;
+            nix-ld = enabled;
+          };
+        };
       };
 
       hardware = {
         audio = enabled;
-        networking = enabled;
         sensors = enabled;
         storage = enabled;
       };
@@ -59,19 +54,9 @@ in
         boot = enabled;
         fonts = enabled;
         locale = enabled;
+        networking = enabled;
         time = enabled;
         xkb = enabled;
-      };
-
-      tools = {
-        bat = enabled;
-        bottom = enabled;
-        comma = enabled;
-        fup-repl = enabled;
-        git = enabled;
-        http = enabled;
-        misc = enabled;
-        nix-ld = enabled;
       };
     };
   };

@@ -1,22 +1,13 @@
-{ config, lib, pkgs, namespace, ... }:
+{ inputs, config, lib, pkgs, namespace, ... }:
 
 with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.desktop.plasma;
-  home-directory = "/home/${config.${namespace}.user.name}";
-  script-adapter-fix = pkgs.writeScript "bluedevil-force-adapter-status" ''
-    #!/usr/bin/env bash
-    echo 'bluedevil: forcing autostart for bluetooth adapter ${cfg.bluetoothAdapter}' | systemd-cat
-    ${pkgs.gnused}/bin/sed -i 's/${cfg.bluetoothAdapter}_powered=false/${cfg.bluetoothAdapter}_powered=true/g' ${home-directory}/.config/bluedevilglobalrc
-  '';
 
-
-  defaultPackages = with pkgs.kdePackages; [
+  defaultPackages = (with pkgs; [
     # Apps
-    kate
-    filelight
-  ] ++ (with pkgs; [
+    kdePackages.kweather
     # Themes
     dafos.kde-warm-eyes
     dafos.lightly-qt6
@@ -24,22 +15,16 @@ let
     kde-gruvbox
     papirus-nord
     # Widgets & Plasmoids
-    dafos.kde-minimalistclock
+    application-title-bar
   ]);
 in
 {
-  imports = [
-    ./config/plasma-config.nix
-  ];
-
   options.${namespace}.desktop.plasma = with types; {
     enable =
       mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
-    bluetoothAdapter = mkOpt str "" "The bluetooth adapter ID";
     autoLoginUser = mkOpt str "" "The user to auto login with.";
-    extensions = mkOpt (listOf package) [ ] "Extra Plasma extensions to install.";
   };
 
   config = mkIf cfg.enable {
@@ -48,7 +33,6 @@ in
       electron-support = enabled;
     };
 
-
     environment.systemPackages = with pkgs; [
       (hiPrio dafos.xdg-open-with-portal)
       wl-clipboard
@@ -56,23 +40,21 @@ in
       # Virtual keyboard
       maliit-framework
       maliit-keyboard
-    ]) ++ defaultPackages ++ cfg.extensions;
+    ]) ++ defaultPackages;
 
-    # environment.plasma.excludePackages = [ ];
-
-    services.xserver = {
-      enable = true;
+    services = {
+      desktopManager.plasma6.enable = true;
 
       displayManager = {
-        defaultSession = mkIf cfg.wayland "plasma";
         autoLogin = lib.optionalAttrs (cfg.autoLoginUser != "") {
           enable = true;
           user = cfg.autoLoginUser;
         };
+        defaultSession = mkIf cfg.wayland "plasma";
       };
 
       libinput.enable = true;
-      desktopManager.plasma6.enable = true;
+      xserver.enable = true;
     };
 
     programs.dconf.enable = true;
@@ -83,14 +65,7 @@ in
       "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
 
     dafos.home.extraOptions = {
-      systemd.user.services.bluedevil-adapter-fix = lib.optionalAttrs (cfg.bluetoothAdapter != "") {
-        Unit.Description = "Force adapter powered status";
-        Unit.After = [ "bluetooth.target" ];
-        Install.WantedBy = [ "default.target" ];
-
-        Service.Type = "oneshot";
-        Service.ExecStart = "/bin/sh ${script-adapter-fix}";
-      };
+      imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
     };
   };
 }

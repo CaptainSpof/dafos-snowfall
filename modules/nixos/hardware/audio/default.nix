@@ -28,7 +28,6 @@ in
       alsa.enable = true;
       pulse.enable = true;
       jack.enable = true;
-
       wireplumber.enable = true;
     };
 
@@ -41,13 +40,13 @@ in
 
     dafos.user.extraGroups = [ "audio" ];
 
-    dafos.home.extraOptions = {
-      systemd.user.services.mpris-proxy = lib.optionalAttrs cfg.mpris-proxy.enable {
-        Unit.Description = "Mpris proxy";
-        Unit.After = [ "network.target" "sound.target" ];
-        Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-        Install.WantedBy = [ "default.target" ];
-      };
-    };
+    # dafos.home.extraOptions = {
+    #   systemd.user.services.mpris-proxy = lib.optionalAttrs cfg.mpris-proxy.enable {
+    #     Unit.Description = "Mpris proxy";
+    #     Unit.After = [ "network.target" "sound.target" ];
+    #     Service.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
+    #     Install.WantedBy = [ "default.target" ];
+    #   };
+    # };
   };
 }

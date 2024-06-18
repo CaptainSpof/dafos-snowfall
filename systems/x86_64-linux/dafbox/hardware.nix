@@ -18,7 +18,6 @@ in {
     initrd = {
       availableKernelModules =
         [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
-      kernelModules = [ "amdgpu" ];
     };
     kernelModules = [ "tcp_bbr" "kvm-amd" "uhid" ];
   };

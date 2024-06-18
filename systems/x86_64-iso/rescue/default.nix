@@ -6,21 +6,17 @@ with lib.${namespace};
   dafos = {
     nix = enabled;
 
-    cli-apps = { neovim = enabled; };
-
     tools = {
       misc = enabled;
       git = enabled;
-      http = enabled;
     };
-
-    hardware = { networking = enabled; };
 
     security = { doas = disabled; };
 
     system = {
       fonts = enabled;
       locale = enabled;
+      networking = enabled;
       time = enabled;
       xkb = enabled;
     };

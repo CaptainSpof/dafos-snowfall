@@ -23,7 +23,7 @@ let
         remote = other-hosts.${name};
         remote-user-name = remote.config.${namespace}.user.name;
       in
-        ''
+      ''
         Host ${name}
           IdentityFile ~/.ssh/daf@${host}.pem
           IdentitiesOnly yes
@@ -46,8 +46,8 @@ in
       enable = true;
 
       settings = {
-        PermitRootLogin = if format == "install-iso" then "yes" else "no";
         PasswordAuthentication = false;
+        PermitRootLogin = if format == "install-iso" then "yes" else "no";
       };
 
       extraConfig = ''

@@ -1,4 +1,4 @@
-{ config, lib, namespace, ... }:
+{ config, lib, pkgs, namespace, ... }:
 
 with lib;
 with lib.${namespace};
@@ -12,16 +12,22 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    environment.systemPackages = with pkgs; [
+      filelight
+      gparted
+    ];
+
     dafos = {
       desktop = {
         gnome = disabled;
-        plasma = enabled;
+        plasma = {
+          enable = true;
+          config.enable = true;
+          panels.enable = true;
+          shortcuts.enable = true;
+        };
         addons = { wallpapers = enabled; };
-      };
-
-      apps = {
-        firefox = enabled;
-        gparted = enabled;
       };
     };
   };

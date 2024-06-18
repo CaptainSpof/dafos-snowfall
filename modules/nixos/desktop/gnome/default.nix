@@ -147,11 +147,6 @@ in
             ];
             favorite-apps =
               [ "org.gnome.Nautilus.desktop" ]
-              ++ optional config.${namespace}.apps.firefox.enable "firefox.desktop"
-              ++ optional config.${namespace}.apps.vscode.enable "code.desktop"
-              ++ optional config.${namespace}.apps.emacs.enable "emacs.desktop"
-              # TODO: enable based on default terminal emulator
-              # ++ optional config.${namespace}.apps.alacritty.enable "alacritty.desktop"
               ++ optional config.${namespace}.apps.kitty.enable "kitty.desktop"
               ++ optional config.${namespace}.apps.discord.enable "discord.desktop"
               ++ optional config.${namespace}.apps.element.enable "element-desktop.desktop"
@@ -183,12 +178,12 @@ in
             resize-with-right-button = true;
           };
           "org/gnome/desktop/wm/keybindings" = {
-            close    = [ "<Alt>F4" "<Super>q" ];
+            close = [ "<Alt>F4" "<Super>q" ];
             minimize = [ "<Ctrl><Super>h" ];
-          
-            switch-to-workspace-left  = [ "<Super>g" ]; 
-            switch-to-workspace-right = [ "<Super>h" ]; 
-            switch-to-workspace-1 = [ "<Super>1" ]; 
+
+            switch-to-workspace-left = [ "<Super>g" ];
+            switch-to-workspace-right = [ "<Super>h" ];
+            switch-to-workspace-1 = [ "<Super>1" ];
             switch-to-workspace-2 = [ "<Super>2" ];
             switch-to-workspace-3 = [ "<Super>3" ];
             switch-to-workspace-4 = [ "<Super>4" ];
@@ -199,7 +194,7 @@ in
             switch-to-workspace-9 = [ "<Super>9" ];
             switch-to-workspace-10 = [ "<Super>0" ];
 
-            move-to-workspace-left  = [ "<Shift><Super>g" ];
+            move-to-workspace-left = [ "<Shift><Super>g" ];
             move-to-workspace-right = [ "<Shift><Super>h" ];
             move-to-workspace-1 = [ "<Shift><Super>1" ];
             move-to-workspace-2 = [ "<Shift><Super>2" ];
@@ -289,20 +284,20 @@ in
             con-split-horizontal = [ ];
             con-split-layout-toggle = [ ];
             con-split-vertical = [ ];
-            con-stacked-layout-toggle = ["<Alt><Super>s"];
-            con-tabbed-layout-toggle = ["<Alt><Super>t"];
-            con-tabbed-showtab-decoration-toggle = ["<Control><Alt>y"];
+            con-stacked-layout-toggle = [ "<Alt><Super>s" ];
+            con-tabbed-layout-toggle = [ "<Alt><Super>t" ];
+            con-tabbed-showtab-decoration-toggle = [ "<Control><Alt>y" ];
             focus-border-toggle = [ ];
-            prefs-tiling-toggle = ["<Super>w"];
-            window-focus-down = ["<Super>t"];
-            window-focus-left = ["<Super>c"];
-            window-focus-right = ["<Super>r"];
-            window-focus-up = ["<Super>s"];
-            window-swap-down = ["<Shift><Super>t"];
-            window-swap-left = ["<Shift><Super>c"];
-            window-swap-right = ["<Shift><Super>r"];
-            window-swap-up = ["<Shift><Super>s"];
-            window-toggle-float = ["<Super>f"];
+            prefs-tiling-toggle = [ "<Super>w" ];
+            window-focus-down = [ "<Super>t" ];
+            window-focus-left = [ "<Super>c" ];
+            window-focus-right = [ "<Super>r" ];
+            window-focus-up = [ "<Super>s" ];
+            window-swap-down = [ "<Shift><Super>t" ];
+            window-swap-left = [ "<Shift><Super>c" ];
+            window-swap-right = [ "<Shift><Super>r" ];
+            window-swap-up = [ "<Shift><Super>s" ];
+            window-toggle-float = [ "<Super>f" ];
           };
           "org/gnome/shell/extensions/top-bar-organizer" = {
             left-box-order = [
