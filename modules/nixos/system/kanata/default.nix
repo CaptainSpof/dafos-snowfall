@@ -7,7 +7,6 @@ in
 {
   options.${namespace}.system.kanata = with types; {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
-    numlock.enable = mkBoolOpt true "Whether or not to enable auto numlock on boot.";
     excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" ] "The devices to be excluded.";
     tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
     holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
@@ -18,18 +17,6 @@ in
     environment.systemPackages = with pkgs; [
       kanata
     ];
-
-    systemd.services.numLockOnTty = mkIf cfg.numlock.enable {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        # /run/current-system/sw/bin/setleds -D +num < "$tty";
-        ExecStart = lib.mkForce (pkgs.writeShellScript "numLockOnTty" ''
-          for tty in /dev/tty{1..6}; do
-              ${pkgs.kbd}/bin/setleds -D +num < "$tty";
-          done
-        '');
-      };
-    };
 
     services.kanata = {
       enable = true;

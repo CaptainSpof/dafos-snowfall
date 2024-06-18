@@ -49,7 +49,8 @@ in
             "Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
             # Mouse settings
             "Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
-            Mouse."X11LibInputXAccelProfileFlat" = false;
+            Mouse.X11LibInputXAccelProfileFlat = false;
+            Keyboard.NumLock = 0; # enable numlock
           };
 
           kdeglobals.KDE.widgetStyle = "Lightly";
