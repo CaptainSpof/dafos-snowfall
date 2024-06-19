@@ -43,18 +43,36 @@ in
             }
           ];
         };
+        date = {
+          matches = [
+            {
+              trigger = ":date";
+              replace = "{{mydate}}";
+              vars = [
+                {
+                  name = "mydate";
+                  type = "date";
+                  params = {
+                    format = "%x";
+                    locale = "fr-FR";
+                  };
+                }
+              ];
+            }
+          ];
+        };
         misc = {
           matches = [
             {
-              trigger = ":me";
+              triggers = [ ":me" ":daf" ];
               replace = fullName;
             }
           ];
         };
         templates = {
           matches = [
-            {
-              trigger = ":tick";
+           {
+           trigger = ":tick";
               replace = ''
                 $|$
                 ---
@@ -67,12 +85,12 @@ in
         symbols = {
           backend = "clipboard";
           matches = [
-            {
-              trigger = ":ar";
+           {
+           trigger = ":ar";
               replace = "→";
             }
             {
-              trigger = ":al";
+           trigger = ":al";
               replace = "←";
             }
           ];

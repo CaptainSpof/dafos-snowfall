@@ -176,7 +176,7 @@ in
             (deflayer arrows-symbols
               _     _      _      _      _      _      _      _      _      _      _       _       _      _
               @`    @`     @'lp   @'rp   ;      _      _      _      _      _      _       _       _      _
-              _     @{     @'lp   @'rp   @}     _      _      pgdn   pgup   _      _       _       _
+              _     @{     @[   @]   @}     _      _      pgdn   pgup   _      _       _       _
               _     @at    @=     @_     @$     @*     left   down   up     rght   _       _       _
               _     _      @|     @\     @{     @}     @~     _      _      home   end     _       _
               _     _     _                     bspc                           _     _
