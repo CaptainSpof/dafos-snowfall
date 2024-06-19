@@ -16,5 +16,9 @@ in
 
       drivers = [ pkgs.cnijfilter2 ];
     };
+
+    environment.systemPackages = with pkgs; [
+      skanpage
+    ];
   };
 }

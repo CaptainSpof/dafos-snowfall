@@ -14,9 +14,9 @@ in
     dafos.home.extraOptions = {
       programs.plasma = {
         shortcuts = {
-          "services/kitty"."_launch" = "Ctrl+Alt+T";
-          "emacsclient.desktop"."new-instance" = "Meta+É";
-          "org.kde.dolphin.desktop"."_launch" = "Meta+E";
+          "services/kitty"._launch = "Ctrl+Alt+T";
+          "emacsclient.desktop".new-instance = "Meta+É";
+          "org.kde.dolphin.desktop"._launch = "Meta+E";
 
           "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
 
@@ -73,7 +73,12 @@ in
             "Switch to Next Desktop" = "Meta+H";
             "Switch to Previous Desktop" = "Meta+G";
 
-            ToggleMouseClick = "Meta+*";
+            "Walk Through Windows" = "Alt+Tab";
+            "Walk Through Windows (Reverse)" = "Alt+Shift+Tab";
+            "Walk Through Windows Alternative" = "Meta+N";
+            "Walk Through Windows Alternative (Reverse)" = "Meta+Shift+N";
+            "Walk Through Windows of Current Application Alternative" = "Meta+Ctrl+N";
+            "Walk Through Windows of Current Application Alternative (Reverse)" = "Meta+Ctrl+Shift+N";
 
             "Window Close" = [ "Alt+F4" "Meta+Q" ];
             "Window Fullscreen" = [ "Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return" "Meta+Alt+Return" ];
@@ -101,8 +106,10 @@ in
             stopmedia = "Media Stop";
           };
 
-          "org.kde.krunner.desktop"."RunClipboard" = "Alt+Shift+F2";
-          "org.kde.krunner.desktop"."_launch" = [ "Meta+Space" "Alt+F2" "Search" ];
+          "org.kde.krunner.desktop" = {
+            RunClipboard = "Alt+Shift+F2";
+            _launch = [ "Meta+Space" "Alt+F2" "Search" ];
+          };
 
           "org.kde.plasma.emojier.desktop"._launch = "Meta+.";
 
@@ -198,7 +205,7 @@ in
             PoloniumInsertLeft = [ ];
             PoloniumInsertRight = [ ];
           };
-          "org.kde.konsole.desktop"."_launch" = [ ];
+          "org.kde.konsole.desktop"._launch = [ ];
           plasmashell = {
             "activate task manager entry 1" = [ ];
             "activate task manager entry 2" = [ ];
@@ -211,7 +218,7 @@ in
             "activate task manager entry 9" = [ ];
             "activate task manager entry 10" = [ ];
           };
-          "kaccess"."Toggle Screen Reader On and Off" = [ ];
+          kaccess."Toggle Screen Reader On and Off" = [ ];
         };
       };
     };

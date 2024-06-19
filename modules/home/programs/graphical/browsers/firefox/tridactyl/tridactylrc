@@ -98,6 +98,9 @@ bindurl youtu((\.be)|(be\.com)) f hint -J
 bindurl youtu((\.be)|(be\.com)) F hint -b -J
 bindurl youtu((\.be)|(be\.com)) tf hint -t -J
 
+# allow to fullscreen a video with 'f'
+unbindurl youtu((\.be)|(be\.com))/watch f
+
 # Only hint search results on Google
 bindurl www.google.com f hint -Jc #search a
 bindurl www.google.com F hint -Jbc #search a

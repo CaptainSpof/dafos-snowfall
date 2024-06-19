@@ -95,6 +95,8 @@ in
               ;; chords
               cht (chord chords j) ;; t
               chs (chord chords k) ;; s
+              chq (chord chords m) ;; q
+              chg (chord chords ,) ;; g
             )
 
             (defalias
@@ -139,6 +141,9 @@ in
               (j  ) j
               (k  ) k
               (j k) C-bspc
+              (m  ) m
+              (,  ) ,
+              (m ,) tab
             )
 
             (deflayer bépow
@@ -146,7 +151,7 @@ in
               @grv  _     _     _     _     _     _     _     _     _     _     @mc=  _    _
               _     _     _     _     _    'w     _     _     _     _     _     à     è
               @cap  @numa _     @lCi  @lMe  _     _     @cht  @chs  _     @ars; _     _
-              _     @<ars 'z     _     _    _     _     _     _     _     _     _     @rbspc
+              _     @<ars 'z     _     _    _     _     _     @chq  @chg  _     _     @rbspc
               _     _     _                   @rSspc               @rAbspc  _
             )
 

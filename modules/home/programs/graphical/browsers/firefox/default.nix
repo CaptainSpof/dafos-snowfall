@@ -136,6 +136,7 @@ in
           languagetool
           org-capture # TODO: setup
           plasma-integration
+          reddit-enhancement-suite
           refined-github
           sidebery
           simple-tab-groups
