@@ -24,7 +24,7 @@ in
             layout = "fr";
             variant = "bepo";
           };
-          backend = "Inject";
+          backend = "inject";
           inject_delay = 5;
           key_delay = 5;
         };
@@ -65,6 +65,7 @@ in
           ];
         };
         symbols = {
+          backend = "clipboard";
           matches = [
             {
               trigger = ":ar";
