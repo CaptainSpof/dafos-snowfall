@@ -18,9 +18,9 @@ in
 
         workspace = {
           clickItemTo = "open";
-          # tooltipDelay = 5;
+          tooltipDelay = 5;
           cursor.theme = "breeze_cursors";
-          colorScheme = "gruvbox";
+          colorScheme = "Gruvbox";
           lookAndFeel = "org.kde.breezetwilight.desktop";
         };
 

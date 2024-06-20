@@ -53,15 +53,7 @@ in {
     settings.General.Experimental = true;
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [ amdvlk libva libvdpau-va-gl vaapiVdpau ];
-  };
-
   hardware.sensor.iio.enable = true;
-  hardware.cpu.amd.updateMicrocode = true;
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   powerManagement.powertop.enable = true;

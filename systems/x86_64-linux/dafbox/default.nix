@@ -7,8 +7,6 @@ with lib.${namespace};
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  services.xserver.videoDrivers = mkDefault [ "amdgpu" ];
-
   dafos = {
     archetypes = {
       workstation = enabled;
@@ -30,7 +28,7 @@ with lib.${namespace};
           ];
         };
         panels = {
-          launchers = [
+          leftPanel.launchers = [
             "applications:org.kde.dolphin.desktop"
             "applications:firefox-beta.desktop"
             "applications:kitty.desktop"

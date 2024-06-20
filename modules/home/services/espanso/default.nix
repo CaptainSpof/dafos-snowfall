@@ -71,8 +71,8 @@ in
         };
         templates = {
           matches = [
-           {
-           trigger = ":tick";
+            {
+              trigger = ":tick";
               replace = ''
                 $|$
                 ---
@@ -85,12 +85,12 @@ in
         symbols = {
           backend = "clipboard";
           matches = [
-           {
-           trigger = ":ar";
+            {
+              trigger = ":ar";
               replace = "→";
             }
             {
-           trigger = ":al";
+              trigger = ":al";
               replace = "←";
             }
           ];

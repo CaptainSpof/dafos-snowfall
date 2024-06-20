@@ -8,13 +8,23 @@ in
 {
   options.${namespace}.desktop.plasma.panels = with types; {
     enable = mkBoolOpt true "Whether or not to configure plasma panels.";
-    launchers = mkOpt (listOf str)
-      [
-        "applications:org.kde.dolphin.desktop"
-        "applications:firefox-beta.desktop"
-        "applications:kitty.desktop"
-        "applications:emacsclient.desktop"
-      ] "The launchers to display in the panel.";
+    topPanel = {
+      maxLength = mkOpt (number) 1900 "The maximum length of the top panel.";
+      minLength = mkOpt (number) 1000 "The minimum length of the top panel.";
+    };
+    topPanelBis = {
+      maxLength = mkOpt (number) 1900 "The maximum length of the top panel.";
+      minLength = mkOpt (number) 1000 "The minimum length of the top panel.";
+    };
+    leftPanel = {
+      launchers = mkOpt (listOf str)
+        [
+          "applications:org.kde.dolphin.desktop"
+          "applications:firefox-beta.desktop"
+          "applications:kitty.desktop"
+          "applications:emacsclient.desktop"
+        ] "The launchers to display in the panel.";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -62,7 +72,7 @@ in
                 name = "org.kde.plasma.icontasks";
                 config = {
                   General = {
-                    launchers = cfg.launchers;
+                    launchers = cfg.leftPanel.launchers;
                   };
                 };
               }
@@ -99,10 +109,33 @@ in
           }
           # Global menu at the top
           {
-            location = "top";
-            height = 28;
+            alignment = "center";
             floating = true;
+            height = 32;
             hiding = "autohide";
+            lengthMode = "custom";
+            location = "top";
+            maxLength = cfg.topPanel.maxLength;
+            minLength = cfg.topPanel.minLength;
+            screen = 0;
+            widgets = [
+              "com.github.antroids.application-title-bar"
+              "org.kde.plasma.appmenu"
+              "org.kde.plasma.panelspacer"
+              "org.kde.plasma.digitalclock"
+              "org.kde.plasma.panelspacer"
+            ];
+          }
+          {
+            alignment = "center";
+            floating = true;
+            height = 32;
+            hiding = "autohide";
+            location = "top";
+            lengthMode = "custom";
+            maxLength = cfg.topPanelBis.maxLength;
+            minLength = cfg.topPanelBis.minLength;
+            screen = 1;
             widgets = [
               "com.github.antroids.application-title-bar"
               "org.kde.plasma.appmenu"
