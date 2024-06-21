@@ -47,6 +47,7 @@ in
         avahi = enabled;
         openssh = enabled;
         printing = enabled;
+        remote-desktop = enabled;
         tailscale = enabled;
       };
 
