@@ -24,6 +24,7 @@ in
       killall
       lsof
       pciutils
+      planify # todo app
       procs
       unrar
       unzip

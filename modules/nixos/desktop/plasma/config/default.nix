@@ -64,16 +64,18 @@ in
             Effect-overview.BorderActivate = 7;
             Effect-overview.BorderActivateAll = 9;
             ElectricBorders.TopRight = "LockScreen";
-            ModifierOnlyShortcuts.Meta = "org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Overview";
+
             NightColor = {
               Active = true;
               NightTemperature = 3800;
             };
+
             Plugins = {
               blurEnabled = true;
               contrastEnabled = true;
               diminactiveEnabled = true;
             };
+
             Windows = {
               BorderlessMaximizedWindows = true;
               CenterSnapZone = 100;
@@ -82,6 +84,7 @@ in
               FocusPolicy = "FocusFollowsMouse";
               NextFocusPrefersMouse = true;
             };
+
             "org.kde.kdecoration2" = {
               BorderSize = "Tiny";
               BorderSizeAuto = false;

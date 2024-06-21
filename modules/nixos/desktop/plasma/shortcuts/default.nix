@@ -61,7 +61,7 @@ in
             "Kill Window" = "Meta+Ctrl+Esc";
             MoveMouseToCenter = "Meta+F6";
             MoveMouseToFocus = "Meta+F5";
-            Overview = "Meta+W";
+            Overview = [ "Meta" "Meta+W" ];
 
             ShowDesktopGrid = "Meta+F8";
             "Suspend Compositing" = "Alt+Shift+F12";
@@ -81,7 +81,7 @@ in
             "Walk Through Windows of Current Application Alternative (Reverse)" = "Meta+Ctrl+Shift+N";
 
             "Window Close" = [ "Alt+F4" "Meta+Q" ];
-            "Window Fullscreen" = [ "Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return" "Meta+Alt+Return" ];
+            "Window Fullscreen" = [ "Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return" "Meta+Ctrl+Return" ];
             "Window Maximize" = [ "Meta+PgUp" "Meta+Return" ];
             "Window Minimize" = "Meta+PgDown";
             "Window On All Desktops" = [ "Meta+Shift+P" "Meta+Alt+A" ];
