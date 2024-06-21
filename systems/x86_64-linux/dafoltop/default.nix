@@ -28,6 +28,7 @@ with lib.${namespace};
       home-assistant = enabled;
       mealie = enabled;
       syncthing = enabled;
+      printing = lib.mkForce disabled;
     };
 
     suites = {
