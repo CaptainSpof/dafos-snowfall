@@ -9,6 +9,7 @@ in
   options.${namespace}.programs.graphical.instant-messengers.discord = {
     enable = mkBoolOpt false "Whether or not to enable Discord.";
     canary.enable = mkBoolOpt false "Whether or not to enable Discord Canary.";
+    vesktop.enable = mkBoolOpt true "Whether or not to enable Discord Vesktop.";
     firefox.enable = mkBoolOpt false "Whether or not to enable the Firefox version of Discord.";
   };
 
@@ -16,6 +17,7 @@ in
 
     home.packages = lib.optional cfg.enable pkgs.discord
       ++ lib.optional cfg.canary.enable pkgs.dafos.discord
+      ++ lib.optional cfg.vesktop.enable pkgs.vesktop
       ++ lib.optional cfg.firefox.enable pkgs.dafos.discord-firefox;
   };
 }
