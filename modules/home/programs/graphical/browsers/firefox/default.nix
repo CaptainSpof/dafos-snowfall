@@ -74,7 +74,7 @@ in
         };
 
         PasswordManagerEnabled = false;
-        # PromptForDownloadLocation = true;
+        PromptForDownloadLocation = true;
 
         UserMessaging = {
           ExtensionRecommendations = false;
@@ -152,6 +152,84 @@ in
           default = "Google";
           privateDefault = "DuckDuckGo";
           force = true;
+
+          engines = {
+            "Nix Packages" = {
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "n" ];
+              urls = [
+                {
+                  template = "https://search.nixos.org/packages";
+                  params = [
+                    {
+                      name = "type";
+                      value = "packages";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+
+            "NixOS Options" = {
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["no"];
+              urls = [
+                {
+                  template = "https://search.nixos.org/options";
+                  params = [
+                    {
+                      name = "channel";
+                      value = "unstable";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+
+            "GitHub" = {
+              iconUpdateURL = "https://github.com/favicon.ico";
+              updateInterval = 24 * 60 * 60 * 1000;
+              definedAliases = [ "gh" ];
+
+              urls = [
+                {
+                  template = "https://github.com/search";
+                  params = [
+                    {
+                      name = "q";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+
+            "Home Manager" = {
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "hm" ];
+
+              url = [
+                {
+                  template = "https://mipmip.github.io/home-manager-option-search/";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+            };
+
+          };
         };
 
         settings = mkMerge [
@@ -174,6 +252,7 @@ in
             "browser.ssb.enabled" = true;
             "browser.startup.homepage.abouthome_cache.enabled" = true;
             "browser.startup.page" = 3;
+            "browser.translations.neverTranslateLanguages" = "fr";
             "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
             "browser.urlbar.suggest.quicksuggest.sponsored" = false;
             "devtools.chrome.enabled" = true;
@@ -205,9 +284,14 @@ in
             "layers.mlgpu.enabled" = true;
           })
           (optionalAttrs cfg.hardwareDecoding {
+            "media.av1.enabled" = true;
             "media.ffmpeg.vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
             "media.gpu-process-decoder" = true;
             "media.hardware-video-decoding.enabled" = true;
+            "media.rdd-ffmpeg.enabled" = true;
+            "media.rdd-vpx.enabled" = false;
+            "widget.dmabuf.force-enabled" = true;
           })
         ];
 

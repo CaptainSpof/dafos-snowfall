@@ -20,9 +20,9 @@ in
             settings = {
               # "dom.ipc.processCount.webIsolated" = 9;
               # "dom.maxHardwareConcurrency" = 16;
-              "media.av1.enabled" = false;
+              # "media.av1.enabled" = false;
               # "media.ffvpx.enabled" = false;
-              # "media.hardware-video-decoding.force-enabled" = true;
+              "media.hardware-video-decoding.force-enabled" = true;
               "media.hardwaremediakeys.enabled" = true;
             };
           };
