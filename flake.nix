@@ -56,7 +56,7 @@
     emacs-overlay.inputs.flake-utils.follows = "flake-utils";
 
     # Plasma-Manager
-    plasma-manager.url = "github:pjones/plasma-manager";
+    plasma-manager.url = "github:nix-community/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
