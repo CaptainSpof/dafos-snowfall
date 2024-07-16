@@ -1,4 +1,5 @@
 { config, lib, pkgs, namespace, ... }:
+
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;

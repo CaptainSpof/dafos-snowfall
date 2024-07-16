@@ -31,12 +31,11 @@ in
           alejandra
           deadnix
           nil
-          nix-update
-          nixfmt-classic
+          nixfmt-rfc-style
           nixpkgs-fmt
           nixpkgs-hammering
-          nixpkgs-lint-community
           nixpkgs-review
+          nix-update
         ]
         ++ lib.optionals cfg.sql.enable [
           dbeaver-bin

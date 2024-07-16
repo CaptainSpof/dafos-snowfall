@@ -176,7 +176,7 @@ in
 
             "NixOS Options" = {
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["no"];
+              definedAliases = [ "no" ];
               urls = [
                 {
                   template = "https://search.nixos.org/options";

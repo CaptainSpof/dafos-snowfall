@@ -7,7 +7,7 @@ in
 {
   options.${namespace}.system.kanata = with types; {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
-    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" "Glove80 Keyboard" "MoErgo Glove80 Left Keyboard"] "The devices to be excluded.";
+    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" "Glove80 Keyboard" "MoErgo Glove80 Left Keyboard" ] "The devices to be excluded.";
     tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
     holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
     chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout.";

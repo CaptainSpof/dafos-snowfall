@@ -15,10 +15,6 @@ in
     dafos = {
       programs = {
         graphical = {
-          # addons = {
-          #   gamescope = enabled;
-          # };
-
           apps = {
             games = {
               steam = enabled;

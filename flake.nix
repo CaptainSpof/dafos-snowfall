@@ -71,16 +71,13 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Run unpatched dynamically compiled binaries
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
     # Vault Integration
     vault-service.url = "github:DeterminateSystems/nixos-vault-service";
     vault-service.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;
@@ -108,27 +105,22 @@
         emacs-overlay.overlays.default
       ];
 
-      homes.modules = with inputs; [
-        nix-index-database.hmModules.nix-index
-      ];
+      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
 
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
-        nix-ld.nixosModules.nix-ld
         vault-service.nixosModules.nixos-vault-service
       ];
 
-      systems.modules.home = with inputs; [
-        plasma-manager.homeManagerModules.plasma-manager
-      ];
+      systems.modules.home = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
 
-      checks =
-        builtins.mapAttrs
-          (_system: deploy-lib:
-            deploy-lib.deployChecks inputs.self.deploy)
-          inputs.deploy-rs.lib;
+      checks = builtins.mapAttrs
+        (
+          _system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy
+        )
+        inputs.deploy-rs.lib;
     };
 }
