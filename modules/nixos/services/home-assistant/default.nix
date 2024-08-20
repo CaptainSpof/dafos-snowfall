@@ -1,14 +1,15 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.services.home-assistant;
 in
 {
-  options.${namespace}.services.home-assistant = with types; {
+  options.${namespace}.services.home-assistant = {
     enable = mkBoolOpt false "Whether or not to enable home-assistant.";
-    serialPort = mkOpt str "/dev/ttyACM0" "The serial port to use.";
+    serialPort = mkOpt types.str "/dev/ttyACM0" "The serial port to use.";
   };
 
   config = mkIf cfg.enable {

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
@@ -19,6 +25,10 @@ in
       protontricks
       protonup-ng
       protonup-qt
+
+      # slipstream # FTL
+      # sunshine
+      # moonlight-qt #for testing purposes.
     ];
 
     dafos = {

@@ -31,6 +31,7 @@ in
 
     home.shellAliases = {
       la = mkForce "${getExe config.programs.eza.package} -lah --tree";
+      sl = "ls";
       tree = mkForce "${getExe config.programs.eza.package} --tree --icons=always";
     };
   };

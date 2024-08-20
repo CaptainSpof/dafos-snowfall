@@ -1,8 +1,9 @@
 { config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.desktop.plasma.panels;
 in
 {

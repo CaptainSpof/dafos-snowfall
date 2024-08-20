@@ -21,9 +21,9 @@ stdenvNoCC.mkDerivation rec {
 
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Bubble Card is a minimalist card collection for Home Assistant with a nice pop-up touch.";
     homepage = "https://github.com/Clooos/Bubble-Card";
-    license = licenses.mit;
+    license = lib.licenses.mit;
   };
 }

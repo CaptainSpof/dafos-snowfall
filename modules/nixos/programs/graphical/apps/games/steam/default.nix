@@ -1,12 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.dafos;
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.graphical.apps.games.steam;
 in
 {
-  options.dafos.programs.graphical.apps.games.steam = with types; {
+  options.dafos.programs.graphical.apps.games.steam = {
     enable = mkBoolOpt false "Whether or not to enable support for Steam.";
     uiScaling = mkBoolOpt false "Whether or not to enable UI scaling for Steam.";
   };
@@ -15,16 +22,12 @@ in
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;
-      extraCompatPackages = [
-        pkgs.proton-ge-bin
-      ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     hardware.steam-hardware.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      steamtinkerlaunch
-    ];
+    environment.systemPackages = with pkgs; [ steamtinkerlaunch ];
 
     environment.sessionVariables = {
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";

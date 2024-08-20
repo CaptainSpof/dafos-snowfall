@@ -1,8 +1,20 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkIf
+    mkForce
+    types
+    optionalString
+    ;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.desktop.addons.gtk;
   gdmCfg = config.services.xserver.displayManager.gdm;
 in
@@ -10,18 +22,15 @@ in
   options.${namespace}.desktop.addons.gtk = with types; {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
     theme = {
-      name = mkOpt str "Gruvbox-Dark-B"
-        "The name of the GTK theme to apply.";
+      name = mkOpt str "Gruvbox-Dark-B" "The name of the GTK theme to apply.";
       pkg = mkOpt package pkgs.gruvbox-gtk-theme "The package to use for the theme.";
     };
     cursor = {
-      name = mkOpt str "Bibata-Modern-Ice"
-        "The name of the cursor theme to apply.";
+      name = mkOpt str "Bibata-Modern-Ice" "The name of the cursor theme to apply.";
       pkg = mkOpt package null "The package to use for the cursor theme.";
     };
     icon = {
-      name = mkOpt str "Papirus"
-        "The name of the icon theme to apply.";
+      name = mkOpt str "Papirus" "The name of the icon theme to apply.";
       pkg = mkOpt package pkgs.papirus-icon-theme "The package to use for the icon theme.";
     };
   };

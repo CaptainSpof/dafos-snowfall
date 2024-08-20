@@ -1,17 +1,29 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 with lib;
 with lib.${namespace};
-let cfg = config.${namespace}.desktop.addons.wofi;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.desktop.addons.wofi;
 in
 {
-  options.${namespace}.desktop.addons.wofi = with types; {
-    enable =
-      mkBoolOpt false "Whether to enable the Wofi in the desktop environment.";
+  options.${namespace}.desktop.addons.wofi = {
+    enable = mkBoolOpt false "Whether to enable the Wofi in the desktop environment.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ wofi wofi-emoji ];
+    environment.systemPackages = with pkgs; [
+      wofi
+      wofi-emoji
+    ];
 
     # config -> .config/wofi/config
     # css -> .config/wofi/style.css

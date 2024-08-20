@@ -21,7 +21,8 @@ in
       };
 
       extraPackages = with pkgs.bat-extras; [
-        batdiff
+        # FIXME: rust 1.80
+        # batdiff
         batgrep
         batman
         batpipe

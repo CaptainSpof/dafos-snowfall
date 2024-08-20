@@ -1,19 +1,30 @@
-{ config, pkgs, lib, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.hardware.storage;
-in {
-  options.${namespace}.hardware.storage = with types; {
-    enable = mkBoolOpt false
-      "Whether or not to enable support for extra storage devices.";
-    ssdEnable = mkBoolOpt true
-      "Whether or not to enable support for SSD storage devices.";
+let
+  inherit (lib) mkIf mkDefault;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.hardware.storage;
+in
+{
+  options.${namespace}.hardware.storage = {
+    enable = mkBoolOpt false "Whether or not to enable support for extra storage devices.";
+    ssdEnable = mkBoolOpt true "Whether or not to enable support for SSD storage devices.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ nfs-utils ntfs3g fuseiso ];
+    environment.systemPackages = with pkgs; [
+      nfs-utils
+      ntfs3g
+      fuseiso
+    ];
 
-    services.fstrim.enable = lib.mkDefault cfg.ssdEnable;
+    services.fstrim.enable = mkDefault cfg.ssdEnable;
   };
 }

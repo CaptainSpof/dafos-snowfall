@@ -1,4 +1,9 @@
-{ lib, config, namespace, ... }:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -21,8 +26,9 @@ in
         enableNushellIntegration = nushell.enable;
         enableZshIntegration = zsh.enable;
         settings = {
-          format = ''$nix_shell$directory$aws$all$package$fill$vcsh$git_commit$git_state$git_metrics$git_branch$git_status
-$cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
+          format = ''
+            $nix_shell$directory$aws$all$package$fill$vcsh$git_commit$git_state$git_metrics$git_branch$git_status
+            $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
           right_format = "$time";
 
           add_newline = true;
@@ -43,7 +49,7 @@ $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
             show_notifications = true;
             notification_timeout = 3500;
             min_time_to_notify = 30000;
-            format = "[ $duration ]($style)";
+            format = "[󱦟 $duration ]($style)";
           };
 
           fill.symbol = " ";
@@ -77,7 +83,7 @@ $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
 
           aws = {
             style = "bold #bb7445";
-            symbol = "🌩  ";
+            symbol = " ";
             expiration_symbol = "🔒 ";
             format = "· [$symbol($profile )($duration )]($style) ";
           };
@@ -91,7 +97,7 @@ $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
           git_status = {
             style = "#2d2f40";
             conflicted = "[ ](bold fg:88 bg:#2d2f40)[  $count ](fg:#999cb2 bg:#2d2f40)";
-            staged = "[ $count ](fg:#999cb2 bg:#2d2f40)";
+            staged = "[ $count ](fg:#999cb2 bg:#2d2f40)";
             modified = "[ $count ](fg:#999cb2 bg:#2d2f40)";
             renamed = "[ $count ](fg:#999cb2 bg:#2d2f40)";
             deleted = "[󰗨 $count ](fg:#999cb2 bg:#2d2f40)";
@@ -118,14 +124,15 @@ $cmd_duration$jobs$battery$status$shell$custom$memory_usage$character'';
           };
 
           rust = {
-            style = "bold #d2470a";
+            symbol = " ";
+            style = "#d2470a";
             format = "· [$symbol($version )]($style) ";
           };
 
           nix_shell = {
-            symbol = "❄";
-            impure_msg = "[ ❄⁣ ](fg:white bg:red bold)";
-            pure_msg = "[ ❄⁣ ](fg:white bg:blue bold)";
+            symbol = "󱄅";
+            impure_msg = "[ 󱄅⁣ ](fg:white bg:red bold)";
+            pure_msg = "[ 󱄅⁣ ](fg:white bg:blue bold)";
             format = "[$state]($style)";
           };
           package.format = "· [$symbol$version]($style) ";

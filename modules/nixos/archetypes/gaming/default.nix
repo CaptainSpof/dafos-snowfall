@@ -1,12 +1,13 @@
 { config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) enabled mkBoolOpt;
+
   cfg = config.${namespace}.archetypes.gaming;
 in
 {
-  options.${namespace}.archetypes.gaming = with types; {
+  options.${namespace}.archetypes.gaming = {
     enable = mkBoolOpt false "Whether or not to enable the gaming archetype.";
   };
 

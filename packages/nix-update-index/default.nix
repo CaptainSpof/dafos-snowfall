@@ -21,10 +21,10 @@ let
       popd > /dev/null
     '';
 
-  new-meta = with lib; {
+  new-meta = {
     description = "A helper for downloading the latest nix-index database.";
-    license = licenses.asl20;
-    maintainers = with maintainers; [ jakehamilton ];
+    license = lib.licenses.asl20;
+    maintainers = [ lib.maintainers.jakehamilton ];
   };
 in
 override-meta new-meta nix-update-index

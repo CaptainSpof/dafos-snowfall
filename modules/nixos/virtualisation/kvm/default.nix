@@ -1,8 +1,9 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf optionalString concatStringsSep types length;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
+
   cfg = config.${namespace}.virtualisation.kvm;
   user = config.${namespace}.user;
 in

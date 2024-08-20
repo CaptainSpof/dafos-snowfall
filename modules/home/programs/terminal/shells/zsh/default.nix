@@ -1,9 +1,14 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf optionalString;
+  inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.shells.zsh;
 in
@@ -22,33 +27,37 @@ in
         enableCompletion = true;
         syntaxHighlighting.enable = true;
 
-        initExtra = ''
-          # Fix an issue with tmux.
-          export KEYTIMEOUT=1
+        initExtra =
+          ''
+            # Fix an issue with tmux.
+            export KEYTIMEOUT=1
 
-          # Use vim bindings.
-          set -o vi
+            # Use vim bindings.
+            set -o vi
 
-          # Improved vim bindings.
-          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-        '' + optionalString cfg.prompt-init ''
-          ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
-        '';
+            # Improved vim bindings.
+            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+          ''
+          + optionalString cfg.prompt-init ''
+            ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
+          '';
 
         shellAliases = {
           say = "${pkgs.toilet}/bin/toilet -f pagga";
         };
 
-        plugins = [{
-          name = "zsh-nix-shell";
-          file = "nix-shell.plugin.zsh";
-          src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "v0.4.0";
-            sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
-          };
-        }];
+        plugins = [
+          {
+            name = "zsh-nix-shell";
+            file = "nix-shell.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "chisui";
+              repo = "zsh-nix-shell";
+              rev = "v0.4.0";
+              sha256 = "037wz9fqmx0ngcwl9az55fgkipb745rymznxnssr3rx9irb6apzg";
+            };
+          }
+        ];
       };
     };
   };

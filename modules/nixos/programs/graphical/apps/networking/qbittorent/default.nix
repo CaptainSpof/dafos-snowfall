@@ -1,8 +1,15 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.apps.qbittorrent;
   username = config.${namespace}.user.name;
 in
@@ -26,8 +33,6 @@ in
       };
     };
 
-    environment.systemPackages = with pkgs; [
-      qbittorrent
-    ];
+    environment.systemPackages = with pkgs; [ qbittorrent ];
   };
 }

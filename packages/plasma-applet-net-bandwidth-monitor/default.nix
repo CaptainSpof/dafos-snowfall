@@ -22,10 +22,10 @@ libsForQt5.mkDerivation rec {
     plasma-framework
   ];
 
-  meta = with lib; {
+  meta = {
     description = "A beautiful control centre widget for KDE Plasma directly inspired by the MacOS control centre.";
     homepage = "https://github.com/Prayag2/kde_controlcentre";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.linux;
   };
 }

@@ -1,10 +1,18 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.suites.social;
-in {
-  options.${namespace}.suites.social = with types; {
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
+
+  cfg = config.${namespace}.suites.social;
+in
+{
+  options.${namespace}.suites.social = {
     enable = mkBoolOpt false "Whether or not to enable social configuration.";
   };
 

@@ -1,8 +1,14 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.terminal.tools.bandwhich;
 in
 {

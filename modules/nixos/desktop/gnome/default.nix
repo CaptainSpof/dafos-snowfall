@@ -1,8 +1,9 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) optional mkIf mapAttrs mkDefault types;
+  inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.desktop.gnome;
   gdmHome = config.users.users.gdm.home;
 

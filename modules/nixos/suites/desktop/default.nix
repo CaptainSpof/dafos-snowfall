@@ -1,14 +1,20 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
+
   cfg = config.${namespace}.suites.desktop;
 in
 {
-  options.${namespace}.suites.desktop = with types; {
-    enable =
-      mkBoolOpt false "Whether or not to enable common desktop configuration.";
+  options.${namespace}.suites.desktop = {
+    enable = mkBoolOpt false "Whether or not to enable common desktop configuration.";
   };
 
   config = mkIf cfg.enable {
@@ -27,7 +33,9 @@ in
           panels.enable = true;
           shortcuts.enable = true;
         };
-        addons = { wallpapers = enabled; };
+        addons = {
+          wallpapers = enabled;
+        };
       };
     };
   };

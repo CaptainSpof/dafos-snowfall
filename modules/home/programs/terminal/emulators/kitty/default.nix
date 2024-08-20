@@ -1,14 +1,20 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
   fontTerm = config.${namespace}.user.font.term;
   themeDark = config.${namespace}.user.theme.dark;
 in
 {
-  options.${namespace}.programs.terminal.emulators.kitty = with types; {
+  options.${namespace}.programs.terminal.emulators.kitty = {
     enable = mkBoolOpt false "Whether or not to enable kitty.";
   };
 

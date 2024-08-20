@@ -1,12 +1,13 @@
 { pkgs, config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.suites.music;
 in
 {
-  options.${namespace}.suites.music = with types; {
+  options.${namespace}.suites.music = {
     enable = mkBoolOpt false "Whether or not to enable music configuration.";
     mixing.enable = mkBoolOpt false "Whether or not to enable music mixing configuration.";
   };

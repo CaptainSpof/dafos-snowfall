@@ -1,12 +1,13 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
+
   cfg = config.${namespace}.suites.common;
 in
 {
-  options.${namespace}.suites.common = with types; {
+  options.${namespace}.suites.common = {
     enable = mkBoolOpt false "Whether or not to enable common configuration.";
   };
 

@@ -1,15 +1,29 @@
-{ config, pkgs, lib, inputs, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib)
+    mkIf
+    types
+    optional
+    mapAttrsToList
+    ;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
   cfg = config.${namespace}.nix;
-
-  substituters-submodule = types.submodule ({ ... }: {
-    options = with types; {
-      key = mkOpt (nullOr str) null "The trusted public key for this substituter.";
-    };
-  });
+  substituters-submodule = types.submodule (
+    { ... }:
+    {
+      options = with types; {
+        key = mkOpt (nullOr str) null "The trusted public key for this substituter.";
+      };
+    }
+  );
 in
 {
   options.${namespace}.nix = with types; {
@@ -18,28 +32,25 @@ in
 
     default-substituter = {
       url = mkOpt str "https://cache.nixos.org" "The url for the substituter.";
-      key = mkOpt str "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "The trusted public key for the substituter.";
+      key =
+        mkOpt str "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+          "The trusted public key for the substituter.";
     };
 
-    extra-substituters = mkOpt (attrsOf substituters-submodule)
-      {
-        "https://nix-community.cachix.org" = { key = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="; };
-      } "Extra substituters to configure.";
+    extra-substituters = mkOpt (attrsOf substituters-submodule) {
+      "https://nix-community.cachix.org" = {
+        key = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+      };
+    } "Extra substituters to configure.";
   };
 
   config = mkIf cfg.enable {
-    assertions = mapAttrsToList
-      (name: value: {
-        assertion = value.key != null;
-        message = "dafos.nix.extra-substituters.${name}.key must be set";
-      })
-      cfg.extra-substituters;
+    assertions = mapAttrsToList (name: value: {
+      assertion = value.key != null;
+      message = "dafos.nix.extra-substituters.${name}.key must be set";
+    }) cfg.extra-substituters;
 
     environment.systemPackages = with pkgs; [
-      dafos.nixos-revision
-      (dafos.nixos-hosts.override {
-        hosts = inputs.self.nixosConfigurations;
-      })
       deploy-rs
       nix-index
       nix-init
@@ -56,8 +67,10 @@ in
 
     nix =
       let
-        users = [ "root" config.${namespace}.user.name ] ++
-          optional config.services.hydra.enable "hydra";
+        users = [
+          "root"
+          config.${namespace}.user.name
+        ] ++ optional config.services.hydra.enable "hydra";
       in
       {
         package = cfg.package;
@@ -72,14 +85,12 @@ in
           trusted-users = users;
           allowed-users = users;
 
-          substituters =
-            [ cfg.default-substituter.url ]
-            ++
-            (mapAttrsToList (name: _value: name) cfg.extra-substituters);
-          trusted-public-keys =
-            [ cfg.default-substituter.key ]
-            ++
-            (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
+          substituters = [
+            cfg.default-substituter.url
+          ] ++ (mapAttrsToList (name: _value: name) cfg.extra-substituters);
+          trusted-public-keys = [
+            cfg.default-substituter.key
+          ] ++ (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
         };
 
         gc = {

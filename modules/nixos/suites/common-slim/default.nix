@@ -1,17 +1,18 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
+
   cfg = config.${namespace}.suites.common-slim;
 in
 {
-  options.${namespace}.suites.common-slim = with types; {
+  options.${namespace}.suites.common-slim = {
     enable = mkBoolOpt false "Whether or not to enable common-slim configuration.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       cifs-utils
       pkgs.dafos.list-iommu
       powertop

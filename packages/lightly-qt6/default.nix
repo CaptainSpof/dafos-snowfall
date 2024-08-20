@@ -47,10 +47,10 @@ kdePackages.mkKdeDerivation {
     extra-cmake-modules
   ];
 
-  meta = with lib; {
+  meta = {
     description = "A modern style for qt applications.";
     homepage = "https://github.com/boehs/Lightly";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.linux;
   };
 }

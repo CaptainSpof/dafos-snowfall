@@ -1,4 +1,8 @@
-{ lib, unzip, libsForQt5 }:
+{
+  lib,
+  unzip,
+  libsForQt5,
+}:
 
 libsForQt5.mkDerivation rec {
   name = "simple-overview-pager";
@@ -8,9 +12,7 @@ libsForQt5.mkDerivation rec {
   dontUnpack = true;
   dontWrapQtApps = true;
 
-  nativeBuildInputs = [
-    unzip
-  ];
+  nativeBuildInputs = [ unzip ];
 
   buildInputs = with libsForQt5; [
     kcoreaddons
@@ -35,10 +37,10 @@ libsForQt5.mkDerivation rec {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "A beautiful control centre widget for KDE Plasma directly inspired by the MacOS control centre.";
     homepage = "https://github.com/Prayag2/kde_controlcentre";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.linux;
   };
 }

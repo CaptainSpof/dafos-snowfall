@@ -1,4 +1,8 @@
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{
+  lib,
+  stdenvNoCC,
+  fetchFromGitHub,
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "lovelace-auto-entities";
@@ -22,9 +26,9 @@ stdenvNoCC.mkDerivation rec {
 
   passthru.entrypoint = "auto-entities.js";
 
-  meta = with lib; {
+  meta = {
     description = "🔹Automatically populate the entities-list of lovelace cards";
     homepage = "https://github.com/thomasloven/lovelace-auto-entities";
-    license = licenses.mit;
+    license = lib.licenses.mit;
   };
 }

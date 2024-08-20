@@ -1,4 +1,8 @@
-{ lib, buildNpmPackage, fetchFromGitHub }:
+{
+  lib,
+  buildNpmPackage,
+  fetchFromGitHub,
+}:
 
 buildNpmPackage rec {
   pname = "lovelace-layout-card";
@@ -24,9 +28,9 @@ buildNpmPackage rec {
 
   passthru.entrypoint = "layout-card.js";
 
-  meta = with lib; {
+  meta = {
     description = "🔹 Get more control over the placement of lovelace cards.";
     homepage = "https://github.com/thomasloven/lovelace-layout-card";
-    license = licenses.mit;
+    license = lib.licenses.mit;
   };
 }

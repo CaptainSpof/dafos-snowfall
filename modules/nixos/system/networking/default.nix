@@ -1,14 +1,20 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.system.networking;
+let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mdDoc mkOpt mkBoolOpt;
+
+  cfg = config.${namespace}.system.networking;
 in
 {
-  options.${namespace}.system.networking = with types; {
+  options.${namespace}.system.networking = {
     enable = mkBoolOpt false "Whether or not to enable networking support.";
-    hosts = mkOpt attrs { }
-      (mdDoc "An attribute set to merge with `networking.hosts`");
+    hosts = mkOpt types.attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
   };
 
   config = mkIf cfg.enable {

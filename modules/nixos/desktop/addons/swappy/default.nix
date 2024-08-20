@@ -1,13 +1,20 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.desktop.addons.swappy;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.desktop.addons.swappy;
 in
 {
-  options.${namespace}.desktop.addons.swappy = with types; {
-    enable =
-      mkBoolOpt false "Whether to enable Swappy in the desktop environment.";
+  options.${namespace}.desktop.addons.swappy = {
+    enable = mkBoolOpt false "Whether to enable Swappy in the desktop environment.";
   };
 
   config = mkIf cfg.enable {

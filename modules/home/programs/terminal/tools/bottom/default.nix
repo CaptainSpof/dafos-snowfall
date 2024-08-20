@@ -1,12 +1,13 @@
 { config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.terminal.tools.bottom;
 in
 {
-  options.${namespace}.programs.terminal.tools.bottom = with types; {
+  options.${namespace}.programs.terminal.tools.bottom = {
     enable = mkBoolOpt false "Whether or not to enable bottom.";
   };
 

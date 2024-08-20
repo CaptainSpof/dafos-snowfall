@@ -1,11 +1,19 @@
-{ options, config, lib, pkgs, namespace, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.desktop.addons.keyring;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+  cfg = config.${namespace}.desktop.addons.keyring;
 in
 {
-  options.${namespace}.desktop.addons.keyring = with types; {
+  options.${namespace}.desktop.addons.keyring = {
     enable = mkBoolOpt false "Whether to enable the gnome keyring.";
   };
 

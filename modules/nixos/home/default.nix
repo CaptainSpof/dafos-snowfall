@@ -1,7 +1,9 @@
 { options, config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib) types mkAliasDefinitions;
+  inherit (lib.${namespace}) mkOpt;
+in
 {
   options.${namespace}.home = with types; {
     file = mkOpt attrs { }

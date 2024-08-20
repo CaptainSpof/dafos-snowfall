@@ -1,8 +1,15 @@
-{ config, pkgs, lib, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types mkForce;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.hardware.audio;
 in
 {
@@ -10,10 +17,8 @@ in
     enable = mkBoolOpt false "Whether or not to enable audio support.";
     mpris-proxy.enable = mkBoolOpt false "Whether or not to enable mpris proxy.";
     alsa-monitor = mkOpt attrs { } "Alsa configuration.";
-    nodes = mkOpt (listOf attrs) [ ]
-      "Audio nodes to pass to Pipewire as `context.objects`.";
-    modules = mkOpt (listOf attrs) [ ]
-      "Audio modules to pass to Pipewire as `context.modules`.";
+    nodes = mkOpt (listOf attrs) [ ] "Audio nodes to pass to Pipewire as `context.objects`.";
+    modules = mkOpt (listOf attrs) [ ] "Audio modules to pass to Pipewire as `context.modules`.";
     extra-packages = mkOpt (listOf package) [
       pkgs.qjackctl
       pkgs.easyeffects
@@ -33,10 +38,13 @@ in
 
     hardware.pulseaudio.enable = mkForce false;
 
-    environment.systemPackages = with pkgs; [
-      pulsemixer
-      pavucontrol
-    ] ++ cfg.extra-packages;
+    environment.systemPackages =
+      with pkgs;
+      [
+        pulsemixer
+        pavucontrol
+      ]
+      ++ cfg.extra-packages;
 
     dafos.user.extraGroups = [ "audio" ];
 

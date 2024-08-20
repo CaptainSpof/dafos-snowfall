@@ -1,11 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.services.printing;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.services.printing;
 in
 {
-  options.${namespace}.services.printing = with types; {
+  options.${namespace}.services.printing = {
     enable = mkBoolOpt false "Whether or not to configure printing support.";
   };
 
@@ -17,8 +25,6 @@ in
       drivers = [ pkgs.cnijfilter2 ];
     };
 
-    environment.systemPackages = with pkgs; [
-      skanpage
-    ];
+    environment.systemPackages = with pkgs; [ skanpage ];
   };
 }

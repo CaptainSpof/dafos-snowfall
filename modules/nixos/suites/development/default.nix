@@ -1,12 +1,13 @@
-{ config, lib, pkgs, namespace, ... }:
+{ config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.suites.development;
 in
 {
-  options.${namespace}.suites.development = with types; {
+  options.${namespace}.suites.development = {
     enable = mkBoolOpt false "Whether or not to enable common development configuration.";
     docker.enable = mkBoolOpt false "Whether or not to enable podman development configuration.";
     keyboard.enable = mkBoolOpt false "Whether or not to enable keyboard development configuration.";

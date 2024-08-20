@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
@@ -15,8 +21,10 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = lib.optional cfg.enable pkgs.discord
-      ++ lib.optional cfg.canary.enable pkgs.dafos.discord
+    # FIXME
+    # lib.optional cfg.enable pkgs.discord
+    home.packages =
+      lib.optional cfg.canary.enable pkgs.dafos.discord
       ++ lib.optional cfg.vesktop.enable pkgs.vesktop
       ++ lib.optional cfg.firefox.enable pkgs.dafos.discord-firefox;
   };

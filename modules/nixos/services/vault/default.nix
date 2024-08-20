@@ -1,57 +1,71 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types mkEnableOption;
+  inherit (lib.${namespace})
+    concatStringsSep
+    mapAttrs
+    mapAttrsToList
+    mkBoolOpt
+    mkOpt
+    optionalString
+    ;
+
   cfg = config.${namespace}.services.vault;
 
   package = if cfg.ui then pkgs.vault-bin else pkgs.vault;
 
   has-policies = (builtins.length (builtins.attrNames cfg.policies)) != 0;
 
-  format-policy = name: file: pkgs.runCommandNoCC
-    "formatted-vault-policy"
-    {
-      inherit file;
-      buildInputs = [ package ];
-    }
-    ''
-      name="$(basename "$file")"
+  format-policy =
+    name: file:
+    pkgs.runCommandNoCC "formatted-vault-policy"
+      {
+        inherit file;
+        buildInputs = [ package ];
+      }
+      ''
+        name="$(basename "$file")"
 
-      cp "$file" "./$name"
+        cp "$file" "./$name"
 
-      # Ensure that vault can overwrite the file.
-      chmod +w "./$name"
+        # Ensure that vault can overwrite the file.
+        chmod +w "./$name"
 
-      # Create this variable here to avoid swallowing vault's exit code.
-      vault_output=
+        # Create this variable here to avoid swallowing vault's exit code.
+        vault_output=
 
-      set +e
-      vault_output=$(vault policy fmt "./$name" 2>&1)
-      vault_status=$?
-      set -e
+        set +e
+        vault_output=$(vault policy fmt "./$name" 2>&1)
+        vault_status=$?
+        set -e
 
-      if [ "$vault_status" != 0 ]; then
-        echo 'Error formatting policy "${name}"'
-        echo "This is normally caused by a syntax error in the policy file."
-        echo "$file"
-        echo ""
-        echo "Vault Output:"
-        echo "$vault_output"
-        exit 1
-      fi
+        if [ "$vault_status" != 0 ]; then
+          echo 'Error formatting policy "${name}"'
+          echo "This is normally caused by a syntax error in the policy file."
+          echo "$file"
+          echo ""
+          echo "Vault Output:"
+          echo "$vault_output"
+          exit 1
+        fi
 
-      mv "./$name" $out
-    '';
+        mv "./$name" $out
+      '';
 
-  policies = mapAttrs
-    (name: value:
-      if builtins.isPath value then
-        format-policy name value
-      else
-        format-policy name (pkgs.writeText "${name}.hcl" value)
-    )
-    cfg.policies;
+  policies = mapAttrs (
+    name: value:
+    if builtins.isPath value then
+      format-policy name value
+    else
+      format-policy name (pkgs.writeText "${name}.hcl" value)
+  ) cfg.policies;
 in
 {
   options.${namespace}.services.vault = {
@@ -67,7 +81,9 @@ in
 
     mutable-policies = mkBoolOpt false "Whether policies not specified in Nix should be removed.";
 
-    policies = mkOpt (types.attrsOf (types.either types.str types.path)) { } "Policies to install when Vault runs.";
+    policies = mkOpt (types.attrsOf (
+      types.either types.str types.path
+    )) { } "Policies to install when Vault runs.";
 
     policy-agent = {
       user = mkOpt types.str "vault" "The user to run the Vault Agent as.";
@@ -75,7 +91,9 @@ in
 
       auth = {
         roleIdFilePath = mkOpt types.str "/var/lib/vault/role-id" "The file to read the role-id from.";
-        secretIdFilePath = mkOpt types.str "/var/lib/vault/secret-id" "The file to read the secret-id from.";
+        secretIdFilePath =
+          mkOpt types.str "/var/lib/vault/secret-id"
+            "The file to read the secret-id from.";
       };
     };
   };
@@ -122,14 +140,10 @@ in
 
       script =
         let
-          write-policies-commands = mapAttrsToList
-            (name: policy:
-              ''
-                echo Writing policy '${name}': '${policy}'
-                vault policy write '${name}' '${policy}'
-              ''
-            )
-            policies;
+          write-policies-commands = mapAttrsToList (name: policy: ''
+            echo Writing policy '${name}': '${policy}'
+            vault policy write '${name}' '${policy}'
+          '') policies;
           write-policies = concatStringsSep "\n" write-policies-commands;
 
           known-policies = mapAttrsToList (name: _value: name) policies;

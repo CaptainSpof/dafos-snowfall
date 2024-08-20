@@ -1,12 +1,18 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.terminal.tools.tealdeer;
 in
 {
-  options.${namespace}.programs.terminal.tools.tealdeer = with types; {
+  options.${namespace}.programs.terminal.tools.tealdeer = {
     enable = mkBoolOpt false "Whether or not to enable tealdeer.";
   };
 

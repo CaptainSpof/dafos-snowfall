@@ -29,7 +29,11 @@ in
       unrar
       unzip
       wget
+      ydotool
       xclip
+      xdotool
+      xorg.xprop
+      xorg.xwininfo
     ];
 
     dafos = {

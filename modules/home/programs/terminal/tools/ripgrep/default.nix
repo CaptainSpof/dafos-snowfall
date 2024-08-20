@@ -1,6 +1,12 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
-  inherit (lib) getExe mkForce mkIf;
+  inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.tools.ripgrep;
@@ -26,10 +32,6 @@ in
 
         "--smart-case"
       ];
-    };
-
-    home.shellAliases = {
-      grep = mkForce (getExe config.programs.ripgrep.package);
     };
   };
 }

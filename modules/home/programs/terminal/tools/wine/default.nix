@@ -1,12 +1,12 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
   cfg = config.${namespace}.programs.terminal.tools.wine;
 in
 {
-  options.${namespace}.programs.terminal.tools.wine = with types; {
+  options.${namespace}.programs.terminal.tools.wine = {
     enable = mkBoolOpt false "Whether or not to enable wine.";
   };
 

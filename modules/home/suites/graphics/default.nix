@@ -1,12 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.suites.graphics;
 in
 {
-  options.${namespace}.suites.graphics = with types; {
+  options.${namespace}.suites.graphics = {
     enable = mkBoolOpt false "Whether or not to enable art configuration.";
     drawing.enable = mkBoolOpt false "Whether or not to enable art drawing configuration.";
     vector.enable = mkBoolOpt false "Whether or not to enable art vector configuration.";
@@ -15,18 +22,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ ]
-      ++ lib.optionals cfg.drawing.enable [
-      krita
-    ]
-      ++ lib.optionals cfg.vector.enable [
-      inkscape-with-extensions
-    ]
-      ++ lib.optionals cfg.graphics3d.enable [
-      blender
-    ]
-      ++ lib.optionals cfg.raster.enable [
-      gimp
-    ];
+    home.packages =
+      with pkgs;
+      [ ]
+      ++ lib.optionals cfg.drawing.enable [ krita ]
+      ++ lib.optionals cfg.vector.enable [ inkscape-with-extensions ]
+      ++ lib.optionals cfg.graphics3d.enable [ blender ]
+      ++ lib.optionals cfg.raster.enable [ gimp ];
   };
 }

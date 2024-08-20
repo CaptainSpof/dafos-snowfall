@@ -1,7 +1,8 @@
 { lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib.${namespace}) enabled disabled;
+in
 {
   dafos = {
     nix = enabled;
@@ -11,7 +12,9 @@ with lib.${namespace};
       git = enabled;
     };
 
-    security = { doas = disabled; };
+    security = {
+      doas = disabled;
+    };
 
     system = {
       fonts = enabled;

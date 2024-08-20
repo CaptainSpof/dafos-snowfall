@@ -1,8 +1,14 @@
-{ lib, config, namespace, ... }:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.programs.terminal.tools.zoxide;
   nushell = config.${namespace}.programs.terminal.shells.nushell;
   fish = config.${namespace}.programs.terminal.shells.fish;
@@ -10,7 +16,7 @@ let
 in
 {
   options.${namespace}.programs.terminal.tools.zoxide = {
-    enable = mkEnableOption "Whether or not to enable zoxide.";
+    enable = mkBoolOpt false "Whether or not to enable zoxide.";
   };
 
   config = mkIf cfg.enable {

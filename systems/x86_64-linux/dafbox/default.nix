@@ -1,7 +1,9 @@
 { config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib) mkForce;
+  inherit (lib.${namespace}) enabled disabled;
+in
 {
   imports = [ ./hardware.nix ];
 

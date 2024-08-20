@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
@@ -9,6 +15,7 @@ in
   options.${namespace}.suites.development = {
     enable = mkBoolOpt false "Whether or not to enable common development configuration.";
     aws.enable = mkBoolOpt false "Whether or not to enable aws development configuration.";
+    postman.enable = mkBoolOpt false "Whether or not to enable postman configuration.";
     docker.enable = mkBoolOpt false "Whether or not to enable docker development configuration.";
     kubernetes.enable = mkBoolOpt false "Whether or not to enable kubernetes development configuration.";
     nix.enable = mkBoolOpt true "Whether or not to enable nix development configuration.";
@@ -22,7 +29,6 @@ in
         [
           jqp
           onefetch
-          postman
           github-desktop
           tokei # need to know how many lines of poorly written code you typed ? 🦀
           wildcard
@@ -40,7 +46,8 @@ in
         ++ lib.optionals cfg.sql.enable [
           dbeaver-bin
           mysql-workbench
-        ];
+        ]
+        ++ lib.optionals cfg.postman.enable [ postman ];
 
       shellAliases = {
         prefetch-sri = "nix store prefetch-file $1";

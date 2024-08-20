@@ -1,15 +1,16 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.services.espanso;
   email = config.${namespace}.user.email;
   gitEmail = config.${namespace}.user.gitEmail;
   fullName = config.${namespace}.user.fullName;
 in
 {
-  options.${namespace}.services.espanso = with types; {
+  options.${namespace}.services.espanso = {
     enable = mkBoolOpt false "Whether or not to enable espanso.";
   };
 
@@ -20,6 +21,7 @@ in
 
       configs = {
         default = {
+          search_shortcut = "ALT+SHIFT+SPACE";
           keyboard_layout = {
             layout = "fr";
             variant = "bepo";

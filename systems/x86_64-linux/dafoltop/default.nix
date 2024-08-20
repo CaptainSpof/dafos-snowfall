@@ -1,7 +1,14 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib) mkForce;
+  inherit (lib.${namespace}) enabled disabled;
+in
 {
   imports = [ ./hardware.nix ];
 
@@ -18,7 +25,9 @@ with lib.${namespace};
       workstation = enabled;
     };
 
-    apps = { qbittorrent = enabled; };
+    apps = {
+      qbittorrent = enabled;
+    };
 
     desktop.plasma.autoLoginUser = config.${namespace}.user.name;
 
@@ -36,7 +45,9 @@ with lib.${namespace};
       yahrr = enabled;
     };
 
-    system = { kanata = enabled; };
+    system = {
+      kanata = enabled;
+    };
   };
 
   # This value determines the NixOS release from which the default

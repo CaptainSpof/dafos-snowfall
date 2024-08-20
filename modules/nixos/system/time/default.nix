@@ -1,12 +1,19 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.system.time;
-in {
-  options.${namespace}.system.time = with types; {
-    enable =
-      mkBoolOpt false "Whether or not to configure timezone information.";
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.system.time;
+in
+{
+  options.${namespace}.system.time = {
+    enable = mkBoolOpt false "Whether or not to configure timezone information.";
   };
 
   config = mkIf cfg.enable { time.timeZone = "Europe/Paris"; };

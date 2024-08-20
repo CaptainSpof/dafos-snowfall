@@ -1,17 +1,19 @@
-{ config, lib, namespace, ... }:
+{ config, lib, namespace, pkgs, ... }:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.programs.terminal.tools.aws;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+  cfg = config.${namespace}.programs.terminal.tools.aws;
 in
 {
-  options.${namespace}.programs.terminal.tools.aws = with types; {
+  options.${namespace}.programs.terminal.tools.aws = {
     enable = mkBoolOpt false "Whether or not to enable aws.";
   };
 
   config = mkIf cfg.enable {
     programs.awscli = {
       enable = true;
+      package = pkgs.awscli2;
     };
   };
 }

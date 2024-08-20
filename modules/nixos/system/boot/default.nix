@@ -1,11 +1,18 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.system.boot;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.system.boot;
 in
 {
-  options.${namespace}.system.boot = with types; {
+  options.${namespace}.system.boot = {
     enable = mkBoolOpt false "Whether or not to enable booting.";
   };
 

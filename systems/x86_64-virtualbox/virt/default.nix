@@ -1,7 +1,8 @@
 { lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib.${namespace}) enabled disabled;
+in
 {
   virtualisation.virtualbox.guest.enable = true;
 

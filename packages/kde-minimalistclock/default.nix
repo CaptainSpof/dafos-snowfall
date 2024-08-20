@@ -29,10 +29,10 @@ libsForQt5.mkDerivation rec {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "A minimalist looking clock for KDE!";
     homepage = "https://github.com/Prayag2/kde_minimalistclock";
-    license = licenses.gpl3;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3;
+    platforms = lib.platforms.linux;
   };
 }

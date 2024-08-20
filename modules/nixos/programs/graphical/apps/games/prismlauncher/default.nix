@@ -1,12 +1,13 @@
 { config, lib, pkgs, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.apps.prismlauncher;
 in
 {
-  options.${namespace}.apps.prismlauncher = with types; {
+  options.${namespace}.apps.prismlauncher = {
     enable = mkBoolOpt false "Whether or not to enable Prism Launcher.";
   };
 

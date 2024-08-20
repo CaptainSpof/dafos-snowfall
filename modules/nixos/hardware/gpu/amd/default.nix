@@ -30,7 +30,7 @@ in
     };
 
     # enables AMDVLK & OpenCL support
-    hardware.opengl = {
+    hardware.graphics = {
       extraPackages = with pkgs;
         [
           amdvlk

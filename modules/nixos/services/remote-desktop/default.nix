@@ -1,11 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.services.remote-desktop;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.services.remote-desktop;
 in
 {
-  options.${namespace}.services.remote-desktop = with types; {
+  options.${namespace}.services.remote-desktop = {
     enable = mkBoolOpt false "Whether or not to configure remote-desktop support.";
   };
 

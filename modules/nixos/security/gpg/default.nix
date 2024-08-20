@@ -1,8 +1,16 @@
-{ config, pkgs, lib, inputs, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
+
   cfg = config.${namespace}.security.gpg;
 
   gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
@@ -15,9 +23,9 @@ let
   '';
 in
 {
-  options.${namespace}.security.gpg = with types; {
+  options.${namespace}.security.gpg = {
     enable = mkBoolOpt false "Whether or not to enable GPG.";
-    agentTimeout = mkOpt int 5 "The amount of time to wait before continuing with shell init.";
+    agentTimeout = mkOpt types.int 5 "The amount of time to wait before continuing with shell init.";
   };
 
   config = mkIf cfg.enable {

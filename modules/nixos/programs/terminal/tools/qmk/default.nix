@@ -1,21 +1,25 @@
-{ config, pkgs, lib, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.programs.terminal.tools.qmk;
+let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
+  cfg = config.${namespace}.programs.terminal.tools.qmk;
 in
 {
-  options.${namespace}.programs.terminal.tools.qmk = with types; {
+  options.${namespace}.programs.terminal.tools.qmk = {
     enable = mkBoolOpt false "Whether or not to enable QMK";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      qmk
-    ];
+    environment.systemPackages = with pkgs; [ qmk ];
 
-    services.udev.packages = with pkgs; [
-      qmk-udev-rules
-    ];
+    services.udev.packages = with pkgs; [ qmk-udev-rules ];
   };
 }

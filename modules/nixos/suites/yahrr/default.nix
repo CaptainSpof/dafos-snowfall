@@ -1,12 +1,13 @@
 { config, lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
+
   cfg = config.${namespace}.suites.yahrr;
 in
 {
-  options.${namespace}.suites.yahrr = with types; {
+  options.${namespace}.suites.yahrr = {
     enable = mkBoolOpt false "Whether or not to enable yahrr configuration.";
   };
 

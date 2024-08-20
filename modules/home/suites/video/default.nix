@@ -1,12 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.suites.video;
 in
 {
-  options.${namespace}.suites.video = with types; {
+  options.${namespace}.suites.video = {
     enable = mkBoolOpt false "Whether or not to enable video configuration.";
     editing.enable = mkBoolOpt false "Whether or not to enable video editing configuration.";
     jellyfin.enable = mkBoolOpt true "Whether or not to enable jellyfin configuration.";
@@ -16,20 +23,16 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [
-      vlc
-      yt-dlp
-      freetube
-    ]
-    ++ lib.optionals cfg.jellyfin.enable [
-      jellyfin-media-player
-    ]
-    ++ lib.optionals cfg.mpv.enable [
-      mpv
-    ]
-    ++ lib.optionals cfg.editing.enable [
-      kdenlive
-    ];
+    home.packages =
+      with pkgs;
+      [
+        vlc
+        yt-dlp
+        freetube
+      ]
+      ++ lib.optionals cfg.jellyfin.enable [ jellyfin-media-player ]
+      ++ lib.optionals cfg.mpv.enable [ mpv ]
+      ++ lib.optionals cfg.editing.enable [ kdenlive ];
 
     dafos = {
       programs.graphical.apps = {

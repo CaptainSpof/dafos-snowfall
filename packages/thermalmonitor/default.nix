@@ -1,4 +1,8 @@
-{ libsForQt5, lib, fetchFromGitHub }:
+{
+  libsForQt5,
+  lib,
+  fetchFromGitHub,
+}:
 
 libsForQt5.mkDerivation rec {
   name = "thermalmonitor";
@@ -29,10 +33,10 @@ libsForQt5.mkDerivation rec {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "A KDE Plasmoid for displaying system temperatures.";
     homepage = "https://invent.kde.org/olib/thermalmonitor";
-    license = licenses.mit;
-    platforms = platforms.linux;
+    license = lib.licenses.mit;
+    platforms = lib.platforms.linux;
   };
 }

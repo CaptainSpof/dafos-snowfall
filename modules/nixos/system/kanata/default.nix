@@ -1,29 +1,47 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.system.kanata;
+let
+  inherit (lib)
+    concatStringsSep
+    length
+    mkIf
+    optionalString
+    pipe
+    types
+    ;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
+  cfg = config.${namespace}.system.kanata;
 in
 {
-  options.${namespace}.system.kanata = with types; {
+  options.${namespace}.system.kanata = {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
-    excludedDevices = mkOpt (types.listOf types.str) [ "ZMK Project Kyria Keyboard" "Glove80 Keyboard" "MoErgo Glove80 Left Keyboard" ] "The devices to be excluded.";
+    excludedDevices = mkOpt (types.listOf types.str) [
+      "ZMK Project Kyria Keyboard"
+      "Glove80 Keyboard"
+      "MoErgo Glove80 Left Keyboard"
+    ] "The devices to be excluded.";
     tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
     holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
     chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout.";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      kanata
-    ];
+    environment.systemPackages = with pkgs; [ kanata ];
 
     services.kanata = {
       enable = true;
 
       keyboards."bepo" =
         let
-          mkExcludedDevices = devices:
+          mkExcludedDevices =
+            devices:
             let
               devicesString = pipe devices [
                 (map (device: "\"" + device + "\""))
@@ -104,6 +122,7 @@ in
               ]     AG-5
               {     AG-x
               }     AG-c
+              ^     AG-6
               'lp   4
               'rp   5
               at    6
@@ -177,7 +196,7 @@ in
               _     _      _      _      _      _      _      _      _      _      _       _       _      _
               @`    @`     @'lp   @'rp   ;      _      _      _      _      _      _       _       _      _
               _     @{     @[   @]   @}     _      _      pgdn   pgup   _      _       _       _
-              _     @at    @=     @_     @$     @*     left   down   up     rght   _       _       _
+              @^     @at    @=     @_     @$     @*     left   down   up     rght   _       _       _
               _     _      @|     @\     @{     @}     @~     _      _      home   end     _       _
               _     _     _                     bspc                           _     _
             )

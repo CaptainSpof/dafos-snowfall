@@ -1,12 +1,18 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.desktop.plasma.shortcuts;
 in
 {
-  options.${namespace}.desktop.plasma.shortcuts = with types; {
+  options.${namespace}.desktop.plasma.shortcuts = {
     enable = mkBoolOpt true "Whether or not to configure plasma shortcuts.";
   };
 
@@ -28,7 +34,10 @@ in
 
           kded5 = {
             "Show System Activity" = "Ctrl+Esc";
-            display = [ "Display" "Meta+P" ];
+            display = [
+              "Display"
+              "Meta+P"
+            ];
           };
 
           kmix = {
@@ -36,7 +45,10 @@ in
             decrease_volume = "Volume Down";
             increase_microphone_volume = "Microphone Volume Up";
             increase_volume = "Volume Up";
-            mic_mute = [ "Microphone Mute" "Meta+Volume Mute" ];
+            mic_mute = [
+              "Microphone Mute"
+              "Meta+Volume Mute"
+            ];
             mute = "Volume Mute";
           };
 
@@ -56,12 +68,18 @@ in
             ExposeAll = [ "Launch (C)" ];
             ExposeClass = "Ctrl+F7";
             ExposeClassCurrentDesktop = [ "Ctrl+Shift+F7" ];
-            "Window No Border" = [ "Meta+Shift+B" "Meta+Alt+B" ];
+            "Window No Border" = [
+              "Meta+Shift+B"
+              "Meta+Alt+B"
+            ];
 
             "Kill Window" = "Meta+Ctrl+Esc";
             MoveMouseToCenter = "Meta+F6";
             MoveMouseToFocus = "Meta+F5";
-            Overview = [ "Meta" "Meta+W" ];
+            Overview = [
+              "Meta"
+              "Meta+W"
+            ];
 
             ShowDesktopGrid = "Meta+F8";
             "Suspend Compositing" = "Alt+Shift+F12";
@@ -80,11 +98,25 @@ in
             "Walk Through Windows of Current Application Alternative" = "Meta+Ctrl+N";
             "Walk Through Windows of Current Application Alternative (Reverse)" = "Meta+Ctrl+Shift+N";
 
-            "Window Close" = [ "Alt+F4" "Meta+Q" ];
-            "Window Fullscreen" = [ "Meta+Ctrl+F" "Meta+Shift+F" "Meta+Shift+Return" "Meta+Ctrl+Return" ];
-            "Window Maximize" = [ "Meta+PgUp" "Meta+Return" ];
+            "Window Close" = [
+              "Alt+F4"
+              "Meta+Q"
+            ];
+            "Window Fullscreen" = [
+              "Meta+Ctrl+F"
+              "Meta+Shift+F"
+              "Meta+Shift+Return"
+              "Meta+Ctrl+Return"
+            ];
+            "Window Maximize" = [
+              "Meta+PgUp"
+              "Meta+Return"
+            ];
             "Window Minimize" = "Meta+PgDown";
-            "Window On All Desktops" = [ "Meta+Shift+P" "Meta+Alt+A" ];
+            "Window On All Desktops" = [
+              "Meta+Shift+P"
+              "Meta+Alt+A"
+            ];
             "Window One Desktop to the Left" = "Meta+Shift+G";
             "Window One Desktop to the Right" = "Meta+Shift+H";
             "Window Operations Menu" = "Alt+F3";
@@ -93,8 +125,14 @@ in
             "Window Quick Tile Right" = "Meta+Right";
             "Window Quick Tile Top" = "Meta+Up";
             "Window Resize" = "Meta+Alt+R";
-            "Window to Next Screen" = [ "Meta+Shift+Right" "Meta+Ctrl+Shift+R" ];
-            "Window to Previous Screen" = [ "Meta+Shift+Left" "Meta+Ctrl+Shift+C" ];
+            "Window to Next Screen" = [
+              "Meta+Shift+Right"
+              "Meta+Ctrl+Shift+R"
+            ];
+            "Window to Previous Screen" = [
+              "Meta+Shift+Left"
+              "Meta+Ctrl+Shift+C"
+            ];
             view_actual_size = "Meta+0";
           };
 
@@ -108,7 +146,11 @@ in
 
           "org.kde.krunner.desktop" = {
             RunClipboard = "Alt+Shift+F2";
-            _launch = [ "Meta+Space" "Alt+F2" "Search" ];
+            _launch = [
+              "Meta+Space"
+              "Alt+F2"
+              "Search"
+            ];
           };
 
           "org.kde.plasma.emojier.desktop"._launch = "Meta+.";
@@ -126,7 +168,10 @@ in
             cycle-panels = "Meta+Alt+P";
             "next activity" = "Meta+Tab";
             "previous activity" = "Meta+Shift+Tab";
-            "show dashboard" = [ "Ctrl+F12" "Meta+D" ];
+            "show dashboard" = [
+              "Ctrl+F12"
+              "Meta+D"
+            ];
             show-on-mouse-pos = "Meta+V";
           };
 

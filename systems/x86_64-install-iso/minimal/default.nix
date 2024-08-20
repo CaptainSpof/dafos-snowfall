@@ -1,7 +1,8 @@
 { lib, namespace, ... }:
 
-with lib;
-with lib.${namespace};
+let
+  inherit (lib.${namespace}) enabled disabled mkForce;
+in
 {
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.

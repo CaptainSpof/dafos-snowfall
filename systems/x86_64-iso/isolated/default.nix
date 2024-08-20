@@ -1,10 +1,16 @@
-{ pkgs, lib, inputs, namespace, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
-  gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
+  inherit (lib) mkForce;
+  inherit (lib.${namespace}) guide guideHTML enabled disabled;
 
+  gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
   gpgAgentConf = ''
     pinentry-program /run/current-system/sw/bin/pinentry-curses
   '';
@@ -56,7 +62,9 @@ in
     home.file.".gnupg/gpg.conf".source = gpgConf;
     home.file.".gnupg/gpg-agent.conf".text = gpgAgentConf;
 
-    security = { doas = disabled; };
+    security = {
+      doas = disabled;
+    };
 
     system = {
       fonts = enabled;

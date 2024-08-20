@@ -1,12 +1,18 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
+
   cfg = config.${namespace}.apps.virtualbox;
 in
 {
-  options.${namespace}.apps.virtualbox = with types; {
+  options.${namespace}.apps.virtualbox = {
     enable = mkBoolOpt false "Whether or not to enable Virtualbox.";
   };
 

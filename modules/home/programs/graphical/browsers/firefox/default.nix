@@ -1,7 +1,18 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
-  inherit (lib) types mkIf mkMerge optionalAttrs;
+  inherit (lib)
+    mkIf
+    mkMerge
+    optionalAttrs
+    types
+    ;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.graphical.browsers.firefox;
@@ -9,15 +20,177 @@ let
   firefoxPath = ".mozilla/firefox/${config.${namespace}.user.name}";
 in
 {
-  options.${namespace}.programs.graphical.browsers.firefox = with types;
-    {
-      enable = mkBoolOpt false "Whether or not to enable firefox.";
-      hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
-      gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
-      extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
-      settings = mkOpt attrs { } "Settings to apply to the profile.";
-      userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
-    };
+  options.${namespace}.programs.graphical.browsers.firefox = with types; {
+    enable = mkBoolOpt false "Whether or not to enable firefox.";
+
+    extensions = mkOpt (listOf package) (with pkgs.nur.repos.rycee.firefox-addons; [
+      auto-tab-discard
+      bitwarden
+      consent-o-matic
+      darkreader
+      enhancer-for-youtube
+      firefox-color
+      french-language-pack
+      languagetool
+      org-capture # TODO: setup
+      plasma-integration
+      reddit-enhancement-suite
+      refined-github
+      sidebery
+      simple-tab-groups
+      sponsorblock
+      stylus
+      tabcenter-reborn
+      tridactyl
+      ublock-origin
+      user-agent-string-switcher
+    ]) "Extensions to install";
+
+    extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
+
+    policies = mkOpt attrs {
+      CaptivePortal = false;
+      DisableFirefoxStudies = true;
+      DisableFormHistory = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      DisplayBookmarksToolbar = true;
+      DontCheckDefaultBrowser = true;
+      FirefoxHome = {
+        Pocket = false;
+        Snippets = false;
+      };
+
+      PasswordManagerEnabled = false;
+      PromptForDownloadLocation = true;
+
+      UserMessaging = {
+        ExtensionRecommendations = false;
+        SkipOnboarding = true;
+      };
+
+      ExtensionSettings = {
+        "ebay@search.mozilla.org".installation_mode = "blocked";
+        "amazondotcom@search.mozilla.org".installation_mode = "blocked";
+        "bing@search.mozilla.org".installation_mode = "blocked";
+        "ddg@search.mozilla.org".installation_mode = "blocked";
+        "wikipedia@search.mozilla.org".installation_mode = "blocked";
+
+        "tridactyl".installation_mode = "force_installed";
+
+        "frankerfacez@frankerfacez.com" = {
+          installation_mode = "force_installed";
+          install_url = "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
+        };
+
+        "magnolia_limited_permissions@12.34" = {
+          installation_mode = "force_installed";
+          install_url = "https://gitlab.com/magnolia1234/bpc-uploads/-/raw/master/bypass_paywalls_clean-3.2.3.0-custom.xpi";
+        };
+
+        "ATBC@EasonWong" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4159211/adaptive_tab_bar_colour-2.1.4.xpi";
+        };
+
+        "bento" = {
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/3787567/bento-1.7.xpi";
+        };
+
+      };
+      Preferences = { };
+    } "Policies to apply to firefox";
+
+    search = mkOpt attrs {
+      default = "Google";
+      privateDefault = "DuckDuckGo";
+      force = true;
+
+      engines = {
+        "Nix Packages" = {
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "n" ];
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+
+        "NixOS Options" = {
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "no" ];
+          urls = [
+            {
+              template = "https://search.nixos.org/options";
+              params = [
+                {
+                  name = "channel";
+                  value = "unstable";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+
+        "GitHub" = {
+          iconUpdateURL = "https://github.com/favicon.ico";
+          updateInterval = 24 * 60 * 60 * 1000;
+          definedAliases = [ "gh" ];
+
+          urls = [
+            {
+              template = "https://github.com/search";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+
+        "Home Manager" = {
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "hm" ];
+
+          url = [
+            {
+              template = "https://mipmip.github.io/home-manager-option-search/";
+              params = [
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+
+      };
+    } "Search configuration";
+
+    gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
+    hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
+    settings = mkOpt attrs { } "Settings to apply to the profile.";
+    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
+  };
 
   config = mkIf cfg.enable {
     home = {
@@ -34,9 +207,7 @@ in
             recursive = true;
           };
           "${firefoxPath}/chrome/" = {
-            source = lib.cleanSourceWith {
-              src = lib.cleanSource ./chrome/.;
-            };
+            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/.; };
 
             recursive = true;
           };
@@ -46,191 +217,25 @@ in
 
     # Tridactyl
     xdg.configFile."tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
-    xdg.configFile."tridactyl/themes/everforest-dark.css".source =
-      ./tridactyl/tridactyl_style_everforest.css;
+    xdg.configFile."tridactyl/themes/everforest-dark.css".source = ./tridactyl/tridactyl_style_everforest.css;
 
     programs.firefox = {
       enable = true;
 
+      inherit (cfg) policies;
+
       package = pkgs.firefox-beta.override (orig: {
-        nativeMessagingHosts =
-          (orig.nativeMessagingHosts or [ ]) ++ [
-            pkgs.tridactyl-native
-            pkgs.plasma-browser-integration
-          ];
+        nativeMessagingHosts = (orig.nativeMessagingHosts or [ ]) ++ [
+          pkgs.tridactyl-native
+          pkgs.plasma-browser-integration
+        ];
       });
 
-      policies = {
-        CaptivePortal = false;
-        DisableFirefoxStudies = true;
-        DisableFormHistory = true;
-        DisablePocket = true;
-        DisableTelemetry = true;
-        DisplayBookmarksToolbar = true;
-        DontCheckDefaultBrowser = true;
-        FirefoxHome = {
-          Pocket = false;
-          Snippets = false;
-        };
-
-        PasswordManagerEnabled = false;
-        PromptForDownloadLocation = true;
-
-        UserMessaging = {
-          ExtensionRecommendations = false;
-          SkipOnboarding = true;
-        };
-
-        ExtensionSettings = {
-          "ebay@search.mozilla.org".installation_mode = "blocked";
-          "amazondotcom@search.mozilla.org".installation_mode = "blocked";
-          "bing@search.mozilla.org".installation_mode = "blocked";
-          "ddg@search.mozilla.org".installation_mode = "blocked";
-          "wikipedia@search.mozilla.org".installation_mode = "blocked";
-
-          "tridactyl".installation_mode = "force_installed";
-
-          "frankerfacez@frankerfacez.com" = {
-            installation_mode = "force_installed";
-            install_url =
-              "https://cdn.frankerfacez.com/script/frankerfacez-4.0-an+fx.xpi";
-          };
-
-          "magnolia_limited_permissions@12.34" = {
-            installation_mode = "force_installed";
-            install_url =
-              "https://gitlab.com/magnolia1234/bpc-uploads/-/raw/master/bypass_paywalls_clean-3.2.3.0-custom.xpi";
-          };
-
-          "ATBC@EasonWong" = {
-            installation_mode = "force_installed";
-            install_url =
-              "https://addons.mozilla.org/firefox/downloads/file/4159211/adaptive_tab_bar_colour-2.1.4.xpi";
-          };
-
-          "bento" = {
-            installation_mode = "force_installed";
-            install_url =
-              "https://addons.mozilla.org/firefox/downloads/file/3787567/bento-1.7.xpi";
-          };
-
-        };
-        Preferences = { };
-      };
-
-
       profiles.${config.${namespace}.user.name} = {
-        inherit (cfg) extraConfig;
+        inherit (cfg) extraConfig extensions search;
         inherit (config.${namespace}.user) name;
 
         id = 0;
-
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          auto-tab-discard
-          bitwarden
-          consent-o-matic
-          darkreader
-          enhancer-for-youtube
-          firefox-color
-          french-language-pack
-          languagetool
-          org-capture # TODO: setup
-          plasma-integration
-          reddit-enhancement-suite
-          refined-github
-          sidebery
-          simple-tab-groups
-          sponsorblock
-          stylus
-          tabcenter-reborn
-          tridactyl
-          ublock-origin
-          user-agent-string-switcher
-        ];
-
-        search = {
-          default = "Google";
-          privateDefault = "DuckDuckGo";
-          force = true;
-
-          engines = {
-            "Nix Packages" = {
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "n" ];
-              urls = [
-                {
-                  template = "https://search.nixos.org/packages";
-                  params = [
-                    {
-                      name = "type";
-                      value = "packages";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-
-            "NixOS Options" = {
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "no" ];
-              urls = [
-                {
-                  template = "https://search.nixos.org/options";
-                  params = [
-                    {
-                      name = "channel";
-                      value = "unstable";
-                    }
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-
-            "GitHub" = {
-              iconUpdateURL = "https://github.com/favicon.ico";
-              updateInterval = 24 * 60 * 60 * 1000;
-              definedAliases = [ "gh" ];
-
-              urls = [
-                {
-                  template = "https://github.com/search";
-                  params = [
-                    {
-                      name = "q";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-
-            "Home Manager" = {
-              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "hm" ];
-
-              url = [
-                {
-                  template = "https://mipmip.github.io/home-manager-option-search/";
-                  params = [
-                    {
-                      name = "query";
-                      value = "{searchTerms}";
-                    }
-                  ];
-                }
-              ];
-            };
-
-          };
-        };
 
         settings = mkMerge [
           cfg.settings
@@ -295,9 +300,11 @@ in
           })
         ];
 
-        userChrome = builtins.readFile ./chrome/userChrome.css + ''
-          ${cfg.userChrome}
-        '';
+        userChrome =
+          builtins.readFile ./chrome/userChrome.css
+          + ''
+            ${cfg.userChrome}
+          '';
       };
     };
   };

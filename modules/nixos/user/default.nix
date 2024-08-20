@@ -1,8 +1,15 @@
-{ config, pkgs, lib, namespace, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) types mdDoc;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.user;
   defaultIconFileName = "profile.png";
   defaultIcon = pkgs.stdenvNoCC.mkDerivation {
@@ -15,18 +22,24 @@ let
       cp $src $out
     '';
 
-    passthru = { fileName = defaultIconFileName; };
+    passthru = {
+      fileName = defaultIconFileName;
+    };
 
   };
-  propagatedIcon = pkgs.runCommandNoCC "propagated-icon"
-    {
-      passthru = { fileName = cfg.icon.fileName; };
-    } ''
-    local target="$out/share/dafos-icons/user/${cfg.name}"
-    mkdir -p "$target"
+  propagatedIcon =
+    pkgs.runCommandNoCC "propagated-icon"
+      {
+        passthru = {
+          fileName = cfg.icon.fileName;
+        };
+      }
+      ''
+        local target="$out/share/dafos-icons/user/${cfg.name}"
+        mkdir -p "$target"
 
-    cp ${cfg.icon} "$target/${cfg.icon.fileName}"
-  '';
+        cp ${cfg.icon} "$target/${cfg.icon.fileName}"
+      '';
   dirs = rec {
     config = "${home}/.config";
     documents = "${home}/Documents";
@@ -53,19 +66,15 @@ in
     gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
     gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";
 
-    initialPassword = mkOpt types.str "omgchangeme"
-      "The initial password to use when the user is first created.";
-    icon = mkOpt (types.nullOr types.package) defaultIcon
-      "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true
-      "Whether or not to show an initial message when opening a new shell.";
+    initialPassword =
+      mkOpt types.str "omgchangeme"
+        "The initial password to use when the user is first created.";
+    icon = mkOpt (types.nullOr types.package) defaultIcon "The profile picture to use for the user.";
+    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
 
-    theme.dark =
-      mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
-    theme.light =
-      mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
-    font.term = mkOpt types.str "Hack Nerd Font Mono"
-      "Terminal Font to use for the system.";
+    theme.dark = mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
+    theme.light = mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
+    font.term = mkOpt types.str "Hack Nerd Font Mono" "Terminal Font to use for the system.";
 
     authorizedKeys = mkOpt (types.listOf types.str) [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
@@ -74,10 +83,8 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9pWuxUUYo7wwCIfMUkrlfyrpT4IDeWnqldrgm6TIl0 daf@dafbox"
     ] "The public keys to apply.";
 
-    extraGroups =
-      mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";
-    extraOptions = mkOpt types.attrs { }
-      (mdDoc "Extra options passed to `users.users.<name>`.");
+    extraGroups = mkOpt (types.listOf types.str) [ ] "Groups for the user to be assigned.";
+    extraOptions = mkOpt types.attrs { } (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
   config = {
@@ -128,9 +135,7 @@ in
       # system to select).
       uid = 1000;
 
-      extraGroups = [
-        "input"
-      ] ++ cfg.extraGroups;
+      extraGroups = [ "input" ] ++ cfg.extraGroups;
     } // cfg.extraOptions;
   };
 }

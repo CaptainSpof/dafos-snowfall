@@ -1,14 +1,25 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+
   cfg = config.${namespace}.desktop.plasma.config;
 in
 {
-  options.${namespace}.desktop.plasma.config = with types; {
+  options.${namespace}.desktop.plasma.config = {
     enable = mkBoolOpt true "Whether or not to configure plasma config.";
-    virtualDesktopsNames = mkOpt (listOf str) [ "Desktop 1" "Desktop 2" "Desktop 3" "Desktop 4" ] "The names to give to the virtual desktops";
+    virtualDesktopsNames = mkOpt (types.listOf types.str) [
+      "Desktop 1"
+      "Desktop 2"
+      "Desktop 3"
+      "Desktop 4"
+    ] "The names to give to the virtual desktops";
   };
 
   config = mkIf cfg.enable {

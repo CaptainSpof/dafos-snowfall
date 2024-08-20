@@ -1,15 +1,23 @@
-{ lib, pkgs, config, namespace, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  namespace,
+  ...
+}:
 
-with lib;
-with lib.${namespace};
-let cfg = config.${namespace}.services.tailscale;
+let
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
+
+  cfg = config.${namespace}.services.tailscale;
 in
 {
-  options.${namespace}.services.tailscale = with types; {
+  options.${namespace}.services.tailscale = {
     enable = mkBoolOpt false "Whether or not to configure tailscale.";
     autoconnect = {
       enable = mkBoolOpt false "Whether or not to enable automatic connection to tailscale.";
-      key = mkOpt str "" "The authentication key to use.";
+      key = types.mkOp types.str "" "The authentication key to use.";
     };
   };
 
@@ -42,8 +50,14 @@ in
       description = "Automatic connection to Tailscale";
 
       # Make sure tailscale is running before trying to connect to tailscale
-      after = [ "network-pre.target" "tailscale.service" ];
-      wants = [ "network-pre.target" "tailscale.service" ];
+      after = [
+        "network-pre.target"
+        "tailscale.service"
+      ];
+      wants = [
+        "network-pre.target"
+        "tailscale.service"
+      ];
       wantedBy = [ "multi-user.target" ];
 
       # Set this service as a oneshot job
