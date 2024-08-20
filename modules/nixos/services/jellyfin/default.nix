@@ -1,9 +1,11 @@
 { lib, config, namespace, ... }:
 
 let
+  inherit (lib) mkEnableOption mkIf;
+
   cfg = config.${namespace}.services.jellyfin;
   username = config.${namespace}.user.name;
-  inherit (lib) mkEnableOption mkIf;
+  home = config.${namespace}.user.home;
 in
 {
 
@@ -16,7 +18,7 @@ in
       enable = true;
       user = username;
       openFirewall = true;
-      cacheDir = "/home/daf/.cache/jellyfin";
+      cacheDir = "${home}/.cache/jellyfin";
     };
   };
 }

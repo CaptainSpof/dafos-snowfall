@@ -10,6 +10,7 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.desktop.plasma.config;
+  home = config.${namespace}.user.home;
 in
 {
   options.${namespace}.desktop.plasma.config = {
@@ -33,6 +34,10 @@ in
           cursor.theme = "breeze_cursors";
           colorScheme = "Gruvbox";
           lookAndFeel = "org.kde.breezetwilight.desktop";
+          wallpaperSlideShow = {
+            path = "${home}/Pictures/wallpapers/";
+            interval = 300;
+          };
         };
 
         kwin = {

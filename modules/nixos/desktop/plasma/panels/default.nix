@@ -35,6 +35,7 @@ in
           {
             location = "left";
             floating = true;
+            screen = 0;
             height = 60;
             widgets = [
               {
