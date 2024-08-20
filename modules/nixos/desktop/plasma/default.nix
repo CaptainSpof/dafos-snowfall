@@ -22,6 +22,7 @@ let
       kdePackages.kcolorchooser
       # Themes
       dafos.kde-warm-eyes
+      dafos.leaf-kde
       dafos.lightly-qt6
       gruvbox-gtk-theme
       kde-gruvbox
