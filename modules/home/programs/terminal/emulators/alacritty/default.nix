@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -19,14 +24,19 @@ in
         window = {
           opacity = 1;
           decorations = "none";
-          padding = { x = 8; y = 8; };
+          padding = {
+            x = 8;
+            y = 8;
+          };
           dynamic_padding = true;
           startup_mode = "Maximized";
         };
 
         font = {
           size = 12.0;
-          normal = { family = "Sarasa Term K"; };
+          normal = {
+            family = "Sarasa Term K";
+          };
         };
 
         colors = {

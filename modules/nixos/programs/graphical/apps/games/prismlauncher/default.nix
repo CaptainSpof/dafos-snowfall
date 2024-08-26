@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -11,6 +17,5 @@ in
     enable = mkBoolOpt false "Whether or not to enable Prism Launcher.";
   };
 
-  config =
-    mkIf cfg.enable { environment.systemPackages = with pkgs; [ prismlauncher ]; };
+  config = mkIf cfg.enable { environment.systemPackages = with pkgs; [ prismlauncher ]; };
 }

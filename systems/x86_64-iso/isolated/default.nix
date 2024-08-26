@@ -8,7 +8,12 @@
 
 let
   inherit (lib) mkForce;
-  inherit (lib.${namespace}) guide guideHTML enabled disabled;
+  inherit (lib.${namespace})
+    guide
+    guideHTML
+    enabled
+    disabled
+    ;
 
   gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
   gpgAgentConf = ''

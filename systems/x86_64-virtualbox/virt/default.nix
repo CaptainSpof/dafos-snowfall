@@ -41,7 +41,9 @@ in
       networking = enabled;
     };
 
-    services = { printing = enabled; };
+    services = {
+      printing = enabled;
+    };
 
     security = {
       doas = disabled;

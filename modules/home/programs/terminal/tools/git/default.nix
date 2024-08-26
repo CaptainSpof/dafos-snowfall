@@ -1,4 +1,9 @@
-{ lib, config, namespace, ... }:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) types mkEnableOption mkIf;
@@ -30,10 +35,18 @@ in
       };
 
       extraConfig = {
-        init = { defaultBranch = "main"; };
-        pull = { rebase = true; };
-        push = { autoSetupRemote = true; };
-        core = { whitespace = "trailing-space,space-before-tab"; };
+        init = {
+          defaultBranch = "main";
+        };
+        pull = {
+          rebase = true;
+        };
+        push = {
+          autoSetupRemote = true;
+        };
+        core = {
+          whitespace = "trailing-space,space-before-tab";
+        };
         safe = {
           directory = "${user.home}/.config.${namespace}";
         };

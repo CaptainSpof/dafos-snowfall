@@ -1,4 +1,9 @@
-{ lib, config, namespace, ... }:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.services.prowlarr;

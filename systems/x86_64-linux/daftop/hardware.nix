@@ -1,7 +1,15 @@
-{ lib, modulesPath, inputs, pkgs, ... }:
+{
+  lib,
+  modulesPath,
+  inputs,
+  pkgs,
+  ...
+}:
 
-let inherit (inputs) nixos-hardware;
-in {
+let
+  inherit (inputs) nixos-hardware;
+in
+{
   imports = with nixos-hardware.nixosModules; [
     (modulesPath + "/installer/scan/not-detected.nix")
     common-cpu-amd
@@ -18,10 +26,15 @@ in {
 
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd = {
-      availableKernelModules =
-        [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" ];
-      luks.devices."crypted".device =
-        "/dev/disk/by-uuid/2740b97b-a34c-43d5-9a5b-bb86521690ca";
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "nvme"
+        "uas"
+        "usb_storage"
+        "sd_mod"
+      ];
+      luks.devices."crypted".device = "/dev/disk/by-uuid/2740b97b-a34c-43d5-9a5b-bb86521690ca";
     };
   };
 
@@ -40,7 +53,7 @@ in {
     };
   };
 
-  swapDevices = [{ device = "/dev/disk/by-label/swap"; }];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

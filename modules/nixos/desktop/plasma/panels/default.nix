@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf types;
@@ -18,13 +23,12 @@ in
       minLength = mkOpt (number) 1000 "The minimum length of the top panel.";
     };
     leftPanel = {
-      launchers = mkOpt (listOf str)
-        [
-          "applications:org.kde.dolphin.desktop"
-          "applications:firefox-beta.desktop"
-          "applications:kitty.desktop"
-          "applications:emacsclient.desktop"
-        ] "The launchers to display in the panel.";
+      launchers = mkOpt (listOf str) [
+        "applications:org.kde.dolphin.desktop"
+        "applications:firefox-beta.desktop"
+        "applications:kitty.desktop"
+        "applications:emacsclient.desktop"
+      ] "The launchers to display in the panel.";
     };
   };
 
@@ -50,7 +54,10 @@ in
                     }
                   ];
                   totalSensors = [ "cpu/all/usage" ];
-                  textOnlySensors = [ "cpu/all/averageTemperature" "cpu/all/averageFrequency" ];
+                  textOnlySensors = [
+                    "cpu/all/averageTemperature"
+                    "cpu/all/averageFrequency"
+                  ];
                 };
               }
               {
@@ -65,7 +72,10 @@ in
                     }
                   ];
                   totalSensors = [ "memory/physical/usedPercent" ];
-                  textOnlySensors = [ "memory/physical/used" "memory/physical/total" ];
+                  textOnlySensors = [
+                    "memory/physical/used"
+                    "memory/physical/total"
+                  ];
                 };
               }
               "org.kde.plasma.panelspacer"

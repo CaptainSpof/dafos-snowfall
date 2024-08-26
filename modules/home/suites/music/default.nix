@@ -1,4 +1,10 @@
-{ pkgs, config, lib, namespace, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -13,13 +19,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      amberol
-      dafos.pocketcasts
-      dafos.yt-music
-    ]
-    ++ lib.optionals cfg.mixing.enable [
-      ardour
-    ];
+    home.packages =
+      with pkgs;
+      [
+        amberol
+        dafos.pocketcasts
+        dafos.yt-music
+      ]
+      ++ lib.optionals cfg.mixing.enable [
+        ardour
+      ];
   };
 }

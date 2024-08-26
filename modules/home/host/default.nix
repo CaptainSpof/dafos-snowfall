@@ -1,4 +1,9 @@
-{ lib, host ? null, namespace, ... }:
+{
+  lib,
+  host ? null,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) types;

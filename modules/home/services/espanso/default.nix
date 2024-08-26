@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -66,7 +72,10 @@ in
         misc = {
           matches = [
             {
-              triggers = [ ":me" ":daf" ];
+              triggers = [
+                ":me"
+                ":daf"
+              ];
               replace = fullName;
             }
           ];

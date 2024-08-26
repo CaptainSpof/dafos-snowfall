@@ -1,4 +1,4 @@
-{}:
+{ }:
 
 {
   ## Override a package's metadata

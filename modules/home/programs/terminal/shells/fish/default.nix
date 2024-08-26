@@ -1,8 +1,9 @@
-{ lib
-, config
-, pkgs
-, namespace
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
 }:
 
 let

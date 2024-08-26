@@ -26,9 +26,10 @@ rec {
   ##
   #@ { name: String, factory: String ? "adapter", ... } -> { factory: String, args: Attrs }
   mkAudioNode =
-    args@{ name
-    , factory ? "adapter"
-    , ...
+    args@{
+      name,
+      factory ? "adapter",
+      ...
     }:
     {
       inherit factory;

@@ -1,16 +1,22 @@
-{ lib, config, namespace, ... }:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 
 let
-  inherit (lib) types mkIf mkDefault mkMerge;
+  inherit (lib)
+    types
+    mkIf
+    mkDefault
+    mkMerge
+    ;
   inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.user;
 
-  home-directory =
-    if cfg.name == null then
-      null
-    else
-      "/home/${cfg.name}";
+  home-directory = if cfg.name == null then null else "/home/${cfg.name}";
 in
 {
 
@@ -23,12 +29,9 @@ in
     gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
     gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";
 
-    theme.dark =
-      mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
-    theme.light =
-      mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
-    font.term = mkOpt types.str "Hack Nerd Font Mono"
-      "Terminal Font to use for the system.";
+    theme.dark = mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
+    theme.light = mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
+    font.term = mkOpt types.str "Hack Nerd Font Mono" "Terminal Font to use for the system.";
 
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
   };

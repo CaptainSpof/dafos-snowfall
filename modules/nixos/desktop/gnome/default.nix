@@ -1,7 +1,19 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
-  inherit (lib) optional mkIf mapAttrs mkDefault types;
+  inherit (lib)
+    optional
+    mkIf
+    mapAttrs
+    mkDefault
+    types
+    ;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.desktop.gnome;
@@ -32,16 +44,23 @@ let
 in
 {
   options.${namespace}.desktop.gnome = with types; {
-    enable =
-      mkBoolOpt false "Whether or not to use Gnome as the desktop environment.";
+    enable = mkBoolOpt false "Whether or not to use Gnome as the desktop environment.";
     wallpaper = {
-      light = mkOpt (oneOf [ str package ]) pkgs.dafos.wallpapers.nord-rainbow-light-nix "The light wallpaper to use.";
-      dark = mkOpt (oneOf [ str package ]) pkgs.dafos.wallpapers.nord-rainbow-dark-nix "The dark wallpaper to use.";
+      light = mkOpt (oneOf [
+        str
+        package
+      ]) pkgs.dafos.wallpapers.nord-rainbow-light-nix "The light wallpaper to use.";
+      dark = mkOpt (oneOf [
+        str
+        package
+      ]) pkgs.dafos.wallpapers.nord-rainbow-dark-nix "The dark wallpaper to use.";
     };
-    color-scheme = mkOpt (enum [ "light" "dark" ]) "dark" "The color scheme to use.";
+    color-scheme = mkOpt (enum [
+      "light"
+      "dark"
+    ]) "dark" "The color scheme to use.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
-    suspend =
-      mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
+    suspend = mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
     monitors = mkOpt (nullOr path) null "The monitors.xml file to create.";
     extensions = mkOpt (listOf package) [ ] "Extra Gnome extensions to install.";
   };
@@ -54,12 +73,16 @@ in
       electron-support = enabled;
     };
 
-    environment.systemPackages = with pkgs; [
-      (hiPrio dafos.xdg-open-with-portal)
-      wl-clipboard
-      gnome.gnome-tweaks
-      gnome.nautilus-python
-    ] ++ defaultExtensions ++ cfg.extensions;
+    environment.systemPackages =
+      with pkgs;
+      [
+        (hiPrio dafos.xdg-open-with-portal)
+        wl-clipboard
+        gnome.gnome-tweaks
+        gnome.nautilus-python
+      ]
+      ++ defaultExtensions
+      ++ cfg.extensions;
 
     environment.gnome.excludePackages = with pkgs.gnome; [
       pkgs.gnome-tour
@@ -70,13 +93,15 @@ in
       gnome-maps
     ];
 
-    systemd.tmpfiles.rules = [
-      "d ${gdmHome}/.config 0711 gdm gdm"
-    ] ++ (
-      # "./monitors.xml" comes from ~/.config/monitors.xml when GNOME
-      # display information is updated.
-      lib.optional (cfg.monitors != null) "L+ ${gdmHome}/.config/monitors.xml - - - - ${cfg.monitors}"
-    );
+    systemd.tmpfiles.rules =
+      [
+        "d ${gdmHome}/.config 0711 gdm gdm"
+      ]
+      ++ (
+        # "./monitors.xml" comes from ~/.config/monitors.xml when GNOME
+        # display information is updated.
+        lib.optional (cfg.monitors != null) "L+ ${gdmHome}/.config/monitors.xml - - - - ${cfg.monitors}"
+      );
 
     systemd.services.dafos-user-icon = {
       before = [ "display-manager.service" ];
@@ -90,7 +115,9 @@ in
 
       script = ''
         config_file=/var/lib/AccountsService/users/${config.${namespace}.user.name}
-        icon_file=/run/current-system/sw/share/dafos-icons/user/${config.${namespace}.user.name}/${config.${namespace}.user.icon.fileName}
+        icon_file=/run/current-system/sw/share/dafos-icons/user/${config.${namespace}.user.name}/${
+          config.${namespace}.user.icon.fileName
+        }
 
         if ! [ -d "$(dirname "$config_file")"]; then
           mkdir -p "$(dirname "$config_file")"
@@ -131,21 +158,19 @@ in
     dafos.home.extraOptions = {
       dconf.settings =
         let
-          get-wallpaper = wallpaper:
-            if lib.isDerivation wallpaper then
-              builtins.toString wallpaper
-            else
-              wallpaper;
+          get-wallpaper =
+            wallpaper: if lib.isDerivation wallpaper then builtins.toString wallpaper else wallpaper;
         in
         nested-default-attrs {
           "org/gnome/shell" = {
             disable-user-extensions = false;
-            enabled-extensions = (builtins.map (extension: extension.extensionUuid) (cfg.extensions ++ defaultExtensions))
+            enabled-extensions =
+              (builtins.map (extension: extension.extensionUuid) (cfg.extensions ++ defaultExtensions))
               ++ [
-              "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-              "drive-menu@gnome-shell-extensions.gcampax.github.com"
-              "user-theme@gnome-shell-extensions.gcampax.github.com"
-            ];
+                "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+                "drive-menu@gnome-shell-extensions.gcampax.github.com"
+                "user-theme@gnome-shell-extensions.gcampax.github.com"
+              ];
             favorite-apps =
               [ "org.gnome.Nautilus.desktop" ]
               ++ optional config.${namespace}.apps.kitty.enable "kitty.desktop"
@@ -168,7 +193,16 @@ in
           };
           "org/gnome/desktop/input-sources" = {
             show-all-sources = true;
-            sources = [ (mkTuple [ "xkb" "fr+bepo" ]) (mkTuple [ "xkb" "us+altgr-intl" ]) ];
+            sources = [
+              (mkTuple [
+                "xkb"
+                "fr+bepo"
+              ])
+              (mkTuple [
+                "xkb"
+                "us+altgr-intl"
+              ])
+            ];
           };
           "org/gnome/desktop/peripherals/touchpad" = {
             disable-while-typing = false;
@@ -179,7 +213,10 @@ in
             resize-with-right-button = true;
           };
           "org/gnome/desktop/wm/keybindings" = {
-            close = [ "<Alt>F4" "<Super>q" ];
+            close = [
+              "<Alt>F4"
+              "<Super>q"
+            ];
             minimize = [ "<Ctrl><Super>h" ];
 
             switch-to-workspace-left = [ "<Super>g" ];
@@ -346,7 +383,6 @@ in
     };
 
     # Open firewall for samba connections to work.
-    networking.firewall.extraCommands =
-      "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
+    networking.firewall.extraCommands = "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
   };
 }

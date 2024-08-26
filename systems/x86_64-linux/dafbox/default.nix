@@ -1,4 +1,9 @@
-{ config, lib, namespace, ... }:
+{
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkForce;
@@ -15,7 +20,9 @@ in
       gaming = enabled;
     };
 
-    apps = { qbittorrent = enabled; };
+    apps = {
+      qbittorrent = enabled;
+    };
 
     desktop = {
       plasma = {
@@ -46,7 +53,9 @@ in
       gpu.amd = enabled;
     };
 
-    security = { gpg = mkForce disabled; };
+    security = {
+      gpg = mkForce disabled;
+    };
 
     services.syncthing = enabled;
 
@@ -55,7 +64,9 @@ in
       development = enabled;
     };
 
-    system = { kanata = enabled; };
+    system = {
+      kanata = enabled;
+    };
   };
 
   # This value determines the NixOS release from which the default

@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf types;
@@ -18,11 +24,13 @@ in
 
     services.mosquitto = {
       enable = true;
-      listeners = [{
-        acl = [ "pattern readwrite #" ];
-        omitPasswordAuth = true;
-        settings.allow_anonymous = true;
-      }];
+      listeners = [
+        {
+          acl = [ "pattern readwrite #" ];
+          omitPasswordAuth = true;
+          settings.allow_anonymous = true;
+        }
+      ];
     };
 
     services.zigbee2mqtt = {
@@ -41,7 +49,9 @@ in
           port = "/dev/ttyACM1";
           adapter = "deconz";
         };
-        advanced = { log_level = "debug"; };
+        advanced = {
+          log_level = "debug";
+        };
       };
     };
 
@@ -77,9 +87,10 @@ in
         "zha"
       ];
 
-      extraPackages = ps: with ps; [
-        pychromecast
-      ];
+      extraPackages =
+        ps: with ps; [
+          pychromecast
+        ];
 
       customComponents = with pkgs.home-assistant-custom-components; [
         adaptive_lighting
@@ -163,7 +174,11 @@ in
     };
 
     networking.firewall = {
-      allowedTCPPorts = [ 80 443 8123 ];
+      allowedTCPPorts = [
+        80
+        443
+        8123
+      ];
     };
   };
 }

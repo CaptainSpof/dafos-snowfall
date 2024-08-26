@@ -1,4 +1,10 @@
-{ config, lib, pkgs, namespace, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
@@ -13,14 +19,16 @@ in
 
   config = mkIf cfg.enable {
     boot = {
-      initrd.kernelModules =
-        [ "amdgpu" ]; # load amdgpu kernel module as early as initrd
+      initrd.kernelModules = [ "amdgpu" ]; # load amdgpu kernel module as early as initrd
       kernelModules = [
         "amdgpu"
       ]; # if loading somehow fails during initrd but the boot continues, try again later
     };
 
-    environment.systemPackages = with pkgs; [ amdgpu_top nvtopPackages.amd ];
+    environment.systemPackages = with pkgs; [
+      amdgpu_top
+      nvtopPackages.amd
+    ];
 
     environment.variables = {
       # VAAPI and VDPAU config for accelerated video.
@@ -31,7 +39,8 @@ in
 
     # enables AMDVLK & OpenCL support
     hardware.graphics = {
-      extraPackages = with pkgs;
+      extraPackages =
+        with pkgs;
         [
           amdvlk
 
@@ -43,14 +52,28 @@ in
           vulkan-loader
           vulkan-validation-layers
           vulkan-extension-layer
-        ] ++ (if pkgs ? rocmPackages.clr then
-          with pkgs.rocmPackages; [ clr clr.icd ]
-        else
-          with pkgs; [ rocm-opencl-icd rocm-opencl-runtime ]);
+        ]
+        ++ (
+          if pkgs ? rocmPackages.clr then
+            with pkgs.rocmPackages;
+            [
+              clr
+              clr.icd
+            ]
+          else
+            with pkgs;
+            [
+              rocm-opencl-icd
+              rocm-opencl-runtime
+            ]
+        );
 
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
 
-    services.xserver.videoDrivers = lib.mkDefault [ "modesetting" "amdgpu" ];
+    services.xserver.videoDrivers = lib.mkDefault [
+      "modesetting"
+      "amdgpu"
+    ];
   };
 }

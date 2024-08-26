@@ -1,7 +1,18 @@
-{ lib, config, virtual, namespace, ... }:
+{
+  lib,
+  config,
+  virtual,
+  namespace,
+  ...
+}:
 
 let
-  inherit (lib) mkIf mkEnableOption optional types;
+  inherit (lib)
+    mkIf
+    mkEnableOption
+    optional
+    types
+    ;
   inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.security.acme;

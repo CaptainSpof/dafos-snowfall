@@ -1,4 +1,10 @@
-{ lib, config, pkgs, namespace, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  namespace,
+  ...
+}:
 
 let
   cfg = config.${namespace}.services.avahi;

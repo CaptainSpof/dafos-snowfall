@@ -1,4 +1,10 @@
-{ options, config, lib, namespace, ... }:
+{
+  options,
+  config,
+  lib,
+  namespace,
+  ...
+}:
 
 let
   inherit (lib) types mkAliasDefinitions;
@@ -6,10 +12,10 @@ let
 in
 {
   options.${namespace}.home = with types; {
-    file = mkOpt attrs { }
-      (mdDoc "A set of files to be managed by home-manager's `home.file`.");
-    configFile = mkOpt attrs { }
-      (mdDoc "A set of files to be managed by home-manager's `xdg.configFile`.");
+    file = mkOpt attrs { } (mdDoc "A set of files to be managed by home-manager's `home.file`.");
+    configFile = mkOpt attrs { } (
+      mdDoc "A set of files to be managed by home-manager's `xdg.configFile`."
+    );
     extraOptions = mkOpt attrs { } "Options to pass directly to home-manager.";
   };
 
