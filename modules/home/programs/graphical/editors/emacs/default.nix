@@ -15,7 +15,7 @@ in
 {
   options.${namespace}.programs.graphical.editors.emacs = {
     enable = mkBoolOpt false "Whether or not to enable emacs.";
-    latex.enable = mkBoolOpt false "Whether or not to enable latex support for emacs."; # TODO
+    latex.enable = mkBoolOpt false "Whether or not to enable latex support for emacs.";
     package = mkOpt types.package pkgs.emacs-pgtk "The emacs package to be used.";
   };
 
@@ -49,23 +49,26 @@ in
     };
 
     home = {
-      packages = with pkgs; [
-        enchant
-        djvu2pdf
-        sqlite
-        # texlive.combined.scheme-full
-        nuspell
-        (aspellWithDicts (
-          ds: with ds; [
-            en
-            en-computers
-            en-science
-            fr
-          ]
-        ))
-        hunspellDicts.en-us
-        hunspellDicts.fr-any
-      ];
+      packages =
+        with pkgs;
+        [
+          enchant
+          djvu2pdf
+          sqlite
+          # texlive.combined.scheme-full
+          nuspell
+          (aspellWithDicts (
+            ds: with ds; [
+              en
+              en-computers
+              en-science
+              fr
+            ]
+          ))
+          hunspellDicts.en-us
+          hunspellDicts.fr-any
+        ]
+        ++ lib.optionals cfg.latex.enable [ texlive.combined.sheme-full ];
 
       sessionPath = [ "$XDG_CONFIG_HOME/emacs/bin" ];
       shellAliases = {
