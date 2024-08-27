@@ -131,7 +131,51 @@ in
             minLength = cfg.topPanel.minLength;
             screen = 0;
             widgets = [
-              "com.github.antroids.application-title-bar"
+              {
+                applicationTitleBar = {
+                  behavior = {
+                    activeTaskSource = "activeTask";
+                    disableButtonsForNotHovered = false;
+                    disableForNotMaximized = false;
+                    filterByActivity = true;
+                    filterByScreen = true;
+                    filterByVirtualDesktop = true;
+                  };
+                  layout = {
+                    elements = [ "windowTitle" ];
+                    fillFreeSpace = false;
+                    horizontalAlignment = "left";
+                    showDisabledElements = "deactivated";
+                    spacingBetweenElements = 0;
+                    verticalAlignment = "center";
+                    widgetMargins = 1;
+                  };
+                  overrideForMaximized.enable = false;
+                  windowControlButtons = {
+                    auroraeTheme = null;
+                    buttonsAnimationSpeed = 100;
+                    buttonsAspectRatio = 100;
+                    buttonsMargin = 0;
+                    iconSource = "plasma";
+                  };
+                  windowTitle = {
+                    font = {
+                      bold = false;
+                      fit = "fixedSize";
+                      size = 12;
+                    };
+                    hideEmptyTitle = true;
+                    margins = {
+                      bottom = 0;
+                      left = 15;
+                      right = 5;
+                      top = 0;
+                    };
+                    source = "appName";
+                    undefinedWindowTitle = "";
+                  };
+                };
+              }
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               "org.kde.plasma.digitalclock"
@@ -149,7 +193,6 @@ in
             minLength = cfg.topPanelBis.minLength;
             screen = 1;
             widgets = [
-              "com.github.antroids.application-title-bar"
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               "org.kde.plasma.digitalclock"

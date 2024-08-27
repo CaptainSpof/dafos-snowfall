@@ -28,6 +28,7 @@ in
       bitwarden
       consent-o-matic
       darkreader
+      dearrow
       enhancer-for-youtube
       firefox-color
       french-language-pack
@@ -36,6 +37,7 @@ in
       plasma-integration
       reddit-enhancement-suite
       refined-github
+      return-youtube-dislikes
       sidebery
       simple-tab-groups
       sponsorblock

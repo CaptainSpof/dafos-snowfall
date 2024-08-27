@@ -28,12 +28,64 @@ in
       programs.plasma = {
         enable = true;
 
+        desktop.widgets = [
+          {
+            digitalClock = {
+              position = {
+                horizontal = 1650;
+                vertical = 40;
+              };
+              size = {
+                width = 225;
+                height = 200;
+              };
+
+              # Digital clock settings
+              calendar = {
+                firstDayOfWeek = "monday";
+                plugins = [
+                  "astronomicalevents"
+                  "holidaysevents"
+                ];
+                showWeekNumbers = true;
+              };
+
+              date = {
+                enable = true;
+                format = "longDate";
+                position = "belowTime";
+              };
+
+              time = {
+                format = "24h";
+                showSeconds = "never";
+              };
+            };
+          }
+        ];
+
+        kscreenlocker = {
+          appearance = {
+            alwaysShowClock = true;
+            showMediaControls = false;
+            wallpaperPictureOfTheDay.provider = "apod";
+          };
+
+          autoLock = true;
+          lockOnResume = true;
+          lockOnStartup = false;
+          passwordRequired = true;
+          passwordRequiredDelay = 10;
+          timeout = 10;
+        };
+
         workspace = {
           clickItemTo = "open";
-          tooltipDelay = 5;
-          cursor.theme = "breeze_cursors";
           colorScheme = "Gruvbox";
+          cursor.theme = "breeze_cursors";
           lookAndFeel = "org.kde.breezetwilight.desktop";
+          soundTheme = "ocean";
+          tooltipDelay = 5;
           wallpaperSlideShow = {
             path = "${home}/Pictures/wallpapers/";
             interval = 300;
@@ -41,6 +93,32 @@ in
         };
 
         kwin = {
+          nightLight = {
+            enable = true;
+            mode = "times";
+            temperature = {
+              day = 6500;
+              night = 1900;
+            };
+            time = {
+              evening = "19:00";
+              morning = "08:00";
+            };
+          };
+
+          titlebarButtons = {
+            left = [
+              "close"
+              "minimize"
+              "maximize"
+              "on-all-desktops"
+            ];
+            right = [
+              "help"
+              "more-window-actions"
+            ];
+          };
+
           effects = {
             shakeCursor.enable = false;
             desktopSwitching.animation = "slide";
@@ -80,11 +158,6 @@ in
             Effect-overview.BorderActivate = 7;
             Effect-overview.BorderActivateAll = 9;
             ElectricBorders.TopRight = "LockScreen";
-
-            NightColor = {
-              Active = true;
-              NightTemperature = 3800;
-            };
 
             Plugins = {
               blurEnabled = true;
