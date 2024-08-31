@@ -71,11 +71,9 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
 
       shfmt = {
         enable = true;
-
-        excludes = [ ".*.p10k.zsh$" ];
       };
 
       statix.enable = true;
-      # treefmt.enable = true;
+      treefmt.enable = true;
     };
 }
