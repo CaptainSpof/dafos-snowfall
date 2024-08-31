@@ -21,9 +21,7 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
     in
     {
       actionlint.enable = true;
-      clang-format.enable = true;
-      clang-tidy.enable = true;
-      # conform.enable = true;
+      conform.enable = true;
 
       deadnix = {
         enable = true;
@@ -39,7 +37,7 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
       };
 
       git-cliff = {
-        enable = false;
+        enable = true;
         inherit excludes fail_fast verbose;
 
         always_run = true;
