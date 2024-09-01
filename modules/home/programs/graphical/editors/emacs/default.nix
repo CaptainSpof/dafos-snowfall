@@ -31,10 +31,10 @@ in
       inherit (cfg) package;
       extraPackages = (
         epkgs: with epkgs; [
-          vterm
-          pdf-tools
-          sqlite
           jinx
+          pdf-tools
+          sqlite3
+          vterm
         ]
       );
     };
