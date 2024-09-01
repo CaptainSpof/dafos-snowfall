@@ -35,20 +35,9 @@ in
             "NerdFontsSymbolsOnly"
           ];
         })
+        departure-mono
         google-fonts
-        iosevka-comfy.comfy
-        iosevka-comfy.comfy-duo
-        iosevka-comfy.comfy-fixed
-        iosevka-comfy.comfy-motion
-        iosevka-comfy.comfy-motion-duo
-        iosevka-comfy.comfy-motion-fixed
-        iosevka-comfy.comfy-wide
-        iosevka-comfy.comfy-wide-duo
-        iosevka-comfy.comfy-wide-fixed
-        iosevka-comfy.comfy-wide-motion-duo
-        iosevka-comfy.comfy-wide-motion-fixed
         julia-mono
-        maple-mono
         maple-mono-NF
         merriweather
         noto-fonts
