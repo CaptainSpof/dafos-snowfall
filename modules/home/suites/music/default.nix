@@ -23,8 +23,6 @@ in
       with pkgs;
       [
         amberol
-        dafos.pocketcasts
-        dafos.yt-music
       ]
       ++ lib.optionals cfg.mixing.enable [
         ardour
