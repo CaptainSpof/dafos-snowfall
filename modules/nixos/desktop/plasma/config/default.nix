@@ -28,42 +28,6 @@ in
       programs.plasma = {
         enable = true;
 
-        desktop.widgets = [
-          {
-            digitalClock = {
-              position = {
-                horizontal = 1650;
-                vertical = 40;
-              };
-              size = {
-                width = 225;
-                height = 200;
-              };
-
-              # Digital clock settings
-              calendar = {
-                firstDayOfWeek = "monday";
-                plugins = [
-                  "astronomicalevents"
-                  "holidaysevents"
-                ];
-                showWeekNumbers = true;
-              };
-
-              date = {
-                enable = true;
-                format = "longDate";
-                position = "belowTime";
-              };
-
-              time = {
-                format = "24h";
-                showSeconds = "never";
-              };
-            };
-          }
-        ];
-
         kscreenlocker = {
           appearance = {
             alwaysShowClock = true;
@@ -92,6 +56,12 @@ in
           };
         };
 
+        krunner = {
+          activateWhenTypingOnDesktop = true;
+          position = "center";
+          historyBehavior = "enableAutoComplete";
+        };
+
         kwin = {
           nightLight = {
             enable = true;
@@ -101,7 +71,7 @@ in
               night = 1900;
             };
             time = {
-              evening = "19:00";
+              evening = "19:30";
               morning = "08:00";
             };
           };
@@ -119,9 +89,13 @@ in
             ];
           };
 
+          borderlessMaximizedWindows = true;
+
           effects = {
-            shakeCursor.enable = false;
+            blur.enable = true;
             desktopSwitching.animation = "slide";
+            dimInactive.enable = true;
+            shakeCursor.enable = false;
           };
 
           virtualDesktops = {
@@ -160,13 +134,10 @@ in
             ElectricBorders.TopRight = "LockScreen";
 
             Plugins = {
-              blurEnabled = true;
               contrastEnabled = true;
-              diminactiveEnabled = true;
             };
 
             Windows = {
-              BorderlessMaximizedWindows = true;
               CenterSnapZone = 100;
               ElectricBorderCooldown = 400;
               ElectricBorderDelay = 350;
@@ -181,26 +152,9 @@ in
               theme = "Breeze";
             };
           };
-
-          krunnerrc = {
-            General.FreeFloating.value = true;
-
-            Plugins.appstreamEnabled = false;
-          };
-
-          Plugins = {
-            cubeEnabled.value = true;
-            dimscreenEnabled.value = true;
-            shakecursorEnabled.value = true;
-            sheetEnabled.value = true;
-            wobblywindowsEnabled.value = true;
-          };
         };
 
         # configFile = {
-        #   "dolphinrc"."MainWindow.Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
-        #   "dolphinrc"."Toolbar mainToolBar"."ToolButtonStyle" = "IconOnly";
-
         #   "kdeglobals"."KDE"."ShowDeleteCommand" = false;
         #   "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
         #   "kdeglobals"."KFileDialog Settings"."Decoration position" = 2;
@@ -224,12 +178,6 @@ in
         #   "kdeglobals"."WM"."inactiveBackground" = "90,84,51";
         #   "kdeglobals"."WM"."inactiveBlend" = "143,133,117";
         #   "kdeglobals"."WM"."inactiveForeground" = "158,155,140";
-
-        #   "klaunchrc"."BusyCursorSettings"."Timeout" = 3;
-        #   "klaunchrc"."TaskbarButtonSettings"."Timeout" = 3;
-
-        #   "klipperrc"."General"."IgnoreImages" = false;
-        #   "klipperrc"."General"."MaxClipItems" = 30;
 
         #   "krunnerrc"."Runners.CharacterRunner"."aliases" = "ar";
         #   "krunnerrc"."Runners.CharacterRunner"."codes" = 002192;
