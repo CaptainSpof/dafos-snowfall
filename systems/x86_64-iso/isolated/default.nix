@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   namespace,
   ...
 }:
@@ -15,10 +14,6 @@ let
     disabled
     ;
 
-  gpgConf = "${inputs.gpg-base-conf}/gpg.conf";
-  gpgAgentConf = ''
-    pinentry-program /run/current-system/sw/bin/pinentry-curses
-  '';
 in
 {
   services.pcscd.enable = true;
@@ -35,10 +30,6 @@ in
 
   programs = {
     ssh.startAgent = false;
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
   };
 
   dafos = {
@@ -61,11 +52,6 @@ in
 
     home.file."guide.md".source = guide;
     home.file."guide.html".source = guideHTML;
-    home.file."gpg.conf".source = gpgConf;
-    home.file."gpg-agent.conf".text = gpgAgentConf;
-
-    home.file.".gnupg/gpg.conf".source = gpgConf;
-    home.file.".gnupg/gpg-agent.conf".text = gpgAgentConf;
 
     security = {
       doas = disabled;
