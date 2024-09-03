@@ -30,6 +30,7 @@ in
         plasma = {
           enable = true;
           config.enable = true;
+          desktop.enable = true;
           panels.enable = true;
           shortcuts.enable = true;
         };

@@ -8,11 +8,12 @@
 
 let
   inherit (lib)
+    concatStringsSep
+    getExe
+    length
     mkIf
     optionalString
-    concatStringsSep
     types
-    length
     ;
   inherit (lib.${namespace}) mkBoolOpt enabled;
 
@@ -109,7 +110,7 @@ in
               "pipewire.service"
               "sound.target"
             ] ++ cfg.machineUnits;
-            Service.ExecStart = "${pkgs.scream}/bin/scream -n scream -o pulse -m /dev/shm/scream";
+            Service.ExecStart = "${getExe pkgs.scream} -n scream -o pulse -m /dev/shm/scream";
             Service.Restart = "always";
             Service.StartLimitIntervalSec = "5";
             Service.StartLimitBurst = "1";

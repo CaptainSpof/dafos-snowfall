@@ -8,7 +8,12 @@
 }:
 
 let
-  inherit (lib) mkIf types;
+  inherit (lib)
+    mkIf
+    types
+    getExe
+    getExe'
+    ;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.security.gpg;
@@ -19,7 +24,7 @@ let
     enable-ssh-support
     default-cache-ttl 60
     max-cache-ttl 120
-    pinentry-program ${pkgs.pinentry-gnome}/bin/pinentry-gnome
+    pinentry-program ${getExe pkgs.pinentry-gnome}
   '';
 in
 {
@@ -31,13 +36,11 @@ in
   config = mkIf cfg.enable {
     services.pcscd.enable = true;
 
-    # @NOTE(jakehamilton): This should already have been added by programs.gpg, but
-    # keeping it here for now just in case.
     environment.shellInit = ''
       export GPG_TTY="$(tty)"
-      export SSH_AUTH_SOCK=$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)
+      export SSH_AUTH_SOCK=$(${getExe' pkgs.gnupg "gpgconf"} --list-dirs agent-ssh-socket)
 
-      ${pkgs.coreutils}/bin/timeout ${builtins.toString cfg.agentTimeout} ${pkgs.gnupg}/bin/gpgconf --launch gpg-agent
+      ${getExe' pkgs.coreutils "timeout"} ${builtins.toString cfg.agentTimeout} ${getExe' pkgs.gnupg "gpgconf"} --launch gpg-agent
       gpg_agent_timeout_status=$?
 
       if [ "$gpg_agent_timeout_status" = 124 ]; then

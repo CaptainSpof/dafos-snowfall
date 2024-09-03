@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 
   cfg = config.${namespace}.programs.terminal.shells.fish;
   starship = config.${namespace}.programs.terminal.tools.starship;
@@ -58,9 +58,9 @@ in
 
         functions = {
           fish_greeting = ''
-            ${pkgs.toilet}/bin/toilet -f future --gay "Dafos"
+            ${getExe pkgs.toilet} -f future --gay "Dafos"
           '';
-          rm = "${pkgs.trash-cli}/bin/trash $argv";
+          rm = "${getExe pkgs.trash-cli} $argv";
           fwifi = {
             body = "nmcli -t -f SSID device wifi list | grep . | sk | xargs -o -I_ nmcli --ask dev wifi connect '_'";
             description = "Fuzzy connect to a wifi";

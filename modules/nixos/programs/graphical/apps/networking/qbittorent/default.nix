@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.apps.qbittorrent;
@@ -27,7 +27,7 @@ in
       after = [ "network.target" ];
 
       serviceConfig = {
-        ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
+        ExecStart = "${getExe pkgs.qbittorrent-nox}";
         User = username;
         Restart = "on-failure";
       };

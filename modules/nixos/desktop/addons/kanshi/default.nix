@@ -9,7 +9,7 @@
 with lib;
 with lib.${namespace};
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.desktop.addons.kanshi;
@@ -36,11 +36,11 @@ in
       };
       serviceConfig = {
         ExecCondition = ''
-          ${pkgs.bash}/bin/bash -c '[ -n "$WAYLAND_DISPLAY" ]'
+          ${getExe pkgs.bash} -c '[ -n "$WAYLAND_DISPLAY" ]'
         '';
 
         ExecStart = ''
-          ${pkgs.kanshi}/bin/kanshi
+          ${getExe pkgs.kanshi}
         '';
 
         RestartSec = 5;

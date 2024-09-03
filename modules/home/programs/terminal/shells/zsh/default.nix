@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf optionalString;
+  inherit (lib) mkEnableOption mkIf optionalString getExe;
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.shells.zsh;
@@ -39,11 +39,11 @@ in
             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
           ''
           + optionalString cfg.prompt-init ''
-            ${pkgs.toilet}/bin/toilet -f future "Dafos" --gay
+            ${getExe pkgs.toilet} -f future "Dafos" --gay
           '';
 
         shellAliases = {
-          say = "${pkgs.toilet}/bin/toilet -f pagga";
+          say = "${getExe pkgs.toilet} -f pagga";
         };
 
         plugins = [
