@@ -54,7 +54,7 @@ in
         date = {
           matches = [
             {
-              trigger = ":date";
+              trigger = ":date:";
               replace = "{{mydate}}";
               vars = [
                 {
@@ -73,8 +73,8 @@ in
           matches = [
             {
               triggers = [
-                ":me"
-                ":daf"
+                ":me:"
+                ":daf:"
               ];
               replace = fullName;
             }
@@ -83,7 +83,7 @@ in
         templates = {
           matches = [
             {
-              trigger = ":tick";
+              trigger = ":tick:";
               replace = ''
                 $|$
                 ---
@@ -94,14 +94,16 @@ in
           ];
         };
         symbols = {
-          backend = "clipboard";
+          backend = "inject";
+          inject_delay = 15;
+          key_delay = 15;
           matches = [
             {
-              trigger = ":ar";
+              trigger = ":ar:";
               replace = "→";
             }
             {
-              trigger = ":al";
+              trigger = ":al:";
               replace = "←";
             }
           ];
