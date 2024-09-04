@@ -76,6 +76,10 @@ in
     theme.light = mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
     font.term = mkOpt types.str "Hack Nerd Font Mono" "Terminal Font to use for the system.";
 
+    location.latitude = mkOpt types.str "48.85" "The latitude of the user.";
+    location.longitude = mkOpt types.str "2.35" "The longitude of the user.";
+
+
     authorizedKeys = mkOpt (types.listOf types.str) [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDU0z8wC6aL3EelbY83Ucj1+2TMKt+lKjQkzEH6jFaWu daf@dafoltop"

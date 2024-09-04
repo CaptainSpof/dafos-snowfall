@@ -18,7 +18,6 @@ let
       # Apps
       kdePackages.kweather
       kdePackages.merkuro
-      kdePackages.kcolorpicker
       kdePackages.kcolorchooser
       # Themes
       dafos.kde-warm-eyes

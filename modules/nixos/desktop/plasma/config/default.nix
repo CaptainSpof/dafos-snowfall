@@ -11,6 +11,8 @@ let
 
   cfg = config.${namespace}.desktop.plasma.config;
   home = config.${namespace}.user.home;
+  latitude = config.${namespace}.user.location.latitude;
+  longitude = config.${namespace}.user.location.longitude;
 in
 {
   options.${namespace}.desktop.plasma.config = {
@@ -27,6 +29,33 @@ in
     dafos.home.extraOptions = {
       programs.plasma = {
         enable = true;
+
+        fonts = {
+          general = {
+            family = "Inter";
+            pointSize = 10;
+          };
+          fixedWidth = {
+            family = "Departure Mono";
+            pointSize = 10;
+          };
+          small = {
+            family = "Inter";
+            pointSize = 8;
+          };
+          toolbar = {
+            family = "Inter";
+            pointSize = 10;
+          };
+          menu = {
+            family = "Inter";
+            pointSize = 10;
+          };
+          windowTitle = {
+            family = "Inter";
+            pointSize = 10;
+          };
+        };
 
         kscreenlocker = {
           appearance = {
@@ -65,14 +94,14 @@ in
         kwin = {
           nightLight = {
             enable = true;
-            mode = "times";
+            mode = "location";
             temperature = {
               day = 6500;
-              night = 1900;
+              night = 2200;
             };
-            time = {
-              evening = "19:30";
-              morning = "08:00";
+            location = {
+              inherit latitude;
+              inherit longitude;
             };
           };
 
