@@ -26,7 +26,6 @@ in
       extensions = with pkgs.vscode-extensions; [
         arrterian.nix-env-selector
         bbenoist.nix
-        catppuccin.catppuccin-vsc
         christian-kohler.path-intellisense
         dbaeumer.vscode-eslint
         eamodio.gitlens
@@ -57,28 +56,22 @@ in
 
       userSettings = {
         # Color theme
-        "workbench.colorTheme" = "Catppuccin Macchiato";
-        "catppuccin.accentColor" = "mauve";
-        "workbench.iconTheme" = "vscode-icons";
+        # "workbench.colorTheme" = "Catppuccin Macchiato";
+        # "catppuccin.accentColor" = "mauve";
+        # "workbench.iconTheme" = "vscode-icons";
 
         # Font family
-        "editor.fontFamily" = "MonaspiceAr Nerd Font, CaskaydiaCove Nerd Font,Consolas, monospace,Hack Nerd Font";
-        "editor.codeLensFontFamily" = "MonaspiceNe Nerd Font, Liga SFMono Nerd Font, CaskaydiaCove Nerd Font,Consolas, 'Courier New', monospace,Hack Nerd Font";
-        "editor.inlayHints.fontFamily" = "MonaspiceKr Nerd Font";
-        "debug.console.fontFamily" = "Monaspace Krypton";
-        "scm.inputFontFamily" = "Monaspace Radon";
-        "notebook.output.fontFamily" = "Monapsace Radon";
-        "chat.editor.fontFamily" = "Monaspace Argon";
-        "markdown.preview.fontFamily" = "Monaspace Xenon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
-        "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
+        # "editor.fontFamily" = "MonaspiceAr Nerd Font, CaskaydiaCove Nerd Font,Consolas, monospace,Hack Nerd Font";
+        # "editor.codeLensFontFamily" = "MonaspiceNe Nerd Font, Liga SFMono Nerd Font, CaskaydiaCove Nerd Font,Consolas, 'Courier New', monospace,Hack Nerd Font";
+        # "editor.inlayHints.fontFamily" = "MonaspiceKr Nerd Font";
+        # "debug.console.fontFamily" = "Monaspace Krypton";
+        # "scm.inputFontFamily" = "Monaspace Radon";
+        # "notebook.output.fontFamily" = "Monapsace Radon";
+        # "chat.editor.fontFamily" = "Monaspace Argon";
+        # "markdown.preview.fontFamily" = "Monaspace Xenon; -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif";
+        # "terminal.integrated.fontFamily" = "JetBrainsMono Nerd Font Mono";
 
         # LSP
-        "java.jdt.ls.java.home" = "${pkgs.jdk17}/lib/openjdk";
-        "java.configuration.runtimes" = [
-          "${pkgs.jdk8}/lib/openjdk"
-          "${pkgs.jdk17}/lib/openjdk"
-          "${pkgs.jdk22}/lib/openjdk"
-        ];
         "redhat.telemetry.enabled" = false;
 
         # Formatters
@@ -97,9 +90,6 @@ in
         };
         "[html]" = {
           "editor.defaultFormatter" = "vscode.html-language-features";
-        };
-        "[java]" = {
-          "editor.defaultFormatter" = "redhat.java";
         };
         "[javascript]" = {
           "editor.defaultFormatter" = "vscode.typescript-language-features";

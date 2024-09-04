@@ -52,11 +52,6 @@ in
       packages =
         with pkgs;
         [
-          enchant
-          djvu2pdf
-          sqlite
-          # texlive.combined.scheme-full
-          nuspell
           (aspellWithDicts (
             ds: with ds; [
               en
@@ -65,8 +60,13 @@ in
               fr
             ]
           ))
+          djvu2pdf
+          enchant
           hunspellDicts.en-us
           hunspellDicts.fr-any
+          languagetool
+          nuspell
+          sqlite
         ]
         ++ lib.optionals cfg.latex.enable [ texlive.combined.sheme-full ];
 

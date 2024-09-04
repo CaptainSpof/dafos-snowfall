@@ -32,7 +32,6 @@ in
             "CascadiaCode"
             "Hack"
             "Monaspace"
-            "NerdFontsSymbolsOnly"
           ];
         })
         departure-mono
@@ -41,14 +40,11 @@ in
         maple-mono-NF
         merriweather
         noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-cjk-serif
-        noto-fonts-color-emoji
         noto-fonts-emoji
         roboto
         roboto-mono
         sarasa-gothic
-        twemoji-color-font
+        # twemoji-color-font
       ]
       ++ cfg.fonts;
   };
