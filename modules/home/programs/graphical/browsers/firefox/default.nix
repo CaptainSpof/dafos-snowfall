@@ -50,6 +50,8 @@ in
 
     extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
 
+    package = mkOpt types.package pkgs.firefox "The firefox package to be used.";
+
     policies = mkOpt attrs {
       CaptivePortal = false;
       DisableFirefoxStudies = true;
@@ -226,7 +228,7 @@ in
 
       inherit (cfg) policies;
 
-      package = pkgs.firefox-beta.override (orig: {
+      package = cfg.package.override (orig: {
         nativeMessagingHosts = (orig.nativeMessagingHosts or [ ]) ++ [
           pkgs.tridactyl-native
           pkgs.plasma-browser-integration
