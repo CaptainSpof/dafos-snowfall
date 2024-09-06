@@ -112,6 +112,23 @@ in
       force = true;
 
       engines = {
+
+        "Nix Issues" = {
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "ni" ];
+          urls = [
+            {
+              template = "https://github.com/NixOS/nixpkgs/issues";
+              params = [
+                {
+                  name = "q";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+        };
+
         "Nix Packages" = {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "n" ];
