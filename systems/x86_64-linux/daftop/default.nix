@@ -46,9 +46,10 @@ in
             maxLength = 2000;
             minLength = 1800;
           };
-          leftPanel.launchers = [
+          leftPanel.launchers =
+            [
             "applications:org.kde.dolphin.desktop"
-            "applications:firefox-beta.desktop"
+            "applications:firefox.desktop"
             "applications:kitty.desktop"
             "applications:emacsclient.desktop"
           ];
