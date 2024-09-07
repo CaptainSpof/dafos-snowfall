@@ -38,7 +38,7 @@ in
         google-fonts
         julia-mono
         maple-mono-NF
-        merriweather
+        mononoki
         noto-fonts
         noto-fonts-emoji
         roboto
