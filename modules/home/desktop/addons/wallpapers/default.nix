@@ -15,7 +15,7 @@ in
   };
 
   config = {
-    dafos.home.file = lib.foldl (
+    home.file = lib.foldl (
       acc: name:
       let
         wallpaper = wallpapers.${name};

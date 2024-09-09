@@ -1,14 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   namespace,
   ...
 }:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.suites.desktop;
 in
@@ -18,16 +17,18 @@ in
   };
 
   config = mkIf cfg.enable {
-
-    environment.systemPackages = with pkgs; [
-      filelight
-      gparted
-    ];
-
     dafos = {
       desktop = {
-        gnome = disabled;
-        plasma = enabled;
+        plasma = {
+          enable = true;
+          config = enabled;
+          desktop = enabled;
+          panels = enabled;
+          shortcuts = enabled;
+        };
+        addons = {
+          wallpapers = enabled;
+        };
       };
     };
   };

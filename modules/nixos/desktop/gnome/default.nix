@@ -1,3 +1,4 @@
+# TODO: move to modules/home
 {
   config,
   lib,
@@ -69,8 +70,6 @@ in
     dafos.system.xkb.enable = true;
     dafos.desktop.addons = {
       gtk = enabled;
-      wallpapers = enabled;
-      electron-support = enabled;
     };
 
     environment.systemPackages =
@@ -287,11 +286,11 @@ in
             # Use the NixOS logo.
             menu-button-icon-image = 23;
 
-            menu-button-terminal =
-              if config.${namespace}.desktop.addons.term.enable then
-                lib.getExe config.${namespace}.desktop.addons.term.pkg
-              else
-                lib.getExe pkgs.gnome.gnome-terminal;
+            # menu-button-terminal =
+            #   if config.${namespace}.desktop.addons.term.enable then
+            #     lib.getExe config.${namespace}.desktop.addons.term.pkg
+            #   else
+            #     lib.getExe pkgs.gnome.gnome-terminal;
           };
 
           "org/gnome/shell/extensions/aylurs-widgets" = {

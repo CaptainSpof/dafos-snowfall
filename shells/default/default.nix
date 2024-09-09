@@ -1,14 +1,16 @@
-{ inputs
-, mkShell
-, pkgs
-, system
-, ...
+{
+  inputs,
+  mkShell,
+  pkgs,
+  system,
+  namespace,
+  ...
 }:
 let
   inherit (inputs) snowfall-flake;
 in
 mkShell {
-  buildInputs = with pkgs; [
+  packages = with pkgs; [
     hydra-check
     nix-inspect
     nix-bisect
@@ -22,10 +24,14 @@ mkShell {
     nixpkgs-hammering
     nixpkgs-lint
     snowfall-flake.packages.${system}.flake
+
+    # Adds all the packages required for the pre-commit checks
+    inputs.self.checks.${system}.pre-commit-hooks.enabledPackages
   ];
 
   shellHook = ''
-    echo 🔨 Welcome to dafos
+    ${inputs.self.checks.${system}.pre-commit-hooks.shellHook}
+    echo 🔨 Welcome to ${namespace}
 
 
   '';

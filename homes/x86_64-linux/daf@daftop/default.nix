@@ -15,6 +15,38 @@ in
       inherit (config.snowfallorg.user) name;
     };
 
+    desktop = {
+      plasma = {
+        touchScreen = true;
+        config = {
+          virtualDesktopsNames = [
+            "Mail"
+            "Video"
+            "Other"
+            "Stuff"
+            "Yes"
+          ];
+        };
+        panels = {
+          topPanel = {
+            maxLength = 1600;
+            minLength = 1400;
+          };
+          topPanelBis = {
+            maxLength = 2000;
+            minLength = 1800;
+          };
+          leftPanel.launchers =
+            [
+            "applications:org.kde.dolphin.desktop"
+            "applications:firefox.desktop"
+            "applications:kitty.desktop"
+            "applications:emacsclient.desktop"
+          ];
+        };
+      };
+    };
+
     programs = {
       graphical = {
         browsers = {
@@ -46,6 +78,8 @@ in
 
     suites = {
       common = enabled;
+
+      desktop = enabled;
 
       development = {
         enable = true;

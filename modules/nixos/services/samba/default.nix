@@ -43,7 +43,7 @@ let
 in
 {
   options.${namespace}.services.samba = with types; {
-    enable = mkEnableOption "Samba";
+    enable = mkEnableOption "Whether or not to enable samba";
     workgroup = mkOpt str "WORKGROUP" "The workgroup to use.";
     browseable = mkBoolOpt true "Whether the shares are browseable.";
 
@@ -57,9 +57,8 @@ in
     };
 
     services.samba-wsdd = {
-      enable = true;
+      inherit (cfg) enable workgroup;
       discovery = true;
-      workgroup = "WORKGROUP";
     };
 
     services.samba = {

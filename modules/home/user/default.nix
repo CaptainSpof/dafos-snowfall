@@ -33,6 +33,9 @@ in
     theme.light = mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
     font.term = mkOpt types.str "Hack Nerd Font Mono" "Terminal Font to use for the system.";
 
+    location.latitude = mkOpt types.str "48.85" "The latitude of the user.";
+    location.longitude = mkOpt types.str "2.35" "The longitude of the user.";
+
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
   };
 

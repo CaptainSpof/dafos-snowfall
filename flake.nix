@@ -61,7 +61,7 @@
     plasma-manager.inputs.home-manager.follows = "home-manager";
 
     # Pre Commit Hooks
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks-nix.url = "github:cachix/git-hooks.nix";
 
     # System Deployment
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -105,15 +105,13 @@
         emacs-overlay.overlays.default
       ];
 
-      homes.modules = with inputs; [ nix-index-database.hmModules.nix-index ];
+      homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager nix-index-database.hmModules.nix-index ];
 
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         vault-service.nixosModules.nixos-vault-service
       ];
-
-      systems.modules.home = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
 
