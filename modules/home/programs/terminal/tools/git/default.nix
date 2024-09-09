@@ -34,6 +34,8 @@ in
         inherit (cfg) signByDefault;
       };
 
+      hooks.pre-commit = ./pre-commit-nocommit.sh;
+
       extraConfig = {
         init = {
           defaultBranch = "main";
