@@ -14,3 +14,5 @@ options.json
 
 # backup stuff
 *.bak
+/.pre-commit-config.yaml
+/.direnv/
