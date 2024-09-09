@@ -17,10 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    dafos.home.configFile."electron-flags.conf".source = ./electron-flags.conf;
 
-    environment.sessionVariables = {
+    home.sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
+
+    xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
   };
 }

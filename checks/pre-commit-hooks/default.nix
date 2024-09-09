@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  namespace,
   pkgs,
   ...
 }:
@@ -21,7 +20,7 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
     in
     {
       actionlint.enable = true;
-      conform.enable = true;
+      # conform.enable = true;
 
       deadnix = {
         enable = true;
@@ -36,23 +35,9 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
         package = pkgs.eslint_d;
       };
 
-      git-cliff = {
-        enable = true;
-        inherit excludes fail_fast verbose;
-
-        always_run = true;
-        description = "pre-push hook for git-cliff";
-        entry = "${lib.getExe pkgs.${namespace}.git-cliff}";
-        language = "system";
-        stages = [ "pre-push" ];
-      };
-
       luacheck.enable = true;
 
-      nixfmt = {
-        enable = true;
-        package = pkgs.nixfmt-rfc-style;
-      };
+      nixfmt-rfc-style.enable = true;
 
       pre-commit-hook-ensure-sops.enable = true;
 
@@ -72,6 +57,6 @@ pre-commit-hooks-nix.lib.${pkgs.system}.run {
       };
 
       statix.enable = true;
-      treefmt.enable = true;
+      # treefmt.enable = true;
     };
 }

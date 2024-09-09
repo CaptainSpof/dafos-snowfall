@@ -29,7 +29,12 @@ in
       qbittorrent = enabled;
     };
 
-    desktop.plasma.autoLoginUser = config.${namespace}.user.name;
+    display-managers = {
+      autoLogin = {
+        enable = true;
+        user = config.${namespace}.user.name;
+      };
+    };
 
     security.gpg = mkForce disabled;
 

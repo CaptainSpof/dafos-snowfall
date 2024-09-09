@@ -24,27 +24,10 @@ in
       qbittorrent = enabled;
     };
 
-    desktop = {
-      plasma = {
-        autoLoginUser = config.${namespace}.user.name;
-        config = {
-          virtualDesktopsNames = [
-            "Mail"
-            "Video"
-            "Other"
-            "Stuff"
-            "Yes"
-          ];
-        };
-        panels = {
-          leftPanel.launchers = [
-            "applications:org.kde.dolphin.desktop"
-            "applications:firefox-beta.desktop"
-            "applications:kitty.desktop"
-            "applications:emacsclient.desktop"
-            "applications:steam.desktop"
-          ];
-        };
+    display-managers = {
+      autoLogin = {
+        enable = true;
+        user = config.${namespace}.user.name;
       };
     };
 
