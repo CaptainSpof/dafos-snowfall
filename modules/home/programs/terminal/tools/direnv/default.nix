@@ -8,9 +8,9 @@
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (config.${namespace}.programs.terminal.shells) fish;
 
   cfg = config.${namespace}.programs.terminal.tools.direnv;
-  fish = config.${namespace}.programs.terminal.shells.fish;
 in
 {
   options.${namespace}.programs.terminal.tools.direnv = {

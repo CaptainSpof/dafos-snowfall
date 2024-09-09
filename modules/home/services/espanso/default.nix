@@ -9,11 +9,9 @@
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.${namespace}.user) email gitEmail fullName;
 
   cfg = config.${namespace}.services.espanso;
-  email = config.${namespace}.user.email;
-  gitEmail = config.${namespace}.user.gitEmail;
-  fullName = config.${namespace}.user.fullName;
 in
 {
   options.${namespace}.services.espanso = {

@@ -8,9 +8,9 @@
 
 let
   inherit (lib) mkEnableOption mkIf getExe;
+  inherit (config.${namespace}.programs.terminal.tools) starship;
 
   cfg = config.${namespace}.programs.terminal.shells.fish;
-  starship = config.${namespace}.programs.terminal.tools.starship;
 in
 {
   options.${namespace}.programs.terminal.shells.fish = {
@@ -134,7 +134,7 @@ in
           }
           {
             name = "async-prompt";
-            src = pkgs.fishPlugins.async-prompt.src;
+            inherit (pkgs.fishPlugins.async-prompt) src;
           }
         ];
       };

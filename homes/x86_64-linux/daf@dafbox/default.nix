@@ -1,7 +1,8 @@
-{ lib
-, config
-, namespace
-, ...
+{
+  lib,
+  config,
+  namespace,
+  ...
 }:
 
 let
@@ -11,7 +12,7 @@ in
   dafos = {
     user = {
       enable = true;
-      name = config.snowfallorg.user.name;
+      inherit (config.snowfallorg.user) name;
     };
 
     programs = {

@@ -11,10 +11,10 @@ with lib.${namespace};
 let
   inherit (lib) mkIf getExe;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.${namespace}) user;
+  inherit (config.users.users.${user.name}) home;
 
   cfg = config.${namespace}.desktop.addons.kanshi;
-  user = config.${namespace}.user;
-  home = config.users.users.${user.name}.home;
 in
 {
   options.${namespace}.desktop.addons.kanshi = {

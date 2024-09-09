@@ -14,9 +14,9 @@ let
     optionalString
     ;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.services.xserver.displayManager) gdm;
 
   cfg = config.${namespace}.desktop.addons.gtk;
-  gdmCfg = config.services.xserver.displayManager.gdm;
 in
 {
   options.${namespace}.desktop.addons.gtk = with types; {
@@ -50,17 +50,17 @@ in
         enable = true;
 
         theme = {
-          name = cfg.theme.name;
+          inherit (cfg.theme) name;
           package = cfg.theme.pkg;
         };
 
         cursorTheme = {
-          name = cfg.cursor.name;
+          inherit (cfg.cursor) name;
           package = cfg.cursor.pkg;
         };
 
         iconTheme = {
-          name = cfg.icon.name;
+          inherit (cfg.icon) name;
           package = cfg.icon.pkg;
         };
       };
@@ -73,14 +73,14 @@ in
     #
     # @NOTE(jakehamilton): The GTK and icon themes don't seem to affect recent GDM versions. I've
     # left them here as reference for the future.
-    programs.dconf.profiles = mkIf gdmCfg.enable {
+    programs.dconf.profiles = mkIf gdm.enable {
       gdm =
         let
           customDconf = pkgs.writeTextFile {
             name = "gdm-dconf";
             destination = "/dconf/gdm-custom";
             text = ''
-              ${optionalString (!gdmCfg.autoSuspend) ''
+              ${optionalString (!gdm.autoSuspend) ''
                 [org/gnome/settings-daemon/plugins/power]
                 sleep-inactive-ac-type='nothing'
                 sleep-inactive-battery-type='nothing'

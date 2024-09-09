@@ -31,7 +31,7 @@ let
     pkgs.runCommandNoCC "propagated-icon"
       {
         passthru = {
-          fileName = cfg.icon.fileName;
+          inherit (cfg.icon) fileName;
         };
       }
       ''
@@ -79,7 +79,6 @@ in
     location.latitude = mkOpt types.str "48.85" "The latitude of the user.";
     location.longitude = mkOpt types.str "2.35" "The longitude of the user.";
 
-
     authorizedKeys = mkOpt (types.listOf types.str) [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDU0z8wC6aL3EelbY83Ucj1+2TMKt+lKjQkzEH6jFaWu daf@dafoltop"
@@ -104,11 +103,13 @@ in
         xdg.userDirs = {
           enable = true;
           createDirectories = true;
-          documents = dirs.documents;
+          inherit (dirs)
+            documents
+            music
+            pictures
+            videos
+            ;
           download = dirs.downloads;
-          music = dirs.music;
-          pictures = dirs.pictures;
-          videos = dirs.videos;
           templates = dirs.home;
           extraConfig = {
             XDG_PROJECTS_DIR = dirs.projects;

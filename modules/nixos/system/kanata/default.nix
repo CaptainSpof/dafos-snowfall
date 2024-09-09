@@ -20,9 +20,7 @@ let
   cfg = config.${namespace}.system.kanata;
 in
 {
-  imports = [
-    ./kanata.nix
-  ];
+  imports = [ ./kanata.nix ];
 
   disabledModules = [ "services/hardware/kanata.nix" ];
 
@@ -33,9 +31,9 @@ in
       "Glove80 Keyboard"
       "MoErgo Glove80 Left Keyboard"
     ] "The devices to be excluded.";
-    tapTimeout = mkOpt (types.number) 150 "The value for tap-timeout.";
-    holdTimeout = mkOpt (types.number) 300 "The value for hold-timeout.";
-    chordTimeout = mkOpt (types.number) 10 "The value for chord-timeout.";
+    tapTimeout = mkOpt types.number 150 "The value for tap-timeout.";
+    holdTimeout = mkOpt types.number 300 "The value for hold-timeout.";
+    chordTimeout = mkOpt types.number 10 "The value for chord-timeout.";
   };
 
   config = mkIf cfg.enable {

@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  inputs,
   namespace,
   ...
 }:
@@ -16,14 +15,11 @@ let
     ;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
   cfg = config.${namespace}.nix;
-  substituters-submodule = types.submodule (
-    { ... }:
-    {
-      options = with types; {
-        key = mkOpt (nullOr str) null "The trusted public key for this substituter.";
-      };
-    }
-  );
+  substituters-submodule = types.submodule (_: {
+    options = with types; {
+      key = mkOpt (nullOr str) null "The trusted public key for this substituter.";
+    };
+  });
 in
 {
   options.${namespace}.nix = with types; {
@@ -73,7 +69,7 @@ in
         ] ++ optional config.services.hydra.enable "hydra";
       in
       {
-        package = cfg.package;
+        inherit (cfg) package;
 
         settings = {
           experimental-features = "nix-command flakes";

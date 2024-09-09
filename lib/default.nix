@@ -1,6 +1,4 @@
-{ }:
-
-{
+_: {
   ## Override a package's metadata
   ##
   ## ```nix

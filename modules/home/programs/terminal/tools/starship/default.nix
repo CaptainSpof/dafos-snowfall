@@ -7,11 +7,9 @@
 
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.${namespace}.programs.terminal.shells) fish nushell zsh;
 
   cfg = config.${namespace}.programs.terminal.tools.starship;
-  fish = config.${namespace}.programs.terminal.shells.fish;
-  nushell = config.${namespace}.programs.terminal.shells.nushell;
-  zsh = config.${namespace}.programs.terminal.shells.zsh;
 in
 {
   options.${namespace}.programs.terminal.tools.starship = {

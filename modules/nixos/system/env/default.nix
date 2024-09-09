@@ -7,7 +7,6 @@
 
 let
   inherit (lib)
-    mapAttrs
     concatStringsSep
     mkOption
     types
@@ -25,8 +24,8 @@ in
         path
         (listOf (either str path))
       ]);
-      apply = mapAttrs (
-        _n: v: if isList v then concatMapStringsSep ":" (x: toString x) v else (toString v)
+      apply = lib.mapAttrs (
+        _n: v: if lib.isList v then lib.concatMapStringsSep ":" toString v else (toString v)
       );
       default = { };
       description = "A set of environment variables to set.";

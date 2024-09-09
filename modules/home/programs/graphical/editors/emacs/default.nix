@@ -29,14 +29,13 @@ in
     programs.emacs = {
       enable = true;
       inherit (cfg) package;
-      extraPackages = (
+      extraPackages =
         epkgs: with epkgs; [
           jinx
           pdf-tools
           sqlite3
           vterm
-        ]
-      );
+        ];
     };
 
     xdg.desktopEntries.org-protocol = {
