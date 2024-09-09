@@ -16,6 +16,7 @@ let
     types
     ;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
+  inherit (lib.home-manager.hm.gvariant) mkTuple;
 
   cfg = config.${namespace}.desktop.gnome;
   gdmHome = config.users.users.gdm.home;
@@ -41,7 +42,6 @@ let
 
   default-attrs = mapAttrs (_key: mkDefault);
   nested-default-attrs = mapAttrs (_key: default-attrs);
-  mkTuple = lib.home-manager.hm.gvariant.mkTuple;
 in
 {
   options.${namespace}.desktop.gnome = with types; {
@@ -61,15 +61,17 @@ in
       "dark"
     ]) "dark" "The color scheme to use.";
     wayland = mkBoolOpt true "Whether or not to use Wayland.";
-    suspend = mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
+    autoSuspend = mkBoolOpt true "Whether or not to suspend the machine after inactivity.";
     monitors = mkOpt (nullOr path) null "The monitors.xml file to create.";
     extensions = mkOpt (listOf package) [ ] "Extra Gnome extensions to install.";
   };
 
   config = mkIf cfg.enable {
-    dafos.system.xkb.enable = true;
-    dafos.desktop.addons = {
-      gtk = enabled;
+    dafos = {
+      system.xkb.enable = true;
+      desktop.addons = {
+        gtk = enabled;
+      };
     };
 
     environment.systemPackages =
@@ -93,9 +95,7 @@ in
     ];
 
     systemd.tmpfiles.rules =
-      [
-        "d ${gdmHome}/.config 0711 gdm gdm"
-      ]
+      [ "d ${gdmHome}/.config 0711 gdm gdm" ]
       ++ (
         # "./monitors.xml" comes from ~/.config/monitors.xml when GNOME
         # display information is updated.
@@ -148,8 +148,7 @@ in
       libinput.enable = true;
       displayManager.gdm = {
         enable = true;
-        wayland = cfg.wayland;
-        autoSuspend = cfg.suspend;
+        inherit (cfg) wayland autoSuspend;
       };
       desktopManager.gnome.enable = true;
     };
@@ -344,9 +343,7 @@ in
               "appMenu"
             ];
 
-            center-box-order = [
-              "Space Bar"
-            ];
+            center-box-order = [ "Space Bar" ];
 
             right-box-order = [
               "keyboard"

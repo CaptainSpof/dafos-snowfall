@@ -16,9 +16,9 @@ let
     types
     ;
   inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.virtualisation.kvm;
-  user = config.${namespace}.user;
 in
 {
   options.${namespace}.virtualisation.kvm = with types; {
@@ -103,17 +103,22 @@ in
       home = {
         extraOptions = {
           systemd.user.services.scream = {
-            Unit.Description = "Scream";
-            Unit.After = [
-              "libvirtd.service"
-              "pipewire-pulse.service"
-              "pipewire.service"
-              "sound.target"
-            ] ++ cfg.machineUnits;
-            Service.ExecStart = "${getExe pkgs.scream} -n scream -o pulse -m /dev/shm/scream";
-            Service.Restart = "always";
-            Service.StartLimitIntervalSec = "5";
-            Service.StartLimitBurst = "1";
+            Unit = {
+              Description = "Scream";
+              After = [
+                "libvirtd.service"
+                "pipewire-pulse.service"
+                "pipewire.service"
+                "sound.target"
+              ] ++ cfg.machineUnits;
+
+            };
+            Service = {
+              ExecStart = "${getExe pkgs.scream} -n scream -o pulse -m /dev/shm/scream";
+              Restart = "always";
+              StartLimitIntervalSec = "5";
+              StartLimitBurst = "1";
+            };
             Install.RequiredBy = cfg.machineUnits;
           };
         };

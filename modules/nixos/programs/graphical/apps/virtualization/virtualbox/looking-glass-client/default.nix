@@ -9,9 +9,9 @@
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.${namespace}) user;
 
   cfg = config.${namespace}.apps.looking-glass-client;
-  user = config.${namespace}.user;
 in
 {
   options.${namespace}.apps.looking-glass-client = {

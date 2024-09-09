@@ -7,10 +7,10 @@
 
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (config.${namespace}.user) home;
 
   cfg = config.${namespace}.services.jellyfin;
   username = config.${namespace}.user.name;
-  home = config.${namespace}.user.home;
 in
 {
 

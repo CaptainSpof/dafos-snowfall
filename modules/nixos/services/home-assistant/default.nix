@@ -22,153 +22,150 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    services.mosquitto = {
-      enable = true;
-      listeners = [
-        {
-          acl = [ "pattern readwrite #" ];
-          omitPasswordAuth = true;
-          settings.allow_anonymous = true;
-        }
-      ];
-    };
+    services = {
+      mosquitto = {
+        enable = true;
+        listeners = [
+          {
+            acl = [ "pattern readwrite #" ];
+            omitPasswordAuth = true;
+            settings.allow_anonymous = true;
+          }
+        ];
+      };
 
-    services.zigbee2mqtt = {
-      enable = true;
-      settings = {
-        homeassistant = config.services.home-assistant.enable;
-        permit_join = false;
-        mqtt = {
-          server = "mqtt://127.0.0.1:1883";
-          base_topic = "zigbee2mqtt";
-        };
-        frontend = {
-          port = 8090;
-        };
-        serial = {
-          port = "/dev/ttyACM1";
-          adapter = "deconz";
-        };
-        advanced = {
-          log_level = "debug";
+      zigbee2mqtt = {
+        enable = true;
+        settings = {
+          homeassistant = config.services.home-assistant.enable;
+          permit_join = false;
+          mqtt = {
+            server = "mqtt://127.0.0.1:1883";
+            base_topic = "zigbee2mqtt";
+          };
+          frontend = {
+            port = 8090;
+          };
+          serial = {
+            port = "/dev/ttyACM1";
+            adapter = "deconz";
+          };
+          advanced = {
+            log_level = "debug";
+          };
         };
       };
-    };
 
-    services.home-assistant = {
-      enable = true;
-      extraComponents = [
-        "radarr"
-        "sonarr"
-        "apple_tv"
-        "backup"
-        "cast"
-        "esphome"
-        "ibeacon"
-        "forked_daapd"
-        "freebox"
-        "google_translate"
-        "ipp"
-        "local_calendar"
-        "ld2410_ble"
-        "met"
-        "mobile_app"
-        "mqtt"
-        "netatmo"
-        "radio_browser"
-        "roborock"
-        "samsungtv"
-        "tailscale"
-        "telegram"
-        "tuya"
-        "wled"
-        "yeelight"
-        "zeroconf"
-        "zha"
-      ];
-
-      extraPackages =
-        ps: with ps; [
-          pychromecast
+      home-assistant = {
+        enable = true;
+        extraComponents = [
+          "radarr"
+          "sonarr"
+          "apple_tv"
+          "backup"
+          "cast"
+          "esphome"
+          "ibeacon"
+          "forked_daapd"
+          "freebox"
+          "google_translate"
+          "ipp"
+          "local_calendar"
+          "ld2410_ble"
+          "met"
+          "mobile_app"
+          "mqtt"
+          "netatmo"
+          "radio_browser"
+          "roborock"
+          "samsungtv"
+          "tailscale"
+          "telegram"
+          "tuya"
+          "wled"
+          "yeelight"
+          "zeroconf"
+          "zha"
         ];
 
-      customComponents = with pkgs.home-assistant-custom-components; [
-        adaptive_lighting
-      ];
+        extraPackages = ps: with ps; [ pychromecast ];
 
-      customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
-        button-card
-        card-mod
-        mini-graph-card
-        mini-media-player
-        multiple-entity-row
-        mushroom
-        pkgs.dafos.lovelace-auto-entities
-        pkgs.dafos.lovelace-fold-entity-row
-        pkgs.dafos.lovelace-layout-card
-        pkgs.dafos.bubble-card
-      ];
+        customComponents = with pkgs.home-assistant-custom-components; [ adaptive_lighting ];
 
-      config = {
-        # Includes dependencies for a basic setup
-        # https://www.home-assistant.io/integrations/default_config/
-        default_config = { };
-        lovelace.mode = "yaml";
-        lovelace.resources = [
-          {
-            url = "/local/nixos-lovelace-modules/mushroom.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/bubble-card.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/layout-card.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/card-mod.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/button-card.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/fold-entity-row.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/auto-entities.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/mini-graph-card-bundle.js";
-            type = "module";
-          }
-          {
-            url = "/local/nixos-lovelace-modules/mini-media-player-bundle.js";
-            type = "module";
-          }
+        customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+          button-card
+          card-mod
+          mini-graph-card
+          mini-media-player
+          multiple-entity-row
+          mushroom
+          pkgs.dafos.lovelace-auto-entities
+          pkgs.dafos.lovelace-fold-entity-row
+          pkgs.dafos.lovelace-layout-card
+          pkgs.dafos.bubble-card
         ];
 
-        "automation manual" = [ ];
-        "automation ui" = "!include automations.yaml";
-        "scene ui" = "!include scenes.yaml";
-        "script ui" = "!include scripts.yaml";
-
-        sensor = {
-          platform = "time_date";
-          display_options = [
-            "time"
-            "date"
-            "date_time"
-            "date_time_utc"
-            "date_time_iso"
-            "time_date"
-            "time_utc"
+        config = {
+          # Includes dependencies for a basic setup
+          # https://www.home-assistant.io/integrations/default_config/
+          default_config = { };
+          lovelace.mode = "yaml";
+          lovelace.resources = [
+            {
+              url = "/local/nixos-lovelace-modules/mushroom.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/bubble-card.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/layout-card.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/card-mod.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/button-card.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/fold-entity-row.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/auto-entities.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/mini-graph-card-bundle.js";
+              type = "module";
+            }
+            {
+              url = "/local/nixos-lovelace-modules/mini-media-player-bundle.js";
+              type = "module";
+            }
           ];
+
+          "automation manual" = [ ];
+          "automation ui" = "!include automations.yaml";
+          "scene ui" = "!include scenes.yaml";
+          "script ui" = "!include scripts.yaml";
+
+          sensor = {
+            platform = "time_date";
+            display_options = [
+              "time"
+              "date"
+              "date_time"
+              "date_time_utc"
+              "date_time_iso"
+              "time_date"
+              "time_utc"
+            ];
+          };
         };
       };
     };

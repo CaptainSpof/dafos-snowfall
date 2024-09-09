@@ -8,10 +8,10 @@
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.${namespace}.user) home;
 
   cfg = config.${namespace}.services.syncthing;
   user = config.${namespace}.user.name;
-  home = config.${namespace}.user.home;
 
   dafbox.id = "MG2JJVN-X3EQTRB-33WPAOV-OLMPVOC-PL2J2EL-GPNLXTA-BLDU6YK-ONUVJQ3";
   dafoltop.id = "7AOREJR-3BX2E3F-6WMRZRK-AWD4GKS-GZXTACF-EY3ZINT-IRQVL4I-25JYZQP";

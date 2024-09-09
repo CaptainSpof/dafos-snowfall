@@ -11,6 +11,7 @@
 let
   inherit (lib) optionalString mkIf types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
+  inherit (config.${namespace}.user) authorizedKeys;
 
   cfg = config.${namespace}.services.openssh;
 
@@ -18,11 +19,9 @@ let
   # the specialArg `name` to provide the host name.
   name = host;
 
-  authorizedKeys = config.${namespace}.user.authorizedKeys;
-
   other-hosts = lib.filterAttrs (
     key: host: key != name && (host.config.${namespace}.user.name or null) != null
-  ) ((inputs.self.nixosConfigurations or { }));
+  ) (inputs.self.nixosConfigurations or { });
 
   other-hosts-config = lib.concatMapStringsSep "\n" (
     name:

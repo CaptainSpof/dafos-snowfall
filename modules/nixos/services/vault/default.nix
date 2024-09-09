@@ -126,7 +126,7 @@ in
         RemainAfterExit = "yes";
       };
 
-      restartTriggers = (mapAttrsToList (name: value: "${name}=${value}") policies);
+      restartTriggers = mapAttrsToList (name: value: "${name}=${value}") policies;
 
       path = [
         package

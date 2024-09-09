@@ -8,10 +8,10 @@
 let
   inherit (lib) types mkEnableOption mkIf;
   inherit (lib.${namespace}) mkOpt enabled;
+  inherit (config.${namespace}) user;
+  inherit (config.${namespace}.programs.terminal.shells) fish;
 
   cfg = config.${namespace}.programs.terminal.tools.git;
-  user = config.${namespace}.user;
-  fish = config.${namespace}.programs.terminal.shells.fish;
 in
 {
   options.${namespace}.programs.terminal.tools.git = {
@@ -24,70 +24,72 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.git = {
-      enable = true;
-      inherit (cfg) userName userEmail;
-      lfs = enabled;
+    programs = {
+      git = {
+        enable = true;
+        inherit (cfg) userName userEmail;
+        lfs = enabled;
 
-      signing = {
-        key = cfg.signingKey;
-        inherit (cfg) signByDefault;
+        signing = {
+          key = cfg.signingKey;
+          inherit (cfg) signByDefault;
+        };
+
+        hooks.pre-commit = ./pre-commit-nocommit.sh;
+
+        extraConfig = {
+          init = {
+            defaultBranch = "main";
+          };
+          pull = {
+            rebase = true;
+          };
+          push = {
+            autoSetupRemote = true;
+          };
+          core = {
+            whitespace = "trailing-space,space-before-tab";
+          };
+          safe = {
+            directory = "${user.home}/.config.${namespace}";
+          };
+        };
       };
 
-      hooks.pre-commit = ./pre-commit-nocommit.sh;
-
-      extraConfig = {
-        init = {
-          defaultBranch = "main";
-        };
-        pull = {
-          rebase = true;
-        };
-        push = {
-          autoSetupRemote = true;
-        };
-        core = {
-          whitespace = "trailing-space,space-before-tab";
-        };
-        safe = {
-          directory = "${user.home}/.config.${namespace}";
-        };
+      gh = {
+        enable = true;
+        gitCredentialHelper.enable = true;
+        settings.version = 1;
       };
-    };
 
-    programs.gh = {
-      enable = true;
-      gitCredentialHelper.enable = true;
-      settings.version = 1;
-    };
-
-    programs.fish = mkIf fish.enable {
-      shellAbbrs = {
-        g = "git";
-        ga = "git add";
-        "ga." = "git add .";
-        gamend = "git commit --amend --no-edit";
-        gb = "git branch";
-        gc = "git commit";
-        gcl = "git clone";
-        gl = ''git log --graph --pretty="format:%C(yellow)%h%Creset %C(red)%G?%Creset%C(green)%d%Creset %s %Cblue(%cr) %C(bold blue)<%aN>%Creset"'';
-        gco = "git checkout";
-        gd = "git diff";
-        gdt = "git difftool";
-        gds = "git diff --staged";
-        gp = "git push";
-        gpf = "git push --force-with-lease";
-        gf = "git fetch";
-        gF = "git pull";
-        grc = "git rebase --continue";
-        gri = "git rebase --interactive";
-        gra = "git rebase --abort";
-        grs = "git rebase --skip";
-        gs = "git status --short";
-        gS = "git status";
-        gst = "git stash";
-        gstl = "git stash list";
-        gstp = "git stash pop";
+      fish = mkIf fish.enable {
+        shellAbbrs = {
+          g = "git";
+          ga = "git add";
+          "ga." = "git add .";
+          gamend = "git commit --amend --no-edit";
+          gb = "git branch";
+          gc = "git commit";
+          gcl = "git clone";
+          gl = ''git log --graph --pretty="format:%C(yellow)%h%Creset %C(red)%G?%Creset%C(green)%d%Creset %s %Cblue(%cr) %C(bold blue)<%aN>%Creset"'';
+          gco = "git checkout";
+          gd = "git diff";
+          gdt = "git difftool";
+          gds = "git diff --staged";
+          gp = "git push";
+          gpf = "git push --force-with-lease";
+          gf = "git fetch";
+          gF = "git pull";
+          grc = "git rebase --continue";
+          gri = "git rebase --interactive";
+          gra = "git rebase --abort";
+          grs = "git rebase --skip";
+          gs = "git status --short";
+          gS = "git status";
+          gst = "git stash";
+          gstl = "git stash list";
+          gstp = "git stash pop";
+        };
       };
     };
   };

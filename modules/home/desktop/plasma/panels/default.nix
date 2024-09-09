@@ -15,12 +15,12 @@ in
   options.${namespace}.desktop.plasma.panels = with types; {
     enable = mkBoolOpt false "Whether or not to configure plasma panels.";
     topPanel = {
-      maxLength = mkOpt (number) 1900 "The maximum length of the top panel.";
-      minLength = mkOpt (number) 1000 "The minimum length of the top panel.";
+      maxLength = mkOpt number 1900 "The maximum length of the top panel.";
+      minLength = mkOpt number 1000 "The minimum length of the top panel.";
     };
     topPanelBis = {
-      maxLength = mkOpt (number) 1900 "The maximum length of the top panel.";
-      minLength = mkOpt (number) 1000 "The minimum length of the top panel.";
+      maxLength = mkOpt number 1900 "The maximum length of the top panel.";
+      minLength = mkOpt number 1000 "The minimum length of the top panel.";
     };
     leftPanel = {
       launchers = mkOpt (listOf str) [
@@ -83,7 +83,7 @@ in
               name = "org.kde.plasma.icontasks";
               config = {
                 General = {
-                  launchers = cfg.leftPanel.launchers;
+                  inherit (cfg.leftPanel) launchers;
                 };
               };
             }
@@ -126,8 +126,7 @@ in
           hiding = "autohide";
           lengthMode = "custom";
           location = "top";
-          maxLength = cfg.topPanel.maxLength;
-          minLength = cfg.topPanel.minLength;
+          inherit (cfg.topPanel) maxLength minLength;
           screen = 0;
           widgets = [
             {
@@ -188,8 +187,7 @@ in
           hiding = "autohide";
           location = "top";
           lengthMode = "custom";
-          maxLength = cfg.topPanelBis.maxLength;
-          minLength = cfg.topPanelBis.minLength;
+          inherit (cfg.topPanel) maxLength minLength;
           screen = 1;
           widgets = [
             "org.kde.plasma.appmenu"

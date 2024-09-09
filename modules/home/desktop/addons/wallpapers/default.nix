@@ -21,6 +21,6 @@ in
         wallpaper = wallpapers.${name};
       in
       acc // { "Pictures/wallpapers/${wallpaper.fileName}".source = wallpaper; }
-    ) { } (wallpapers.names);
+    ) { } wallpapers.names;
   };
 }

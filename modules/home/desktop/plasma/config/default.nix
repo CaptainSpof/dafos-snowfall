@@ -8,11 +8,10 @@
 let
   inherit (lib) mkIf types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
+  inherit (config.${namespace}.user) home;
+  inherit (config.${namespace}.user.location) latitude longitude;
 
   cfg = config.${namespace}.desktop.plasma.config;
-  home = config.${namespace}.user.home;
-  latitude = config.${namespace}.user.location.latitude;
-  longitude = config.${namespace}.user.location.longitude;
 in
 {
   options.${namespace}.desktop.plasma.config = {
