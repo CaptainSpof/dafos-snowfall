@@ -32,6 +32,7 @@ in
       enhancer-for-youtube
       firefox-color
       french-language-pack
+      fx_cast
       languagetool
       org-capture # TODO: setup
       plasma-integration
@@ -44,6 +45,7 @@ in
       stylus
       tabcenter-reborn
       tridactyl
+      violentmonkey
       ublock-origin
       user-agent-string-switcher
     ]) "Extensions to install";
@@ -240,6 +242,8 @@ in
     xdg.configFile."tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
     xdg.configFile."tridactyl/themes/everforest-dark.css".source = ./tridactyl/tridactyl_style_everforest.css;
 
+    home.packages = with pkgs; [ fx-cast-bridge ];
+
     programs.firefox = {
       enable = true;
 
@@ -249,6 +253,7 @@ in
         nativeMessagingHosts = (orig.nativeMessagingHosts or [ ]) ++ [
           pkgs.tridactyl-native
           pkgs.plasma-browser-integration
+          pkgs.fx-cast-bridge
         ];
       });
 
