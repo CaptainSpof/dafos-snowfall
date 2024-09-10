@@ -68,7 +68,7 @@ in
           mediainfo
           nuspell
           poppler
-          sqlite3
+          sqlite
         ]
         ++ lib.optionals cfg.latex.enable [ texlive.combined.sheme-full ];
 
