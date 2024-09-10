@@ -2,6 +2,7 @@
   lib,
   config,
   namespace,
+  pkgs,
   ...
 }:
 
@@ -26,6 +27,7 @@ in
         browsers = {
           firefox = {
             enable = true;
+            package = pkgs.firefox-beta;
             gpuAcceleration = true;
             hardwareDecoding = true;
             settings = {

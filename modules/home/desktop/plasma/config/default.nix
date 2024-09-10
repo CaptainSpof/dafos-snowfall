@@ -59,7 +59,7 @@ in
       kscreenlocker = {
         appearance = {
           alwaysShowClock = true;
-          showMediaControls = false;
+          showMediaControls = true;
           wallpaperPictureOfTheDay.provider = "apod";
         };
 

@@ -25,10 +25,9 @@ in
             maxLength = 2500;
             minLength = 2500;
           };
-          leftPanel.launchers =
-            [
+          leftPanel.launchers = [
             "applications:org.kde.dolphin.desktop"
-            "applications:${toString (firefox-pkg.meta.mainProgram)}.desktop"
+            "applications:${toString firefox-pkg.meta.mainProgram}.desktop"
             "applications:kitty.desktop"
             "applications:emacsclient.desktop"
             "applications:steam.desktop"

@@ -22,22 +22,20 @@ in
         {
           digitalClock = {
             position = {
-              horizontal = 1650;
-              vertical = 40;
-            };
-            size = {
-              width = 225;
-              height = 200;
+              horizontal = 1500;
+              vertical = 80;
             };
 
-            # Digital clock settings
+            size = {
+              width = 200;
+              height = 150;
+            };
+
             calendar = {
-              firstDayOfWeek = "monday";
               plugins = [
                 "astronomicalevents"
                 "holidaysevents"
               ];
-              showWeekNumbers = true;
             };
 
             date = {
