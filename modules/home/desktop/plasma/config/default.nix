@@ -17,10 +17,11 @@ in
   options.${namespace}.desktop.plasma.config = {
     enable = mkBoolOpt false "Whether or not to configure plasma config.";
     virtualDesktopsNames = mkOpt (types.listOf types.str) [
-      "Desktop 1"
-      "Desktop 2"
-      "Desktop 3"
-      "Desktop 4"
+      "Mail"
+      "Video"
+      "Other"
+      "Stuff"
+      "Yes"
     ] "The names to give to the virtual desktops";
   };
 

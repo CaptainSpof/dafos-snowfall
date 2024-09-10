@@ -10,24 +10,123 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.desktop.plasma.panels;
+  firefox-pkg = config.${namespace}.programs.graphical.browsers.firefox.package;
+
+  topPanelConfig = {
+    alignment = "center";
+    floating = true;
+    height = 32;
+    hiding = "autohide";
+    lengthMode = "custom";
+    location = "top";
+    widgets = [
+      {
+        applicationTitleBar = {
+
+          behavior = {
+            activeTaskSource = "activeTask";
+            disableButtonsForNotHovered = false;
+            disableForNotMaximized = false;
+            filterByActivity = true;
+            filterByScreen = true;
+            filterByVirtualDesktop = true;
+          };
+
+          layout = {
+            elements = [ "windowTitle" ];
+            fillFreeSpace = false;
+            horizontalAlignment = "left";
+            showDisabledElements = "deactivated";
+            spacingBetweenElements = 0;
+            verticalAlignment = "center";
+            widgetMargins = 1;
+          };
+
+          overrideForMaximized = {
+            enable = true;
+            elements = [
+              "windowCloseButton"
+              "windowMinimizeButton"
+              "windowMaximizeButton"
+              "windowTitle"
+              "spacer"
+            ];
+          };
+
+          windowControlButtons = {
+            auroraeTheme = null;
+            buttonsAnimationSpeed = 100;
+            buttonsAspectRatio = 100;
+            buttonsMargin = 0;
+            iconSource = "plasma";
+          };
+
+          windowTitle = {
+            font = {
+              bold = false;
+              fit = "fixedSize";
+              size = 12;
+            };
+
+            hideEmptyTitle = true;
+
+            margins = {
+              bottom = 0;
+              left = 15;
+              right = 5;
+              top = 0;
+            };
+
+            source = "appName";
+            undefinedWindowTitle = "";
+          };
+        };
+      }
+      "org.kde.plasma.panelspacer"
+      {
+        digitalClock = {
+
+          date = {
+            enable = true;
+            format = "longDate";
+            position = "besideTime";
+          };
+
+          font = {
+            family = "Inter";
+            weight = 400;
+            size = 10;
+          };
+        };
+      }
+      "org.kde.plasma.panelspacer"
+    ];
+  };
+
+  topPanelPrimaryScreen = topPanelConfig // {
+    screen = 0;
+    inherit (cfg.topPanel) maxLength minLength;
+  };
+
+  topPanelSecondaryScreen = topPanelConfig // {
+    screen = 1;
+  };
 in
 {
   options.${namespace}.desktop.plasma.panels = with types; {
     enable = mkBoolOpt false "Whether or not to configure plasma panels.";
+
     topPanel = {
-      maxLength = mkOpt number 1900 "The maximum length of the top panel.";
-      minLength = mkOpt number 1000 "The minimum length of the top panel.";
+      maxLength = mkOpt number 1600 "The maximum length of the top panel.";
+      minLength = mkOpt number 1600 "The minimum length of the top panel.";
     };
-    topPanelBis = {
-      maxLength = mkOpt number 1900 "The maximum length of the top panel.";
-      minLength = mkOpt number 1000 "The minimum length of the top panel.";
-    };
+
     leftPanel = {
       launchers = mkOpt (listOf str) [
         "applications:org.kde.dolphin.desktop"
-        "applications:firefox-beta.desktop"
+        "applications:${toString (firefox-pkg.meta.mainProgram)}.desktop"
         "applications:kitty.desktop"
-        "applications:emacsclient.desktop"
+        "applications:emacs.desktop"
       ] "The launchers to display in the panel.";
     };
   };
@@ -80,15 +179,65 @@ in
             "org.kde.plasma.panelspacer"
             "org.kde.plasma.marginsseparator"
             {
-              name = "org.kde.plasma.icontasks";
-              config = {
-                General = {
-                  inherit (cfg.leftPanel) launchers;
+              iconTasks = {
+                appearance = {
+                  fill = false;
+                  highlightWindows = true;
+                  iconSpacing = "medium";
+                  indicateAudioStreams = true;
+                  rows = {
+                    multirowView = "never";
+                    maximum = null;
+                  };
+                  showTooltips = true;
                 };
+                behavior = {
+                  grouping = {
+                    clickAction = "showPresentWindowsEffect";
+                    method = "byProgramName";
+                  };
+                  middleClickAction = "newInstance";
+                  minimizeActiveTaskOnClick = true;
+                  newTasksAppearOn = "right";
+                  showTasks = {
+                    onlyInCurrentActivity = true;
+                    onlyInCurrentDesktop = true;
+                    onlyMinimized = false;
+                    onlyInCurrentScreen = false;
+                  };
+                  sortingMethod = "manually";
+                  unhideOnAttentionNeeded = true;
+                  wheel = {
+                    ignoreMinimizedTasks = true;
+                    switchBetweenTasks = true;
+                  };
+                };
+                inherit (cfg.leftPanel) launchers;
               };
             }
             "org.kde.plasma.marginsseparator"
             "org.kde.plasma.panelspacer"
+            {
+              plasmusicToolbar = {
+                musicControls = {
+                  showPlaybackControls = false;
+                  volumeStep = 1;
+                };
+                panelIcon = {
+                  albumCover = {
+                    useAsIcon = true;
+                    fallbackToIcon = true;
+                    radius = 8;
+                  };
+                  icon = "view-media-track";
+                };
+                preferredSource = "any";
+                songText = {
+                  displayInSeparateLines = true;
+                  maximumWidth = 0;
+                };
+              };
+            }
             {
               systemTray = {
                 icons = {
@@ -108,94 +257,24 @@ in
             "org.kde.plasma.digitalclock"
             "org.kde.plasma.pager"
             {
-              name = "org.kde.plasma.kickoff";
-              config = {
-                General = {
-                  icon = "choice-round";
-                  paneSwap = "true";
-                };
+              kickoff = {
+                applicationsDisplayMode = "list";
+                compactDisplayStyle = false;
+                favoritesDisplayMode = "grid";
+                icon = "choice-round";
+                label = null;
+                pin = false;
+                showActionButtonCaptions = true;
+                showButtonsFor = "power";
+                sidebarPosition = "right";
+                sortAlphabetically = true;
               };
             }
           ];
         }
         # Global menu at the top
-        {
-          alignment = "center";
-          floating = true;
-          height = 32;
-          hiding = "autohide";
-          lengthMode = "custom";
-          location = "top";
-          inherit (cfg.topPanel) maxLength minLength;
-          screen = 0;
-          widgets = [
-            {
-              applicationTitleBar = {
-                behavior = {
-                  activeTaskSource = "activeTask";
-                  disableButtonsForNotHovered = false;
-                  disableForNotMaximized = false;
-                  filterByActivity = true;
-                  filterByScreen = true;
-                  filterByVirtualDesktop = true;
-                };
-                layout = {
-                  elements = [ "windowTitle" ];
-                  fillFreeSpace = false;
-                  horizontalAlignment = "left";
-                  showDisabledElements = "deactivated";
-                  spacingBetweenElements = 0;
-                  verticalAlignment = "center";
-                  widgetMargins = 1;
-                };
-                overrideForMaximized.enable = false;
-                windowControlButtons = {
-                  auroraeTheme = null;
-                  buttonsAnimationSpeed = 100;
-                  buttonsAspectRatio = 100;
-                  buttonsMargin = 0;
-                  iconSource = "plasma";
-                };
-                windowTitle = {
-                  font = {
-                    bold = false;
-                    fit = "fixedSize";
-                    size = 12;
-                  };
-                  hideEmptyTitle = true;
-                  margins = {
-                    bottom = 0;
-                    left = 15;
-                    right = 5;
-                    top = 0;
-                  };
-                  source = "appName";
-                  undefinedWindowTitle = "";
-                };
-              };
-            }
-            "org.kde.plasma.appmenu"
-            "org.kde.plasma.panelspacer"
-            "org.kde.plasma.digitalclock"
-            "org.kde.plasma.panelspacer"
-          ];
-        }
-        {
-          alignment = "center";
-          floating = true;
-          height = 32;
-          hiding = "autohide";
-          location = "top";
-          lengthMode = "custom";
-          inherit (cfg.topPanel) maxLength minLength;
-          screen = 1;
-          widgets = [
-            "org.kde.plasma.appmenu"
-            "org.kde.plasma.panelspacer"
-            "org.kde.plasma.digitalclock"
-            "org.kde.plasma.panelspacer"
-          ];
-        }
+        topPanelPrimaryScreen
+        topPanelSecondaryScreen
       ];
     };
   };
