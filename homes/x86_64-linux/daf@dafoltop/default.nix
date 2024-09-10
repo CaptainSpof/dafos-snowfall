@@ -25,6 +25,7 @@ in
 
     suites = {
       common = enabled;
+      desktop = enabled;
       video = enabled;
     };
   };
