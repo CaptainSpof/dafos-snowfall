@@ -25,6 +25,7 @@ in
     };
 
     display-managers = {
+      enable = true;
       autoLogin = {
         enable = true;
         user = config.${namespace}.user.name;
