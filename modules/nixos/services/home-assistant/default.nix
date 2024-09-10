@@ -15,12 +15,15 @@ in
 {
   options.${namespace}.services.home-assistant = {
     enable = mkBoolOpt false "Whether or not to enable home-assistant.";
-    serialPort = mkOpt types.str "/dev/ttyACM0" "The serial port to use.";
+    serialPort = mkOpt types.str "/dev/ttyACM0" "The serial port to use with ZHA.";
+    serialPortZigbee2Mqtt = mkOpt types.str "/dev/ttyACM1" "The serial port to use with Zigbee2mqtt.";
   };
 
   config = mkIf cfg.enable {
 
     dafos.user.extraGroups = [ "hass" ];
+
+    environment.systemPackages = with pkgs; [ zlib-ng ];
 
     services = {
       mosquitto = {
@@ -43,16 +46,12 @@ in
             server = "mqtt://127.0.0.1:1883";
             base_topic = "zigbee2mqtt";
           };
-          frontend = {
-            port = 8090;
-          };
+          frontend.port = 8090;
           serial = {
-            port = "/dev/ttyACM1";
+            port = cfg.serialPortZigbee2Mqtt;
             adapter = "deconz";
           };
-          advanced = {
-            log_level = "debug";
-          };
+          advanced.log_level = "debug";
         };
       };
 
@@ -88,7 +87,11 @@ in
           "zha"
         ];
 
-        extraPackages = ps: with ps; [ pychromecast ];
+        extraPackages =
+          ps: with ps; [
+            pychromecast
+            isal
+          ];
 
         customComponents = with pkgs.home-assistant-custom-components; [ adaptive_lighting ];
 
