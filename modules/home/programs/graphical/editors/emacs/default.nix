@@ -62,11 +62,14 @@ in
           ))
           djvu2pdf
           enchant
+          ffmpegthumbnailer
           hunspellDicts.en-us
           hunspellDicts.fr-any
           languagetool
+          mediainfo
           nuspell
-          sqlite
+          poppler
+          sqlite3
         ]
         ++ lib.optionals cfg.latex.enable [ texlive.combined.sheme-full ];
 
