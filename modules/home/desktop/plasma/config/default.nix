@@ -10,6 +10,7 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
   inherit (config.${namespace}.user) home;
   inherit (config.${namespace}.user.location) latitude longitude;
+  inherit (config.${namespace}.user.font) ui term;
 
   cfg = config.${namespace}.desktop.plasma.config;
 in
@@ -31,27 +32,27 @@ in
 
       fonts = {
         general = {
-          family = "Inter";
+          family = ui;
           pointSize = 10;
         };
         fixedWidth = {
-          family = "Departure Mono";
+          family = term;
           pointSize = 10;
         };
         small = {
-          family = "Inter";
+          family = ui;
           pointSize = 8;
         };
         toolbar = {
-          family = "Inter";
+          family = ui;
           pointSize = 10;
         };
         menu = {
-          family = "Inter";
+          family = ui;
           pointSize = 10;
         };
         windowTitle = {
-          family = "Inter";
+          family = ui;
           pointSize = 10;
         };
       };

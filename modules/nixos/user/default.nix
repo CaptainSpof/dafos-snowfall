@@ -8,7 +8,7 @@
 
 let
   inherit (lib) types mdDoc;
-  inherit (lib.${namespace}) mkOpt mkBoolOpt;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.user;
   defaultIconFileName = "profile.png";
@@ -40,19 +40,6 @@ let
 
         cp ${cfg.icon} "$target/${cfg.icon.fileName}"
       '';
-  dirs = rec {
-    config = "${home}/.config";
-    documents = "${home}/Documents";
-    downloads = "${home}/Downloads";
-    home = "/home/${username}";
-    music = "${home}/Music";
-    org = "${sync}/Org";
-    pictures = "${home}/Pictures";
-    projects = "${home}/Projects";
-    repositories = "${home}/Repositories";
-    sync = "${home}/Sync";
-    videos = "${home}/Videos";
-  };
   username = "daf";
   shell = pkgs.fish;
 in
@@ -61,23 +48,12 @@ in
     name = mkOpt types.str username "The name to use for the user account.";
     fullName = mkOpt types.str "Cédric Da Fonseca" "The full name of the user.";
     email = mkOpt types.str "dafonseca.cedric@gmail.com" "The email of the user for git.";
-    home = mkOpt (types.nullOr types.str) dirs.home "The user's home directory.";
-
-    gitEmail = mkOpt types.str "captain.spof@gmail.com" "The email of the user for git.";
-    gitUsername = mkOpt types.str "CaptainSpof" "The username for git.";
+    home = mkOpt (types.nullOr types.str) "/home/${username}" "The user's home directory.";
 
     initialPassword =
       mkOpt types.str "omgchangeme"
         "The initial password to use when the user is first created.";
     icon = mkOpt (types.nullOr types.package) defaultIcon "The profile picture to use for the user.";
-    prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
-
-    theme.dark = mkOpt types.str "Everforest Dark Soft" "Theme to use for the system.";
-    theme.light = mkOpt types.str "Everforest Light Soft" "Theme to use for the system.";
-    font.term = mkOpt types.str "Hack Nerd Font Mono" "Terminal Font to use for the system.";
-
-    location.latitude = mkOpt types.str "48.85" "The latitude of the user.";
-    location.longitude = mkOpt types.str "2.35" "The longitude of the user.";
 
     authorizedKeys = mkOpt (types.listOf types.str) [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP7YCmRYdXWhNTGWWklNYrQD5gUBTFhvzNiis5oD1YwV daf@daftop"
@@ -98,37 +74,12 @@ in
       propagatedIcon
     ];
 
-    dafos.home = {
-      extraOptions = {
-        xdg.userDirs = {
-          enable = true;
-          createDirectories = true;
-          inherit (dirs)
-            documents
-            music
-            pictures
-            videos
-            ;
-          download = dirs.downloads;
-          templates = dirs.home;
-          extraConfig = {
-            XDG_PROJECTS_DIR = dirs.projects;
-            XDG_REPOSITORIES_DIR = dirs.repositories;
-            XDG_SYNC_DIR = dirs.sync;
-            XDG_ORG_DIR = dirs.org;
-          };
-        };
-
-      };
-    };
-
     programs.fish.enable = true;
 
     users.users.${cfg.name} = {
       isNormalUser = true;
 
-      inherit (cfg) name initialPassword;
-      inherit (dirs) home;
+      inherit (cfg) home name initialPassword;
       inherit shell;
 
       group = "users";
