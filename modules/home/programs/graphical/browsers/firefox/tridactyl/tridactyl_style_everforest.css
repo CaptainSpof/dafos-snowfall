@@ -1,9 +1,9 @@
 :root {
-    --tridactyl-font-family: "Mononoki Nerd Font", "Source Code Pro", "Fira Code", "Hack", "Jet Brains Mono", monospace;
+    --tridactyl-font-family: "Departure Mono", "Mononoki Nerd Font", "Source Code Pro", "Fira Code", "Hack", "Jet Brains Mono", monospace;
     --tridactyl-bg: #232A2E;
     --tridactyl-fg: #D3C6AA;
 
-    --tridactyl-status-font-size: 12px;
+    --tridactyl-status-font-size: 13px;
     --tridactyl-status-font-family: var(--tridactyl-font-family);
     --tridactyl-status-font-bg: var(--tridactyl-cmdl-bg);
     --tridactyl-status-border: 2px solid #A7C080;
