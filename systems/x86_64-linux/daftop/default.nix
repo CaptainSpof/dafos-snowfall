@@ -53,6 +53,11 @@ in
         enable = true;
         chordTimeout = 25;
       };
+
+      networking = {
+        enable = true;
+        optimizeTcp = true;
+      };
     };
   };
 

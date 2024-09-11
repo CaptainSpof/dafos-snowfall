@@ -50,6 +50,11 @@ in
 
     system = {
       kanata = enabled;
+
+      networking = {
+        enable = true;
+        optimizeTcp = true;
+      };
     };
   };
 
