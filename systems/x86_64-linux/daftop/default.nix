@@ -43,7 +43,6 @@ in
     };
 
     services.syncthing = enabled;
-    services.homepage-dashboard = enabled;
 
     suites = {
       desktop = enabled;
