@@ -39,13 +39,18 @@ in
 
     security = {
       gpg = mkForce disabled;
+      sudo-rs = enabled;
     };
 
     services.syncthing = enabled;
+    services.homepage-dashboard = enabled;
 
     suites = {
       desktop = enabled;
-      development = enabled;
+      development = {
+        enable = true;
+        podman = enabled;
+      };
     };
 
     system = {
