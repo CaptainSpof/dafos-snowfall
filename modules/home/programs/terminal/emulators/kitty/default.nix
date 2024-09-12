@@ -10,7 +10,7 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
-  fontTerm = config.${namespace}.user.font.term;
+  fontTerm = config.${namespace}.user.font.mono;
   themeDark = config.${namespace}.user.theme.dark;
 in
 {

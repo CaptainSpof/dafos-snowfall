@@ -19,14 +19,16 @@ let
   dirs = rec {
     config = "${home}/.config";
     documents = "${home}/Documents";
-    downloads = "${home}/Downloads";
+    download = "${home}/Downloads";
     home = "/home/${username}";
     music = "${home}/Music";
     org = "${sync}/Org";
     pictures = "${home}/Pictures";
+    screenshots = "${home}/Pictures/Screenshots";
     projects = "${home}/Projects";
     repositories = "${home}/Repositories";
     sync = "${home}/Sync";
+    templates = home;
     videos = "${home}/Videos";
   };
   username = "daf";
@@ -46,7 +48,7 @@ in
     theme.dark = mkOpt types.str "Everforest Dark Soft" "Dark theme to use for the system.";
     theme.light = mkOpt types.str "Everforest Light Soft" "Light theme to use for the system.";
 
-    font.term = mkOpt types.str "Departure Mono" "Terminal Font to use for the system.";
+    font.mono = mkOpt types.str "Departure Mono" "Mono Font to use for the system.";
     font.ui = mkOpt types.str "Inter" "UI Font to use for the system.";
 
     location.latitude = mkOpt types.str "48.85" "The latitude of the user.";
@@ -73,17 +75,18 @@ in
         createDirectories = true;
         inherit (dirs)
           documents
+          download
           music
           pictures
+          templates
           videos
           ;
-        download = dirs.downloads;
-        templates = dirs.home;
         extraConfig = {
+          XDG_ORG_DIR = dirs.org;
           XDG_PROJECTS_DIR = dirs.projects;
           XDG_REPOSITORIES_DIR = dirs.repositories;
+          XDG_SCREENSHOTS_DIR = dirs.screenshots;
           XDG_SYNC_DIR = dirs.sync;
-          XDG_ORG_DIR = dirs.org;
         };
       };
 

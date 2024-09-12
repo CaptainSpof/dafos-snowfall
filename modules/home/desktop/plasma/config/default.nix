@@ -10,9 +10,14 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
   inherit (config.${namespace}.user) home;
   inherit (config.${namespace}.user.location) latitude longitude;
-  inherit (config.${namespace}.user.font) ui term;
+  inherit (config.${namespace}.user.font) ui mono;
 
   cfg = config.${namespace}.desktop.plasma.config;
+
+  defaultFont = {
+    family = ui;
+    pointSize = 10;
+  };
 in
 {
   options.${namespace}.desktop.plasma.config = {
@@ -31,30 +36,16 @@ in
       enable = true;
 
       fonts = {
-        general = {
-          family = ui;
-          pointSize = 10;
+        general = defaultFont;
+        fixedWidth = defaultFont // {
+          family = mono;
         };
-        fixedWidth = {
-          family = term;
-          pointSize = 10;
-        };
-        small = {
-          family = ui;
+        small = defaultFont // {
           pointSize = 8;
         };
-        toolbar = {
-          family = ui;
-          pointSize = 10;
-        };
-        menu = {
-          family = ui;
-          pointSize = 10;
-        };
-        windowTitle = {
-          family = ui;
-          pointSize = 10;
-        };
+        toolbar = defaultFont;
+        menu = defaultFont;
+        windowTitle = defaultFont;
       };
 
       kscreenlocker = {
