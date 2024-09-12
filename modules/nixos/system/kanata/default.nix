@@ -20,10 +20,6 @@ let
   cfg = config.${namespace}.system.kanata;
 in
 {
-  imports = [ ./kanata.nix ];
-
-  disabledModules = [ "services/hardware/kanata.nix" ];
-
   options.${namespace}.system.kanata = {
     enable = mkBoolOpt false "Whether or not to configure kanata.";
     excludedDevices = mkOpt (types.listOf types.str) [
