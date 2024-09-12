@@ -20,6 +20,9 @@ in
   config = mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [ 3389 ];
 
-    environment.systemPackages = with pkgs; [ kdePackages.krdc ];
+    environment.systemPackages = with pkgs; [
+      kdePackages.krdc
+      kdePackages.krfb
+    ];
   };
 }
