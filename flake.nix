@@ -129,13 +129,13 @@
       overlays = with inputs; [
         snowfall-flake.overlays.default
         nuenv.overlays.default
-        nur.overlay
         emacs-overlay.overlays.default
       ];
 
       homes.modules = with inputs; [
-        plasma-manager.homeManagerModules.plasma-manager
         nix-index-database.hmModules.nix-index
+        nur.hmModules.nur
+        plasma-manager.homeManagerModules.plasma-manager
       ];
 
       systems.modules.nixos = with inputs; [

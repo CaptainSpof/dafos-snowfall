@@ -23,7 +23,7 @@ in
   options.${namespace}.programs.graphical.browsers.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable firefox.";
 
-    extensions = mkOpt (listOf package) (with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = mkOpt (listOf package) (with config.nur.repos.rycee.firefox-addons; [
       auto-tab-discard
       bitwarden
       consent-o-matic
@@ -39,15 +39,15 @@ in
       reddit-enhancement-suite
       refined-github
       return-youtube-dislikes
-      sidebery
+      # sidebery
       simple-tab-groups
       sponsorblock
       stylus
       tabcenter-reborn
       tridactyl
-      violentmonkey
       ublock-origin
       user-agent-string-switcher
+      violentmonkey
     ]) "Extensions to install";
 
     extraConfig = mkOpt str "" "Extra configuration for the user profile JS file.";
@@ -117,7 +117,10 @@ in
 
         "Nix Issues" = {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "ni" ];
+          definedAliases = [
+            "ni"
+            "@ni"
+          ];
           urls = [
             {
               template = "https://github.com/NixOS/nixpkgs/issues";
@@ -133,7 +136,10 @@ in
 
         "Nix Packages" = {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "n" ];
+          definedAliases = [
+            "n"
+            "@n"
+          ];
           urls = [
             {
               template = "https://search.nixos.org/packages";
@@ -153,7 +159,10 @@ in
 
         "NixOS Options" = {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "no" ];
+          definedAliases = [
+            "no"
+            "@no"
+          ];
           urls = [
             {
               template = "https://search.nixos.org/options";
@@ -174,7 +183,10 @@ in
         "GitHub" = {
           iconUpdateURL = "https://github.com/favicon.ico";
           updateInterval = 24 * 60 * 60 * 1000;
-          definedAliases = [ "gh" ];
+          definedAliases = [
+            "gh"
+            "@gh"
+          ];
 
           urls = [
             {
@@ -189,23 +201,28 @@ in
           ];
         };
 
-        "Home Manager" = {
+        "Home Manager Options" = {
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "hm" ];
-
-          url = [
+          definedAliases = [
+            "hm"
+            "@hm"
+          ];
+          urls = [
             {
-              template = "https://mipmip.github.io/home-manager-option-search/";
+              template = "https://home-manager-options.extranix.com";
               params = [
                 {
                   name = "query";
                   value = "{searchTerms}";
                 }
+                {
+                  name = "release";
+                  value = "master";
+                }
               ];
             }
           ];
         };
-
       };
     } "Search configuration";
 
