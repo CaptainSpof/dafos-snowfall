@@ -14,7 +14,7 @@ in
 {
   options.${namespace}.suites.development = {
     enable = mkBoolOpt false "Whether or not to enable common development configuration.";
-    docker.enable = mkBoolOpt false "Whether or not to enable podman development configuration.";
+    podman.enable = mkBoolOpt false "Whether or not to enable podman development configuration.";
     keyboard.enable = mkBoolOpt false "Whether or not to enable keyboard development configuration.";
   };
 
@@ -35,7 +35,7 @@ in
       };
 
       virtualisation = {
-        podman.enable = cfg.docker.enable;
+        podman.enable = cfg.podman.enable;
       };
     };
   };
