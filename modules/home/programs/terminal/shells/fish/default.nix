@@ -124,7 +124,7 @@ in
             src = pkgs.fetchFromGitHub {
               owner = "PatrickF1";
               repo = "fzf.fish";
-              rev = "8d99f0caa30a626369541f80848ffdbf28e96acc";
+              rev = "8920367cf85eee5218cc25a11e209d46e2591e7a";
               sha256 = "sha256-nTiFD8vWjafYE4HNemyoUr+4SgsqN3lIJlNX6IGk+aQ=";
             };
           }

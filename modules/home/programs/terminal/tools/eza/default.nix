@@ -27,6 +27,7 @@ in
       enableFishIntegration = true;
 
       extraOptions = [
+        "--color-scale"
         "--group-directories-first"
         "--header"
       ];
