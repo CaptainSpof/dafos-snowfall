@@ -90,8 +90,9 @@ in
 
         extraPackages =
           ps: with ps; [
-            pychromecast
             isal
+            kegtron-ble
+            pychromecast
           ];
 
         customComponents = with pkgs.home-assistant-custom-components; [ adaptive_lighting ];
@@ -114,7 +115,7 @@ in
           # https://www.home-assistant.io/integrations/default_config/
           default_config = { };
 
-          home-assistant = {
+          homeassistant = {
             name = "MaisonDaf";
             unit_system = "metric";
           };
