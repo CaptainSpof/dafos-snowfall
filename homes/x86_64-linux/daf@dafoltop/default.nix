@@ -6,13 +6,19 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 in
 {
   dafos = {
     user = {
       enable = true;
       inherit (config.snowfallorg.user) name;
+    };
+
+    desktop = {
+      plasma = {
+        screenlocker = disabled;
+      };
     };
 
     programs = {

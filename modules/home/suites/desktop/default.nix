@@ -23,8 +23,10 @@ in
           enable = true;
           config = enabled;
           desktop = enabled;
+          kwin = enabled;
           panels = enabled;
           shortcuts = enabled;
+          theme = enabled;
         };
         addons = {
           wallpapers = enabled;
