@@ -25,8 +25,6 @@ in
 
   config = mkIf cfg.enable {
     programs.plasma = {
-      enable = true;
-
       fonts = {
         general = defaultFont;
         fixedWidth = defaultFont // {

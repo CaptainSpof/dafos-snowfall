@@ -22,7 +22,6 @@ let
     widgets = [
       {
         applicationTitleBar = {
-
           behavior = {
             activeTaskSource = "activeTask";
             disableButtonsForNotHovered = false;
@@ -132,150 +131,148 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.plasma = {
-      panels = [
-        {
-          location = "left";
-          floating = true;
-          screen = 0;
-          height = 60;
-          widgets = [
-            {
-              systemMonitor = {
-                title = "CPU Usage";
-                displayStyle = "org.kde.ksysguard.linechart";
-                sensors = [
-                  {
-                    name = "cpu/all/usage";
-                    color = "250,179,135"; # Peach
-                    label = "CPU Usage";
-                  }
-                ];
-                totalSensors = [ "cpu/all/usage" ];
-                textOnlySensors = [
-                  "cpu/all/averageTemperature"
-                  "cpu/all/averageFrequency"
-                ];
+    programs.plasma.panels = [
+      {
+        location = "left";
+        floating = true;
+        screen = 0;
+        height = 60;
+        widgets = [
+          {
+            systemMonitor = {
+              title = "CPU Usage";
+              displayStyle = "org.kde.ksysguard.linechart";
+              sensors = [
+                {
+                  name = "cpu/all/usage";
+                  color = "250,179,135"; # Peach
+                  label = "CPU Usage";
+                }
+              ];
+              totalSensors = [ "cpu/all/usage" ];
+              textOnlySensors = [
+                "cpu/all/averageTemperature"
+                "cpu/all/averageFrequency"
+              ];
+            };
+          }
+          {
+            systemMonitor = {
+              title = "Memory Usage";
+              displayStyle = "org.kde.ksysguard.linechart";
+              sensors = [
+                {
+                  name = "memory/physical/usedPercent";
+                  color = "166,227,161"; # Green
+                  label = "Memory Usage";
+                }
+              ];
+              totalSensors = [ "memory/physical/usedPercent" ];
+              textOnlySensors = [
+                "memory/physical/used"
+                "memory/physical/total"
+              ];
+            };
+          }
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.marginsseparator"
+          {
+            iconTasks = {
+              appearance = {
+                fill = false;
+                highlightWindows = true;
+                iconSpacing = "medium";
+                indicateAudioStreams = true;
+                rows = {
+                  multirowView = "never";
+                  maximum = null;
+                };
+                showTooltips = true;
               };
-            }
-            {
-              systemMonitor = {
-                title = "Memory Usage";
-                displayStyle = "org.kde.ksysguard.linechart";
-                sensors = [
-                  {
-                    name = "memory/physical/usedPercent";
-                    color = "166,227,161"; # Green
-                    label = "Memory Usage";
-                  }
-                ];
-                totalSensors = [ "memory/physical/usedPercent" ];
-                textOnlySensors = [
-                  "memory/physical/used"
-                  "memory/physical/total"
-                ];
-              };
-            }
-            "org.kde.plasma.panelspacer"
-            "org.kde.plasma.marginsseparator"
-            {
-              iconTasks = {
-                appearance = {
-                  fill = false;
-                  highlightWindows = true;
-                  iconSpacing = "medium";
-                  indicateAudioStreams = true;
-                  rows = {
-                    multirowView = "never";
-                    maximum = null;
-                  };
-                  showTooltips = true;
+              behavior = {
+                grouping = {
+                  clickAction = "showPresentWindowsEffect";
+                  method = "byProgramName";
                 };
-                behavior = {
-                  grouping = {
-                    clickAction = "showPresentWindowsEffect";
-                    method = "byProgramName";
-                  };
-                  middleClickAction = "newInstance";
-                  minimizeActiveTaskOnClick = true;
-                  newTasksAppearOn = "right";
-                  showTasks = {
-                    onlyInCurrentActivity = true;
-                    onlyInCurrentDesktop = true;
-                    onlyMinimized = false;
-                    onlyInCurrentScreen = false;
-                  };
-                  sortingMethod = "manually";
-                  unhideOnAttentionNeeded = true;
-                  wheel = {
-                    ignoreMinimizedTasks = true;
-                    switchBetweenTasks = true;
-                  };
+                middleClickAction = "newInstance";
+                minimizeActiveTaskOnClick = true;
+                newTasksAppearOn = "right";
+                showTasks = {
+                  onlyInCurrentActivity = true;
+                  onlyInCurrentDesktop = true;
+                  onlyMinimized = false;
+                  onlyInCurrentScreen = false;
                 };
-                inherit (cfg.leftPanel) launchers;
-              };
-            }
-            "org.kde.plasma.marginsseparator"
-            "org.kde.plasma.panelspacer"
-            {
-              plasmusicToolbar = {
-                musicControls = {
-                  showPlaybackControls = false;
-                  volumeStep = 1;
-                };
-                panelIcon = {
-                  albumCover = {
-                    useAsIcon = true;
-                    fallbackToIcon = true;
-                    radius = 8;
-                  };
-                  icon = "view-media-track";
-                };
-                preferredSource = "any";
-                songText = {
-                  displayInSeparateLines = true;
-                  maximumWidth = 0;
+                sortingMethod = "manually";
+                unhideOnAttentionNeeded = true;
+                wheel = {
+                  ignoreMinimizedTasks = true;
+                  switchBetweenTasks = true;
                 };
               };
-            }
-            {
-              systemTray = {
-                icons = {
-                  scaleToFit = false;
-                  spacing = "small";
+              inherit (cfg.leftPanel) launchers;
+            };
+          }
+          "org.kde.plasma.marginsseparator"
+          "org.kde.plasma.panelspacer"
+          {
+            plasmusicToolbar = {
+              musicControls = {
+                showPlaybackControls = false;
+                volumeStep = 1;
+              };
+              panelIcon = {
+                albumCover = {
+                  useAsIcon = true;
+                  fallbackToIcon = true;
+                  radius = 8;
                 };
+                icon = "view-media-track";
+              };
+              preferredSource = "any";
+              songText = {
+                displayInSeparateLines = true;
+                maximumWidth = 0;
+              };
+            };
+          }
+          {
+            systemTray = {
+              icons = {
+                scaleToFit = false;
+                spacing = "small";
+              };
 
-                items = {
-                  shown = [ "org.kde.plasma.battery" ];
-                  hidden = [ ];
-                  configs = {
-                    battery.showPercentage = true;
-                  };
+              items = {
+                shown = [ "org.kde.plasma.battery" ];
+                hidden = [ ];
+                configs = {
+                  battery.showPercentage = true;
                 };
               };
-            }
-            "org.kde.plasma.digitalclock"
-            "org.kde.plasma.pager"
-            {
-              kickoff = {
-                applicationsDisplayMode = "list";
-                compactDisplayStyle = false;
-                favoritesDisplayMode = "grid";
-                icon = "choice-round";
-                label = null;
-                pin = false;
-                showActionButtonCaptions = true;
-                showButtonsFor = "power";
-                sidebarPosition = "right";
-                sortAlphabetically = true;
-              };
-            }
-          ];
-        }
-        # Global menu at the top
-        topPanelPrimaryScreen
-        topPanelSecondaryScreen
-      ];
-    };
+            };
+          }
+          "org.kde.plasma.digitalclock"
+          "org.kde.plasma.pager"
+          {
+            kickoff = {
+              applicationsDisplayMode = "list";
+              compactDisplayStyle = false;
+              favoritesDisplayMode = "grid";
+              icon = "choice-round";
+              label = null;
+              pin = false;
+              showActionButtonCaptions = true;
+              showButtonsFor = "power";
+              sidebarPosition = "right";
+              sortAlphabetically = true;
+            };
+          }
+        ];
+      }
+      # Global menu at the top
+      topPanelPrimaryScreen
+      topPanelSecondaryScreen
+    ];
   };
 }

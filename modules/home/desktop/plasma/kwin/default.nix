@@ -27,8 +27,6 @@ in
 
   config = mkIf cfg.enable {
     programs.plasma = {
-      enable = true;
-
       kwin = {
         nightLight = {
           enable = true;

@@ -17,7 +17,7 @@ in
 
     desktop = {
       plasma = {
-        screenlocker = disabled;
+        config.screenlocker = disabled;
       };
     };
 

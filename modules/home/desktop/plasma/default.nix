@@ -41,6 +41,8 @@ in
       electron-support = enabled;
     };
 
+    programs.plasma.enable = true;
+
     home.packages =
       with pkgs;
       [ (hiPrio dafos.xdg-open-with-portal) ]
