@@ -57,6 +57,7 @@ in
 
       home-assistant = {
         enable = true;
+
         extraComponents = [
           "radarr"
           "sonarr"
@@ -112,6 +113,12 @@ in
           # Includes dependencies for a basic setup
           # https://www.home-assistant.io/integrations/default_config/
           default_config = { };
+
+          home-assistant = {
+            name = "MaisonDaf";
+            unit_system = "metric";
+          };
+
           lovelace.mode = "yaml";
           lovelace.resources = [
             {
