@@ -22,14 +22,14 @@ in
       plasma = {
         panels = {
           topPanel = {
-            maxLength = 2500;
-            minLength = 2500;
+            maxLength = 2000;
+            minLength = 2000;
           };
           leftPanel.launchers = [
             "applications:org.kde.dolphin.desktop"
             "applications:${toString firefox-pkg.meta.mainProgram}.desktop"
             "applications:kitty.desktop"
-            "applications:emacsclient.desktop"
+            "applications:emacs.desktop"
             "applications:steam.desktop"
             "applications:vesktop.desktop"
           ];
