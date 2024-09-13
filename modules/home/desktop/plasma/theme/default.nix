@@ -44,7 +44,7 @@ in
         cursor.theme = "breeze_cursors";
         soundTheme = "ocean";
         tooltipDelay = 5;
-        theme = "default";
+        theme = "breeze-dark";
         wallpaperSlideShow = {
           path = "${home}/Pictures/wallpapers/";
           interval = 300;

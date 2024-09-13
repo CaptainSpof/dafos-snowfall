@@ -21,6 +21,7 @@ let
     dafos.kde-warm-eyes
     dafos.leaf-kde
     dafos.lightly-qt6
+    dafos.plasma-applet-netspeed-widget
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-nord

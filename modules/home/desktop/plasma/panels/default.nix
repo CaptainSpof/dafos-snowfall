@@ -93,8 +93,8 @@ let
 
           font = {
             family = "Inter";
-            weight = 400;
-            size = 10;
+            weight = 300;
+            size = 8;
           };
         };
       }
@@ -138,6 +138,7 @@ in
         screen = 0;
         height = 60;
         widgets = [
+          "org.kde.netspeedWidget"
           {
             systemMonitor = {
               title = "CPU Usage";
