@@ -65,10 +65,10 @@ in
         "guest"
         "noauto"
         "uid=1000"
-        "vers=1.0"
+        "vers=3"
         "nounix"
         "x-systemd.automount"
-        "x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s"
+        "x-systemd.idle-timeout=60,x-systemd.device-timeout=15s,x-systemd.mount-timeout=15s"
       ];
     };
   };
