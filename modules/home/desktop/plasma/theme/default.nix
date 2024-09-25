@@ -45,6 +45,7 @@ in
         soundTheme = "ocean";
         tooltipDelay = 5;
         theme = "breeze-dark";
+        iconTheme = "Papirus";
         wallpaperSlideShow = {
           path = "${home}/Pictures/wallpapers/";
           interval = 300;
