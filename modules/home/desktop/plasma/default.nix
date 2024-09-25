@@ -14,18 +14,18 @@ let
 
   defaultPackages = with pkgs; [
     # Apps
+    kdePackages.kcolorchooser
     kdePackages.kweather
     kdePackages.merkuro
-    kdePackages.kcolorchooser
+    kdePackages.koi
     # Themes
     dafos.kde-warm-eyes
     dafos.leaf-kde
     dafos.lightly-qt6
     dafos.plasma-applet-netspeed-widget
-    dafos.koi
     gruvbox-gtk-theme
     kde-gruvbox
-    papirus-nord
+    papirus-icon-theme
     # Utils
     kdotool
     wl-clipboard
@@ -36,11 +36,15 @@ in
     enable = mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
 
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
+    themeSwitcher = mkBoolOpt false "Whether or not to enable theme switcher service.";
   };
 
   config = mkIf cfg.enable {
-    dafos.desktop.addons = {
-      electron-support = enabled;
+    dafos = {
+      desktop.addons = {
+        electron-support = enabled;
+      };
+      services.koi.enable = cfg.themeSwitcher;
     };
 
     programs.plasma.enable = true;
