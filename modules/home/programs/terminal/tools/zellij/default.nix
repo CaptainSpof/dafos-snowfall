@@ -42,7 +42,7 @@ in
     };
 
     programs.fish.interactiveShellInit = ''
-      if not test -n "$INSIDE_EMACS"
+      if not test -n "$INSIDE_EMACS"; and test "$TERM" != 'wezterm'
         eval (${getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
       end
     '';

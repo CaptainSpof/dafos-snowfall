@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
 
   cfg = config.${namespace}.suites.common;
 in
@@ -30,7 +30,6 @@ in
       killall
       lsof
       pciutils
-      planify # todo app
       procs
       unrar
       unzip
@@ -55,8 +54,9 @@ in
 
         terminal = {
           emulators = {
-            alacritty = enabled;
+            alacritty = disabled;
             kitty = enabled;
+            wezterm = enabled;
           };
 
           shells = {

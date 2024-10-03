@@ -124,7 +124,7 @@ in
       launchers = mkOpt (listOf str) [
         "applications:org.kde.dolphin.desktop"
         "applications:${toString firefox-pkg.meta.mainProgram}.desktop"
-        "applications:kitty.desktop"
+        "applications:org.wezfurlong.wezterm.desktop"
         "applications:emacs.desktop"
       ] "The launchers to display in the panel.";
     };
