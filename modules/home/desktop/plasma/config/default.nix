@@ -19,6 +19,48 @@ in
 
   config = mkIf cfg.enable {
     programs.plasma = {
+      input = {
+        keyboard = {
+          layouts = [
+            {
+              layout = "fr";
+              variant = "bepo";
+              displayName = "bé";
+            }
+            {
+              layout = "fr";
+              variant = "ergol";
+              displayName = "er";
+            }
+            {
+              layout = "fr";
+              variant = "us";
+              displayName = "fr";
+            }
+          ];
+          numlockOnStartup = "on";
+        };
+        touchpads = [
+          {
+            name = "MSFT0001:00 06CB:CE44 Touchpad";
+            vendorId = "06cb";
+            productId = "ce44";
+            disableWhileTyping = true;
+            leftHanded = false;
+            pointerSpeed = 0;
+            naturalScroll = true;
+            tapToClick = true;
+          }
+        ];
+        # mice = [
+        #   {
+        #     name = "Logitech G502";
+        #    TODO: add vendorId
+        #     naturalScroll = true;
+        #   }
+        # ];
+      };
+
       kscreenlocker = {
         appearance = {
           alwaysShowClock = true;
@@ -56,8 +98,6 @@ in
           "Libinput.1386.914.Wacom Intuos Pro S Finger"."PointerAccelerationProfile" = 1;
           # Mouse settings
           "Libinput.1133.16511.Logitech G502"."PointerAccelerationProfile" = 1;
-          Mouse.X11LibInputXAccelProfileFlat = false;
-          Keyboard.NumLock = 0; # enable numlock
         };
       };
     };

@@ -138,7 +138,14 @@ in
         screen = 0;
         height = 60;
         widgets = [
-          "org.kde.netspeedWidget"
+          {
+            name = "org.kde.netspeedWidget";
+            config = {
+              general = {
+                shortUnits = true;
+              };
+            };
+          }
           {
             systemMonitor = {
               title = "CPU Usage";
@@ -245,7 +252,7 @@ in
               };
 
               items = {
-                shown = [ "org.kde.plasma.battery" ];
+                shown = [ ];
                 hidden = [ ];
                 configs = {
                   battery.showPercentage = true;
@@ -254,7 +261,19 @@ in
             };
           }
           "org.kde.plasma.digitalclock"
-          "org.kde.plasma.pager"
+          {
+            name = "org.dhruv8sh.kara";
+            config = {
+              general = {
+                animationDuration = 200;
+                spacing = 3;
+                type = 0;
+              };
+              type1 = {
+                t1activeWidth = 15;
+              };
+            };
+          }
           {
             kickoff = {
               applicationsDisplayMode = "list";

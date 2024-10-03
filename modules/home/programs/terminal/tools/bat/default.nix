@@ -26,7 +26,8 @@ in
         style = "auto,header-filesize";
       };
 
-      extraPackages = with pkgs.bat-extras; [batdiff
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
         batgrep
         batman
         batpipe
@@ -35,8 +36,19 @@ in
       ];
     };
 
-    home.shellAliases = {
-      cat = "bat";
+    home = {
+      packages = with pkgs; [
+        delta
+        entr
+      ];
+
+      sessionVariables = {
+        BATDIFF_USE_DELTA = "true";
+      };
+
+      shellAliases = {
+        cat = "bat";
+      };
     };
   };
 }

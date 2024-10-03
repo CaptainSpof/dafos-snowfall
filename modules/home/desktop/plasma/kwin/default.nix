@@ -36,8 +36,7 @@ in
             night = 2200;
           };
           location = {
-            inherit latitude;
-            inherit longitude;
+            inherit latitude longitude;
           };
         };
 
@@ -57,7 +56,7 @@ in
         borderlessMaximizedWindows = true;
 
         effects = {
-          blur.enable = true;
+          blur.enable = false;
           desktopSwitching.animation = "slide";
           dimInactive.enable = true;
           shakeCursor.enable = false;
@@ -71,7 +70,7 @@ in
 
       configFile = {
         kwinrc = {
-          Effect-blur.BlurStrength = 3;
+          # Effect-blur.BlurStrength = 3;
           Effect-diminactive.DimFullScreen = false;
           Effect-overview.BorderActivate = 7;
           Effect-overview.BorderActivateAll = 9;

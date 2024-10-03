@@ -3,6 +3,7 @@
   lib,
   namespace,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -18,6 +19,7 @@ let
     kdePackages.kweather
     kdePackages.merkuro
     kdePackages.koi
+    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     # Themes
     dafos.kde-warm-eyes
     dafos.leaf-kde
@@ -51,8 +53,7 @@ in
 
     home.packages =
       with pkgs;
-      [ (hiPrio dafos.xdg-open-with-portal) ]
-      ++ (lib.optionals cfg.touchScreen [
+      (lib.optionals cfg.touchScreen [
         # Virtual keyboard
         maliit-framework
         maliit-keyboard

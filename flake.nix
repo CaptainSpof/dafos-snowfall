@@ -82,6 +82,14 @@
       };
     };
 
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        utils.follows = "flake-utils";
+      };
+    };
+
     # Pre Commit Hooks
     pre-commit-hooks-nix.url = "github:cachix/git-hooks.nix";
 
