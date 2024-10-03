@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 
   firefox-pkg = config.${namespace}.programs.graphical.browsers.firefox.package;
 in
@@ -20,6 +20,7 @@ in
 
     desktop = {
       plasma = {
+        config.screenlocker = disabled;
         panels = {
           topPanel = {
             maxLength = 2000;
