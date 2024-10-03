@@ -53,6 +53,10 @@ in
       };
     };
 
+    system = {
+      xdg = enabled;
+    };
+
     suites = {
       common = enabled;
       desktop = enabled;
