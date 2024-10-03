@@ -307,6 +307,68 @@ in
             "browser.translations.neverTranslateLanguages" = "fr";
             "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
             "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+
+            "browser.uiCustomization.state" = builtins.toJSON {
+              placements = {
+                widget-overflow-fixed-list = [ ];
+                unified-extensions-area = [ ];
+
+                nav-bar = [
+                  "back-button"
+                  "forward-button"
+                  "stop-reload-button"
+                  "customizableui-special-spring4"
+                  "sidebar-button"
+                  "urlbar-container"
+                  "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
+                  "customizableui-special-spring5"
+                  "downloads-button"
+                  "fxa-toolbar-menu-button"
+
+                  # Extensions
+                  "_testpilot-containers-browser-action"
+
+                  "unified-extensions-button"
+                ];
+
+                toolbar-menubar = [ "menubar-items" ];
+
+                TabsToolbar = [
+                  "tabbrowser-tabs"
+                  "new-tab-button"
+                  "alltabs-button"
+                  "simple-tab-groups_drive4ik-browser-action"
+                ];
+
+                PersonalToolbar = [
+                  "import-button"
+                  "personal-bookmarks"
+                ];
+              };
+
+              seen = [
+                "developer-button"
+
+                # Extensions
+                "_testpilot-containers-browser-action"
+                "popupwindow_ettoolong-browser-action"
+                "sponsorblocker_ajay_app-browser-action"
+                "ublock0_raymondhill_net-browser-action"
+                "dearrow_ajay_app-browser-action"
+              ];
+
+              dirtyAreaCache = [
+                "nav-bar"
+                "toolbar-menubar"
+                "TabsToolbar"
+                "PersonalToolbar"
+                "unified-extensions-area"
+              ];
+
+              currentVersion = 20;
+              newElementCount = 2;
+            };
+
             "devtools.chrome.enabled" = true;
             "devtools.debugger.remote-enabled" = true;
             "dom.storage.next_gen" = true;

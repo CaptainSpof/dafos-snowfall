@@ -17,6 +17,9 @@
 /* Remove close button*/
     .titlebar-buttonbox-container{ display:none }
 
+/* Remove alltabs button*/
+    #alltabs-button { display: none !important; }
+
 /* ---------------------------------------- Tabs (SVG) ---------------------------------------- */
 
 :root
