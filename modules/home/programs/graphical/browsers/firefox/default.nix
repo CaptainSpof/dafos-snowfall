@@ -293,12 +293,15 @@ in
             "browser.aboutwelcome.enabled" = false;
             "browser.bookmarks.autoExportHTML" = true;
             "browser.bookmarks.showMobileBookmarks" = true;
+            "browser.contentblocking.category" = "strict";
             "browser.meta_refresh_when_inactive.disabled" = true;
             "browser.newtabpage.activity-stream.default.sites" = "";
             "browser.newtabpage.activity-stream.showSponsored" = false;
             "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-            "browser.search.hiddenOneOffs" = "Google,Amazon.com,Bing,DuckDuckGo,eBay,Wikipedia (en)";
+
+            # Search
             "browser.search.suggest.enabled" = false;
+
             "browser.sessionstore.warnOnQuit" = true;
             "browser.shell.checkDefaultBrowser" = false;
             "browser.ssb.enabled" = true;
@@ -308,6 +311,7 @@ in
             "browser.urlbar.keepPanelOpenDuringImeComposition" = true;
             "browser.urlbar.suggest.quicksuggest.sponsored" = false;
 
+            # UI
             "browser.uiCustomization.state" = builtins.toJSON {
               placements = {
                 widget-overflow-fixed-list = [ ];
@@ -368,6 +372,10 @@ in
               currentVersion = 20;
               newElementCount = 2;
             };
+            "font.name.monospace.x-western" = "MonaspiceKr Nerd Font";
+            "font.name.sans-serif.x-western" = "MonaspiceNe Nerd Font";
+            "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
             "devtools.chrome.enabled" = true;
             "devtools.debugger.remote-enabled" = true;
@@ -383,13 +391,37 @@ in
             "geo.provider.use_geoclue" = false;
             "geo.provider.use_gpsd" = false;
             "intl.accept_languages" = "en-US,en";
+
             "media.eme.enabled" = true;
             "media.videocontrols.picture-in-picture.video-toggle.enabled" = false;
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-            "font.name.monospace.x-western" = "MonaspiceKr Nerd Font";
-            "font.name.sans-serif.x-western" = "MonaspiceNe Nerd Font";
-            "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
+
+            # Telemetry
+            "app.shield.optoutstudies.enabled" = false;
+            "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+            "browser.newtabpage.activity-stream.telemetry" = false;
+            "browser.ping-centre.telemetry" = false;
+            "datareporting.healthreport.uploadEnabled" = false;
+            "datareporting.policy.dataSubmissionEnabled" = false;
+            "dom.private-attribution.submission.enabled" = false;
+            "dom.security.unexpected_system_load_telemetry_enabled" = false;
+            "network.trr.confirmation_telemetry_enabled" = false;
+            "security.app_menu.recordEventTelemetry" = false;
+            "security.certerrors.recordEventTelemetry" = false;
+            "security.identitypopup.recordEventTelemetry" = false;
+            "security.protectionspopup.recordEventTelemetry" = false;
+            "toolkit.telemetry.archive.enabled" = false;
+            "toolkit.telemetry.bhrPing.enabled" = false;
+            "toolkit.telemetry.enabled" = false;
+            "toolkit.telemetry.firstShutdownPing.enabled" = false;
+            "toolkit.telemetry.newProfilePing.enabled" = false;
+            "toolkit.telemetry.reportingpolicy.firstRun" = false;
+            "toolkit.telemetry.server" = "https://127.0.0.1";
+            "toolkit.telemetry.shutdownPingSender.enabled" = false;
+            "toolkit.telemetry.unified" = false;
+            "toolkit.telemetry.updatePing.enabled" = false;
+
             "signon.autofillForms" = false;
+            "signon.rememberSignons" = false;
           }
           (optionalAttrs cfg.gpuAcceleration {
             "dom.webgpu.enabled" = true;
