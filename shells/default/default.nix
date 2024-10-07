@@ -6,6 +6,7 @@
   namespace,
   ...
 }:
+
 let
   inherit (inputs) snowfall-flake;
 in
