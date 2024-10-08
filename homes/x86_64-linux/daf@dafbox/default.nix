@@ -20,7 +20,7 @@ in
 
     desktop = {
       plasma = {
-        config.screenlocker = disabled;
+        config.screenlocker.lockOnResume = disabled;
         panels = {
           topPanel = {
             maxLength = 2000;

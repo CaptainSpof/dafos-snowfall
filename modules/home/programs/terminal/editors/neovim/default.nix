@@ -27,7 +27,6 @@ in
         PAGER = "less";
         MANPAGER = "less";
         NPM_CONFIG_PREFIX = "$HOME/.npm-global";
-        EDITOR = "nvim";
       };
 
       shellAliases = {

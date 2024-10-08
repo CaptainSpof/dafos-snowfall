@@ -93,7 +93,6 @@ in
       home = {
         username = mkDefault cfg.name;
         homeDirectory = mkDefault cfg.home;
-
       };
     }
   ]);

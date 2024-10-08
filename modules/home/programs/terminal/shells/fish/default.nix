@@ -83,10 +83,13 @@ in
           nS = "nix shell nixpkgs#";
           nrb = "${nr} build";
           nrs = "${nr} switch";
+          nhs = "nh os switch .";
+          nhb = "nh os build .";
+          nhc = "nh clean all";
           ncl = ''sudo nix-env -p /nix/var/nix/profiles/system --delete-generations +10'';
           ngc = "nix store gc --debug";
           ndiff = "nix store diff-closures /nix/var/nix/profiles/(ls -r /nix/var/nix/profiles/ | grep -E 'system\-' | sed -n '2 p') /nix/var/nix/profiles/system";
-          froots = "find -H /nix/var/nix/gcroots/auto -type l | xargs -I {} sh -c 'readlink {}; realpath {}; echo'";
+          froots = "find -H /nix/var/nix/gcroots/auto -type l | xargs -I {} sh -c 'readlink {}; realpath {}; echo'"; # find gc roots
 
           # rm
           rmf = "rm -rf";

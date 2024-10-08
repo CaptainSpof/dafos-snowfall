@@ -15,6 +15,7 @@ in
   options.${namespace}.desktop.plasma.config = {
     enable = mkBoolOpt false "Whether or not to configure plasma config.";
     screenlocker.enable = mkBoolOpt true "Whether or not to enable the screen locker.";
+    screenlocker.lockOnResume = mkBoolOpt true "Whether or not to lock the screen on resume.";
   };
 
   config = mkIf cfg.enable {
@@ -69,7 +70,7 @@ in
         };
 
         autoLock = cfg.screenlocker.enable;
-        lockOnResume = true;
+        inherit (cfg.screenlocker) lockOnResume;
         lockOnStartup = false;
         passwordRequired = true;
         passwordRequiredDelay = 10;

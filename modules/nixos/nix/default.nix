@@ -52,13 +52,15 @@ in
       nix-init
       nix-prefetch-git
       nix-output-monitor
-      # TODO: revive flake-checker
-      # flake-checker
+      flake-checker
     ];
 
     programs.nh = {
       enable = true;
-      clean.enable = false;
+      clean = {
+        enable = true;
+        extraArgs = "--keep 15 --keep-since 14d";
+      };
     };
 
     nix =
