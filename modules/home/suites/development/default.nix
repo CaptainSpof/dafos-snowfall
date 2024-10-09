@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib.${namespace}) mkBoolOpt enabled disabled;
 
   cfg = config.${namespace}.suites.development;
 in
@@ -59,7 +59,7 @@ in
         graphical = {
           editors = {
             emacs = enabled;
-            vscode = enabled;
+            vscode = disabled;
           };
         };
 
