@@ -24,6 +24,7 @@ in
 {
   options.${namespace}.nix = with types; {
     enable = mkBoolOpt true "Whether or not to manage nix configuration.";
+    nh.enable = mkBoolOpt false "Whether or not to enable nh.";
     package = mkOpt package pkgs.nixVersions.latest "Which nix package to use.";
 
     default-substituter = {
@@ -55,7 +56,7 @@ in
       flake-checker
     ];
 
-    programs.nh = {
+    programs.nh = mkIf cfg.nh.enable {
       enable = true;
       clean = {
         enable = true;
@@ -91,7 +92,7 @@ in
           ] ++ (mapAttrsToList (_name: value: value.key) cfg.extra-substituters);
         };
 
-        gc = {
+        gc = mkIf (!cfg.nh.enable) {
           automatic = true;
           dates = "weekly";
           options = "--delete-older-than 30d";

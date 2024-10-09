@@ -26,7 +26,10 @@ in
     ];
 
     dafos = {
-      nix = enabled;
+      nix = {
+        enable = true;
+        nh.enable = true;
+      };
 
       programs = {
         terminal = {
