@@ -17,6 +17,7 @@ in
   config = mkIf cfg.enable {
     programs.ssh = {
       extraConfig = ''
+        AddKeysToAgent yes
         Host *
           HostKeyAlgorithms +ssh-rsa
       '';
