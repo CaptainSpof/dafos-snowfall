@@ -6,7 +6,8 @@
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf types;
+  inherit (lib.${namespace}) mkOpt;
 
   cfg = config.${namespace}.system.xdg;
 
@@ -154,10 +155,21 @@ let
 in
 {
   options.${namespace}.system.xdg = {
-    enable = mkEnableOption "xdg";
+    enable = mkEnableOption "Whether to configure xdg.";
+
+    terminal = mkOpt types.str "wezterm" "The default terminal.";
+    editor = mkOpt types.str "emacs" "The default editor.";
   };
 
   config = mkIf cfg.enable {
+
+    home = {
+      sessionVariables = {
+        TERMINAL = cfg.terminal;
+        EDITOR = cfg.editor;
+      };
+    };
+
     xdg = {
       enable = true;
       cacheHome = config.home.homeDirectory + "/.local/cache";
