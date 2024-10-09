@@ -15,7 +15,7 @@ in
 {
   options.dafos.programs.graphical.apps.games.steam = {
     enable = mkBoolOpt false "Whether or not to enable support for Steam.";
-    uiScaling = mkBoolOpt false "Whether or not to enable UI scaling for Steam.";
+    uiScaling = mkBoolOpt true "Whether or not to enable UI scaling for Steam.";
   };
 
   config = mkIf cfg.enable {
