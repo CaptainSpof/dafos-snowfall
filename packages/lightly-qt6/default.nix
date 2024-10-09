@@ -1,44 +1,20 @@
-{ lib
-, fetchFromGitHub
-, extra-cmake-modules
-, kdePackages
-, fetchurl
-,
+{
+  lib,
+  fetchFromGitHub,
+  extra-cmake-modules,
+  kdePackages,
 }:
 
 kdePackages.mkKdeDerivation {
   pname = "lightly-qt6";
-  version = "0.4.1";
+  version = "0.5.1";
 
   src = fetchFromGitHub {
-    owner = "boehs";
+    owner = "Bali10050";
     repo = "Lightly";
-    rev = "00ca23447844114d41bfc0d37cf8823202c082e8";
-    sha256 = "sha256-NpgOcN9sDqgQMjqcfx92bfKohxaJpnwMgxb9MCu9uJM=";
+    rev = "1feaaf29f7bc20e86e9410a4e129f6b5158abad6";
+    sha256 = "sha256-UxtayqLgtFbClErjZWMBp3bBtSv31AQzP5dh3fk+d44=";
   };
-
-  patchPhase =
-    let
-      config-tar-gz = fetchurl {
-        url = "https://github.com/boehs/Lightly/files/14445309/config.tar.gz";
-        sha256 = "sha256-eCIRm2z1+eTBcCCg8Wdt2DfTTbc767Rv+m1LI+t058I=";
-      };
-      lightlystyleconfig-json = fetchurl {
-        url = "https://github.com/boehs/Lightly/files/14444935/lightlystyleconfig.json";
-        sha256 = "sha256-ORQk0QirDB9dF3RdgmH5sstqQqqSEfOE6lh1YEUz+iM=";
-      };
-    in
-    ''
-      mkdir tmp
-      cd tmp
-      tar -xv -f ${config-tar-gz}
-      cd ..
-
-      cp -v tmp/config/CMakeLists.txt kdecoration/config/CMakeLists.txt
-      cp -v tmp/config/kcm_lightlydecoration.json kdecoration/config/kcm_lightlydecoration.json
-      cp -v tmp/config/kcm_lightlydecoration.cpp kdecoration/config/kcm_lightlydecoration.cpp
-      cp -v ${lightlystyleconfig-json} kstyle/config/lightlystyleconfig.json
-    '';
 
   extraBuildInputs = [
     kdePackages.kdecoration
@@ -49,7 +25,7 @@ kdePackages.mkKdeDerivation {
 
   meta = {
     description = "A modern style for qt applications.";
-    homepage = "https://github.com/boehs/Lightly";
+    homepage = "https://github.com/Bali10050/Lightly";
     license = lib.licenses.gpl3;
     platforms = lib.platforms.linux;
   };
