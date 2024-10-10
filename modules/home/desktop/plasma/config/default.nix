@@ -74,7 +74,7 @@ in
         appearance = {
           alwaysShowClock = true;
           showMediaControls = true;
-          wallpaperPictureOfTheDay.provider = "apod";
+          wallpaperPictureOfTheDay.provider = "bing";
         };
 
         autoLock = cfg.screenlocker.enable;
