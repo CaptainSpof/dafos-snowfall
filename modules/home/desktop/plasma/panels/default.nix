@@ -22,56 +22,107 @@ let
     floating = true;
     lengthMode = "custom";
   };
+  widgets = {
+    netSpeed = {
+      name = "org.kde.netspeedWidget";
+      config = {
+        general = {
+          shortUnits = true;
+        };
+      };
+    };
+    cpuUsage = {
+      systemMonitor = {
+        title = "CPU Usage";
+        displayStyle = "org.kde.ksysguard.linechart";
+        sensors = [
+          {
+            name = "cpu/all/usage";
+            color = "250,179,135"; # Peach
+            label = "CPU Usage";
+          }
+        ];
+        totalSensors = [ "cpu/all/usage" ];
+        textOnlySensors = [
+          "cpu/all/averageTemperature"
+          "cpu/all/averageFrequency"
+        ];
+      };
+    };
+    memUsage = {
+      systemMonitor = {
+        title = "Memory Usage";
+        displayStyle = "org.kde.ksysguard.linechart";
+        sensors = [
+          {
+            name = "memory/physical/usedPercent";
+            color = "166,227,161"; # Green
+            label = "Memory Usage";
+          }
+        ];
+        totalSensors = [ "memory/physical/usedPercent" ];
+        textOnlySensors = [
+          "memory/physical/used"
+          "memory/physical/total"
+        ];
+      };
+    };
+    plasmusic = {
+      plasmusicToolbar = {
+        musicControls = {
+          showPlaybackControls = false;
+          volumeStep = 1;
+        };
+        panelIcon = {
+          albumCover = {
+            useAsIcon = true;
+            fallbackToIcon = true;
+            radius = 8;
+          };
+          icon = "view-media-track";
+        };
+        preferredSource = "any";
+        songText = {
+          displayInSeparateLines = true;
+          maximumWidth = 0;
+        };
+      };
+    };
+    systray = {
+      systemTray = {
+        icons = {
+          scaleToFit = false;
+          spacing = "small";
+        };
+
+        items = {
+          shown = [ ];
+          hidden = [ ];
+          configs = {
+            battery.showPercentage = true;
+          };
+        };
+      };
+    };
+    digitalclock = {
+      digitalClock = {
+        date = {
+          enable = true;
+          format.custom = "ddd dd";
+          position = "belowTime";
+        };
+      };
+    };
+  };
 
   leftPanelConfig = panelConfig // {
     location = "left";
     screen = 0;
     height = 60;
     widgets = [
-      {
-        name = "org.kde.netspeedWidget";
-        config = {
-          general = {
-            shortUnits = true;
-          };
-        };
-      }
-      {
-        systemMonitor = {
-          title = "CPU Usage";
-          displayStyle = "org.kde.ksysguard.linechart";
-          sensors = [
-            {
-              name = "cpu/all/usage";
-              color = "250,179,135"; # Peach
-              label = "CPU Usage";
-            }
-          ];
-          totalSensors = [ "cpu/all/usage" ];
-          textOnlySensors = [
-            "cpu/all/averageTemperature"
-            "cpu/all/averageFrequency"
-          ];
-        };
-      }
-      {
-        systemMonitor = {
-          title = "Memory Usage";
-          displayStyle = "org.kde.ksysguard.linechart";
-          sensors = [
-            {
-              name = "memory/physical/usedPercent";
-              color = "166,227,161"; # Green
-              label = "Memory Usage";
-            }
-          ];
-          totalSensors = [ "memory/physical/usedPercent" ];
-          textOnlySensors = [
-            "memory/physical/used"
-            "memory/physical/total"
-          ];
-        };
-      }
+      widgets.netSpeed
+      widgets.cpuUsage
+      widgets.memUsage
       "org.kde.plasma.panelspacer"
       "org.kde.plasma.marginsseparator"
       {
@@ -113,44 +164,9 @@ let
       }
       "org.kde.plasma.marginsseparator"
       "org.kde.plasma.panelspacer"
-      {
-        plasmusicToolbar = {
-          musicControls = {
-            showPlaybackControls = false;
-            volumeStep = 1;
-          };
-          panelIcon = {
-            albumCover = {
-              useAsIcon = true;
-              fallbackToIcon = true;
-              radius = 8;
-            };
-            icon = "view-media-track";
-          };
-          preferredSource = "any";
-          songText = {
-            displayInSeparateLines = true;
-            maximumWidth = 0;
-          };
-        };
-      }
-      {
-        systemTray = {
-          icons = {
-            scaleToFit = false;
-            spacing = "small";
-          };
-
-          items = {
-            shown = [ ];
-            hidden = [ ];
-            configs = {
-              battery.showPercentage = true;
-            };
-          };
-        };
-      }
-      "org.kde.plasma.digitalclock"
+      widgets.plasmusic
+      widgets.systray
+      widgets.digitalclock
       {
         name = "org.dhruv8sh.kara";
         config = {
@@ -187,104 +203,13 @@ let
     screen = 1;
     height = 100;
     widgets = [
-      {
-        name = "org.kde.netspeedWidget";
-        config = {
-          general = {
-            shortUnits = true;
-          };
-        };
-      }
-      {
-        systemMonitor = {
-          title = "CPU Usage";
-          displayStyle = "org.kde.ksysguard.linechart";
-          sensors = [
-            {
-              name = "cpu/all/usage";
-              color = "250,179,135"; # Peach
-              label = "CPU Usage";
-            }
-          ];
-          totalSensors = [ "cpu/all/usage" ];
-          textOnlySensors = [
-            "cpu/all/averageTemperature"
-            "cpu/all/averageFrequency"
-          ];
-        };
-      }
-      {
-        systemMonitor = {
-          title = "Memory Usage";
-          displayStyle = "org.kde.ksysguard.linechart";
-          sensors = [
-            {
-              name = "memory/physical/usedPercent";
-              color = "166,227,161"; # Green
-              label = "Memory Usage";
-            }
-          ];
-          totalSensors = [ "memory/physical/usedPercent" ];
-          textOnlySensors = [
-            "memory/physical/used"
-            "memory/physical/total"
-          ];
-        };
-      }
+      widgets.netSpeed
+      widgets.cpuUsage
+      widgets.memUsage
       "org.kde.plasma.panelspacer"
-      "org.kde.plasma.marginsseparator"
-      "org.kde.plasma.panelspacer"
-      {
-        plasmusicToolbar = {
-          musicControls = {
-            showPlaybackControls = false;
-            volumeStep = 1;
-          };
-          panelIcon = {
-            albumCover = {
-              useAsIcon = true;
-              fallbackToIcon = true;
-              radius = 8;
-            };
-            icon = "view-media-track";
-          };
-          preferredSource = "any";
-          songText = {
-            displayInSeparateLines = true;
-            maximumWidth = 0;
-          };
-        };
-      }
-      {
-        systemTray = {
-          icons = {
-            scaleToFit = false;
-            spacing = "small";
-          };
-
-          items = {
-            shown = [ ];
-            hidden = [ ];
-            configs = {
-              battery.showPercentage = true;
-            };
-          };
-        };
-      }
-      "org.kde.plasma.digitalclock"
-      {
-        name = "org.dhruv8sh.kara";
-        config = {
-          general = {
-            animationDuration = 200;
-            spacing = 3;
-            type = 0;
-          };
-          type1 = {
-            t1activeWidth = 15;
-          };
-        };
-      }
+      widgets.plasmusic
+      widgets.systray
+      widgets.digitalclock
     ];
   };
 
@@ -336,8 +261,6 @@ let
           windowTitle = {
             font = {
               bold = false;
-              fit = "fixedSize";
-              size = 12;
             };
 
             hideEmptyTitle = true;
@@ -355,22 +278,17 @@ let
         };
       }
       "org.kde.plasma.panelspacer"
-      {
-        digitalClock = {
-
-          date = {
-            enable = true;
-            format = "longDate";
+      "org.kde.plasma.marginsseparator"
+      (
+        widgets.digitalclock
+        // {
+          digitalClock.date = {
+            format.custom = "dddd d MMMM ·";
             position = "besideTime";
           };
-
-          font = {
-            family = "Inter";
-            weight = 300;
-            size = 8;
-          };
-        };
-      }
+        }
+      )
+      "org.kde.plasma.marginsseparator"
       "org.kde.plasma.panelspacer"
     ];
   };
