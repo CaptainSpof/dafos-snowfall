@@ -20,6 +20,7 @@ in
 
     desktop = {
       plasma = {
+        themeSwitcher = true;
         config.screenlocker.lockOnResume = false;
         panels = {
           topPanel = {
