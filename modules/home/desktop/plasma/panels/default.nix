@@ -184,7 +184,7 @@ let
   rightPanelConfig = panelConfig // {
     location = "right";
     hiding = "autohide";
-    screen = 0;
+    screen = 1;
     height = 100;
     widgets = [
       {

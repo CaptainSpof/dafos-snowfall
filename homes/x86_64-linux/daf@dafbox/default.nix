@@ -22,6 +22,7 @@ in
       plasma = {
         themeSwitcher = true;
         config.screenlocker.lockOnResume = false;
+        config.powerdevil.autoSuspend.action = "nothing";
         panels = {
           topPanel = {
             maxLength = 2000;

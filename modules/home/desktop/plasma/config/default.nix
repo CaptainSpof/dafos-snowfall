@@ -6,8 +6,8 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.desktop.plasma.config;
 in
@@ -16,6 +16,10 @@ in
     enable = mkBoolOpt false "Whether or not to configure plasma config.";
     screenlocker.enable = mkBoolOpt true "Whether or not to enable the screen locker.";
     screenlocker.lockOnResume = mkBoolOpt true "Whether or not to lock the screen on resume.";
+    powerdevil.autoSuspend.action = mkOpt (types.enum [
+      "nothing"
+      "sleep"
+    ]) "sleep" "The action to execute when the system is inactive.";
   };
 
   config = mkIf cfg.enable {
@@ -60,6 +64,10 @@ in
         #     naturalScroll = true;
         #   }
         # ];
+      };
+
+      powerdevil.AC = {
+        inherit (cfg.powerdevil) autoSuspend;
       };
 
       kscreenlocker = {
