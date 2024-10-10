@@ -259,10 +259,7 @@ let
           };
 
           windowTitle = {
-            font = {
-              bold = false;
-            };
-
+            font.bold = false;
             hideEmptyTitle = true;
 
             margins = {
@@ -322,7 +319,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     home.packages = [ toggle-panel ];
 
     programs.plasma.panels = [

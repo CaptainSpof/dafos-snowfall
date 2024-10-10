@@ -6,14 +6,21 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.desktop.plasma.desktop;
 in
 {
-  options.${namespace}.desktop.plasma.desktop = {
+  options.${namespace}.desktop.plasma.desktop = with types; {
     enable = mkBoolOpt false "Whether or not to configure plasma desktop.";
+
+    digitalClock = {
+      position = {
+        horizontal = mkOpt number 1600 "The horizontal position of the widget.";
+        vertical = mkOpt number 80 "The vertical position of the widget.";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,10 +28,7 @@ in
       desktop.widgets = [
         {
           digitalClock = {
-            position = {
-              horizontal = 1500;
-              vertical = 80;
-            };
+            inherit (cfg.digitalClock) position;
 
             size = {
               width = 200;
