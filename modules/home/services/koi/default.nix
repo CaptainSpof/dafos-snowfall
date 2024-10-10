@@ -54,9 +54,9 @@ in
           light = "Gruvbox-Light";
         };
         IconTheme = {
-          dark = "Papirus";
           enabled = true;
-          light = "Papirus-Light";
+          dark = "Papirus-Dark";
+          light = "Papirus";
         };
       };
     };
