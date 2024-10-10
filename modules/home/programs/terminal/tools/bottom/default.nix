@@ -19,6 +19,13 @@ in
   config = mkIf cfg.enable {
     programs.bottom = {
       enable = true;
+
+      settings = {
+        flags = {
+          temperature_type = "c";
+        };
+        theme = "gruvbox";
+      };
     };
 
     home.shellAliases = {

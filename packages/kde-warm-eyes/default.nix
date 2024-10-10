@@ -2,9 +2,11 @@
 
 stdenvNoCC.mkDerivation {
   name = "kde-warm-eyes";
+
   src = ./WarmEyes.colors;
 
   dontUnpack = true;
+
   installPhase = ''
     runHook preInstall
 

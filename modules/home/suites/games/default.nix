@@ -20,7 +20,6 @@ in
     home.packages = with pkgs; [
       bottles
       lutris
-      prismlauncher
       proton-caller
       protontricks
       protonup-ng

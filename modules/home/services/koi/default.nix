@@ -33,5 +33,32 @@ in
         Restart = "on-failure";
       };
     };
+
+    xdg.configFile."koirc".text = lib.generators.toINIWithGlobalSection { } {
+      globalSection = { };
+      sections = {
+        General = {
+          notify = 2;
+          schedule = 2;
+          schedule-type = "sun";
+          start-hidden = 2;
+        };
+        ColorScheme = {
+          enabled = true;
+          dark = "${pkgs.kde-gruvbox}/share/color-schemes/Gruvbox.colors";
+          light = "${pkgs.dafos.kde-warm-eyes}/share/color-schemes/WarmEyes.colors";
+        };
+        GTKTheme = {
+          enabled = true;
+          dark = "Gruvbox-Dark";
+          light = "Gruvbox-Light";
+        };
+        IconTheme = {
+          dark = "Papirus";
+          enabled = true;
+          light = "Papirus-Light";
+        };
+      };
+    };
   };
 }
