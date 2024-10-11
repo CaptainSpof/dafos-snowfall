@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 in
 {
   dafos = {
@@ -20,6 +20,7 @@ in
       plasma = {
         touchScreen = true;
         themeSwitcher = true;
+        desktop.digitalClock.position.horizontal = 1200;
       };
     };
 
@@ -70,7 +71,7 @@ in
 
       graphics = {
         enable = true;
-        drawing.enable = true;
+        drawing = disabled;
       };
 
       music = enabled;

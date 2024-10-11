@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe';
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.services.koi;
@@ -29,7 +29,7 @@ in
       };
 
       Service = {
-        ExecStart = "${getExe pkgs.kdePackages.koi}";
+        ExecStart = "${getExe' pkgs.kdePackages.koi "koi"}";
         Restart = "on-failure";
       };
     };
