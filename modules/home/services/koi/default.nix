@@ -9,6 +9,7 @@
 let
   inherit (lib) mkIf getExe';
   inherit (lib.${namespace}) mkBoolOpt;
+  inherit (config.${namespace}.user.location) latitude longitude;
 
   cfg = config.${namespace}.services.koi;
 in
@@ -41,6 +42,7 @@ in
           notify = 2;
           schedule = 2;
           schedule-type = "sun";
+          inherit latitude longitude;
           start-hidden = 2;
         };
         ColorScheme = {
