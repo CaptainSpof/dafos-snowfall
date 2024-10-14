@@ -11,7 +11,6 @@ let
 
   cfg = config.${namespace}.programs.terminal.emulators.kitty;
   fontTerm = config.${namespace}.user.font.mono;
-  themeDark = config.${namespace}.user.theme.dark;
 in
 {
   options.${namespace}.programs.terminal.emulators.kitty = {
@@ -23,7 +22,7 @@ in
       enable = true;
       font.name = fontTerm;
       font.size = 12;
-      theme = themeDark;
+      themeFile = "everforest_dark_soft";
       shellIntegration.enableFishIntegration = true;
       settings = {
         # Cursor
