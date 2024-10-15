@@ -23,8 +23,9 @@ in
       package = pkgs.eza;
 
       enableBashIntegration = true;
-      enableZshIntegration = true;
       enableFishIntegration = true;
+      enableNushellIntegration = true;
+      enableZshIntegration = true;
 
       extraOptions = [
         "--color-scale"

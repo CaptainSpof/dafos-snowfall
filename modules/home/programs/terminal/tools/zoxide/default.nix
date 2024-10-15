@@ -21,6 +21,7 @@ in
     programs.zoxide = {
       enable = true;
 
+      enableBashIntegration = true;
       enableFishIntegration = fish.enable;
       enableNushellIntegration = nushell.enable;
       enableZshIntegration = zsh.enable;

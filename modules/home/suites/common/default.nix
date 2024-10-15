@@ -68,6 +68,7 @@ in
           tools = {
             bat = enabled;
             bottom = enabled;
+            carapace = enabled;
             comma = enabled;
             direnv = enabled;
             eza = enabled;
