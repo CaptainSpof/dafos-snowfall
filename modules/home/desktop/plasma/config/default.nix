@@ -12,14 +12,18 @@ let
   cfg = config.${namespace}.desktop.plasma.config;
 in
 {
-  options.${namespace}.desktop.plasma.config = {
+  options.${namespace}.desktop.plasma.config = with types; {
     enable = mkBoolOpt false "Whether or not to configure plasma config.";
     screenlocker.enable = mkBoolOpt true "Whether or not to enable the screen locker.";
     screenlocker.lockOnResume = mkBoolOpt true "Whether or not to lock the screen on resume.";
-    powerdevil.autoSuspend.action = mkOpt (types.enum [
+    powerdevil.autoSuspend.action = mkOpt (enum [
       "nothing"
       "sleep"
     ]) "sleep" "The action to execute when the system is inactive.";
+    powerdevil.turnOffDisplay.idleTimeout =
+      mkOpt (nullOr (either (enum [ "never" ]) (ints.between 30 600000))) null
+        "The duration (in seconds), the computer must be idle
+          (when unlocked) until the display turns off.";
   };
 
   config = mkIf cfg.enable {
@@ -34,13 +38,13 @@ in
             }
             {
               layout = "fr";
-              variant = "ergol";
-              displayName = "er";
+              variant = "us";
+              displayName = "fr";
             }
             {
               layout = "fr";
-              variant = "us";
-              displayName = "fr";
+              variant = "ergol";
+              displayName = "er";
             }
           ];
           numlockOnStartup = "on";
@@ -48,6 +52,7 @@ in
         touchpads = [
           {
             name = "MSFT0001:00 06CB:CE44 Touchpad";
+            enable = true;
             vendorId = "06cb";
             productId = "ce44";
             disableWhileTyping = true;
@@ -67,7 +72,7 @@ in
       };
 
       powerdevil.AC = {
-        inherit (cfg.powerdevil) autoSuspend;
+        inherit (cfg.powerdevil) autoSuspend turnOffDisplay;
       };
 
       kscreenlocker = {
@@ -76,7 +81,6 @@ in
           showMediaControls = true;
           wallpaperPictureOfTheDay.provider = "bing";
         };
-
         autoLock = cfg.screenlocker.enable;
         inherit (cfg.screenlocker) lockOnResume;
         lockOnStartup = false;
@@ -96,8 +100,11 @@ in
 
         dolphinrc.VersionControl.enabledPlugins = "Git";
 
-        ## Peripherals
+        ksmserverrc = {
+          General.loginMode = "emptySession";
+        };
 
+        ## Peripherals
         # Tablet settings
         kcminputrc = {
           "ButtonRebinds.Tablet.Wacom Intuos BT S Pad"."0" = "Key,Ctrl+Z";

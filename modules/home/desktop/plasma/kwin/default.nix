@@ -45,11 +45,11 @@ in
             "close"
             "minimize"
             "maximize"
-            "on-all-desktops"
           ];
           right = [
             "help"
             "more-window-actions"
+            "on-all-desktops"
           ];
         };
 

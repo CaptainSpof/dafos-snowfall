@@ -57,7 +57,10 @@ in
       };
 
       configFile = {
-        kdeglobals.KDE.widgetStyle = "Lightly";
+        kdeglobals = {
+          KDE.widgetStyle = "Lightly";
+          General.AccentColorFromWallpaper = true;
+        };
       };
     };
   };

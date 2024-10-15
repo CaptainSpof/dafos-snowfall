@@ -5,6 +5,7 @@
   namespace,
   ...
 }:
+
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
@@ -23,6 +24,7 @@ in
 
       plugins = with pkgs.obs-studio-plugins; [
         looking-glass-obs
+        obs-composite-blur
         obs-gstreamer
         obs-move-transition
         obs-multi-rtmp
