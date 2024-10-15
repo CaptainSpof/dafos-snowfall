@@ -28,8 +28,9 @@ in
         "services/kitty"._launch = "Ctrl+Alt+T";
         "emacsclient.desktop".new-instance = "Meta+É";
         "org.kde.dolphin.desktop"._launch = "Meta+E";
+        "it.mijorus.smile.desktop"._launch = "Meta+.";
 
-        "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+K";
+        "KDE Keyboard Layout Switcher"."Switch to Next Keyboard Layout" = "Meta+Alt+Backspace";
 
         kcm_touchpad = {
           "Disable Touchpad" = "Touchpad Off";
@@ -158,7 +159,7 @@ in
           ];
         };
 
-        "org.kde.plasma.emojier.desktop"._launch = "Meta+.";
+        "org.kde.plasma.emojier.desktop"._launch = [ ];
 
         "org.kde.spectacle.desktop" = {
           _launch = "Print";

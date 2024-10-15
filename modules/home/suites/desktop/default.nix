@@ -2,6 +2,7 @@
   config,
   lib,
   namespace,
+  pkgs,
   ...
 }:
 
@@ -17,6 +18,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ smile ];
+
     dafos = {
       desktop = {
         plasma = {
