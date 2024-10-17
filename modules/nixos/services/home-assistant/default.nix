@@ -15,8 +15,14 @@ in
 {
   options.${namespace}.services.home-assistant = {
     enable = mkBoolOpt false "Whether or not to enable home-assistant.";
-    serialPort = mkOpt types.str "/dev/ttyACM0" "The serial port to use with ZHA.";
-    serialPortZigbee2Mqtt = mkOpt types.str "/dev/ttyACM1" "The serial port to use with Zigbee2mqtt.";
+    serialPort =
+      mkOpt types.str
+        "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230803143100-if00"
+        "The serial port to use with ZHA.";
+    serialPortZigbee2Mqtt =
+      mkOpt types.str
+        "/dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2289092-if00"
+        "The serial port to use with Zigbee2mqtt.";
   };
 
   config = mkIf cfg.enable {
