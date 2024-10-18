@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled disabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   dafos = {
@@ -71,7 +71,7 @@ in
 
       graphics = {
         enable = true;
-        drawing = disabled;
+        drawing = enabled;
       };
 
       music = enabled;
