@@ -8,6 +8,9 @@
 
 let
   inherit (inputs) nixos-hardware;
+  inherit (lib) mkIf getExe;
+
+  freeboxHostname = "Freebox-Server.local";
 in
 {
   imports = with nixos-hardware.nixosModules; [
@@ -59,19 +62,38 @@ in
     };
 
     "/mnt/videos" = {
-      device = "//192.168.0.254/Freebox/Vidéos";
+      device = "//${freeboxHostname}/Freebox/Vidéos";
       fsType = "cifs";
       options = [
         "guest"
-        "noauto"
         "uid=1000"
         "vers=3"
         "nounix"
         "x-systemd.automount"
-        "x-systemd.idle-timeout=60,x-systemd.device-timeout=15s,x-systemd.mount-timeout=15s"
+        "noauto"
+        "x-systemd.requires=wait-freebox-available.service"
+        "x-systemd.after=wait-freebox-available.service"
+        "x-systemd.idle-timeout=60"
+        "x-systemd.device-timeout=30s"
+        "x-systemd.mount-timeout=30s"
       ];
     };
   };
+
+    systemd.services.wait-freebox-available = {
+      description = "Waiting for Freebox to become reachable.";
+      wantedBy = [ "network-online.target" ];
+      after = [ "network-online.target" ];
+      requires = [ "network-online.target" ];
+
+      serviceConfig = {
+        ExecStart = "${getExe pkgs.bash} -c 'until ${getExe pkgs.unixtools.ping} -qW 1 -c1 ${freeboxHostname}; do sleep 1; done'";
+        RemainAfterExit = "yes";
+        TimeoutStopSec = 120;
+        PrivateTmp = false;
+        Type = "oneshot";
+      };
+    };
 
   swapDevices = [ ];
 
