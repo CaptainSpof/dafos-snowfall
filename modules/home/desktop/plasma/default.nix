@@ -15,6 +15,7 @@ let
 
   defaultPackages = with pkgs; [
     # Apps
+    kdePackages.kalk
     kdePackages.kcolorchooser
     kdePackages.kweather
     kdePackages.merkuro
