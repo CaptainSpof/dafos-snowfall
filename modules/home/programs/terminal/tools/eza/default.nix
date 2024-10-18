@@ -34,7 +34,7 @@ in
       ];
 
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     home.shellAliases = {
