@@ -29,7 +29,7 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    environment.systemPackages = with pkgs; [ zlib-ng ];
+    environment.systemPackages = with pkgs; [ zlib-ng home-assistant-cli ];
 
     services = {
       mosquitto = {
@@ -57,7 +57,6 @@ in
             port = cfg.serialPortZigbee2Mqtt;
             adapter = "deconz";
           };
-          advanced.log_level = "debug";
         };
       };
 
@@ -170,6 +169,12 @@ in
           "automation ui" = "!include automations.yaml";
           "scene ui" = "!include scenes.yaml";
           "script ui" = "!include scripts.yaml";
+
+          zha = {
+            zigpy_config = {
+              device = cfg.serialPort;
+            };
+          };
 
           sensor = {
             platform = "time_date";
