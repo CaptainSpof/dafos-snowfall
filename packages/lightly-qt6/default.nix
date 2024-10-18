@@ -12,8 +12,8 @@ kdePackages.mkKdeDerivation {
   src = fetchFromGitHub {
     owner = "Bali10050";
     repo = "Lightly";
-    rev = "1feaaf29f7bc20e86e9410a4e129f6b5158abad6";
-    sha256 = "sha256-UxtayqLgtFbClErjZWMBp3bBtSv31AQzP5dh3fk+d44=";
+    rev = "459466f7a845d0f98a82796418d8ebb03b7e5cbd";
+    sha256 = "sha256-n4w6uMnBWNPwVE3vjTHGbzU9M6XgRafddkdxA7SafgQ=";
   };
 
   extraBuildInputs = [

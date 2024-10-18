@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, stdenvNoCC, ... }:
 
 let
   images = builtins.attrNames (builtins.readDir ./wallpapers);
@@ -6,7 +6,7 @@ let
     name: src:
     let
       fileName = builtins.baseNameOf src;
-      pkg = pkgs.stdenvNoCC.mkDerivation {
+      pkg = stdenvNoCC.mkDerivation {
         inherit name src;
 
         dontUnpack = true;
@@ -35,7 +35,7 @@ let
   ) { } images;
   installTarget = "$out/share/wallpapers";
 in
-pkgs.stdenvNoCC.mkDerivation {
+stdenvNoCC.mkDerivation {
   name = "dafos.wallpapers";
   src = ./wallpapers;
 
