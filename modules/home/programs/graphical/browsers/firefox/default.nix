@@ -44,6 +44,7 @@ in
       sponsorblock
       stylus
       tabcenter-reborn
+      tree-style-tab
       tridactyl
       ublock-origin
       user-agent-string-switcher
@@ -331,7 +332,6 @@ in
 
                   # Extensions
                   "_testpilot-containers-browser-action"
-
                   "unified-extensions-button"
                 ];
 
