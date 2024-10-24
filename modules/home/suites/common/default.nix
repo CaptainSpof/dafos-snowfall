@@ -26,7 +26,6 @@ in
       file
       findutils
       fzf
-      jq
       killall
       lsof
       pciutils

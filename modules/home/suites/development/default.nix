@@ -5,6 +5,7 @@
   namespace,
   ...
 }:
+
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled disabled;
@@ -27,6 +28,7 @@ in
       packages =
         with pkgs;
         [
+          jq
           jqp
           onefetch
           github-desktop
@@ -34,9 +36,6 @@ in
           wildcard
         ]
         ++ lib.optionals cfg.nix.enable [
-          alejandra
-          deadnix
-          nil
           nixfmt-rfc-style
           nixpkgs-fmt
           nixpkgs-hammering
