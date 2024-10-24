@@ -17,9 +17,10 @@ let
     # Apps
     kdePackages.kalk
     kdePackages.kcolorchooser
+    kdePackages.koi
+    kdePackages.ksystemlog
     kdePackages.kweather
     kdePackages.merkuro
-    kdePackages.koi
     inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     # Themes
     dafos.kde-warm-eyes
@@ -29,6 +30,7 @@ let
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-icon-theme
+    plasma-panel-colorizer
     # Utils
     kdotool
     wl-clipboard
