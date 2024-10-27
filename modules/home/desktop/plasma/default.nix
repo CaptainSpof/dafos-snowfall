@@ -30,7 +30,6 @@ let
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-icon-theme
-    plasma-panel-colorizer
     # Utils
     kdotool
     wl-clipboard
