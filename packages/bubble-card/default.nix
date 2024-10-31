@@ -1,14 +1,18 @@
-{ lib, fetchFromGitHub, stdenvNoCC }:
+{
+  lib,
+  fetchFromGitHub,
+  stdenvNoCC,
+}:
 
 stdenvNoCC.mkDerivation rec {
   pname = "bubble-card";
-  version = "2.0.3";
+  version = "2.2.4";
 
   src = fetchFromGitHub {
     owner = "Clooos";
     repo = "Bubble-Card";
     rev = "refs/tags/v${version}";
-    hash = "sha256-LODHmaGxJYTtomUyu+PDJDUrffebHSFTuWVzPzVxZcI=";
+    hash = "sha256-vsgu1hvtlppADvaFLeB4xQHbP3wBc6H4p5HbeS3JY80=";
   };
 
   dontBuild = true;

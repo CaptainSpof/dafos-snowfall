@@ -29,7 +29,10 @@ in
 
     dafos.user.extraGroups = [ "hass" ];
 
-    environment.systemPackages = with pkgs; [ zlib-ng home-assistant-cli ];
+    environment.systemPackages = with pkgs; [
+      zlib-ng
+      home-assistant-cli
+    ];
 
     services = {
       mosquitto = {
@@ -100,7 +103,11 @@ in
             pychromecast
           ];
 
-        customComponents = with pkgs.home-assistant-custom-components; [ adaptive_lighting ];
+        customComponents = with pkgs.home-assistant-custom-components; [
+          adaptive_lighting
+          samsungtv-smart
+          spook
+        ];
 
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
           button-card
@@ -108,7 +115,10 @@ in
           mini-graph-card
           mini-media-player
           multiple-entity-row
+          light-entity-card
+          template-entity-row
           mushroom
+          universal-remote-card
           pkgs.dafos.lovelace-auto-entities
           pkgs.dafos.lovelace-fold-entity-row
           pkgs.dafos.lovelace-layout-card
