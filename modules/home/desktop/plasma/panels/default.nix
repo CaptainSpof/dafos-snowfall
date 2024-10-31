@@ -81,7 +81,6 @@ let
           };
           icon = "view-media-track";
         };
-        preferredSource = "any";
         songText = {
           displayInSeparateLines = true;
           maximumWidth = 0;

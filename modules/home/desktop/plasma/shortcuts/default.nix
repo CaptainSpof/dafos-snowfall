@@ -25,7 +25,7 @@ in
       };
 
       shortcuts = {
-        "services/kitty"._launch = "Ctrl+Alt+T";
+        "org.wezfurlong.wezterm.desktop"._launch = "Ctrl+Alt+T";
         "emacsclient.desktop".new-instance = "Meta+É";
         "org.kde.dolphin.desktop"._launch = "Meta+E";
         "it.mijorus.smile.desktop"._launch = "Meta+.";

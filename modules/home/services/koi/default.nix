@@ -22,11 +22,17 @@ in
     systemd.user.services.koi = {
       Unit = {
         Description = "koi";
-        After = [ "plasma-workspace.target" ];
+        After = [
+          "plasma-workspace.target"
+          "multi-user.target"
+        ];
       };
 
       Install = {
-        WantedBy = [ "plasma-workspace.target" ];
+        WantedBy = [
+          "plasma-workspace.target"
+          "multi-user.target"
+        ];
       };
 
       Service = {
