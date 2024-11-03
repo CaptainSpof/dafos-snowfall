@@ -8,7 +8,7 @@
 
 let
   inherit (inputs) nixos-hardware;
-  inherit (lib) mkIf getExe;
+  inherit (lib) getExe;
 
   freeboxHostname = "Freebox-Server.local";
 in
@@ -80,20 +80,20 @@ in
     };
   };
 
-    systemd.services.wait-freebox-available = {
-      description = "Waiting for Freebox to become reachable.";
-      wantedBy = [ "network-online.target" ];
-      after = [ "network-online.target" ];
-      requires = [ "network-online.target" ];
+  systemd.services.wait-freebox-available = {
+    description = "Waiting for Freebox to become reachable.";
+    wantedBy = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
 
-      serviceConfig = {
-        ExecStart = "${getExe pkgs.bash} -c 'until ${getExe pkgs.unixtools.ping} -qW 1 -c1 ${freeboxHostname}; do sleep 1; done'";
-        RemainAfterExit = "yes";
-        TimeoutStopSec = 120;
-        PrivateTmp = false;
-        Type = "oneshot";
-      };
+    serviceConfig = {
+      ExecStart = "${getExe pkgs.bash} -c 'until ${getExe pkgs.unixtools.ping} -qW 1 -c1 ${freeboxHostname}; do sleep 1; done'";
+      RemainAfterExit = "yes";
+      TimeoutStopSec = 120;
+      PrivateTmp = false;
+      Type = "oneshot";
     };
+  };
 
   swapDevices = [ ];
 
@@ -112,7 +112,7 @@ in
   services.thermald.enable = true;
 
   powerManagement = {
-    cpuFreqGovernor = lib.mkDefault "powersave";
+    cpuFreqGovernor = lib.mkDefault "ondemand";
     powertop.enable = true;
   };
 

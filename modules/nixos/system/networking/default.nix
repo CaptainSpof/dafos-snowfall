@@ -15,7 +15,7 @@ in
   options.${namespace}.system.networking = {
     enable = mkBoolOpt false "Whether or not to enable networking support.";
     hosts = mkOpt types.attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
-    optimizeTcp = mkBoolOpt false "Optimize TCP connections";
+    optimizeTcp = mkBoolOpt true "Optimize TCP connections";
     dns = mkOpt (types.enum [
       "dnsmasq"
       "systemd-resolved"

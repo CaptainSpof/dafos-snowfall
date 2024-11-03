@@ -27,12 +27,14 @@ in
     binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd = {
       availableKernelModules = [
-        "xhci_pci"
-        "thunderbolt"
+        "ahci" # SATA devices on modern AHCI controllers
         "nvme"
+        "sd_mod" # SCSI, SATA, and IDE devices
+        "thunderbolt"
         "uas"
-        "usb_storage"
-        "sd_mod"
+        "usb_storage" # USB mass storage devices
+        "usbhid" # USB human interface devices
+        "xhci_pci" # USB 3.0
       ];
       luks.devices."crypted".device = "/dev/disk/by-uuid/2740b97b-a34c-43d5-9a5b-bb86521690ca";
     };

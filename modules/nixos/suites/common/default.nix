@@ -23,6 +23,7 @@ in
       cifs-utils
       dafos.list-iommu
       powertop
+      ripgrep
     ];
 
     dafos = {
