@@ -17,11 +17,12 @@ let
     qdbus org.kde.plasmashell /PlasmaShell evaluateScript "p = panelById(panelIds[1]); p.hiding = (p.hiding == 'autohide') ? 'windowsgobelow' : 'autohide';"
   '';
 
-  panelConfig = {
+  sharedPanelConfig = {
     alignment = "center";
     floating = true;
     lengthMode = "custom";
   };
+
   widgets = {
     netSpeed = {
       name = "org.kde.netspeedWidget";
@@ -95,8 +96,16 @@ let
         };
 
         items = {
-          shown = [ ];
-          hidden = [ ];
+          shown = [
+            "org.kde.plasma.battery"
+            "org.kde.plasma.bluetooth"
+            "org.kde.plasma.networkmanagement"
+            "org.kde.plasma.volume"
+          ];
+          hidden = [
+            "org.kde.plasma.keyboardlayout"
+            "org.kde.kdeconnect"
+          ];
           configs = {
             battery.showPercentage = true;
           };
@@ -114,7 +123,7 @@ let
     };
   };
 
-  leftPanelConfig = panelConfig // {
+  leftPanelConfig = sharedPanelConfig // {
     location = "left";
     screen = 0;
     height = 60;
@@ -196,8 +205,8 @@ let
     ];
   };
 
-  rightPanelConfig = panelConfig // {
-    location = "right";
+  leftPanelSecondScreenConfig = sharedPanelConfig // {
+    location = "left";
     hiding = "autohide";
     screen = 1;
     height = 100;
@@ -212,7 +221,7 @@ let
     ];
   };
 
-  topPanelConfig = panelConfig // {
+  topPanelConfig = sharedPanelConfig // {
     height = 32;
     hiding = "autohide";
     location = "top";
@@ -322,7 +331,7 @@ in
 
     programs.plasma.panels = [
       leftPanelConfig
-      rightPanelConfig
+      leftPanelSecondScreenConfig
       # Global menu at the top
       topPanelPrimaryScreen
       topPanelSecondaryScreen

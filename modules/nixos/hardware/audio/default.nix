@@ -16,35 +16,37 @@ in
   options.${namespace}.hardware.audio = with types; {
     enable = mkBoolOpt false "Whether or not to enable audio support.";
     alsa-monitor = mkOpt attrs { } "Alsa configuration.";
-    nodes = mkOpt (listOf attrs) [ ] "Audio nodes to pass to Pipewire as `context.objects`.";
-    modules = mkOpt (listOf attrs) [ ] "Audio modules to pass to Pipewire as `context.modules`.";
     extra-packages = mkOpt (listOf package) [
       pkgs.qjackctl
       pkgs.easyeffects
     ] "Additional packages to install.";
+    modules = mkOpt (listOf attrs) [ ] "Audio modules to pass to Pipewire as `context.modules`.";
+    nodes = mkOpt (listOf attrs) [ ] "Audio nodes to pass to Pipewire as `context.objects`.";
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages =
+      with pkgs;
+      [
+        pulsemixer
+        helvum
+        kdePackages.plasma-pa
+      ]
+      ++ cfg.extra-packages;
+
+    hardware.pulseaudio.enable = mkForce false;
+
+    dafos.user.extraGroups = [ "audio" ];
+
     security.rtkit.enable = true;
 
     services.pipewire = {
       enable = true;
       alsa.enable = true;
+      audio.enable = true;
+      jack.enable = false;
       pulse.enable = true;
-      jack.enable = true;
       wireplumber.enable = true;
     };
-
-    hardware.pulseaudio.enable = mkForce false;
-
-    environment.systemPackages =
-      with pkgs;
-      [
-        pulsemixer
-        pavucontrol
-      ]
-      ++ cfg.extra-packages;
-
-    dafos.user.extraGroups = [ "audio" ];
   };
 }

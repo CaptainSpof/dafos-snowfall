@@ -7,13 +7,13 @@
 
 kdePackages.mkKdeDerivation {
   pname = "lightly-qt6";
-  version = "0.5.1";
+  version = "0.5.7";
 
   src = fetchFromGitHub {
     owner = "Bali10050";
     repo = "Lightly";
-    rev = "c281ad6705e9eec471ebcd5099131ea50d27c1ec";
-    sha256 = "sha256-cBICf6DGg6s7vbqJZ/zo09Wjkvm/ztQCDB8XLoXL7S8=";
+    rev = "a455a2d1c0b158f5c26c5a3eec15d577901094f3";
+    sha256 = "sha256-imFBAaLLa1yJn8FKfm6DRcRR1acxYmpJULU0Vl1bLMQ=";
   };
 
   extraBuildInputs = [

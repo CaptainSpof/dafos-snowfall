@@ -27,13 +27,8 @@ in
     fonts.packages =
       with pkgs;
       [
-        (nerdfonts.override {
-          fonts = [
-            "CascadiaCode"
-            "Hack"
-            "Monaspace"
-          ];
-        })
+        nerd-fonts.monaspace
+        nerd-fonts.hack
         departure-mono
         google-fonts
         julia-mono
