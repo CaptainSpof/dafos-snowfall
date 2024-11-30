@@ -54,6 +54,7 @@ in
         {
           extraDefCfg = ''
             ${mkExcludedDevices cfg.excludedDevices}
+            linux-device-detect-mode keyboard-only
           '';
           config = ''
             (defvar
