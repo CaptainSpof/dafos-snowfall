@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 
   firefox-pkg = config.${namespace}.programs.graphical.browsers.firefox.package;
 in
@@ -20,6 +20,7 @@ in
 
     desktop = {
       plasma = {
+        theme.wallpaper = disabled; # FIXME
         themeSwitcher = true;
         config.screenlocker = {
           enable = false;
@@ -34,7 +35,7 @@ in
           leftPanel.launchers = [
             "applications:org.kde.dolphin.desktop"
             "applications:${toString firefox-pkg.meta.mainProgram}.desktop"
-            "applications:kitty.desktop"
+            "applications:org.wezfurlong.wezterm.desktop"
             "applications:emacs.desktop"
             "applications:steam.desktop"
             "applications:vesktop.desktop"
@@ -54,9 +55,9 @@ in
             settings = {
               # "dom.ipc.processCount.webIsolated" = 9;
               # "dom.maxHardwareConcurrency" = 16;
-              "media.av1.enabled" = lib.mkForce false;
+              # "media.av1.enabled" = lib.mkForce false;
               # "media.ffvpx.enabled" = false;
-              # "media.hardware-video-decoding.force-enabled" = true;
+              "media.hardware-video-decoding.force-enabled" = true;
               "media.hardwaremediakeys.enabled" = true;
             };
           };

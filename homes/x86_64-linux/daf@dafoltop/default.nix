@@ -17,6 +17,7 @@ in
 
     desktop = {
       plasma = {
+        theme.wallpaper = disabled;
         config.screenlocker = disabled;
       };
     };

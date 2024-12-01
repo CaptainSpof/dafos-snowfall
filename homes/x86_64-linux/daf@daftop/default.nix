@@ -18,6 +18,7 @@ in
 
     desktop = {
       plasma = {
+        theme.wallpaper = disabled; # FIXME
         touchScreen = true;
         themeSwitcher = true;
         desktop.digitalClock.position.horizontal = 1200;

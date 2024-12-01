@@ -21,6 +21,7 @@ in
 {
   options.${namespace}.desktop.plasma.theme = {
     enable = mkBoolOpt false "Whether or not to configure plasma theme.";
+    wallpaper.enable = mkBoolOpt true "Whether or not to enable custom wallpapers.";
   };
 
   config = mkIf cfg.enable {
@@ -46,10 +47,11 @@ in
         tooltipDelay = 5;
         theme = "breeze-dark";
         iconTheme = "Papirus";
-        wallpaperSlideShow = {
+        wallpaperSlideShow = mkIf cfg.wallpaper.enable {
           path = "${home}/Pictures/wallpapers/";
           interval = 300;
         };
+        wallpaperFillMode = "stretch";
         windowDecorations = {
           library = "org.kde.lightly";
           theme = "Lightly";
