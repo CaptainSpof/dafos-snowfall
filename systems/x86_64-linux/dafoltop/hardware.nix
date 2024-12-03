@@ -19,7 +19,6 @@ in
     common-pc
     common-pc-ssd
     common-pc-laptop
-    common-pc-laptop-acpi_call
   ];
 
   boot = {

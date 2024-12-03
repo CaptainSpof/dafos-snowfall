@@ -20,8 +20,7 @@ in
         "/dev/serial/by-id/usb-ITEAD_SONOFF_Zigbee_3.0_USB_Dongle_Plus_V2_20230803143100-if00"
         "The serial port to use with ZHA.";
     serialPortZigbee2Mqtt =
-      mkOpt types.str
-        "/dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2289092-if00"
+      mkOpt types.str "tcp://192.168.0.46:6638"
         "The serial port to use with Zigbee2mqtt.";
   };
 
@@ -50,6 +49,7 @@ in
         enable = true;
         settings = {
           homeassistant = config.services.home-assistant.enable;
+          availability = true;
           permit_join = false;
           mqtt = {
             server = "mqtt://127.0.0.1:1883";
@@ -57,8 +57,8 @@ in
           };
           frontend.port = 8090;
           serial = {
+            adapter = "auto";
             port = cfg.serialPortZigbee2Mqtt;
-            adapter = "deconz";
           };
         };
       };
@@ -101,6 +101,7 @@ in
             isal
             kegtron-ble
             pychromecast
+            pysmlight
           ];
 
         customComponents = with pkgs.home-assistant-custom-components; [
@@ -110,19 +111,19 @@ in
         ];
 
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+          bubble-card
           button-card
           card-mod
+          light-entity-card
           mini-graph-card
           mini-media-player
           multiple-entity-row
-          light-entity-card
-          template-entity-row
           mushroom
-          universal-remote-card
           pkgs.dafos.lovelace-auto-entities
           pkgs.dafos.lovelace-fold-entity-row
           pkgs.dafos.lovelace-layout-card
-          pkgs.dafos.bubble-card
+          template-entity-row
+          universal-remote-card
         ];
 
         config = {

@@ -17,7 +17,6 @@ in
     common-gpu-amd
     common-pc
     common-pc-laptop
-    common-pc-laptop-acpi_call
     common-pc-ssd
   ];
 
