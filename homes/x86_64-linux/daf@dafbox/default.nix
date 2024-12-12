@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled disabled;
+  inherit (lib.${namespace}) enabled;
 
   firefox-pkg = config.${namespace}.programs.graphical.browsers.firefox.package;
 in
@@ -20,7 +20,6 @@ in
 
     desktop = {
       plasma = {
-        theme.wallpaper = disabled; # FIXME
         themeSwitcher = true;
         config.screenlocker = {
           enable = false;
@@ -55,7 +54,6 @@ in
             settings = {
               # "dom.ipc.processCount.webIsolated" = 9;
               # "dom.maxHardwareConcurrency" = 16;
-              # "media.av1.enabled" = lib.mkForce false;
               # "media.ffvpx.enabled" = false;
               "media.hardware-video-decoding.force-enabled" = true;
               "media.hardwaremediakeys.enabled" = true;

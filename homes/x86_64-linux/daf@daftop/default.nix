@@ -18,7 +18,6 @@ in
 
     desktop = {
       plasma = {
-        theme.wallpaper = disabled; # FIXME
         touchScreen = true;
         themeSwitcher = true;
         desktop.digitalClock.position.horizontal = 1200;
@@ -36,7 +35,6 @@ in
             settings = {
               # "dom.ipc.processCount.webIsolated" = 9;
               # "dom.maxHardwareConcurrency" = 16;
-              # "media.av1.enabled" = false;
               # "media.ffvpx.enabled" = false;
               "media.hardware-video-decoding.force-enabled" = true;
               "media.hardwaremediakeys.enabled" = true;
