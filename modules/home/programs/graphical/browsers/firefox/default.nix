@@ -23,7 +23,7 @@ in
   options.${namespace}.programs.graphical.browsers.firefox = with types; {
     enable = mkBoolOpt false "Whether or not to enable firefox.";
 
-    extensions = mkOpt (listOf package) (with config.nur.repos.rycee.firefox-addons; [
+    extensions = mkOpt (listOf package) (with pkgs.nur.repos.rycee.firefox-addons; [
       auto-tab-discard
       bitwarden
       consent-o-matic
@@ -39,15 +39,16 @@ in
       reddit-enhancement-suite
       refined-github
       return-youtube-dislikes
-      # sidebery
+      sidebery
       simple-tab-groups
       sponsorblock
       stylus
-      tabcenter-reborn
+      # tabcenter-reborn
       tree-style-tab
       tridactyl
       ublock-origin
       user-agent-string-switcher
+      userchrome-toggle-extended
       violentmonkey
     ]) "Extensions to install";
 

@@ -18,7 +18,10 @@
     };
 
     # Nix User Repository (master)
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Flake Compat
     flake-compat = {
@@ -138,15 +141,16 @@
       };
 
       overlays = with inputs; [
-        snowfall-flake.overlays.default
-        nuenv.overlays.default
         emacs-overlay.overlays.default
+        nuenv.overlays.default
+        nur.overlays.default
+        snowfall-flake.overlays.default
       ];
 
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
-        nur.hmModules.nur
         plasma-manager.homeManagerModules.plasma-manager
+        # nur.modules.homeManager.default
       ];
 
       systems.modules.nixos = with inputs; [
