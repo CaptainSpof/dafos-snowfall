@@ -45,12 +45,14 @@ in
       home-assistant = enabled;
       mealie = enabled;
       syncthing = enabled;
-      printing = lib.mkForce disabled;
+      printing = disabled;
     };
 
     suites = {
       desktop = enabled;
       yahrr = enabled;
+      common = disabled;
+      common-slim = enabled;
     };
 
     system = {

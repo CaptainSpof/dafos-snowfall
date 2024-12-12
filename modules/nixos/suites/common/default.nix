@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkDefault;
   inherit (lib.${namespace}) mkBoolOpt enabled disabled;
 
   cfg = config.${namespace}.suites.common;
@@ -57,7 +57,7 @@ in
       services = {
         avahi = enabled;
         openssh = enabled;
-        printing = enabled;
+        printing = mkDefault enabled;
         remote-desktop = enabled;
         tailscale = enabled;
       };

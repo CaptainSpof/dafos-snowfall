@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkDefault mkIf;
   inherit (lib.${namespace}) enabled mkBoolOpt;
 
   cfg = config.${namespace}.archetypes.workstation;
@@ -24,7 +24,7 @@ in
       };
 
       suites = {
-        common = enabled;
+        common = mkDefault enabled;
         desktop = enabled;
         development = enabled;
       };
