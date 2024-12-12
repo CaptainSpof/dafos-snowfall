@@ -13,15 +13,17 @@ in
 mkShell {
   packages = with pkgs; [
     hydra-check
-    nix-inspect
     nix-bisect
     nix-diff
     nix-health
     nix-index
+    nix-inspect
     nix-melt
     nix-prefetch-git
     nix-search-cli
     nix-tree
+    nil
+    nixd
     nixpkgs-hammering
     nixpkgs-lint
     snowfall-flake.packages.${system}.flake
