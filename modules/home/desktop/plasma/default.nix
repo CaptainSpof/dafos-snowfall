@@ -25,11 +25,11 @@ let
     # Themes
     dafos.kde-warm-eyes
     dafos.leaf-kde
-    dafos.lightly-qt6
     dafos.plasma-applet-netspeed-widget
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-icon-theme
+    inputs.lightly.packages.${pkgs.system}.lightly-qt6
     # Utils
     kdotool
     wl-clipboard
@@ -52,6 +52,8 @@ in
     };
 
     programs.plasma.enable = true;
+
+    qt.enable = true;
 
     home.packages =
       with pkgs;

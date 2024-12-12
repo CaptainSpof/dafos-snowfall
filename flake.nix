@@ -90,6 +90,8 @@
       };
     };
 
+    lightly.url = "github:Bali10050/Lightly";
+
     # Pre Commit Hooks
     pre-commit-hooks-nix.url = "github:cachix/git-hooks.nix";
 
