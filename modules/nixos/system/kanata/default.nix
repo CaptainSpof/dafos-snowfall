@@ -26,6 +26,10 @@ in
       "ZMK Project Kyria Keyboard"
       "Glove80 Keyboard"
       "MoErgo Glove80 Left Keyboard"
+      "Logitech G502"
+      "LogiOps Virtual Input"
+      "Espanso virtual device"
+      "WH-1000XM3 (AVRCP)"
     ] "The devices to be excluded.";
     tapTimeout = mkOpt types.number 150 "The value for tap-timeout.";
     holdTimeout = mkOpt types.number 300 "The value for hold-timeout.";
