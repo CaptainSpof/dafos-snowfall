@@ -31,7 +31,13 @@ in
     environment.systemPackages = with pkgs; [
       zlib-ng
       home-assistant-cli
+      frigate # TODO: setup
     ];
+
+    systemd.services.zigbee2mqtt = {
+      partOf = [ "home-assistant.service" ];
+      requiredBy = [ "home-assistant.service" ];
+    };
 
     services = {
       mosquitto = {
@@ -50,6 +56,7 @@ in
         settings = {
           homeassistant = config.services.home-assistant.enable;
           availability = true;
+          advanced.transmit_power = 20;
           permit_join = false;
           mqtt = {
             server = "mqtt://127.0.0.1:1883";
@@ -57,7 +64,8 @@ in
           };
           frontend.port = 8090;
           serial = {
-            adapter = "auto";
+            adapter = "zstack";
+            baudrate = 115200;
             port = cfg.serialPortZigbee2Mqtt;
           };
         };
@@ -67,28 +75,44 @@ in
         enable = true;
 
         extraComponents = [
-          "radarr"
-          "sonarr"
           "apple_tv"
           "backup"
+          "bluetooth"
+          "bluetooth_adapters"
+          "broadlink"
+          "camera"
           "cast"
           "esphome"
-          "ibeacon"
           "forked_daapd"
           "freebox"
+          "google"
+          "google_generative_ai_conversation"
           "google_translate"
+          "ibeacon"
           "ipp"
-          "local_calendar"
           "ld2410_ble"
+          "local_calendar"
+          "mealie"
           "met"
+          "meteo_france"
           "mobile_app"
           "mqtt"
           "netatmo"
+          "openai_conversation"
+          "pocketcasts"
+          "radarr"
           "radio_browser"
           "roborock"
           "samsungtv"
+          "smartthings"
+          "smlight"
+          "sonarr"
+          "kegtron"
           "tailscale"
           "telegram"
+          "telegram_bot"
+          "tplink"
+          "tradfri"
           "tuya"
           "wled"
           "yeelight"
@@ -98,22 +122,26 @@ in
 
         extraPackages =
           ps: with ps; [
+            google-ai-generativelanguage
             isal
-            kegtron-ble
-            pychromecast
-            pysmlight
+            pytapo
           ];
 
         customComponents = with pkgs.home-assistant-custom-components; [
           adaptive_lighting
+          better_thermostat
+          frigate
           samsungtv-smart
           spook
         ];
 
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+          atomic-calendar-revive
           bubble-card
           button-card
           card-mod
+          decluttering-card
+          hourly-weather
           light-entity-card
           mini-graph-card
           mini-media-player
@@ -124,6 +152,8 @@ in
           pkgs.dafos.lovelace-layout-card
           template-entity-row
           universal-remote-card
+          vacuum-card
+          weather-card
         ];
 
         config = {
@@ -134,52 +164,15 @@ in
           homeassistant = {
             name = "MaisonDaf";
             unit_system = "metric";
+            temperature_unit = "C";
           };
 
           lovelace.mode = "yaml";
-          lovelace.resources = [
-            {
-              url = "/local/nixos-lovelace-modules/mushroom.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/bubble-card.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/layout-card.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/card-mod.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/button-card.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/fold-entity-row.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/auto-entities.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/mini-graph-card-bundle.js";
-              type = "module";
-            }
-            {
-              url = "/local/nixos-lovelace-modules/mini-media-player-bundle.js";
-              type = "module";
-            }
-          ];
 
           "automation manual" = [ ];
           "automation ui" = "!include automations.yaml";
           "scene ui" = "!include scenes.yaml";
-          "script ui" = "!include scripts.yaml";
+          "script ui" = "!include_dir_merge_named scripts/";
 
           zha = {
             zigpy_config = {
@@ -210,5 +203,12 @@ in
         8123
       ];
     };
+
+    systemd.tmpfiles.rules = [
+      "d /var/lib/hass 0775 hass hass -"
+      "d /var/lib/hass/scripts 0775 hass hass -"
+      "d /var/lib/hass/custom_templates 0775 hass hass -"
+    ];
+
   };
 }
