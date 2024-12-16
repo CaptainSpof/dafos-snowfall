@@ -41,9 +41,6 @@ in
             };
           };
         };
-        instant-messengers = {
-          teamspeak.enable = lib.mkForce false;
-        };
       };
 
       terminal = {
