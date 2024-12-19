@@ -31,7 +31,6 @@ in
     environment.systemPackages = with pkgs; [
       zlib-ng
       home-assistant-cli
-      frigate # TODO: setup
     ];
 
     systemd.services.zigbee2mqtt = {
@@ -79,6 +78,7 @@ in
           "backup"
           "bluetooth"
           "bluetooth_adapters"
+          "bluetooth_tracker"
           "broadlink"
           "camera"
           "cast"
@@ -86,10 +86,10 @@ in
           "forked_daapd"
           "freebox"
           "google"
-          "google_generative_ai_conversation"
           "google_translate"
           "ibeacon"
           "ipp"
+          "improv_ble"
           "ld2410_ble"
           "local_calendar"
           "mealie"
@@ -98,10 +98,10 @@ in
           "mobile_app"
           "mqtt"
           "netatmo"
+          "onvif"
           "openai_conversation"
           "pocketcasts"
           "radarr"
-          "radio_browser"
           "roborock"
           "samsungtv"
           "smartthings"
@@ -116,23 +116,47 @@ in
           "tuya"
           "wled"
           "yeelight"
-          "zeroconf"
           "zha"
         ];
 
         extraPackages =
           ps: with ps; [
-            google-ai-generativelanguage
             isal
-            pytapo
+            # pytapo
+            btsocket
           ];
 
         customComponents = with pkgs.home-assistant-custom-components; [
+          average
+          alarmo
           adaptive_lighting
           better_thermostat
-          frigate
+          # frigate
           samsungtv-smart
+          smartir
           spook
+          # pkgs.dafos.hass-divoom
+          # (pkgs.buildHomeAssistantComponent {
+          #   owner = "JurajNyiri";
+          #   domain = "tapo";
+          #   version = "main";
+          #   src = inputs.hass-tapo-control;
+          #   dontConfigure = true;
+          #   dontBuild = true;
+          #   doCheck = false;
+          #   propagatedBuildInputs = with pkgs.python312Packages; [
+          #     pytapo
+          #   ];
+          # })
+          # (pkgs.buildHomeAssistantComponent {
+          #   owner = "petretiandrea";
+          #   domain = "tapo";
+          #   version = "main";
+          #   src = inputs.hass-tapo;
+          #   propagatedBuildInputs = with pkgs.python312Packages; [
+          #     plugp100
+          #   ];
+          # })
         ];
 
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
@@ -153,6 +177,7 @@ in
           template-entity-row
           universal-remote-card
           vacuum-card
+          weather-chart-card
           weather-card
         ];
 
@@ -160,6 +185,8 @@ in
           # Includes dependencies for a basic setup
           # https://www.home-assistant.io/integrations/default_config/
           default_config = { };
+
+          bluetooth = { };
 
           homeassistant = {
             name = "MaisonDaf";
@@ -174,24 +201,24 @@ in
           "scene ui" = "!include scenes.yaml";
           "script ui" = "!include_dir_merge_named scripts/";
 
-          zha = {
-            zigpy_config = {
-              device = cfg.serialPort;
-            };
-          };
+          zha.zigpy_config.device = cfg.serialPort;
 
-          sensor = {
-            platform = "time_date";
-            display_options = [
-              "time"
-              "date"
-              "date_time"
-              "date_time_utc"
-              "date_time_iso"
-              "time_date"
-              "time_utc"
-            ];
-          };
+          binary_sensor = import ./sensors/binary_sensors.nix;
+
+          sensor = [
+            {
+              platform = "time_date";
+              display_options = [
+                "time"
+                "date"
+                "date_time"
+                "date_time_utc"
+                "date_time_iso"
+                "time_date"
+                "time_utc"
+              ];
+            }
+          ] ++ (import ./sensors/sensors.nix);
         };
       };
     };

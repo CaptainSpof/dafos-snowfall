@@ -90,6 +90,16 @@
       };
     };
 
+    hass-tapo-control = {
+      url = "github:JurajNyiri/homeAssistant-Tapo-Control";
+      flake = false;
+    };
+
+    hass-tapo = {
+      url = "github:petretiandrea/home-assistant-tapo-p100";
+      flake = false;
+    };
+
     lightly.url = "github:Bali10050/Lightly";
 
     # Pre Commit Hooks
