@@ -135,7 +135,7 @@ in
           samsungtv-smart
           smartir
           spook
-          # pkgs.dafos.hass-divoom
+          pkgs.dafos.hass-divoom
           # (pkgs.buildHomeAssistantComponent {
           #   owner = "JurajNyiri";
           #   domain = "tapo";
@@ -187,6 +187,7 @@ in
           default_config = { };
 
           bluetooth = { };
+          smartir = { };
 
           homeassistant = {
             name = "MaisonDaf";
@@ -204,6 +205,8 @@ in
           zha.zigpy_config.device = cfg.serialPort;
 
           binary_sensor = import ./sensors/binary_sensors.nix;
+
+          input_boolean = import ./sensors/input_booleans.nix;
 
           sensor = [
             {
