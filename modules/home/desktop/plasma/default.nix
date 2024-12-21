@@ -8,8 +8,8 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt enabled;
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt enabled;
 
   cfg = config.${namespace}.desktop.plasma;
 
@@ -21,7 +21,6 @@ let
     kdePackages.ksystemlog
     kdePackages.kweather
     kdePackages.merkuro
-    inputs.kwin-effects-forceblur.packages.${pkgs.system}.default
     # Themes
     dafos.kde-warm-eyes
     dafos.leaf-kde
@@ -36,8 +35,10 @@ let
   ];
 in
 {
-  options.${namespace}.desktop.plasma = {
+  options.${namespace}.desktop.plasma = with types; {
     enable = mkBoolOpt false "Whether or not to use Plasma as the desktop environment.";
+
+    extraPackages = mkOpt (listOf package) [ ] "Extra Packages to install";
 
     touchScreen = mkBoolOpt false "Whether or not to enable touch screen capabilities.";
     themeSwitcher = mkBoolOpt false "Whether or not to enable theme switcher service.";
@@ -62,6 +63,7 @@ in
         maliit-framework
         maliit-keyboard
       ])
-      ++ defaultPackages;
+      ++ defaultPackages
+      ++ cfg.extraPackages;
   };
 }

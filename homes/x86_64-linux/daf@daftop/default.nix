@@ -3,6 +3,7 @@
   config,
   namespace,
   pkgs,
+  inputs,
   ...
 }:
 
@@ -21,6 +22,7 @@ in
         touchScreen = true;
         themeSwitcher = true;
         desktop.digitalClock.position.horizontal = 1200;
+        extraPackages = [ inputs.kwin-effects-forceblur.packages.${pkgs.system}.default ];
       };
     };
 
