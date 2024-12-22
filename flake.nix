@@ -100,7 +100,7 @@
       flake = false;
     };
 
-    lightly.url = "github:Bali10050/Lightly";
+    darkly.url = "github:Bali10050/Darkly";
 
     # Pre Commit Hooks
     pre-commit-hooks-nix.url = "github:cachix/git-hooks.nix";

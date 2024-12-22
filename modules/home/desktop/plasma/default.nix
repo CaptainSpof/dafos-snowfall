@@ -28,7 +28,7 @@ let
     gruvbox-gtk-theme
     kde-gruvbox
     papirus-icon-theme
-    inputs.lightly.packages.${pkgs.system}.lightly-qt6
+    inputs.darkly.packages.${pkgs.system}.darkly-qt6
     # Utils
     kdotool
     wl-clipboard

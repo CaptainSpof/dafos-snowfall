@@ -53,14 +53,14 @@ in
         };
         wallpaperFillMode = "stretch";
         windowDecorations = {
-          library = "org.kde.lightly";
-          theme = "Lightly";
+          library = "org.kde.darkly";
+          theme = "Darkly";
         };
       };
 
       configFile = {
         kdeglobals = {
-          KDE.widgetStyle = "Lightly";
+          KDE.widgetStyle = "Darkly";
           General.AccentColorFromWallpaper = true;
         };
       };
