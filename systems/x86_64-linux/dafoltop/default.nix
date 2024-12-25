@@ -6,13 +6,15 @@
 }:
 
 let
-  inherit (lib) mkForce;
   inherit (lib.${namespace}) enabled disabled;
 in
 {
   imports = [ ./hardware.nix ];
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  # we don't need no education
+  documentation.man.generateCaches = false;
 
   # disable sleep
   systemd.targets = {
@@ -38,8 +40,6 @@ in
         user = config.${namespace}.user.name;
       };
     };
-
-    security.gpg = mkForce disabled;
 
     services = {
       home-assistant = enabled;

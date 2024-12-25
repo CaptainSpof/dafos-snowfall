@@ -1,21 +1,27 @@
 {
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
 
 let
-  inherit (lib) mkIf types;
-  inherit (lib.${namespace}) mdDoc mkOpt mkBoolOpt;
+  inherit (lib)
+    types
+    mkIf
+    mkDefault
+    mkForce
+    ;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.system.networking;
 in
 {
-  options.${namespace}.system.networking = {
-    enable = mkBoolOpt false "Whether or not to enable networking support.";
-    hosts = mkOpt types.attrs { } (mdDoc "An attribute set to merge with `networking.hosts`");
-    optimizeTcp = mkBoolOpt true "Optimize TCP connections";
+  options.${namespace}.system.networking = with types; {
+    enable = mkBoolOpt false "Whether or not to enable networking support";
+    hosts = mkOpt attrs { } "An attribute set to merge with <option>networking.hosts</option>";
+    optimizeTcp = mkBoolOpt false "Optimize TCP connections";
     dns = mkOpt (types.enum [
       "dnsmasq"
       "systemd-resolved"
@@ -23,7 +29,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    dafos.user.extraGroups = [ "networkmanager" ];
     boot = {
       extraModprobeConfig = "options bonding max_bonds=0";
 
@@ -100,20 +105,44 @@ in
       };
     };
 
+    # network tools that are helpful and nice to have
+    environment.systemPackages = with pkgs; [
+      mtr
+      tcpdump
+      traceroute
+    ];
+
+    dafos.user.extraGroups = [
+      "network"
+      "wireshark"
+    ];
+
     networking = {
       hosts = {
-        "127.0.0.1" = [ "local.test" ] ++ (cfg.hosts."127.0.0.1" or [ ]);
+        "127.0.0.1" = cfg.hosts."127.0.0.1" or [ ];
       } // cfg.hosts;
 
-      networkmanager = {
-        enable = true;
-        wifi.backend = "iwd";
-        dhcp = "internal";
+      firewall = {
+        allowedUDPPorts = [ 5353 ];
+        allowedTCPPorts = [
+          443
+          8080
+        ];
+        checkReversePath = mkDefault false;
+        logReversePathDrops = true;
+        logRefusedConnections = true;
       };
-    };
 
-    # Fixes an issue that normally causes nixos-rebuild to fail.
-    # https://github.com/NixOS/nixpkgs/issues/180175
-    systemd.services.NetworkManager-wait-online.enable = false;
+      nameservers = [
+        "1.1.1.1"
+        "1.0.0.1"
+        "100.100.100.100"
+        "2606:4700:4700::1111"
+        "2606:4700:4700::1001"
+      ];
+
+      useDHCP = mkForce false;
+      usePredictableInterfaceNames = mkForce true;
+    };
   };
 }

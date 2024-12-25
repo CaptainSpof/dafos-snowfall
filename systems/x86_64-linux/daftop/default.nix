@@ -6,8 +6,7 @@
 }:
 
 let
-  inherit (lib) mkForce;
-  inherit (lib.${namespace}) enabled disabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   imports = [ ./hardware.nix ];
@@ -38,7 +37,6 @@ in
     };
 
     security = {
-      gpg = mkForce disabled;
       sudo-rs = enabled;
     };
 
@@ -63,6 +61,21 @@ in
         optimizeTcp = true;
       };
     };
+  };
+
+  systemd = {
+    network.networks = {
+      # wired interfaces e.g. ethernet
+      "30-network-defaults-wired" = {
+        matchConfig.Name = "en* | eth* | usb*";
+        networkConfig = {
+          DHCP = "ipv4";
+          MulticastDNS = true;
+        };
+      };
+    };
+
+    services."systemd-networkd".environment.SYSTEMD_LOG_LEVEL = "debug";
   };
 
   # This value determines the NixOS release from which the default
