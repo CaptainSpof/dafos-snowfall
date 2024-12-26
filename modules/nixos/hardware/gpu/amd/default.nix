@@ -18,15 +18,15 @@ in
   };
 
   config = mkIf cfg.enable {
+    # enable amdgpu kernel module
     boot = {
       initrd.kernelModules = [ "amdgpu" ]; # load amdgpu kernel module as early as initrd
-      kernelModules = [
-        "amdgpu"
-      ]; # if loading somehow fails during initrd but the boot continues, try again later
+      kernelModules = [ "amdgpu" ]; # if loading somehow fails during initrd but the boot continues, try again later
     };
 
     environment.systemPackages = with pkgs; [
       amdgpu_top
+      nvtopPackages.amd
     ];
 
     environment.variables = {
@@ -37,12 +37,21 @@ in
     };
 
     # enables AMDVLK & OpenCL support
-    hardware.graphics = {
-      extraPackages =
-        with pkgs;
-        [
-          amdvlk
+    hardware = {
+      amdgpu = {
+        amdvlk = {
+          enable = true;
+          package = pkgs.amdvlk;
 
+          support32Bit = {
+            enable = true;
+          };
+        };
+        # opencl.enable = true;
+      };
+
+      graphics = {
+        extraPackages = with pkgs; [
           # mesa
           mesa
 
@@ -51,23 +60,8 @@ in
           vulkan-loader
           vulkan-validation-layers
           vulkan-extension-layer
-        ]
-        ++ (
-          if pkgs ? rocmPackages.clr then
-            with pkgs.rocmPackages;
-            [
-              clr
-              clr.icd
-            ]
-          else
-            with pkgs;
-            [
-              rocm-opencl-icd
-              rocm-opencl-runtime
-            ]
-        );
-
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+        ];
+      };
     };
 
     services.xserver.videoDrivers = lib.mkDefault [
