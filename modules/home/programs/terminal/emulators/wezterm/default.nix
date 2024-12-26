@@ -63,7 +63,7 @@ in
           tab_max_width = 10000,
 
           -- perf
-          enable_wayland = false,
+          enable_wayland = true,
           front_end = "WebGpu",
           scrollback_lines = 10000,
 
