@@ -1,62 +1,22 @@
 {
   inputs,
-  lib,
   pkgs,
   ...
 }:
+
 let
-  inherit (inputs) pre-commit-hooks-nix;
+  inherit (inputs) git-hooks-nix;
 in
-pre-commit-hooks-nix.lib.${pkgs.system}.run {
+git-hooks-nix.lib.${pkgs.system}.run {
   src = ./.;
-  hooks =
-    let
-      excludes = [
-        "flake.lock"
-        "CHANGELOG.md"
-      ];
-      fail_fast = true;
-      verbose = true;
-    in
-    {
-      actionlint.enable = true;
-      # conform.enable = true;
-
-      deadnix = {
-        enable = true;
-
-        settings = {
-          edit = true;
-        };
-      };
-
-      eslint = {
-        enable = true;
-        package = pkgs.eslint_d;
-      };
-
-      luacheck.enable = true;
-
-      nixfmt-rfc-style.enable = true;
-
-      pre-commit-hook-ensure-sops.enable = true;
-
-      prettier = {
-        enable = true;
-        inherit excludes fail_fast verbose;
-
-        description = "pre-commit hook for prettier";
-        settings = {
-          binPath = "${lib.getExe pkgs.prettierd}";
-          write = true;
-        };
-      };
-
-      shfmt = {
-        enable = true;
-      };
-
-      statix.enable = true;
-      # treefmt.enable = true;
+  hooks = {
+    clang-tidy.enable = true;
+    luacheck.enable = true;
+    pre-commit-hook-ensure-sops.enable = true;
+    treefmt = {
+      enable = true;
+      settings.fail-on-change = false;
+      packageOverrides.treefmt = inputs.treefmt-nix.lib.mkWrapper pkgs ../../treefmt.nix;
     };
+  };
 }

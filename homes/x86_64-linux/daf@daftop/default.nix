@@ -8,7 +8,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 in
 {
   dafos = {
@@ -52,6 +52,12 @@ in
       };
     };
 
+    services.sops = {
+      enable = true;
+      defaultSopsFile = lib.snowfall.fs.get-file "secrets/daftop/daf/default.yaml";
+      sshKeyPaths = [ "${config.home.homeDirectory}/.ssh/daf@daftop.pem" ];
+    };
+
     system = {
       xdg = enabled;
     };
@@ -62,7 +68,7 @@ in
 
       development = {
         enable = true;
-        aws.enable = true;
+        aws = disabled;
       };
 
       games = enabled;
@@ -70,6 +76,7 @@ in
       graphics = {
         enable = true;
         drawing = enabled;
+        graphics3d = enabled;
       };
 
       music = enabled;

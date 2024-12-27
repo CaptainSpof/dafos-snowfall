@@ -82,6 +82,15 @@
       };
     };
 
+    # Sops (Secrets)
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+    };
+
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs = {
@@ -102,8 +111,8 @@
 
     darkly.url = "github:Bali10050/Darkly";
 
-    # Pre Commit Hooks
-    pre-commit-hooks-nix.url = "github:cachix/git-hooks.nix";
+    # Git Hooks
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
 
     # System Deployment
     deploy-rs = {
@@ -162,19 +171,24 @@
       homes.modules = with inputs; [
         nix-index-database.hmModules.nix-index
         plasma-manager.homeManagerModules.plasma-manager
-        # nur.modules.homeManager.default
+        sops-nix.homeManagerModules.sops
       ];
 
       systems.modules.nixos = with inputs; [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         vault-service.nixosModules.nixos-vault-service
+        sops-nix.nixosModules.sops
       ];
+
+      templates = {
+        rust.description = "Rust template";
+      };
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
 
-      checks = builtins.mapAttrs (
-        _system: deploy-lib: deploy-lib.deployChecks inputs.self.deploy
-      ) inputs.deploy-rs.lib;
+      outputs-builder = channels: {
+        formatter = inputs.treefmt-nix.lib.mkWrapper channels.nixpkgs ./treefmt.nix;
+      };
     };
 }
