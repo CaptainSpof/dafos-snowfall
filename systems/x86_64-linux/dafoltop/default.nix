@@ -44,6 +44,7 @@ in
     services = {
       home-assistant = enabled;
       mealie = enabled;
+      # tandoor = enabled;
       syncthing = enabled;
       printing = disabled;
     };

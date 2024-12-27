@@ -104,11 +104,6 @@
       flake = false;
     };
 
-    hass-tapo = {
-      url = "github:petretiandrea/home-assistant-tapo-p100";
-      flake = false;
-    };
-
     darkly.url = "github:Bali10050/Darkly";
 
     # Git Hooks

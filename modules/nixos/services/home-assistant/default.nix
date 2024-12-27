@@ -3,6 +3,7 @@
   lib,
   pkgs,
   namespace,
+  inputs,
   ...
 }:
 
@@ -136,27 +137,43 @@ in
           smartir
           spook
           pkgs.dafos.hass-divoom
-          # (pkgs.buildHomeAssistantComponent {
-          #   owner = "JurajNyiri";
-          #   domain = "tapo";
-          #   version = "main";
-          #   src = inputs.hass-tapo-control;
-          #   dontConfigure = true;
-          #   dontBuild = true;
-          #   doCheck = false;
-          #   propagatedBuildInputs = with pkgs.python312Packages; [
-          #     pytapo
-          #   ];
-          # })
-          # (pkgs.buildHomeAssistantComponent {
-          #   owner = "petretiandrea";
-          #   domain = "tapo";
-          #   version = "main";
-          #   src = inputs.hass-tapo;
-          #   propagatedBuildInputs = with pkgs.python312Packages; [
-          #     plugp100
-          #   ];
-          # })
+          (pkgs.buildHomeAssistantComponent {
+            owner = "JurajNyiri";
+            domain = "tapo";
+            version = "main";
+            src = inputs.hass-tapo-control;
+            dontConfigure = true;
+            dontBuild = true;
+            doCheck = false;
+            propagatedBuildInputs = with pkgs.python312Packages; [
+              (buildPythonPackage rec {
+                pname = "pytapo";
+                version = "3.3.37";
+                pyproject = true;
+
+                disabled = pythonOlder "3.7";
+
+                src = fetchPypi {
+                  inherit pname version;
+                  hash = "sha256-InDbfWzRb+Q+E6feeatHIliq83g83oUfo3Yze/BAJdM=";
+                };
+
+                build-system = [ setuptools ];
+
+                dependencies = with pkgs.python312Packages; [
+                  pycryptodome
+                  requests
+                  rtp
+                  urllib3
+                ];
+
+                pythonImportsCheck = [ "pytapo" ];
+
+                # Tests require actual hardware
+                doCheck = false;
+              })
+            ];
+          })
         ];
 
         customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
@@ -205,9 +222,7 @@ in
           zha.zigpy_config.device = cfg.serialPort;
 
           binary_sensor = import ./sensors/binary_sensors.nix;
-
           input_boolean = import ./sensors/input_booleans.nix;
-
           sensor = [
             {
               platform = "time_date";
