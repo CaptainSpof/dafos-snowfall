@@ -19,4 +19,16 @@
     name = "Laundry · Dryer is running";
     icon = "mdi:tumble-dryer";
   };
+  kitchen_dishwasher_is_finished = {
+    name = "Kitchen · Dishwasher is finished";
+    icon = "mdi:dishwasher";
+  };
+  laundry_washing_machine_is_finished = {
+    name = "Laundry · Washing Machine is finished";
+    icon = "mdi:washing-machine";
+  };
+  laundry_dryer_is_finished = {
+    name = "Laundry · Dryer is finished";
+    icon = "mdi:tumble-dryer";
+  };
 }
