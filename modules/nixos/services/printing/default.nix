@@ -11,6 +11,9 @@ let
   inherit (lib.${namespace}) mkBoolOpt;
 
   cfg = config.${namespace}.services.printing;
+  patchedCnijfilter2 = pkgs.cnijfilter2.overrideAttrs (oldAttrs: {
+    patches = oldAttrs.patches ++ [ ./cnijfilter2.patch ];
+  });
 in
 {
   options.${namespace}.services.printing = {
@@ -22,7 +25,9 @@ in
       enable = true;
       browsing = true;
 
-      drivers = [ pkgs.cnijfilter2 ];
+      drivers = [
+        patchedCnijfilter2
+      ];
     };
 
     environment.systemPackages = with pkgs; [ skanpage ];
