@@ -65,6 +65,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming.inputs.nixpkgs.follows = "nixpkgs";
+
     # Nuenv
     nuenv.url = "github:DeterminateSystems/nuenv";
 
@@ -182,6 +185,7 @@
         home-manager.nixosModules.home-manager
         vault-service.nixosModules.nixos-vault-service
         sops-nix.nixosModules.sops
+        nix-gaming.nixosModules.platformOptimizations
       ];
 
       templates = {

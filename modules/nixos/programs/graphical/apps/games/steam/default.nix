@@ -8,7 +8,7 @@
 
 let
   inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib.${namespace}) mkBoolOpt enabled;
 
   cfg = config.${namespace}.programs.graphical.apps.games.steam;
 in
@@ -23,6 +23,7 @@ in
       enable = true;
       remotePlay.openFirewall = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
+      platformOptimizations = enabled;
     };
 
     hardware.steam-hardware.enable = true;
