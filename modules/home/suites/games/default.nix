@@ -5,6 +5,7 @@
   namespace,
   ...
 }:
+
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt enabled;
@@ -14,21 +15,28 @@ in
 {
   options.${namespace}.suites.games = {
     enable = mkBoolOpt false "Whether or not to enable common games configuration.";
+    bottles.enable = mkBoolOpt false "Whether or not to enable bottles.";
+    ftl.enable = mkBoolOpt false "Whether or not to enable ftl.";
+    lutris.enable = mkBoolOpt false "Whether or not to enable lutris.";
+    remote-play.enable = mkBoolOpt false "Whether or not to enable remote-play.";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      bottles
-      lutris
-      proton-caller
-      protontricks
-      protonup-ng
-      protonup-qt
-
-      # slipstream # FTL
-      # sunshine
-      # moonlight-qt #for testing purposes.
-    ];
+    home.packages =
+      with pkgs;
+      [
+        proton-caller
+        protontricks
+        protonup-ng
+        protonup-qt
+      ]
+      ++ lib.optionals cfg.lutris.enable [ lutris ]
+      ++ lib.optionals cfg.ftl.enable [ slipstream ]
+      ++ lib.optionals cfg.remote-play.enable [
+        sunshine
+        moonlight-qt
+      ]
+      ++ lib.optionals cfg.bottles.enable [ bottles ];
 
     dafos = {
       programs = {
