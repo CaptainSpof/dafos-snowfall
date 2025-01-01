@@ -34,19 +34,20 @@ in
       ]
       ++ cfg.extra-packages;
 
-    hardware.pulseaudio.enable = false;
-
     dafos.user.extraGroups = [ "audio" ];
 
     security.rtkit.enable = true;
 
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      audio.enable = true;
-      jack.enable = false;
-      pulse.enable = true;
-      wireplumber.enable = true;
+    services = {
+      pulseaudio.enable = false;
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        audio.enable = true;
+        jack.enable = false;
+        pulse.enable = true;
+        wireplumber.enable = true;
+      };
     };
   };
 }
