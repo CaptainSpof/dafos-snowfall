@@ -7,7 +7,7 @@
 }:
 
 let
-  inherit (lib) mkIf types mkForce;
+  inherit (lib) mkIf types;
   inherit (lib.${namespace}) mkOpt mkBoolOpt;
 
   cfg = config.${namespace}.hardware.audio;
@@ -34,7 +34,7 @@ in
       ]
       ++ cfg.extra-packages;
 
-    hardware.pulseaudio.enable = mkForce false;
+    hardware.pulseaudio.enable = false;
 
     dafos.user.extraGroups = [ "audio" ];
 
