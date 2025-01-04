@@ -7,5 +7,6 @@ _final: _prev:
     home-assistant
     tandoor-recipes
     xdg-desktop-portal
+    cnijfilter2
     ;
 }
