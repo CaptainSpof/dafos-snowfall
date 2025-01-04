@@ -99,6 +99,14 @@
       };
     };
 
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        cachix.follows = "nixpkgs";
+      };
+    };
+
     hass-tapo-control = {
       url = "github:JurajNyiri/homeAssistant-Tapo-Control";
       flake = false;

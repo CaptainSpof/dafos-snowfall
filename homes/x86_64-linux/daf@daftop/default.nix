@@ -31,7 +31,7 @@ in
         browsers = {
           firefox = {
             enable = true;
-            package = pkgs.firefox-beta;
+            package = inputs.firefox.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
             gpuAcceleration = true;
             hardwareDecoding = true;
             settings = {

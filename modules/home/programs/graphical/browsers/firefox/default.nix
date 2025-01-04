@@ -24,13 +24,15 @@ in
     enable = mkBoolOpt false "Whether or not to enable firefox.";
 
     extensions = mkOpt (listOf package) (with pkgs.nur.repos.rycee.firefox-addons; [
+      absolute-enable-right-click
       auto-tab-discard
       bitwarden
-      consent-o-matic
+      # consent-o-matic
       darkreader
       dearrow
       enhancer-for-youtube
       firefox-color
+      flagfox
       french-language-pack
       fx_cast
       languagetool
@@ -39,16 +41,13 @@ in
       reddit-enhancement-suite
       refined-github
       return-youtube-dislikes
-      sidebery
       simple-tab-groups
       sponsorblock
       stylus
-      # tabcenter-reborn
-      tree-style-tab
       tridactyl
       ublock-origin
       user-agent-string-switcher
-      userchrome-toggle-extended
+      view-image
       violentmonkey
     ]) "Extensions to install";
 
@@ -235,7 +234,7 @@ in
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     settings = mkOpt attrs { } "Settings to apply to the profile.";
-    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
+    userChrome = mkOpt str '''' "Extra configuration for the user chrome CSS file.";
   };
 
   config = mkIf cfg.enable {
@@ -252,20 +251,23 @@ in
 
             recursive = true;
           };
-          "${firefoxPath}/chrome/" = {
-            source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/.; };
+          # "${firefoxPath}/chrome/" = {
+          #   source = lib.cleanSourceWith { src = lib.cleanSource ./chrome/.; };
 
-            recursive = true;
-          };
+          #   recursive = true;
+          # };
         }
       ];
     };
 
     # Tridactyl
     xdg.configFile."tridactyl/tridactylrc".source = ./tridactyl/tridactylrc;
-    xdg.configFile."tridactyl/themes/everforest-dark.css".source = ./tridactyl/tridactyl_style_everforest.css;
+    xdg.configFile."tridactyl/themes/everforest-dark.css".source =
+      ./tridactyl/tridactyl_style_everforest.css;
 
-    home.packages = with pkgs; [ fx-cast-bridge ];
+    home.packages = with pkgs; [
+      fx-cast-bridge
+    ];
 
     programs.firefox = {
       enable = true;
@@ -320,16 +322,18 @@ in
                 unified-extensions-area = [ ];
 
                 nav-bar = [
+                  "sidebar-button"
+                  "customizableui-special-spacer1"
                   "back-button"
                   "forward-button"
                   "stop-reload-button"
                   "customizableui-special-spring4"
-                  "sidebar-button"
                   "urlbar-container"
-                  "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
+                  "simple-tab-groups_drive4ik-browser-action"
                   "customizableui-special-spring5"
+                  "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
                   "downloads-button"
-                  "fxa-toolbar-menu-button"
+                  # "fxa-toolbar-menu-button"
 
                   # Extensions
                   "_testpilot-containers-browser-action"
@@ -340,8 +344,6 @@ in
 
                 TabsToolbar = [
                   "tabbrowser-tabs"
-                  "new-tab-button"
-                  "alltabs-button"
                   "simple-tab-groups_drive4ik-browser-action"
                 ];
 
@@ -373,6 +375,13 @@ in
               currentVersion = 20;
               newElementCount = 2;
             };
+
+            "sidebar.verticalTabs" = true;
+            "browser.tabs.inTitlebar" = 0;
+            "browser.theme.content-theme" = 0;
+            "browser.theme.toolbar-theme" = 0;
+            "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+
             "font.name.monospace.x-western" = "MonaspiceKr Nerd Font";
             "font.name.sans-serif.x-western" = "MonaspiceNe Nerd Font";
             "font.name.serif.x-western" = "MonaspiceNe Nerd Font";
@@ -442,11 +451,7 @@ in
           })
         ];
 
-        userChrome =
-          builtins.readFile ./chrome/userChrome.css
-          + ''
-            ${cfg.userChrome}
-          '';
+        inherit (cfg) userChrome;
       };
     };
   };
