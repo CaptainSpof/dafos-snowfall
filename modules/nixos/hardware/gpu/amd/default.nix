@@ -47,7 +47,7 @@ in
             enable = true;
           };
         };
-        # opencl.enable = true;
+        opencl.enable = true;
       };
 
       graphics = {

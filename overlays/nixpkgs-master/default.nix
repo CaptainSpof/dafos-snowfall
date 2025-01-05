@@ -4,9 +4,11 @@ _final: _prev:
 
 {
   inherit (channels.nixpkgs-master)
-    home-assistant
-    tandoor-recipes
-    xdg-desktop-portal
     cnijfilter2
+    home-assistant
+    rocmPackages_6
+    tandoor-recipes
+    wezterm
+    xdg-desktop-portal
     ;
 }

@@ -6,8 +6,7 @@
 }:
 
 let
-  inherit (lib) mkForce;
-  inherit (lib.${namespace}) enabled disabled;
+  inherit (lib.${namespace}) enabled;
 in
 {
   imports = [ ./hardware.nix ];
@@ -35,10 +34,6 @@ in
     hardware = {
       cpu.amd = enabled;
       gpu.amd = enabled;
-    };
-
-    security = {
-      gpg = mkForce disabled;
     };
 
     services.syncthing = enabled;
