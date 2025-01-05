@@ -6,8 +6,8 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.${namespace}) mkBoolOpt;
+  inherit (lib) mkIf types;
+  inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.programs.terminal.emulators.wezterm;
   fontTerm = config.${namespace}.user.font.mono; # TODO
@@ -15,6 +15,8 @@ in
 {
   options.${namespace}.programs.terminal.emulators.wezterm = {
     enable = mkBoolOpt false "Whether or not to enable wezterm.";
+
+    frontEnd = mkOpt types.str "OpenGL" "The front end to use.";
   };
 
   config = mkIf cfg.enable {
@@ -64,7 +66,7 @@ in
 
           -- perf
           enable_wayland = true,
-          front_end = "WebGpu",
+          front_end = "${cfg.frontEnd}",
           scrollback_lines = 10000,
 
           -- term window settings
