@@ -77,6 +77,7 @@ in
         enable = true;
         drawing = enabled;
         graphics3d = enabled;
+        vector = enabled;
       };
 
       music = enabled;
