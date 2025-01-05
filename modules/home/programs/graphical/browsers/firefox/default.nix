@@ -328,15 +328,14 @@ in
                   "forward-button"
                   "stop-reload-button"
                   "customizableui-special-spring4"
-                  "urlbar-container"
                   "simple-tab-groups_drive4ik-browser-action"
-                  "customizableui-special-spring5"
+                  "urlbar-container"
                   "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # Bitwarden
+                  "customizableui-special-spring5"
                   "downloads-button"
-                  # "fxa-toolbar-menu-button"
 
                   # Extensions
-                  "_testpilot-containers-browser-action"
+                  # "_testpilot-containers-browser-action"
                   "unified-extensions-button"
                 ];
 
