@@ -70,14 +70,25 @@ in
 
       configFile = {
         kwinrc = {
-          # Effect-blur.BlurStrength = 3;
           Effect-diminactive.DimFullScreen = false;
-          Effect-overview.BorderActivate = 7;
-          Effect-overview.BorderActivateAll = 9;
+          Effect-overview = {
+            BorderActivate = 7;
+            BorderActivateAll = 9;
+          };
+          Effect-blurplus = {
+            BlurDocks = true;
+            BlurMenus = true;
+            BlurStrength = 7;
+            FakeBlur = true;
+            NoiseStrength = 3;
+            PaintAsTranslucent = true;
+            WindowClasses = "org.wezfurlong.wezterm";
+          };
           ElectricBorders.TopRight = "LockScreen";
 
           Plugins = {
             contrastEnabled = true;
+            forceblurEnabled = true;
           };
 
           Windows = {
