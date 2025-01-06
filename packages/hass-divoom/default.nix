@@ -2,8 +2,27 @@
   lib,
   fetchFromGitHub,
   buildHomeAssistantComponent,
-  python312Packages,
+  pkgs,
 }:
+
+let
+  pythonWithBluetooth = pkgs.python3.overrideAttrs (old: rec {
+    buildInputs = (old.buildInputs or [ ]) ++ [ pkgs.bluez.dev ];
+    configureFlags = (old.configureFlags or [ ]) ++ [ "--enable-bluez" ];
+    extraMakeFlags = (old.extraMakeFlags or [ ]) ++ [
+      "CFLAGS=-I${pkgs.bluez.dev}/include"
+      "LDFLAGS=-L${pkgs.bluez.dev}/lib"
+    ];
+  });
+
+  # Add required Python packages
+  pythonEnv = pythonWithBluetooth.withPackages (
+    ps: with ps; [
+      btsocket
+      # Add other Python dependencies here if needed
+    ]
+  );
+in
 
 buildHomeAssistantComponent {
   owner = "d03n3rfr1tz3";
@@ -17,17 +36,18 @@ buildHomeAssistantComponent {
     hash = "sha256-AFdICIbwLIB9tvEeaRYt8dzll54fWToZVuhYHwJPUws=";
   };
 
-  makeWrapperArgs = [ "--prefix PATH : ${lib.makeBinPath [ python312Packages.btsocket ]}" ];
+  propagatedBuildInputs = [ pythonEnv ];
 
-  #skip phases with nothing to do
+  # Skip phases with nothing to do
   dontConfigure = true;
   dontBuild = true;
   doCheck = false;
 
   meta = with lib; {
-    changelog = "";
-    description = "";
-    homepage = "";
+    description = "Divoom Home Assistant integration";
+    homepage = "https://github.com/d03n3rfr1tz3/hass-divoom";
     license = licenses.mit;
+    maintainers = with lib.maintainers; [ "d03n3rfr1tz3" ];
+    changelog = "https://github.com/d03n3rfr1tz3/hass-divoom/releases";
   };
 }

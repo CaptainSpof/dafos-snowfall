@@ -25,10 +25,26 @@
   };
   laundry_washing_machine_is_finished = {
     name = "Laundry · Washing Machine is finished";
-    icon = "mdi:washing-machine";
+    icon = "mdi:washing-machine-off";
   };
   laundry_dryer_is_finished = {
     name = "Laundry · Dryer is finished";
-    icon = "mdi:tumble-dryer";
+    icon = "mdi:tumble-dryer-off";
+  };
+  # Rooms Vacuum
+  entry_vacuum = {
+    name = "Entry · Vacuum";
+  };
+  kitchen_vacuum = {
+    name = "Kitchen · Vacuum";
+  };
+  living_room_vacuum = {
+    name = "Living Room · Vacuum";
+  };
+  veranda_vacuum = {
+    name = "Véranda · Vacuum";
+  };
+  study_room_vacuum = {
+    name = "Study Room · Vacuum";
   };
 }
