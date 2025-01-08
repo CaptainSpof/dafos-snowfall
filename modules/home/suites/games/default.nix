@@ -18,7 +18,7 @@ in
     bottles.enable = mkBoolOpt true "Whether or not to enable bottles.";
     ftl.enable = mkBoolOpt false "Whether or not to enable ftl.";
     lutris.enable = mkBoolOpt false "Whether or not to enable lutris.";
-    remote-play.enable = mkBoolOpt false "Whether or not to enable remote-play.";
+    remote-play.enable = mkBoolOpt true "Whether or not to enable remote-play.";
   };
 
   config = mkIf cfg.enable {
