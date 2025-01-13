@@ -30,7 +30,6 @@ in
         [
           jq
           jqp
-          onefetch
           github-desktop
           tokei # need to know how many lines of poorly written code you typed ? 🦀
           wildcard

@@ -234,7 +234,7 @@ in
     gpuAcceleration = mkBoolOpt false "Enable GPU acceleration.";
     hardwareDecoding = mkBoolOpt false "Enable hardware video decoding.";
     settings = mkOpt attrs { } "Settings to apply to the profile.";
-    userChrome = mkOpt str '''' "Extra configuration for the user chrome CSS file.";
+    userChrome = mkOpt str "" "Extra configuration for the user chrome CSS file.";
   };
 
   config = mkIf cfg.enable {
