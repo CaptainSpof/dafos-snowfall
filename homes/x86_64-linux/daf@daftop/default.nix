@@ -19,7 +19,7 @@ in
 
     desktop = {
       plasma = {
-        touchScreen = true;
+        touchScreen = false;
         themeSwitcher = true;
         desktop.digitalClock.position.horizontal = 1200;
         extraPackages = [ inputs.kwin-effects-forceblur.packages.${pkgs.system}.default ];
@@ -31,7 +31,7 @@ in
         browsers = {
           firefox = {
             enable = true;
-            package = inputs.firefox.packages.${pkgs.stdenv.hostPlatform.system}.firefox-nightly-bin;
+            package = pkgs.firefox-beta;
             gpuAcceleration = true;
             hardwareDecoding = true;
             settings = {
@@ -82,7 +82,7 @@ in
       };
 
       music = enabled;
-      office = enabled;
+      office = disabled;
       social = enabled;
       video = enabled;
     };

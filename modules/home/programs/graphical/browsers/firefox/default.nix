@@ -30,6 +30,7 @@ in
       # consent-o-matic
       darkreader
       dearrow
+      downthemall
       enhancer-for-youtube
       firefox-color
       flagfox
