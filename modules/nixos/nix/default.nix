@@ -3,6 +3,7 @@
   pkgs,
   lib,
   namespace,
+  inputs,
   ...
 }:
 
@@ -57,6 +58,7 @@ in
       nix-prefetch-git
       nix-output-monitor
       flake-checker
+      inputs.yaml2nix.packages.${pkgs.system}.yaml2nix
     ];
 
     programs.nh = mkIf cfg.nh.enable {

@@ -137,6 +137,8 @@
       url = "github:DeterminateSystems/nixos-vault-service";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yaml2nix.url = "github:euank/yaml2nix";
   };
 
   outputs =
