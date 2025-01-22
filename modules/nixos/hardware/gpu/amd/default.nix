@@ -15,6 +15,8 @@ in
 {
   options.${namespace}.hardware.gpu.amd = {
     enable = mkBoolOpt false "Whether or not to enable support for amdgpu.";
+    amdvlk.enable = mkBoolOpt true "Whether or not to enable opencl support";
+    opencl.enable = mkBoolOpt true "Whether or not to enable opencl support";
   };
 
   config = mkIf cfg.enable {
@@ -40,14 +42,14 @@ in
     hardware = {
       amdgpu = {
         amdvlk = {
-          enable = true;
+          inherit (cfg.amdvlk) enable;
           package = pkgs.amdvlk;
 
           support32Bit = {
             enable = true;
           };
         };
-        opencl.enable = true;
+        inherit (cfg) opencl;
       };
 
       graphics = {

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace}) enabled disabled;
 in
 {
   imports = [ ./hardware.nix ];
@@ -33,7 +33,10 @@ in
 
     hardware = {
       cpu.amd = enabled;
-      gpu.amd = enabled;
+      gpu = {
+        amd.enable = true;
+        amd.opencl.enable = false;
+      };
     };
 
     security = {
@@ -46,7 +49,7 @@ in
       desktop = enabled;
       development = {
         enable = true;
-        podman = enabled;
+        podman = disabled;
       };
     };
 
