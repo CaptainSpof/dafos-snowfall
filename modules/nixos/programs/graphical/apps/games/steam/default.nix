@@ -21,6 +21,9 @@ in
   config = mkIf cfg.enable {
     programs.steam = {
       enable = true;
+      extest.enable = true;
+      localNetworkGameTransfers.openFirewall = true;
+      protontricks.enable = true;
       remotePlay.openFirewall = true;
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       platformOptimizations = enabled;
