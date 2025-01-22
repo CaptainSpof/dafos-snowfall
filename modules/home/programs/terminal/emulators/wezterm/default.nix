@@ -15,6 +15,7 @@ in
 {
   options.${namespace}.programs.terminal.emulators.wezterm = {
     enable = mkBoolOpt false "Whether or not to enable wezterm.";
+    wayland.enable = mkBoolOpt false "Whether or not to enable wayland in wezterm.";
 
     frontEnd = mkOpt types.str "OpenGL" "The front end to use.";
   };
@@ -65,7 +66,7 @@ in
           tab_max_width = 10000,
 
           -- perf
-          enable_wayland = true,
+          enable_wayland = ${if cfg.wayland.enable then "true" else "false"},
           front_end = "${cfg.frontEnd}",
           scrollback_lines = 10000,
 
